@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		81911E7F197F954E009AE175 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81911E7E197F954E009AE175 /* main.m */; };
+		81911E82197F954E009AE175 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81911E81197F954E009AE175 /* AppDelegate.m */; };
+		81911E85197F954E009AE175 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81911E84197F954E009AE175 /* ViewController.m */; };
+		81911E88197F954E009AE175 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81911E86197F954E009AE175 /* Main.storyboard */; };
+		81911E8A197F954E009AE175 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81911E89197F954E009AE175 /* Images.xcassets */; };
+		81911E96197F954E009AE175 /* _______Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81911E95197F954E009AE175 /* _______Tests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		81911E90197F954E009AE175 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81911E71197F954E009AE175 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81911E78197F954E009AE175;
+			remoteInfo = "第一个天气软件";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		81911E79197F954E009AE175 /* 第一个天气软件.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "第一个天气软件.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81911E7D197F954E009AE175 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81911E7E197F954E009AE175 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		81911E80197F954E009AE175 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		81911E81197F954E009AE175 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		81911E83197F954E009AE175 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		81911E84197F954E009AE175 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		81911E87197F954E009AE175 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		81911E89197F954E009AE175 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		81911E8F197F954E009AE175 /* 第一个天气软件Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "第一个天气软件Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81911E94197F954E009AE175 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81911E95197F954E009AE175 /* _______Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "_______Tests.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		81911E76197F954E009AE175 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81911E8C197F954E009AE175 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		81911E70197F954E009AE175 = {
+			isa = PBXGroup;
+			children = (
+				81911E7B197F954E009AE175 /* 第一个天气软件 */,
+				81911E92197F954E009AE175 /* 第一个天气软件Tests */,
+				81911E7A197F954E009AE175 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		81911E7A197F954E009AE175 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				81911E79197F954E009AE175 /* 第一个天气软件.app */,
+				81911E8F197F954E009AE175 /* 第一个天气软件Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		81911E7B197F954E009AE175 /* 第一个天气软件 */ = {
+			isa = PBXGroup;
+			children = (
+				81911E80197F954E009AE175 /* AppDelegate.h */,
+				81911E81197F954E009AE175 /* AppDelegate.m */,
+				81911E83197F954E009AE175 /* ViewController.h */,
+				81911E84197F954E009AE175 /* ViewController.m */,
+				81911E86197F954E009AE175 /* Main.storyboard */,
+				81911E89197F954E009AE175 /* Images.xcassets */,
+				81911E7C197F954E009AE175 /* Supporting Files */,
+			);
+			path = "第一个天气软件";
+			sourceTree = "<group>";
+		};
+		81911E7C197F954E009AE175 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				81911E7D197F954E009AE175 /* Info.plist */,
+				81911E7E197F954E009AE175 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		81911E92197F954E009AE175 /* 第一个天气软件Tests */ = {
+			isa = PBXGroup;
+			children = (
+				81911E95197F954E009AE175 /* _______Tests.m */,
+				81911E93197F954E009AE175 /* Supporting Files */,
+			);
+			path = "第一个天气软件Tests";
+			sourceTree = "<group>";
+		};
+		81911E93197F954E009AE175 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				81911E94197F954E009AE175 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		81911E78197F954E009AE175 /* 第一个天气软件 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81911E99197F954E009AE175 /* Build configuration list for PBXNativeTarget "第一个天气软件" */;
+			buildPhases = (
+				81911E75197F954E009AE175 /* Sources */,
+				81911E76197F954E009AE175 /* Frameworks */,
+				81911E77197F954E009AE175 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "第一个天气软件";
+			productName = "第一个天气软件";
+			productReference = 81911E79197F954E009AE175 /* 第一个天气软件.app */;
+			productType = "com.apple.product-type.application";
+		};
+		81911E8E197F954E009AE175 /* 第一个天气软件Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81911E9C197F954E009AE175 /* Build configuration list for PBXNativeTarget "第一个天气软件Tests" */;
+			buildPhases = (
+				81911E8B197F954E009AE175 /* Sources */,
+				81911E8C197F954E009AE175 /* Frameworks */,
+				81911E8D197F954E009AE175 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81911E91197F954E009AE175 /* PBXTargetDependency */,
+			);
+			name = "第一个天气软件Tests";
+			productName = "第一个天气软件Tests";
+			productReference = 81911E8F197F954E009AE175 /* 第一个天气软件Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		81911E71197F954E009AE175 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = Luca;
+				TargetAttributes = {
+					81911E78197F954E009AE175 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					81911E8E197F954E009AE175 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 81911E78197F954E009AE175;
+					};
+				};
+			};
+			buildConfigurationList = 81911E74197F954E009AE175 /* Build configuration list for PBXProject "第一个天气软件" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 81911E70197F954E009AE175;
+			productRefGroup = 81911E7A197F954E009AE175 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81911E78197F954E009AE175 /* 第一个天气软件 */,
+				81911E8E197F954E009AE175 /* 第一个天气软件Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		81911E77197F954E009AE175 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81911E88197F954E009AE175 /* Main.storyboard in Resources */,
+				81911E8A197F954E009AE175 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81911E8D197F954E009AE175 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		81911E75197F954E009AE175 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81911E85197F954E009AE175 /* ViewController.m in Sources */,
+				81911E82197F954E009AE175 /* AppDelegate.m in Sources */,
+				81911E7F197F954E009AE175 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81911E8B197F954E009AE175 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81911E96197F954E009AE175 /* _______Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		81911E91197F954E009AE175 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81911E78197F954E009AE175 /* 第一个天气软件 */;
+			targetProxy = 81911E90197F954E009AE175 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		81911E86197F954E009AE175 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81911E87197F954E009AE175 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		81911E97197F954E009AE175 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		81911E98197F954E009AE175 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		81911E9A197F954E009AE175 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = "第一个天气软件/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		81911E9B197F954E009AE175 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = "第一个天气软件/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		81911E9D197F954E009AE175 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/第一个天气软件.app/第一个天气软件";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "第一个天气软件Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		81911E9E197F954E009AE175 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/第一个天气软件.app/第一个天气软件";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "第一个天气软件Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		81911E74197F954E009AE175 /* Build configuration list for PBXProject "第一个天气软件" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81911E97197F954E009AE175 /* Debug */,
+				81911E98197F954E009AE175 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81911E99197F954E009AE175 /* Build configuration list for PBXNativeTarget "第一个天气软件" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81911E9A197F954E009AE175 /* Debug */,
+				81911E9B197F954E009AE175 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		81911E9C197F954E009AE175 /* Build configuration list for PBXNativeTarget "第一个天气软件Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81911E9D197F954E009AE175 /* Debug */,
+				81911E9E197F954E009AE175 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 81911E71197F954E009AE175 /* Project object */;
+}
