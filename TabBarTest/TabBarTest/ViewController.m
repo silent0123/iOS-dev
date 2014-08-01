@@ -13,60 +13,14 @@
 //全局变量，确定是否第一次访问
 bool First_Visited = 1;
 
-@interface ViewController (){
-
-    NSMutableArray *_MutableData;
-}
+@interface ViewController ()
 
 @end
 
 @implementation ViewController
 
-- (void)initiateData {
-    
-#pragma mark RecentTable相关
-    // 测试用---装载测试数据
-    _MutableData = [NSMutableArray arrayWithCapacity:4];
-    
-    TestData *data1 = [[TestData alloc] init];
-    data1.FileName = @"IMG_3720.JPEG";
-    data1.Date = @"22 July, 2014";
-    data1.Time = @"13:25";
-    data1.PicImagename = @"CellEnc";
-    data1.BtnImagename = @"CellMore";   //不用修改
-    data1.Visitors = @"Li Hua, Amazon";
-    [_MutableData addObject:data1];
-    
-    TestData *data2 = [[TestData alloc] init];
-    data2.FileName = @"IMG_20140727.BMP";
-    data2.Date = @"27 July, 2014";
-    data2.Time = @"22: 19";
-    data2.PicImagename = @"CellDec";
-    data2.BtnImagename = @"CellMore";   //不用修改
-    data2.Visitors = @"Chan, Jason, Himest, 5 more..";
-    [_MutableData addObject:data2];
-    
-    TestData *data3 = [[TestData alloc] init];
-    data3.FileName = @"Mycontract.PDF";
-    data3.Date = @"23 July, 2014";
-    data3.Time = @"11: 15";
-    data3.PicImagename = @"CellEnc";
-    data3.BtnImagename = @"CellMore";   //不用修改
-    data3.Visitors = @"Chan, Luca";
-    [_MutableData addObject:data3];
-    
-    TestData *data4 = [[TestData alloc] init];
-    data4.FileName = @"Hello world.xcode";
-    data4.Date = @"23 May, 2014";
-    data4.Time = @"10: 10";
-    data4.PicImagename = @"CellEnc";
-    data4.BtnImagename = @"CellMore";   //不用修改
-    data4.Visitors = @"Luca, Li Lei, Han Mei";
-    [_MutableData addObject:data4];
-    //找到所需要传值的viewcontroller, 传值给它，注意头文件，注释的是因为在appdelegate中初始化值的话，只能导入一次。
-    //ViewController *viewController = (ViewController *)self.window.rootViewController;
-    self.CellData = _MutableData;
-}
+
+
 
 #pragma mark 常规初始化
 - (void)viewDidLoad {
@@ -105,9 +59,9 @@ bool First_Visited = 1;
     [self.view addSubview:_ChildView];
     //将_CircleView插入_OverViewBack中
     
-    
+    //直接调用自己写的InitiateData类的静态方法InitiateDataForRecent初始化数据
+    _CellData = [InitiateWithData initiateDataForRecent];
     //每次进入页面重载数据
-    [self initiateData];
     [_RecentTable reloadData];
     
 #pragma mark 通过读取storyboard，将其他view加载到当前页面
@@ -124,7 +78,7 @@ bool First_Visited = 1;
 - (void)viewDidAppear:(BOOL)animated{
     //初始化文字
     UILabel *_NaviTitle = (UILabel *)[self.view viewWithTag:503];
-    _NaviTitle.text = @"Recent";
+    _NaviTitle.text = @"";
     _NaviTitle.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
     //初始化圆圈图片
     _OverViewCircleMid.image = [UIImage imageNamed:@"CircleMid"];
@@ -353,7 +307,7 @@ bool First_Visited = 1;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    NSLog(@"总共有%zi个Cell",[_CellData count]);
+    //NSLog(@"总共有%zi个Cell",[_CellData count]);
     return [_CellData count];
 }
 
@@ -366,7 +320,7 @@ bool First_Visited = 1;
         //创建CELL
         RecentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecentCell"];
         //创建数据对象，用之前定义了的_CellData初始化
-        TestData *cellData = _CellData[indexPath.row];
+        OperationLog *cellData = _CellData[indexPath.row];
         
         //CELL的主体
         cell.CellPic.image = [UIImage imageNamed:cellData.PicImagename];
@@ -387,6 +341,7 @@ bool First_Visited = 1;
         //高亮状态
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
         cell.selectedBackgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CellBackPic"]];
+        
         // Configure the cell...
         return cell;
     }

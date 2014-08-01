@@ -6,13 +6,13 @@
 //  Copyright (c) 2014年 nwstor. All rights reserved.
 //
 
-#import "DecryViewController.h"
+#import "FileViewController.h"
 
-@interface DecryViewController ()
+@interface FileViewController ()
 
 @end
 
-@implementation DecryViewController
+@implementation FileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,16 +27,22 @@
     [_Button_center setImage:[UIImage imageNamed:@"Button_center_1"] forState:UIControlStateNormal];
     self.view.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
     _NaviBack.image = [UIImage imageNamed:@"First_Normal"];
+    _FileTable.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
 
     //将_ChildView插入view中
     [self.view addSubview:_ChildView];
+
     
-#pragma mark 通过读取storyboard，将其他view加载到当前页面
-    //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //    UIViewController *RecController = [storyboard instantiateViewControllerWithIdentifier:@"RecentView"];
-    //    //注意，可以直接用xxcontroller.view去获得controller的view
-    //    //然后将这个storyboard获得的view插入_ChileView
-    //    [_ChildView addSubview:RecController.view];
+    //直接调用自己写的InitiateData类的静态方法InitiateDataForFiles初始化数据
+    _CellData = [InitiateWithData initiateDataForFiles];
+    
+    //NSLog(@"%@", _CellData);
+    //每次进入页面重载数据
+    [_FileTable reloadData];
+    
+    //给TableView的Header增加SearchBar
+    [self AddSearchBar];
+    
     
 }
 
@@ -44,7 +50,7 @@
 //这个函数在每次页面刷新都会调用，而上面的函数只调用一次
 - (void)viewDidAppear:(BOOL)animated{
     UILabel *_NaviTitle = (UILabel *)[self.view viewWithTag:503];
-    _NaviTitle.text = @"Decryption";
+    _NaviTitle.text = @"";
     _NaviTitle.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
     
     //最低层
@@ -205,5 +211,82 @@
     //    [_ChildView bringSubviewToFront:_menu_File_Label];
     //    [_ChildView bringSubviewToFront:_menu_Album_Label];
 }
+
+#pragma mark FileTable相关
+//------------------------------------------------------------------------------------------
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    //#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    //#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    //NSLog(@"总共有%zi个Cell",[_CellData count]);
+    return [_CellData count];
+}
+
+
+//这里的内容都只是为了demo自定义, 数据从appdelegate传过来的。里面只有颜色和图片还有字体可以保留
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (tableView == _FileTable) {
+        //创建CELL
+        FileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FileCell"];
+        //创建数据对象，用之前定义了的_CellData初始化
+        FileDataBase *cellData = _CellData[indexPath.row];
+        
+        //CELL的主体
+        cell.FileName.text = cellData.FileName;
+        //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        cell.Bytes.text = cellData.Bytes;
+        //cell.Bytes.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:cellData.TableColor];
+        cell.TableColorBottom.backgroundColor = [ColorFromHex getColorFromHex:cellData.TableColor];
+        cell.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        
+        //高亮状态
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+        cell.selectedBackgroundView.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        
+        // Configure the cell...
+        return cell;
+    }
+    return nil;
+}
+
+//cell编辑/删除
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return NO;//不可以编辑
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+
+#pragma mark SearchBar相关
+
+- (void)AddSearchBar {
+    //这里临时生成一个searchBar
+    UISearchBar *_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, 0, 320, 35)];
+    _searchBar.placeholder = @"Search a File";
+    _searchBar.barTintColor = [ColorFromHex getColorFromHex:@"#00466b"];
+    _searchBar.delegate = self;
+    [_searchBar setTranslucent:YES];
+    _FileTable.tableHeaderView = _searchBar;
+    //默认隐藏SearchBar，设置TableView的默认位移
+}
+
+//------------------------------------------------------------------------------------------
 
 @end

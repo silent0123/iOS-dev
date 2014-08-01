@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TestData : NSObject
+@interface OperationLog : NSObject
 
 @property (assign, nonatomic) NSString *FileName;
 @property (assign, nonatomic) NSString *Date;

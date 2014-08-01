@@ -4,13 +4,14 @@
 //
 //  Created by Luca on 29/7/14.
 //  Copyright (c) 2014年 nwstor. All rights reserved.
-//
+//  RECENT页面
 
 #import <UIKit/UIKit.h>
 #import "TabBarButton.h"
 #import "ColorFromHex.h"
 #import "RecentTableViewCell.h"
-#import "TestData.h"
+#import "OperationLog.h"
+#import "InitiateWithData.h"
 //#import "RecentTableViewController.h"
 
 //因为里面插入了一个Table，这里要实现Table的协议，并且记得！在Storybard中要连接协议，否则没东西显示

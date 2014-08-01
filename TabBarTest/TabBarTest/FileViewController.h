@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "TabBarButton.h"
 #import "ColorFromHex.h"
+#import "FileTableViewCell.h"
+#import "FileDataBase.h"
+#import "InitiateWithData.h"
 
-@interface DecryViewController : UIViewController
+@interface FileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
+//Tabbar和弹出菜单
 @property (weak, nonatomic) IBOutlet UIImageView *BackGroundPic;
 @property (weak, nonatomic) IBOutlet TabBarButton *Button_1;
 @property (weak, nonatomic) IBOutlet UILabel *Label_1;
@@ -35,6 +39,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *NaviButtonLeft;
 @property (weak, nonatomic) IBOutlet UIButton *NaviButtonRight;
 
+//本页面
+@property (weak, nonatomic) IBOutlet UITableView *FileTable;
+@property (strong, nonatomic) NSMutableArray *CellData;
+
 
 - (IBAction)button1Click:(id)sender;
 - (IBAction)button2Click:(id)sender;
@@ -46,4 +54,5 @@
 - (IBAction)menuButtonAlbumClick:(id)sender;
 
 - (void)displayMenu:(NSInteger)tag;
+- (void)AddSearchBar;
 @end

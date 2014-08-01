@@ -43,7 +43,7 @@
 //这个函数在每次页面刷新都会调用，而上面的函数只调用一次
 - (void)viewDidAppear:(BOOL)animated{
     UILabel *_NaviTitle = (UILabel *)[self.view viewWithTag:503];
-    _NaviTitle.text = @"Contact";
+    _NaviTitle.text = @"";
     _NaviTitle.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
     
     //最低层

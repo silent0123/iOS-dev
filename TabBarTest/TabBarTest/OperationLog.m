@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 nwstor. All rights reserved.
 //
 
-#import "TestData.h"
+#import "OperationLog.h"
 
-@implementation TestData
+@implementation OperationLog
 
 
 @end
