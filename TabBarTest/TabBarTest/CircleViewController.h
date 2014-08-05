@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "TabBarButton.h"
 #import "ColorFromHex.h"
+#import "CircleTableViewCell.h"
+#import "InitiateWithData.h"
 
-@interface ContacViewController : UIViewController
+@interface CircleViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *BackGroundPic;
 @property (weak, nonatomic) IBOutlet TabBarButton *Button_1;
@@ -35,6 +37,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *NaviButtonLeft;
 @property (weak, nonatomic) IBOutlet UIButton *NaviButtonRight;
 
+//本页面
+@property (strong, nonatomic) NSMutableArray *CellData;
+@property (strong, nonatomic) NSMutableArray *CellTitle;
+@property (weak, nonatomic) IBOutlet UITableView *CircleTable;
 
 
 - (IBAction)button1Click:(id)sender;

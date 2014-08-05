@@ -26,6 +26,7 @@
     [_BackGroundPic setImage:[UIImage imageNamed:@"Button_4_image"]];
     [_Button_center setImage:[UIImage imageNamed:@"Button_center_1"] forState:UIControlStateNormal];
     self.view.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+    _SettingTable.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
     _NaviBack.image = [UIImage imageNamed:@"First_Normal"];
 
     //将_ChildView插入view中
@@ -204,6 +205,102 @@
     //    [_ChildView bringSubviewToFront:_menu_Camera_Label];
     //    [_ChildView bringSubviewToFront:_menu_File_Label];
     //    [_ChildView bringSubviewToFront:_menu_Album_Label];
+}
+
+
+#pragma mark FileTable相关
+//------------------------------------------------------------------------------------------
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    //#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 4;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    //#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    //NSLog(@"总共有%zi个Cell",[_CellData count]);
+    if (section == 0 || section == 3) {
+        return 1;
+    } else if (section == 1 ||section == 2){
+        return 2;
+    }
+    return 0;
+}
+
+//SectionTitle相关,设置headerview
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    switch (section) {
+        case 0:
+            return @"section 1";
+            break;
+        case 1:
+            return @"section 2";
+            break;
+        case 2:
+            return @"section 3";
+            break;
+        case 3:
+            return @"section 4";
+            break;
+        default:
+            NSLog(@"ERROR");
+            break;
+    }
+    return nil;
+} //这个只修改文字，并不设置样式
+
+
+//这里的内容都只是为了demo自定义, 数据从appdelegate传过来的。
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (tableView == _SettingTable) {
+        NSInteger section = indexPath.section;
+        NSInteger row = indexPath.row;
+        //创建CELL
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingCell"];
+        if (cell == nil) {
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingCell"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        
+        //CELL的主体
+        switch (section) {
+            case 0:
+                cell.textLabel.text = @"Setting 1";
+                break;
+            case 1:
+                if (row == 0) {
+                    cell.textLabel.text = @"Setting 2";
+                } else {
+                    cell.textLabel.text = @"Setting 3";
+                }
+                break;
+            case 2:
+                if (row == 0) {
+                    cell.textLabel.text = @"Setting 4";
+                } else {
+                    cell.textLabel.text = @"Setting 5";
+                }
+                break;
+            case 3:
+                cell.textLabel.text = @"Setting 6";
+            default:
+                break;
+        }
+        //cell.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        cell.textLabel.textColor = [ColorFromHex getColorFromHex:@"#00466B"];
+        
+        //高亮状态
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+        cell.selectedBackgroundView.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        
+        // Configure the cell...
+        return cell;
+    }
+    return nil;
 }
 
 @end

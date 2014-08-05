@@ -13,5 +13,6 @@
 @property (assign, nonatomic) NSString *FileName;
 @property (assign, nonatomic) NSString *Bytes;
 @property (assign, nonatomic) NSString *TableColor;
+@property (assign, nonatomic) NSString *ReceiveTime;
 
 @end

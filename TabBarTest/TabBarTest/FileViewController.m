@@ -28,7 +28,11 @@
     self.view.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
     _NaviBack.image = [UIImage imageNamed:@"First_Normal"];
     _FileTable.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
-
+    _SystemInfo.text = @"System: 8.2/15.8 GBytes";
+    _SystemInfoBack.backgroundColor = [ColorFromHex getColorFromHex:@"#005687"];
+    _SystemInfoBack.alpha = 1;
+    
+    [_SystemInfoBack setBounds:CGRectMake(_SystemInfo.bounds.origin.x, _SystemInfo.bounds.origin.y, (5.2/15.8)*_SystemInfo.bounds.size.width, _SystemInfo.bounds.size.height)];
     //将_ChildView插入view中
     [self.view addSubview:_ChildView];
 
@@ -244,8 +248,21 @@
         cell.Bytes.text = cellData.Bytes;
         //cell.Bytes.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
         cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:cellData.TableColor];
-        cell.TableColorBottom.backgroundColor = [ColorFromHex getColorFromHex:cellData.TableColor];
+        cell.ReceiveTime.text = cellData.ReceiveTime;
         cell.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        
+        //Image不用在数据类中加，直接在这里加
+        if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#44bbc1"].CGColor)) {
+            cell.TableImage.image = [UIImage imageNamed:@"Word"];
+        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#ED6F00"].CGColor)) {
+            cell.TableImage.image = [UIImage imageNamed:@"Powerpoint"];
+        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#A0BD2B"].CGColor)) {
+            cell.TableImage.image = [UIImage imageNamed:@"Excel"];
+        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#D6006F"].CGColor)) {
+            cell.TableImage.image = [UIImage imageNamed:@"Mutimedia"];
+        } else {
+            cell.TableImage.image = [UIImage imageNamed:@"Others"];
+        }
         
         //高亮状态
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
@@ -278,13 +295,14 @@
 
 - (void)AddSearchBar {
     //这里临时生成一个searchBar
-    UISearchBar *_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, 0, 320, 35)];
+    UISearchBar *_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, 0, 320, 32)];
     _searchBar.placeholder = @"Search a File";
-    _searchBar.barTintColor = [ColorFromHex getColorFromHex:@"#00466b"];
+    _searchBar.barTintColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
     _searchBar.delegate = self;
     [_searchBar setTranslucent:YES];
     _FileTable.tableHeaderView = _searchBar;
     //默认隐藏SearchBar，设置TableView的默认位移
+    _FileTable.contentOffset = CGPointMake(0, CGRectGetHeight(_searchBar.bounds));
 }
 
 //------------------------------------------------------------------------------------------

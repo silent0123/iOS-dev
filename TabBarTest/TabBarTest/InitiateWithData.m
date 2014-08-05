@@ -77,40 +77,110 @@
     FileDataBase *file1 = [[FileDataBase alloc] init];
     file1.FileName = @"NewFile_2014.XLSX";
     file1.Bytes = @"3.60MByte";
+    file1.ReceiveTime = @"16 June, 2014 | 17:30";
     file1.TableColor = @GREEN;
     [_MutableData addObject:file1];
     
     FileDataBase *file2 = [[FileDataBase alloc] init];
     file2.FileName = @"Family.JPEG";
     file2.Bytes = @"1.20MByte";
+    file2.ReceiveTime = @"25 May, 2014 | 08:12";
     file2.TableColor = @PURPLE;
     [_MutableData addObject:file2];
     
     FileDataBase *file3 = [[FileDataBase alloc] init];
     file3.FileName = @"Presentation.PPTX";
     file3.Bytes = @"14.22MByte";
+    file3.ReceiveTime = @"30 April, 2014 | 16:32";
     file3.TableColor = @ORANGE;
     [_MutableData addObject:file3];
     
     FileDataBase *file4 = [[FileDataBase alloc] init];
     file4.FileName = @"Season3.DOC";
     file4.Bytes = @"327KByte";
+    file4.ReceiveTime = @"28 April, 2014 | 17:30";
     file4.TableColor = @LIGHT_BLUE;
     [_MutableData addObject:file4];
     
     FileDataBase *file5 = [[FileDataBase alloc] init];
     file5.FileName = @"Season4.exe";
     file5.Bytes = @"445KByte";
+    file5.ReceiveTime = @"17 April, 2014 | 15:22";
     file5.TableColor = @GRAY;
     [_MutableData addObject:file5];
     
     FileDataBase *file6 = [[FileDataBase alloc] init];
     file6.FileName = @"CAMERA_VIDEO.AVI";
     file6.Bytes = @"323.50MByte";
+    file6.ReceiveTime = @"15 April, 2014 | 12:01";
     file6.TableColor = @PURPLE;
     [_MutableData addObject:file6];
     return _MutableData;
     
 }
 
++ (NSMutableArray *)initiateDataForCircle{
+
+    NSMutableArray *_MutableData;
+    _MutableData = [NSMutableArray arrayWithCapacity:6];
+    
+    CircleDataBase *Friends1 = [[CircleDataBase alloc]init];
+    Friends1.Name = @"Luca";
+    Friends1.Email = @"Luca.li@nwstor.com";
+    Friends1.SharedNum = @"2";
+    Friends1.Header = @"Luca";
+    [_MutableData addObject:Friends1];
+    
+    CircleDataBase *Friends2 = [[CircleDataBase alloc]init];
+    Friends2.Name = @"Jason";
+    Friends2.Email = @"Jason@nwstor.com";
+    Friends2.SharedNum = @"1";
+    Friends2.Header = @"Jason";
+    [_MutableData addObject:Friends2];
+    
+    CircleDataBase *Friends3 = [[CircleDataBase alloc]init];
+    Friends3.Name = @"Luca";
+    Friends3.Email = @"Luca.li@nwstor.com";
+    Friends3.SharedNum = @"2";
+    Friends3.Header = @"Luca";
+    [_MutableData addObject:Friends3];
+    
+    CircleDataBase *Friends4 = [[CircleDataBase alloc]init];
+    Friends4.Name = @"Luca";
+    Friends4.Email = @"Luca.li@nwstor.com";
+    Friends4.SharedNum = @"2";
+    Friends4.Header = @"Luca";
+    [_MutableData addObject:Friends4];
+    
+    CircleDataBase *Friends5 = [[CircleDataBase alloc]init];
+    Friends5.Name = @"Luca";
+    Friends5.Email = @"Luca.li@nwstor.com";
+    Friends5.SharedNum = @"2";
+    Friends5.Header = @"Luca";
+    [_MutableData addObject:Friends5];
+    
+    CircleDataBase *Friends6 = [[CircleDataBase alloc]init];
+    Friends6.Name = @"Luca";
+    Friends6.Email = @"Luca.li@nwstor.com";
+    Friends6.SharedNum = @"2";
+    Friends6.Header = @"Luca";
+    [_MutableData addObject:Friends6];
+    return _MutableData;
+}
+
++ (NSMutableArray *)initiateDataForCircle_Section{
+
+    NSMutableArray *_MutableData;
+    _MutableData = [NSMutableArray arrayWithCapacity:6];
+    
+    CircleDataBase *Group1 = [[CircleDataBase alloc]init];
+    Group1.Group = @"Company";
+    [_MutableData addObject:Group1];
+    
+    CircleDataBase *Group2 = [[CircleDataBase alloc]init];
+    Group2.Group = @"Others";
+    [_MutableData addObject:Group2];
+    
+    return _MutableData;
+}
 @end

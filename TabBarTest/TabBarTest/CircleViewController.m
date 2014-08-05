@@ -6,13 +6,13 @@
 //  Copyright (c) 2014年 nwstor. All rights reserved.
 //
 
-#import "ContacViewController.h"
+#import "CircleViewController.h"
 
-@interface ContacViewController ()
+@interface CircleViewController ()
 
 @end
 
-@implementation ContacViewController
+@implementation CircleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,8 +27,14 @@
     [_Button_center setImage:[UIImage imageNamed:@"Button_center_1"] forState:UIControlStateNormal];
     self.view.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
     _NaviBack.image = [UIImage imageNamed:@"First_Normal"];
+    _CircleTable.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
     //将_ChildView插入view中
     [self.view addSubview:_ChildView];
+    
+    _CellData = [InitiateWithData initiateDataForCircle];
+    _CellTitle = [InitiateWithData initiateDataForCircle_Section];
+    
+    [self AddSearchBar];
     
 #pragma mark 通过读取storyboard，将其他view加载到当前页面
     //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -42,6 +48,7 @@
 //!!!调了一下午!! 原来bringSubviewToFront必须要在这个地方调用才可以，貌似是因为上面一下子没法做那么多事＝ ＝
 //这个函数在每次页面刷新都会调用，而上面的函数只调用一次
 - (void)viewDidAppear:(BOOL)animated{
+    
     UILabel *_NaviTitle = (UILabel *)[self.view viewWithTag:503];
     _NaviTitle.text = @"";
     _NaviTitle.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
@@ -205,4 +212,116 @@
     //    [_ChildView bringSubviewToFront:_menu_Album_Label];
 }
 
+#pragma mark FileTable相关
+//------------------------------------------------------------------------------------------
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    //#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return [_CellTitle count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    //#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    //NSLog(@"总共有%zi个Cell",[_CellData count]);
+    return [_CellData count];
+}
+
+//SectionTitle相关,设置headerview
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    CircleDataBase *cellTitle = _CellTitle[section];
+//
+//    return cellTitle.Group;
+//} //这个只修改文字，并不设置样式
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    CircleDataBase *cellTitle = _CellTitle[section];
+
+    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0.0, 320.0, 22.0)];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    //设置header相关
+    customView.backgroundColor = [ColorFromHex getColorFromHex:@"#00466B"];
+    headerLabel.backgroundColor = [ColorFromHex getColorFromHex:@"#00466B"];
+    headerLabel.opaque = NO;
+    headerLabel.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+    headerLabel.highlightedTextColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+    headerLabel.font = [UIFont boldSystemFontOfSize:12];
+    headerLabel.frame = CGRectMake(10, 0, 320.0, 22.0);
+    headerLabel.text = cellTitle.Group;
+    
+    [customView addSubview:headerLabel];
+    return customView;
+
+}
+
+//这里的内容都只是为了demo自定义, 数据从appdelegate传过来的。
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (tableView == _CircleTable) {
+        
+        //创建CELL
+        CircleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CircleCell"];
+        //CircleTableViewCell *cell = (CircleTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        
+        //创建数据对象，用之前定义了的_CellData初始化
+        CircleDataBase *cellData = _CellData[indexPath.row];
+        while ([cell.contentView.subviews lastObject] != nil) {
+            [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];  //删除并进行重
+        }
+
+        //CELL的主体
+        cell.Name.text = cellData.Name;
+        //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        cell.SharedNum.text = cellData.SharedNum;
+        cell.SharedNum.textColor = [ColorFromHex getColorFromHex:@"#00466B"];
+        //cell.Bytes.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        cell.Email.text = cellData.Email;
+        cell.Header.image = [UIImage imageNamed:cellData.Header];
+        cell.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        
+        //NSLog(@"%zi", [cell.contentView.subviews count]);
+        //高亮状态
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+        cell.selectedBackgroundView.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        
+        // Configure the cell...
+        return cell;
+    }
+    return nil;
+}
+
+//cell编辑/删除
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return NO;//不可以编辑
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+
+#pragma mark SearchBar相关
+
+- (void)AddSearchBar {
+    //这里临时生成一个searchBar
+    UISearchBar *_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, 0, 320, 32)];
+    _searchBar.placeholder = @"Search a Contact";
+    _searchBar.barTintColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+    _searchBar.delegate = self;
+    [_searchBar setTranslucent:YES];
+    _CircleTable.tableHeaderView = _searchBar;
+    //默认隐藏SearchBar，设置TableView的默认位移
+    _CircleTable.contentOffset = CGPointMake(0, CGRectGetHeight(_searchBar.bounds));
+}
 @end

@@ -42,6 +42,8 @@
 //本页面
 @property (weak, nonatomic) IBOutlet UITableView *FileTable;
 @property (strong, nonatomic) NSMutableArray *CellData;
+@property (weak, nonatomic) IBOutlet UILabel *SystemInfo;
+@property (weak, nonatomic) IBOutlet UILabel *SystemInfoBack;
 
 
 - (IBAction)button1Click:(id)sender;

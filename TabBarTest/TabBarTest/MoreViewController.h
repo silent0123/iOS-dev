@@ -10,7 +10,7 @@
 #import "TabBarButton.h"
 #import "ColorFromHex.h"
 
-@interface MoreViewController : UIViewController
+@interface MoreViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *BackGroundPic;
 @property (weak, nonatomic) IBOutlet TabBarButton *Button_1;
@@ -35,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *NaviButtonLeft;
 @property (weak, nonatomic) IBOutlet UIButton *NaviButtonRight;
 
+//本页面
+@property (weak, nonatomic) IBOutlet UITableView *SettingTable;
 
 
 - (IBAction)button1Click:(id)sender;

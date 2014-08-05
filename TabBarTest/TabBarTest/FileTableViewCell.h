@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *Bytes;
 @property (weak, nonatomic) IBOutlet UILabel *FileName;
 @property (weak, nonatomic) IBOutlet UILabel *TableColor;
-@property (weak, nonatomic) IBOutlet UILabel *TableColorBottom;
+@property (weak, nonatomic) IBOutlet UILabel *ReceiveTime;
+@property (weak, nonatomic) IBOutlet UIImageView *TableImage;
 
 @end
