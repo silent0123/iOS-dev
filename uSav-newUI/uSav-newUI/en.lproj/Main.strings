@@ -1,0 +1,63 @@
+
+/* Class = "IBUIBarButtonItem"; title = "Setting"; ObjectID = "310-dO-CGl"; */
+"310-dO-CGl.title" = "Setting";
+
+/* Class = "IBUILabel"; text = "FILENAME"; ObjectID = "6qb-yv-vmR"; */
+"6qb-yv-vmR.text" = "FILENAME";
+
+/* Class = "IBUIBarButtonItem"; title = "Logs"; ObjectID = "CgD-2I-tc7"; */
+"CgD-2I-tc7.title" = "Logs";
+
+/* Class = "IBUIBarButtonItem"; title = "Contacts"; ObjectID = "OpZ-LZ-UEs"; */
+"OpZ-LZ-UEs.title" = "Contacts";
+
+/* Class = "IBUILabel"; text = "Filename"; ObjectID = "R5k-yG-fEs"; */
+"R5k-yG-fEs.text" = "Filename";
+
+/* Class = "IBUISegmentedControl"; Rv6-u5-uS8.segmentTitles[0] = "Encrypted"; ObjectID = "Rv6-u5-uS8"; */
+"Rv6-u5-uS8.segmentTitles[0]" = "Encrypted";
+
+/* Class = "IBUISegmentedControl"; Rv6-u5-uS8.segmentTitles[1] = "Decrypted"; ObjectID = "Rv6-u5-uS8"; */
+"Rv6-u5-uS8.segmentTitles[1]" = "Decrypted";
+
+/* Class = "IBUINavigationItem"; title = "Setting"; ObjectID = "WdW-fV-DsN"; */
+"WdW-fV-DsN.title" = "Setting";
+
+/* Class = "IBUILabel"; text = "NAME"; ObjectID = "amX-kN-XRM"; */
+"amX-kN-XRM.text" = "NAME";
+
+/* Class = "IBUINavigationItem"; title = "New File"; ObjectID = "ckk-b9-h2G"; */
+"ckk-b9-h2G.title" = "New File";
+
+/* Class = "IBUINavigationItem"; title = "Logs"; ObjectID = "fEL-fL-Jbl"; */
+"fEL-fL-Jbl.title" = "Logs";
+
+/* Class = "IBUITabBarItem"; title = "Setting"; ObjectID = "m0O-ba-Vf4"; */
+"m0O-ba-Vf4.title" = "Setting";
+
+/* Class = "IBUILabel"; text = "Bytes"; ObjectID = "nBa-LA-RzF"; */
+"nBa-LA-RzF.text" = "Bytes";
+
+/* Class = "IBUILabel"; text = "Received"; ObjectID = "ngW-CF-f0N"; */
+"ngW-CF-f0N.text" = "Received";
+
+/* Class = "IBUILabel"; text = "OPTION"; ObjectID = "nzA-Tn-IE0"; */
+"nzA-Tn-IE0.text" = "OPTION";
+
+/* Class = "IBUIBarButtonItem"; title = "Files"; ObjectID = "pTa-Fm-BMR"; */
+"pTa-Fm-BMR.title" = "Files";
+
+/* Class = "IBUITabBarItem"; title = "Files"; ObjectID = "vJl-vX-tBS"; */
+"vJl-vX-tBS.title" = "Files";
+
+/* Class = "IBUINavigationItem"; title = "Add Friend"; ObjectID = "wVo-13-xl9"; */
+"wVo-13-xl9.title" = "Add Friend";
+
+/* Class = "IBUITabBarItem"; title = "Contacts"; ObjectID = "wes-sf-0mU"; */
+"wes-sf-0mU.title" = "Contacts";
+
+/* Class = "IBUISegmentedControl"; znp-VC-MMG.segmentTitles[0] = "Friend"; ObjectID = "znp-VC-MMG"; */
+"znp-VC-MMG.segmentTitles[0]" = "Friend";
+
+/* Class = "IBUISegmentedControl"; znp-VC-MMG.segmentTitles[1] = "Group"; ObjectID = "znp-VC-MMG"; */
+"znp-VC-MMG.segmentTitles[1]" = "Group";

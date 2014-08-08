@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 //#import "OperationLog.h"
 #import "FileDataBase.h"
-//#import "CircleDataBase.h"
+#import "ContactDataBase.h"
 
 @interface InitiateWithData : NSObject
 
@@ -18,7 +18,7 @@
 //Files
 + (NSMutableArray *)initiateDataForFiles;
 //Circle和Circle的section
-//+ (NSMutableArray *)initiateDataForCircle;
-//+ (NSMutableArray *)initiateDataForCircle_Section;
-
++ (NSMutableArray *)initiateDataForContact;
++ (NSMutableArray *)initiateDataForContact_Group;
++ (NSMutableArray *)initiateDataForAddFile;
 @end

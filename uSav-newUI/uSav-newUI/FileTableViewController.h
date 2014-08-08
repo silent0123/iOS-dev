@@ -12,6 +12,7 @@
 #import "ColorFromHex.h"
 #import "InitiateWithData.h"
 #import "FileDecryptionTableViewController.h" //segment切换的数据源
+//#import "PopUpMenu.h"
 
 @interface FileTableViewController : UITableViewController <UISearchBarDelegate>
 
@@ -20,5 +21,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *FileSegent;
 
 - (IBAction)SegmentChange:(id)sender;
+- (IBAction)AddButtonClicked:(id)sender;
+
 
 @end

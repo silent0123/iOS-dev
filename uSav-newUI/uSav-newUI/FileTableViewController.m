@@ -20,10 +20,12 @@
 
 - (void)viewDidLoad {
     
+    //初始化数据
     _CellData = [InitiateWithData initiateDataForFiles];
-    //NSLog(@"%zi", [_CellData count]);
-    [self AddSearchBar];
+    //初始化第二个数据源
+    decryptionController =[[FileDecryptionTableViewController alloc] init];
     
+    [self AddSearchBar];
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -162,16 +164,46 @@
     NSInteger selectedSegment = _FileSegent.selectedSegmentIndex;
     
     if (selectedSegment == 0) {
-        NSLog(@"当前数据源为self");
+        //NSLog(@"当前数据源为self");
         [_FileTable setDelegate:self];
         [_FileTable setDataSource:self];
         [_FileTable reloadData];
     } else if (selectedSegment == 1) {
-        decryptionController =[[FileDecryptionTableViewController alloc] init];
         decryptionController.CellData = _CellData;
         _FileTable.dataSource = decryptionController;
         [_FileTable reloadData];
     }
 
 }
+
+#pragma mark AddButton事件
+- (IBAction)AddButtonClicked:(id)sender {
+//    由于addsubview只能放到tableview上去，有滚动效果，所以这里不做弹出窗口了
+//    if (menuIsOpen) {
+//        [self TransitionAnimationEffect:addMenu];
+//        [addMenu setHidden:YES];
+//        menuIsOpen = !menuIsOpen;
+//    } else {
+//        [self TransitionAnimationEffect:addMenu];
+//        [addMenu setHidden:NO];
+//        menuIsOpen = !menuIsOpen;
+//    }
+}
+
+#pragma mark 传递给View动画效果
+- (UIView *)TransitionAnimationEffect:(UIView *)view {
+
+    //动画效果
+    CATransition *menuTransition = [CATransition animation];
+    menuTransition.duration = 0.5;
+    menuTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];  //设定动画的时间函数，也就是进出的快慢
+    menuTransition.type = @"fade"; //动画效果
+    menuTransition.delegate = self;
+    //加到构件上
+    [view.layer addAnimation:menuTransition forKey:nil];
+    
+    return view;
+}
+
+
 @end
