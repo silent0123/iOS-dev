@@ -67,7 +67,7 @@
 {
     NSInteger section = indexPath.section;
     if (section) {
-        return 48;
+        return 46;
     } else {
         return 54;
     }
@@ -89,7 +89,6 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         
-        
         //CELL的主体, 在里面分别设置两个section的样式
         switch (section) {
             case 0:
@@ -103,16 +102,116 @@
                 }
                 break;
             default:
-                cell.FileImage = nil; //暂时
+                //cell.FileImage = nil; //暂时
                 cell.FileName.text = cellData.FileName;
                 cell.FileName.font = [UIFont systemFontOfSize:14];
                 cell.accessoryType = UITableViewCellAccessoryNone;
+                
+                if ([cellData.TableColor  isEqual: @"#44BBC1"]) {
+                    cell.FileImage.image = [UIImage imageNamed:@"Word@2x.png"];
+                } else if ([cellData.TableColor  isEqual: @"#ED6F00"]) {
+                    cell.FileImage.image = [UIImage imageNamed:@"Powerpoint@2x.png"];
+                } else if ([cellData.TableColor  isEqual: @"#A0BD2B"]) {
+                    cell.FileImage.image = [UIImage imageNamed:@"Excel@2x.png"];
+                } else if ([cellData.TableColor  isEqual: @"#D6006F"]) {
+                    cell.FileImage.image = [UIImage imageNamed:@"Mutimedia@2x.png"];
+                } else {
+                    cell.FileImage.image = [UIImage imageNamed:@"Others@2x.png"];
+                }
                 break;
         }
         return cell;
     }
     return nil;
 }
+
+#pragma mark 选中方法(delegate)
+//属于delegate，不用写在datasource
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    
+    if (section == 0 && row == 0) {
+        [self openCameraOrAlbum:0];
+    } else if (section == 0 && row == 1){
+        [self openCameraOrAlbum:1];
+    }
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+#pragma mark 打开照相机和相册
+- (void)openCameraOrAlbum: (NSInteger)index {
+    //打开照相机
+    if (index == 0) {
+        UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.delegate = self;
+            //设置照片拍摄后可以被编辑
+            picker.allowsEditing = YES;
+            picker.sourceType = sourceType;
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+    } else if (index == 1){ //打开相册
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        picker.delegate = self;
+        //选择后可以编辑
+        picker.allowsEditing = YES;
+        [self presentViewController:picker animated:YES completion:nil];
+    } else {
+        NSLog(@"Open Error.");
+    }
+
+}
+
+#pragma mark 照片选择后的操作
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    NSLog(@"%@",info);
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    //当选择的类型是图片
+    if ([type isEqualToString:@"public.image"]) {
+        //先把图片转换为NSData
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        NSData *imageData;
+        if (UIImagePNGRepresentation(image) == nil) {
+            imageData = UIImageJPEGRepresentation(image, 1.0);
+        } else {
+            imageData = UIImagePNGRepresentation(image);
+        }
+        
+        //图片的保存路径
+        //这里的图片放在沙盒的documents文件夹中
+        NSString *documentPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        
+        //文件管理器
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        //把刚才转换成的imageData放入沙盒中
+        [fileManager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
+        [fileManager createFileAtPath:[documentPath stringByAppendingPathComponent:@"/image.png"] contents:imageData attributes:nil];//注意，这里的文件名是唯一的，可能会产生覆盖效果，以后会用相应的文件名来代替
+        UIImageWriteToSavedPhotosAlbum(image, self, nil, nil); //顺便存入相册, 这里还有一个BUG, 无论什么来源的照片他都会存到相册，不管是照的还是从相册里选的
+        
+        //得到沙盒中的完整文件路径
+        NSString *filePath = [[NSString alloc] initWithFormat:@"%@%@", documentPath, @"/image.png"];
+        NSLog(@"file selected & store at %@", filePath);
+        //关闭相册界面
+        [picker dismissViewControllerAnimated:YES completion:nil];
+    }
+
+}
+
+//照片选择取消
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+
+    //NSLog(@"selected canceled");
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 
 /*

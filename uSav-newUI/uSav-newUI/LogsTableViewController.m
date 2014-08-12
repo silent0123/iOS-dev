@@ -1,23 +1,20 @@
 //
-//  AddFriendTableViewController.m
+//  LogsTableViewController.m
 //  uSav-newUI
 //
-//  Created by Luca on 8/8/14.
+//  Created by Luca on 11/8/14.
 //  Copyright (c) 2014年 nwstor. All rights reserved.
 //
 
-#import "AddFriendTableViewController.h"
+#import "LogsTableViewController.h"
 
-@interface AddFriendTableViewController () {
+@interface LogsTableViewController ()
 
-    UITextField *textFiled;
-}
 @end
 
-@implementation AddFriendTableViewController
+@implementation LogsTableViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -35,73 +32,26 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 2;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    return 0;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section) {
-        return @"";
-    } else {
-        return @"User ID";
-    }
-}
-
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    NSInteger section = indexPath.section;
-    //NSInteger row = indexPath.row;
-    
-    AddFirendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddFriendCell"];
-    if (cell == nil) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddFriendCell"];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-    
-    
-    switch (section) {
-        case 0:
-            //创建一个输入框
-            textFiled = [[UITextField alloc] initWithFrame:CGRectMake(cell.frame.origin.x+16, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
-            [textFiled setPlaceholder:@"Email"];
-            textFiled.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
-            textFiled.clearsContextBeforeDrawing = YES;  //把周围的context清理，否则可能会出错
-            textFiled.clearButtonMode = 5;
-            textFiled.autocorrectionType = NO;
-            textFiled.returnKeyType = UIReturnKeyGo;
-            cell.TableOption = nil;
-            [cell addSubview:textFiled];
-            break;
-        default:
-            cell.TableOption.text = @"Creat a Group";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            break;
-    }
+    // Configure the cell...
     
     return cell;
 }
-
-#pragma mark 选中方法(delegate)
-//属于delegate，不用写在datasource
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-}
-
-#pragma mark 点击空白隐藏键盘
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    NSLog(@"%@", textFiled);
-//    [textFiled resignFirstResponder];
-//}
-
+*/
 
 /*
 // Override to support conditional editing of the table view.

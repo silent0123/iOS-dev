@@ -11,6 +11,9 @@
 @interface FileTableViewController (){
 
     FileDecryptionTableViewController *decryptionController;
+    NSString *dataSourceIdentifier; //用来识别当前显示的数据源，从而控制segue跳转
+    NSString *segueTransFileName;
+    NSString *segueTransBytes;
     
 }
 
@@ -22,6 +25,7 @@
     
     //初始化数据
     _CellData = [InitiateWithData initiateDataForFiles];
+    dataSourceIdentifier = @"Encrypted";
     //初始化第二个数据源
     decryptionController =[[FileDecryptionTableViewController alloc] init];
     
@@ -72,23 +76,24 @@
         //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
         cell.Bytes.text = cellData.Bytes;
         cell.Bytes.font = [UIFont systemFontOfSize:10];
-        //cell.Bytes.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        cell.Bytes.textColor = [ColorFromHex getColorFromHex:@"#929292"];
         cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:cellData.TableColor];
         cell.ReceiveTime.text = cellData.ReceiveTime;
+        cell.ReceiveTime.textColor = [ColorFromHex getColorFromHex:@"#929292"];
         //cell.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
         
         //Image不用在数据类中加，直接在这里加
-//        if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#44bbc1"].CGColor)) {
-//            cell.TableImage.image = [UIImage imageNamed:@"Word"];
-//        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#ED6F00"].CGColor)) {
-//            cell.TableImage.image = [UIImage imageNamed:@"Powerpoint"];
-//        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#A0BD2B"].CGColor)) {
-//            cell.TableImage.image = [UIImage imageNamed:@"Excel"];
-//        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#D6006F"].CGColor)) {
-//            cell.TableImage.image = [UIImage imageNamed:@"Mutimedia"];
-//        } else {
-//            cell.TableImage.image = [UIImage imageNamed:@"Others"];
-//        }
+        if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#44BBC1"].CGColor)) {
+            cell.TableImage.image = [UIImage imageNamed:@"Word@2x.png"];
+        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#ED6F00"].CGColor)) {
+            cell.TableImage.image = [UIImage imageNamed:@"Powerpoint@2x.png"];
+        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#A0BD2B"].CGColor)) {
+            cell.TableImage.image = [UIImage imageNamed:@"Excel@2x.png"];
+        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#D6006F"].CGColor)) {
+            cell.TableImage.image = [UIImage imageNamed:@"Mutimedia@2x.png"];
+        } else {
+            cell.TableImage.image = [UIImage imageNamed:@"Others@2x.png"];
+        }
         
         //高亮状态
         //cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
@@ -118,6 +123,26 @@
     }
 }
 
+#pragma mark 选中方法(delegate)
+//属于delegate，不用写在datasource
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //如果是在加密文件页面，跳转到有解密按钮的页面；如果是解密文件页面，跳转到有预览按钮的页面
+    if (indexPath.row >= 0 && [dataSourceIdentifier  isEqual: @"Decrypted"]) {
+        FileDataBase *cellData = _CellData[indexPath.row];
+        segueTransFileName = cellData.FileName;
+        segueTransBytes = cellData.Bytes;
+        [self performSegueWithIdentifier:@"FileDetailSegue" sender:self];
+    } else if (indexPath.row >= 0 && [dataSourceIdentifier isEqual: @"Encrypted"]) {
+        FileDataBase *cellData = _CellData[indexPath.row];
+        segueTransFileName = cellData.FileName;
+        segueTransBytes = cellData.Bytes;
+        [self performSegueWithIdentifier:@"FileDetailEncryptedSegue" sender:self];
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
 
 /*
 // Override to support rearranging the table view.
@@ -133,15 +158,27 @@
 }
 */
 
-/*
-#pragma mark - Navigation
+
+#pragma mark PrepareforSegue传值
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqual: @"FileDetailSegue"]) {
+        // 将本页面的值通过segue传递给下一个页面
+        FileDetailViewController *fileDetailController = segue.destinationViewController;
+        // 下一个页面获取到值
+        fileDetailController.segueTransFileName = segueTransFileName;
+        fileDetailController.segueTransBytes = segueTransBytes;
+    } else if ([segue.identifier isEqual: @"FileDetailEncryptedSegue"]) {
+        FileDetailEncryptedViewController *fileDetailEncryptedController = segue.destinationViewController;
+        // 下一个页面获取到值
+        fileDetailEncryptedController.segueTransFileName = segueTransFileName;
+        fileDetailEncryptedController.segueTransBytes = segueTransBytes;
+    }
+
 }
-*/
+
 
 #pragma mark SearchBar相关
 
@@ -165,10 +202,12 @@
     
     if (selectedSegment == 0) {
         //NSLog(@"当前数据源为self");
+        dataSourceIdentifier = @"Encrypted";
         [_FileTable setDelegate:self];
         [_FileTable setDataSource:self];
         [_FileTable reloadData];
     } else if (selectedSegment == 1) {
+        dataSourceIdentifier = @"Decrypted";
         decryptionController.CellData = _CellData;
         _FileTable.dataSource = decryptionController;
         [_FileTable reloadData];
@@ -191,19 +230,19 @@
 }
 
 #pragma mark 传递给View动画效果
-- (UIView *)TransitionAnimationEffect:(UIView *)view {
-
-    //动画效果
-    CATransition *menuTransition = [CATransition animation];
-    menuTransition.duration = 0.5;
-    menuTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];  //设定动画的时间函数，也就是进出的快慢
-    menuTransition.type = @"fade"; //动画效果
-    menuTransition.delegate = self;
-    //加到构件上
-    [view.layer addAnimation:menuTransition forKey:nil];
-    
-    return view;
-}
+//- (UIView *)TransitionAnimationEffect:(UIView *)view {
+//
+//    //动画效果
+//    CATransition *menuTransition = [CATransition animation];
+//    menuTransition.duration = 0.5;
+//    menuTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];  //设定动画的时间函数，也就是进出的快慢
+//    menuTransition.type = @"fade"; //动画效果
+//    menuTransition.delegate = self;
+//    //加到构件上
+//    [view.layer addAnimation:menuTransition forKey:nil];
+//    
+//    return view;
+//}
 
 
 @end

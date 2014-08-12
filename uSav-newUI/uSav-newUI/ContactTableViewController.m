@@ -35,6 +35,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -112,6 +113,12 @@
     }
 }
 
+#pragma mark 选中方法(delegate)
+//属于delegate，不用写在datasource
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+   [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
 
 /*
  // Override to support rearranging the table view.

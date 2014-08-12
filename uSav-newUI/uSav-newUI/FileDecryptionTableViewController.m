@@ -61,27 +61,28 @@
     cell.TableImage.image = nil;
     cell.FileName.text = cellData.FileName;
     cell.FileName.font = [UIFont systemFontOfSize:14];
-    //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+    //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#929292"];
     cell.Bytes.text = cellData.Bytes;
     cell.Bytes.font = [UIFont systemFontOfSize:10];
-    //cell.Bytes.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+    cell.Bytes.textColor = [ColorFromHex getColorFromHex:@"#929292"];
     cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:cellData.TableColor];
     cell.ReceiveTime.text = cellData.ReceiveTime;
+    cell.ReceiveTime.textColor = [ColorFromHex getColorFromHex:@"#929292"];
     //cell.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
     
     //Image不用在数据类中加，直接在这里加
-    //        if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#44bbc1"].CGColor)) {
-    //            cell.TableImage.image = [UIImage imageNamed:@"Word"];
-    //        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#ED6F00"].CGColor)) {
-    //            cell.TableImage.image = [UIImage imageNamed:@"Powerpoint"];
-    //        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#A0BD2B"].CGColor)) {
-    //            cell.TableImage.image = [UIImage imageNamed:@"Excel"];
-    //        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#D6006F"].CGColor)) {
-    //            cell.TableImage.image = [UIImage imageNamed:@"Mutimedia"];
-    //        } else {
-    //            cell.TableImage.image = [UIImage imageNamed:@"Others"];
-    //        }
-        
+    if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#44BBC1"].CGColor)) {
+        cell.TableImage.image = [UIImage imageNamed:@"Word@2x.png"];
+    } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#ED6F00"].CGColor)) {
+        cell.TableImage.image = [UIImage imageNamed:@"Powerpoint@2x.png"];
+    } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#A0BD2B"].CGColor)) {
+        cell.TableImage.image = [UIImage imageNamed:@"Excel@2x.png"];
+    } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#D6006F"].CGColor)) {
+        cell.TableImage.image = [UIImage imageNamed:@"Mutimedia@2x.png"];
+    } else {
+        cell.TableImage.image = [UIImage imageNamed:@"Others@2x.png"];
+    }
+    
     //高亮状态
     //cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
     //cell.selectedBackgroundView.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
@@ -107,6 +108,7 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
+
 
 /*
 // Override to support rearranging the table view.

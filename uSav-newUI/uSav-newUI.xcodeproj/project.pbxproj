@@ -17,6 +17,34 @@
 		8128787E19946B0A007C6B39 /* ContactDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128787D19946B0A007C6B39 /* ContactDataBase.m */; };
 		8128788119946BC7007C6B39 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128788019946BC7007C6B39 /* ContactTableViewCell.m */; };
 		8128788519947579007C6B39 /* PopUpMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128788419947579007C6B39 /* PopUpMenu.m */; };
+		814C13ED19986DF0007F2748 /* PasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C13EC19986DF0007F2748 /* PasswordViewController.m */; };
+		814C13F319987295007F2748 /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C13F219987295007F2748 /* AboutTableViewController.m */; };
+		814C13F71998732C007F2748 /* LogsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C13F61998732C007F2748 /* LogsTableViewController.m */; };
+		814C13FD19988A6C007F2748 /* FileDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C13FC19988A6C007F2748 /* FileDetailViewController.m */; };
+		814C14071999DF85007F2748 /* FileDetailEncryptedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C14061999DF85007F2748 /* FileDetailEncryptedViewController.m */; };
+		814C140F1999EA90007F2748 /* NYOBetterZoomUIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C140C1999EA90007F2748 /* NYOBetterZoomUIScrollView.m */; };
+		814C14101999EA90007F2748 /* NYOBetterZoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C140E1999EA90007F2748 /* NYOBetterZoomViewController.m */; };
+		814C141A1999EA9C007F2748 /* KKPasscodeLock.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 814C14111999EA9C007F2748 /* KKPasscodeLock.bundle */; };
+		814C141B1999EA9C007F2748 /* KKPasscodeSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C14121999EA9C007F2748 /* KKPasscodeSettingsViewController.m */; };
+		814C141C1999EA9C007F2748 /* KKKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C14141999EA9C007F2748 /* KKKeychain.m */; };
+		814C141D1999EA9C007F2748 /* KKPasscodeLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C14161999EA9C007F2748 /* KKPasscodeLock.m */; };
+		814C141E1999EA9C007F2748 /* KKPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C14191999EA9C007F2748 /* KKPasscodeViewController.m */; };
+		814C14221999EB8E007F2748 /* USAVLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C14211999EB8E007F2748 /* USAVLock.m */; };
+		814C142A1999F537007F2748 /* box_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C14261999F537007F2748 /* box_filled.png */; };
+		814C142B1999F537007F2748 /* box_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C14271999F537007F2748 /* box_filled@2x.png */; };
+		814C142F199A052E007F2748 /* box_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C142D199A052E007F2748 /* box_empty.png */; };
+		814C1430199A052E007F2748 /* box_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C142E199A052E007F2748 /* box_empty@2x.png */; };
+		814C1439199A05B3007F2748 /* USAVLockTimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C1438199A05B3007F2748 /* USAVLockTimeController.m */; };
+		814C1444199A08D7007F2748 /* Excel@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C143A199A08D7007F2748 /* Excel@1x.png */; };
+		814C1445199A08D7007F2748 /* Excel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C143B199A08D7007F2748 /* Excel@2x.png */; };
+		814C1446199A08D7007F2748 /* Mutimedia@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C143C199A08D7007F2748 /* Mutimedia@1x.png */; };
+		814C1447199A08D7007F2748 /* Mutimedia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C143D199A08D7007F2748 /* Mutimedia@2x.png */; };
+		814C1448199A08D7007F2748 /* Others@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C143E199A08D7007F2748 /* Others@1x.png */; };
+		814C1449199A08D7007F2748 /* Others@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C143F199A08D7007F2748 /* Others@2x.png */; };
+		814C144A199A08D7007F2748 /* Powerpoint@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C1440199A08D7007F2748 /* Powerpoint@1x.png */; };
+		814C144B199A08D7007F2748 /* Powerpoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C1441199A08D7007F2748 /* Powerpoint@2x.png */; };
+		814C144C199A08D7007F2748 /* Word@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C1442199A08D7007F2748 /* Word@1x.png */; };
+		814C144D199A08D7007F2748 /* Word@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C1443199A08D7007F2748 /* Word@2x.png */; };
 		81AD878219922CD700040C7B /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AD878119922CD700040C7B /* SettingTableViewController.m */; };
 		81AD87851992305A00040C7B /* ColorFromHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AD87841992305A00040C7B /* ColorFromHex.m */; };
 		81AD8788199232CD00040C7B /* FileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AD8787199232CD00040C7B /* FileTableViewController.m */; };
@@ -61,6 +89,47 @@
 		8128788019946BC7007C6B39 /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
 		8128788319947579007C6B39 /* PopUpMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpMenu.h; sourceTree = "<group>"; };
 		8128788419947579007C6B39 /* PopUpMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopUpMenu.m; sourceTree = "<group>"; };
+		814C13EB19986DF0007F2748 /* PasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordViewController.h; sourceTree = "<group>"; };
+		814C13EC19986DF0007F2748 /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
+		814C13F119987295007F2748 /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
+		814C13F219987295007F2748 /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
+		814C13F51998732C007F2748 /* LogsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogsTableViewController.h; sourceTree = "<group>"; };
+		814C13F61998732C007F2748 /* LogsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogsTableViewController.m; sourceTree = "<group>"; };
+		814C13FB19988A6C007F2748 /* FileDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDetailViewController.h; sourceTree = "<group>"; };
+		814C13FC19988A6C007F2748 /* FileDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDetailViewController.m; sourceTree = "<group>"; };
+		814C14051999DF85007F2748 /* FileDetailEncryptedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDetailEncryptedViewController.h; sourceTree = "<group>"; };
+		814C14061999DF85007F2748 /* FileDetailEncryptedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDetailEncryptedViewController.m; sourceTree = "<group>"; };
+		814C140B1999EA90007F2748 /* NYOBetterZoomUIScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NYOBetterZoomUIScrollView.h; path = NYOImageViewer/NYOBetterZoomUIScrollView.h; sourceTree = "<group>"; };
+		814C140C1999EA90007F2748 /* NYOBetterZoomUIScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NYOBetterZoomUIScrollView.m; path = NYOImageViewer/NYOBetterZoomUIScrollView.m; sourceTree = "<group>"; };
+		814C140D1999EA90007F2748 /* NYOBetterZoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NYOBetterZoomViewController.h; path = NYOImageViewer/NYOBetterZoomViewController.h; sourceTree = "<group>"; };
+		814C140E1999EA90007F2748 /* NYOBetterZoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NYOBetterZoomViewController.m; path = NYOImageViewer/NYOBetterZoomViewController.m; sourceTree = "<group>"; };
+		814C14111999EA9C007F2748 /* KKPasscodeLock.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = KKPasscodeLock.bundle; path = Passcode/KKPasscodeLock.bundle; sourceTree = "<group>"; };
+		814C14121999EA9C007F2748 /* KKPasscodeSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KKPasscodeSettingsViewController.m; path = Passcode/KKPasscodeSettingsViewController.m; sourceTree = "<group>"; };
+		814C14131999EA9C007F2748 /* KKKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KKKeychain.h; path = Passcode/KKKeychain.h; sourceTree = "<group>"; };
+		814C14141999EA9C007F2748 /* KKKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KKKeychain.m; path = Passcode/KKKeychain.m; sourceTree = "<group>"; };
+		814C14151999EA9C007F2748 /* KKPasscodeLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KKPasscodeLock.h; path = Passcode/KKPasscodeLock.h; sourceTree = "<group>"; };
+		814C14161999EA9C007F2748 /* KKPasscodeLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KKPasscodeLock.m; path = Passcode/KKPasscodeLock.m; sourceTree = "<group>"; };
+		814C14171999EA9C007F2748 /* KKPasscodeSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KKPasscodeSettingsViewController.h; path = Passcode/KKPasscodeSettingsViewController.h; sourceTree = "<group>"; };
+		814C14181999EA9C007F2748 /* KKPasscodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KKPasscodeViewController.h; path = Passcode/KKPasscodeViewController.h; sourceTree = "<group>"; };
+		814C14191999EA9C007F2748 /* KKPasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KKPasscodeViewController.m; path = Passcode/KKPasscodeViewController.m; sourceTree = "<group>"; };
+		814C14201999EB8E007F2748 /* USAVLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USAVLock.h; sourceTree = "<group>"; };
+		814C14211999EB8E007F2748 /* USAVLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USAVLock.m; sourceTree = "<group>"; };
+		814C14261999F537007F2748 /* box_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box_filled.png; sourceTree = "<group>"; };
+		814C14271999F537007F2748 /* box_filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box_filled@2x.png"; sourceTree = "<group>"; };
+		814C142D199A052E007F2748 /* box_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box_empty.png; sourceTree = "<group>"; };
+		814C142E199A052E007F2748 /* box_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box_empty@2x.png"; sourceTree = "<group>"; };
+		814C1437199A05B3007F2748 /* USAVLockTimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USAVLockTimeController.h; sourceTree = "<group>"; };
+		814C1438199A05B3007F2748 /* USAVLockTimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USAVLockTimeController.m; sourceTree = "<group>"; };
+		814C143A199A08D7007F2748 /* Excel@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Excel@1x.png"; sourceTree = "<group>"; };
+		814C143B199A08D7007F2748 /* Excel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Excel@2x.png"; sourceTree = "<group>"; };
+		814C143C199A08D7007F2748 /* Mutimedia@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mutimedia@1x.png"; sourceTree = "<group>"; };
+		814C143D199A08D7007F2748 /* Mutimedia@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mutimedia@2x.png"; sourceTree = "<group>"; };
+		814C143E199A08D7007F2748 /* Others@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Others@1x.png"; sourceTree = "<group>"; };
+		814C143F199A08D7007F2748 /* Others@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Others@2x.png"; sourceTree = "<group>"; };
+		814C1440199A08D7007F2748 /* Powerpoint@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Powerpoint@1x.png"; sourceTree = "<group>"; };
+		814C1441199A08D7007F2748 /* Powerpoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Powerpoint@2x.png"; sourceTree = "<group>"; };
+		814C1442199A08D7007F2748 /* Word@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Word@1x.png"; sourceTree = "<group>"; };
+		814C1443199A08D7007F2748 /* Word@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Word@2x.png"; sourceTree = "<group>"; };
 		81AD878019922CD700040C7B /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
 		81AD878119922CD700040C7B /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
 		81AD87831992305A00040C7B /* ColorFromHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorFromHex.h; sourceTree = "<group>"; };
@@ -124,14 +193,16 @@
 		8114EF3F1991FFEF00D5E66F /* uSav-newUI */ = {
 			isa = PBXGroup;
 			children = (
-				8128788219947558007C6B39 /* PagesController */,
 				8114EF441991FFEF00D5E66F /* AppDelegate.h */,
 				8114EF451991FFEF00D5E66F /* AppDelegate.m */,
+				8128788219947558007C6B39 /* First Lv. Controller */,
+				814C13F4199872C6007F2748 /* Second Lv. Controller */,
 				81AD8795199234A000040C7B /* Cells */,
 				81AD87901992343F00040C7B /* 测试数据 */,
 				81AD878F1992343400040C7B /* 颜色动画和菜单 */,
-				8114EF4A1991FFEF00D5E66F /* Main.storyboard */,
+				814C14231999EBA1007F2748 /* USAV-relevant */,
 				8114EF4D1991FFEF00D5E66F /* Images.xcassets */,
+				8114EF4A1991FFEF00D5E66F /* Main.storyboard */,
 				8114EF401991FFEF00D5E66F /* Supporting Files */,
 			);
 			path = "uSav-newUI";
@@ -140,6 +211,7 @@
 		8114EF401991FFEF00D5E66F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				814C142C1999F53E007F2748 /* 由于beta3的图片显示bug，暂时放在这里 */,
 				8114EF411991FFEF00D5E66F /* Info.plist */,
 				8114EF421991FFEF00D5E66F /* main.m */,
 			);
@@ -163,7 +235,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8128788219947558007C6B39 /* PagesController */ = {
+		8128788219947558007C6B39 /* First Lv. Controller */ = {
 			isa = PBXGroup;
 			children = (
 				81AD8786199232CD00040C7B /* FileTableViewController.h */,
@@ -176,12 +248,90 @@
 				8128787A19946A9A007C6B39 /* ContactGroupTableViewController.m */,
 				81AD878019922CD700040C7B /* SettingTableViewController.h */,
 				81AD878119922CD700040C7B /* SettingTableViewController.m */,
+			);
+			name = "First Lv. Controller";
+			sourceTree = "<group>";
+		};
+		814C13F4199872C6007F2748 /* Second Lv. Controller */ = {
+			isa = PBXGroup;
+			children = (
+				814C14041999B5EF007F2748 /* ImageViewer */,
+				814C141F1999EAA3007F2748 /* PassCode */,
 				81B1BC0D199496BE00E01E76 /* AddFileTableViewController.h */,
 				81B1BC0E199496BE00E01E76 /* AddFileTableViewController.m */,
 				81B1BC161994A5CE00E01E76 /* AddFriendTableViewController.h */,
 				81B1BC171994A5CE00E01E76 /* AddFriendTableViewController.m */,
+				814C13FB19988A6C007F2748 /* FileDetailViewController.h */,
+				814C13FC19988A6C007F2748 /* FileDetailViewController.m */,
+				814C14051999DF85007F2748 /* FileDetailEncryptedViewController.h */,
+				814C14061999DF85007F2748 /* FileDetailEncryptedViewController.m */,
+				814C13EB19986DF0007F2748 /* PasswordViewController.h */,
+				814C13EC19986DF0007F2748 /* PasswordViewController.m */,
+				814C13F119987295007F2748 /* AboutTableViewController.h */,
+				814C13F219987295007F2748 /* AboutTableViewController.m */,
+				814C13F51998732C007F2748 /* LogsTableViewController.h */,
+				814C13F61998732C007F2748 /* LogsTableViewController.m */,
 			);
-			name = PagesController;
+			name = "Second Lv. Controller";
+			sourceTree = "<group>";
+		};
+		814C14041999B5EF007F2748 /* ImageViewer */ = {
+			isa = PBXGroup;
+			children = (
+				814C140B1999EA90007F2748 /* NYOBetterZoomUIScrollView.h */,
+				814C140C1999EA90007F2748 /* NYOBetterZoomUIScrollView.m */,
+				814C140D1999EA90007F2748 /* NYOBetterZoomViewController.h */,
+				814C140E1999EA90007F2748 /* NYOBetterZoomViewController.m */,
+			);
+			name = ImageViewer;
+			sourceTree = "<group>";
+		};
+		814C141F1999EAA3007F2748 /* PassCode */ = {
+			isa = PBXGroup;
+			children = (
+				814C14111999EA9C007F2748 /* KKPasscodeLock.bundle */,
+				814C14171999EA9C007F2748 /* KKPasscodeSettingsViewController.h */,
+				814C14121999EA9C007F2748 /* KKPasscodeSettingsViewController.m */,
+				814C14131999EA9C007F2748 /* KKKeychain.h */,
+				814C14141999EA9C007F2748 /* KKKeychain.m */,
+				814C14151999EA9C007F2748 /* KKPasscodeLock.h */,
+				814C14161999EA9C007F2748 /* KKPasscodeLock.m */,
+				814C14181999EA9C007F2748 /* KKPasscodeViewController.h */,
+				814C14191999EA9C007F2748 /* KKPasscodeViewController.m */,
+			);
+			name = PassCode;
+			sourceTree = "<group>";
+		};
+		814C14231999EBA1007F2748 /* USAV-relevant */ = {
+			isa = PBXGroup;
+			children = (
+				814C1437199A05B3007F2748 /* USAVLockTimeController.h */,
+				814C1438199A05B3007F2748 /* USAVLockTimeController.m */,
+				814C14201999EB8E007F2748 /* USAVLock.h */,
+				814C14211999EB8E007F2748 /* USAVLock.m */,
+			);
+			name = "USAV-relevant";
+			sourceTree = "<group>";
+		};
+		814C142C1999F53E007F2748 /* 由于beta3的图片显示bug，暂时放在这里 */ = {
+			isa = PBXGroup;
+			children = (
+				814C143A199A08D7007F2748 /* Excel@1x.png */,
+				814C143B199A08D7007F2748 /* Excel@2x.png */,
+				814C143C199A08D7007F2748 /* Mutimedia@1x.png */,
+				814C143D199A08D7007F2748 /* Mutimedia@2x.png */,
+				814C143E199A08D7007F2748 /* Others@1x.png */,
+				814C143F199A08D7007F2748 /* Others@2x.png */,
+				814C1440199A08D7007F2748 /* Powerpoint@1x.png */,
+				814C1441199A08D7007F2748 /* Powerpoint@2x.png */,
+				814C1442199A08D7007F2748 /* Word@1x.png */,
+				814C1443199A08D7007F2748 /* Word@2x.png */,
+				814C142D199A052E007F2748 /* box_empty.png */,
+				814C142E199A052E007F2748 /* box_empty@2x.png */,
+				814C14261999F537007F2748 /* box_filled.png */,
+				814C14271999F537007F2748 /* box_filled@2x.png */,
+			);
+			name = "由于beta3的图片显示bug，暂时放在这里";
 			sourceTree = "<group>";
 		};
 		81AD878F1992343400040C7B /* 颜色动画和菜单 */ = {
@@ -304,8 +454,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814C1445199A08D7007F2748 /* Excel@2x.png in Resources */,
+				814C1430199A052E007F2748 /* box_empty@2x.png in Resources */,
+				814C1444199A08D7007F2748 /* Excel@1x.png in Resources */,
+				814C144C199A08D7007F2748 /* Word@1x.png in Resources */,
 				8114EF4C1991FFEF00D5E66F /* Main.storyboard in Resources */,
+				814C142A1999F537007F2748 /* box_filled.png in Resources */,
+				814C142B1999F537007F2748 /* box_filled@2x.png in Resources */,
+				814C1448199A08D7007F2748 /* Others@1x.png in Resources */,
+				814C142F199A052E007F2748 /* box_empty.png in Resources */,
+				814C144D199A08D7007F2748 /* Word@2x.png in Resources */,
+				814C1447199A08D7007F2748 /* Mutimedia@2x.png in Resources */,
+				814C141A1999EA9C007F2748 /* KKPasscodeLock.bundle in Resources */,
+				814C144A199A08D7007F2748 /* Powerpoint@1x.png in Resources */,
+				814C1449199A08D7007F2748 /* Others@2x.png in Resources */,
 				8114EF4E1991FFEF00D5E66F /* Images.xcassets in Resources */,
+				814C1446199A08D7007F2748 /* Mutimedia@1x.png in Resources */,
+				814C144B199A08D7007F2748 /* Powerpoint@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,18 +490,31 @@
 			files = (
 				8128787E19946B0A007C6B39 /* ContactDataBase.m in Sources */,
 				8128788119946BC7007C6B39 /* ContactTableViewCell.m in Sources */,
+				814C141E1999EA9C007F2748 /* KKPasscodeViewController.m in Sources */,
+				814C14101999EA90007F2748 /* NYOBetterZoomViewController.m in Sources */,
 				81AD87851992305A00040C7B /* ColorFromHex.m in Sources */,
+				814C13F319987295007F2748 /* AboutTableViewController.m in Sources */,
 				81AD87981993263300040C7B /* FileDecryptionTableViewController.m in Sources */,
+				814C1439199A05B3007F2748 /* USAVLockTimeController.m in Sources */,
 				8114EF461991FFEF00D5E66F /* AppDelegate.m in Sources */,
 				81B1BC181994A5CE00E01E76 /* AddFriendTableViewController.m in Sources */,
+				814C14221999EB8E007F2748 /* USAVLock.m in Sources */,
+				814C14071999DF85007F2748 /* FileDetailEncryptedViewController.m in Sources */,
 				8128787B19946A9A007C6B39 /* ContactGroupTableViewController.m in Sources */,
 				81B1BC151994A5BA00E01E76 /* AddFirendTableViewCell.m in Sources */,
 				8128787819946A82007C6B39 /* ContactTableViewController.m in Sources */,
+				814C13FD19988A6C007F2748 /* FileDetailViewController.m in Sources */,
+				814C141C1999EA9C007F2748 /* KKKeychain.m in Sources */,
+				814C140F1999EA90007F2748 /* NYOBetterZoomUIScrollView.m in Sources */,
 				81AD878D199233D600040C7B /* InitiateWithData.m in Sources */,
 				81B1BC0F199496BE00E01E76 /* AddFileTableViewController.m in Sources */,
+				814C141D1999EA9C007F2748 /* KKPasscodeLock.m in Sources */,
+				814C13F71998732C007F2748 /* LogsTableViewController.m in Sources */,
+				814C13ED19986DF0007F2748 /* PasswordViewController.m in Sources */,
 				81AD8788199232CD00040C7B /* FileTableViewController.m in Sources */,
 				8114EF431991FFEF00D5E66F /* main.m in Sources */,
 				81AD87931992348900040C7B /* FileTableViewCell.m in Sources */,
+				814C141B1999EA9C007F2748 /* KKPasscodeSettingsViewController.m in Sources */,
 				8128788519947579007C6B39 /* PopUpMenu.m in Sources */,
 				81B1BC1219949A8600E01E76 /* AddFileTableViewCell.m in Sources */,
 				81AD878E199233D600040C7B /* FileDataBase.m in Sources */,

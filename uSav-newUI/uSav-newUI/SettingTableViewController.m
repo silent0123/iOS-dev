@@ -82,11 +82,12 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+        
         //CELL的主体
         switch (section) {
             case 0:
                 if (row == 0) {
-                    cell.textLabel.text = @"My Name";
+                    cell.textLabel.text = @"My Profile";
                 } else {
                     cell.textLabel.text = @"My Email";
                 }
@@ -95,7 +96,7 @@
                 if (row == 0) {
                     cell.textLabel.text = @"Password";
                 } else {
-                    cell.textLabel.text = @"Security Lock";
+                    cell.textLabel.text = @"Passcode Lock";
                 }
                 break;
             case 2:
@@ -118,6 +119,23 @@
     return nil;
 }
 
+#pragma mark 选中方法(delegate)
+//属于delegate，不用写在datasource
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    
+    if (section == 1 && row == 0) {
+        [self performSegueWithIdentifier:@"PasswordSegue" sender:self];
+    } else if (section == 1 && row == 1){
+        [self performSegueWithIdentifier:@"SecurityLockSegue" sender:self];
+    } else if (section == 2 && row == 1){
+        [self performSegueWithIdentifier:@"AboutSegue" sender:self];
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -158,9 +176,11 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 */
+
     
 @end

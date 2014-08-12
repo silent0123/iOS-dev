@@ -11,7 +11,7 @@
 #import "AddFileTableViewCell.h"
 #import "FileDataBase.h"
 
-@interface AddFileTableViewController : UITableViewController
+@interface AddFileTableViewController : UITableViewController <UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *CellData;
 

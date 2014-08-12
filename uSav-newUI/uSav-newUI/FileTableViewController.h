@@ -12,6 +12,8 @@
 #import "ColorFromHex.h"
 #import "InitiateWithData.h"
 #import "FileDecryptionTableViewController.h" //segment切换的数据源
+#import "FileDetailViewController.h"    //用于传值给详细页面
+#import "FileDetailEncryptedViewController.h"   //用于传值给详细页面2
 //#import "PopUpMenu.h"
 
 @interface FileTableViewController : UITableViewController <UISearchBarDelegate>
