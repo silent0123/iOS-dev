@@ -316,7 +316,7 @@
             </objects>
             <point key="canvasLocation" x="1692" y="-523.5"/>
         </scene>
-        <!--Contact Picker View Controller-->
+        <!--Title-->
         <scene sceneID="Jcw-Dk-SGJ">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="YCF-Yb-q3L" customClass="THContactPickerViewController" sceneMemberID="viewController">
@@ -329,6 +329,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="N6v-c1-53N"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MrA-6k-SCW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -580,11 +581,12 @@
         <scene sceneID="Aju-V1-ocb">
             <objects>
                 <tableViewController id="4C3-xE-gHs" customClass="ChangeRemarkTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="VL8-75-Y9I">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="VL8-75-Y9I">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChangeRemarkCell" id="2Jf-eb-dat">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChangeRemarkCell" id="2Jf-eb-dat">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Jf-eb-dat" id="hGC-lD-LEx">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -605,15 +607,16 @@
             </objects>
             <point key="canvasLocation" x="3768" y="-252"/>
         </scene>
-        <!--Password Table View Controller-->
+        <!--Password-->
         <scene sceneID="bzv-DW-0Cq">
             <objects>
                 <tableViewController id="JNX-mV-HM7" customClass="PasswordTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="BW9-hL-Agm">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="BW9-hL-Agm">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PasswordCell" id="ycD-QJ-Fbf">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PasswordCell" id="ycD-QJ-Fbf">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ycD-QJ-Fbf" id="0i5-PU-beK">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -628,6 +631,7 @@
                             <outlet property="delegate" destination="JNX-mV-HM7" id="iIE-dQ-RUm"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Password" id="BUA-s0-BvJ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vGZ-1f-2ug" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1025,7 +1029,7 @@
             </objects>
             <point key="canvasLocation" x="1063.5" y="-2080.5"/>
         </scene>
-        <!--More Table View Controller-->
+        <!--More-->
         <scene sceneID="9xK-QP-381">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="btX-uY-YeY" customClass="MoreTableViewController" sceneMemberID="viewController">
@@ -1061,6 +1065,7 @@
                             <outlet property="delegate" destination="btX-uY-YeY" id="1hG-v9-1WZ"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="More" id="DyI-6Z-igV"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rh7-MW-eu5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

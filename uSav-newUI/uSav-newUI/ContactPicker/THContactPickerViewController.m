@@ -40,6 +40,7 @@ UIBarButtonItem *barButton;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //    UIBarButtonItem * barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleBordered target:self action:@selector(removeAllContacts:)];
+    self.title = NSLocalizedString(@"Address Book", nil);
     
     barButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
     barButton.enabled = FALSE;

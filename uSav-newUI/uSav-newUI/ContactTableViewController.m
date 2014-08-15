@@ -30,6 +30,8 @@
     //初始化第二个数据源
     GroupController =[[ContactGroupTableViewController alloc] init];
     dataSourceIdentifier = @"Friend";
+    
+    [self SetBeginRefresh];
     [self AddSearchBar];
     
     [super viewDidLoad];
@@ -213,6 +215,50 @@
         dataSourceIdentifier = @"Group";
         [_ContactTable reloadData];
     }
+    
+}
+
+#pragma mark 下拉刷新
+//结束事件(数据处理)
+- (void)RefreshData {
+    //定义刷新过程的提示信息
+    //时间格式定义和时间获取
+    NSString *systemDate = nil;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    systemDate = [dateFormatter stringFromDate:[NSDate date]];
+    //下拉显示的内容
+    NSString *titleString = NSLocalizedString(@"Recent update at ", nil);
+    NSString *recentUpdateString = [NSString stringWithFormat:@"%@%@", titleString,systemDate];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:recentUpdateString];
+    
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
+}
+
+//刷新中事件(动作)
+- (void)RefreshTableViewAction: (UIRefreshControl *)refresh {
+    
+    if (refresh.refreshing) {
+        refresh.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Refreshing", nil)];
+        [self performSelector:@selector(RefreshData) withObject:nil afterDelay:2];
+    }
+    
+}
+
+//监听事件(监听事件并且开始响应)
+- (void)SetBeginRefresh {
+    
+    //生成一个refresh控制器，并且不用管理它的frame，系统会自己管理
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.tintColor = [ColorFromHex getColorFromHex:@"#929292"];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Pull to update", nil)];
+    
+    //UIRefreshControl会触发一个UIContentEventValueChanged事件，通过监听事件，我们可以进行需要的操作
+    [refresh addTarget:self action:@selector(RefreshTableViewAction:) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refresh;
+    
     
 }
 @end

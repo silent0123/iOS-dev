@@ -93,7 +93,7 @@
             //显示的内容还没有区分是哪个组的
             UILabel *FriendName = [[UILabel alloc] initWithFrame:CGRectMake(50, 12, 207, 21)];
             FriendName.text = cellData.Name;
-            FriendName.font = [UIFont systemFontOfSize:14];
+            FriendName.font = [UIFont boldSystemFontOfSize:14];
             [cell addSubview:FriendName];
             //增加一个头像框
             UIImageView *Header = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Friend@2x.png"]];

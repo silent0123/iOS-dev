@@ -12,6 +12,7 @@
 
     FileDecryptionTableViewController *decryptionController;
     UISearchBar *fileSearchBar;
+    UISearchDisplayController *searchDisplayController;
     NSString *dataSourceIdentifier; //用来识别当前显示的数据源，从而控制segue跳转
     NSString *segueTransFileName;
     NSString *segueTransBytes;
@@ -33,6 +34,8 @@
     decryptionController =[[FileDecryptionTableViewController alloc] init];
     dataSourceIdentifier = @"Encrypted";
     
+    //刷新功能增加
+    [self SetBeginRefresh];
     [self AddSearchBar];
     
     
@@ -85,7 +88,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (tableView == _FileTable) {
+//    if (tableView == _FileTable) {
         //创建CELL
         FileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FileCell"];
         //创建数据对象，用之前定义了的_CellData初始化
@@ -126,14 +129,20 @@
         // Configure the cell...
         return cell;
     }
-    return nil;
-}
+//    else {
+//        //NSString *strToSearch = fileSearchBar.text;
+//        //然后根据strToSearch去搜索
+//        //最后返回符合要求的cell
+//        return nil;
+//    }
+//    return nil;
+//}
 
 //cell编辑/删除
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;//不可以编辑
+    return YES;//可以编辑
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -222,7 +231,16 @@
         [fileSearchBar setTranslucent:YES];
         _FileTable.tableHeaderView = fileSearchBar;
         //默认隐藏SearchBar，设置TableView的默认位移
-        _FileTable.contentOffset = CGPointMake(0, CGRectGetHeight(fileSearchBar.bounds));
+        [_FileTable setContentOffset:CGPointMake(0, CGRectGetHeight(fileSearchBar.bounds)) animated:YES];
+        //[fileSearchBar sizeToFit];
+        
+        /*
+        //临时生成一个searchDisplayController
+        searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:fileSearchBar contentsController:self];
+        searchDisplayController.searchResultsDataSource=self;
+        searchDisplayController.searchResultsDelegate=self;
+        [self.searchDisplayController setActive:NO];
+         */
     }
     
 }
@@ -285,4 +303,47 @@
 //    return view;
 //}
 
+#pragma mark 下拉刷新
+//结束事件(数据处理)
+- (void)RefreshData {
+    //定义刷新过程的提示信息
+    //时间格式定义和时间获取
+    NSString *systemDate = nil;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    systemDate = [dateFormatter stringFromDate:[NSDate date]];
+    //下拉显示的内容
+    NSString *titleString = NSLocalizedString(@"Recent update at ", nil);
+    NSString *recentUpdateString = [NSString stringWithFormat:@"%@%@", titleString,systemDate];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:recentUpdateString];
+    
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
+}
+
+//刷新中事件(动作)
+- (void)RefreshTableViewAction: (UIRefreshControl *)refresh {
+
+    if (refresh.refreshing) {
+        refresh.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Refreshing", nil)];
+        [self performSelector:@selector(RefreshData) withObject:nil afterDelay:2];
+    }
+    
+}
+
+//监听事件(监听事件并且开始响应)
+- (void)SetBeginRefresh {
+    
+    //生成一个refresh控制器，并且不用管理它的frame，系统会自己管理
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.tintColor = [ColorFromHex getColorFromHex:@"#929292"];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Pull to update", nil)];
+    
+    //UIRefreshControl会触发一个UIContentEventValueChanged事件，通过监听事件，我们可以进行需要的操作
+    [refresh addTarget:self action:@selector(RefreshTableViewAction:) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refresh;
+    
+
+}
 @end

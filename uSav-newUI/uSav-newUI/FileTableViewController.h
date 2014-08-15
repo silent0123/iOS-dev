@@ -16,7 +16,7 @@
 #import "FileDetailEncryptedViewController.h"   //用于传值给详细页面2
 //#import "PopUpMenu.h"
 
-@interface FileTableViewController : UITableViewController <UISearchBarDelegate>
+@interface FileTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (strong, nonatomic) NSMutableArray *CellData;
 @property (strong, nonatomic) IBOutlet UITableView *FileTable;
