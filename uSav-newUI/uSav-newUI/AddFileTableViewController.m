@@ -37,7 +37,8 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 5;
+    tableView.scrollEnabled = NO;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -48,14 +49,16 @@
         return 2;
     } else {
         //NSLog(@"section为1号，返回%zi", [_CellData count]);
-        return [_CellData count];
+        //return [_CellData count];
+        //返回有限个
+        return 5;
     }
 }
 
 //设置Section Title
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        return @"Recent Files";
+        return @"Recent 5 Files";
     } else {
         return @"";
     }
@@ -67,9 +70,9 @@
 {
     NSInteger section = indexPath.section;
     if (section) {
-        return 46;
+        return 48;
     } else {
-        return 54;
+        return 58;
     }
 }
 
@@ -92,13 +95,15 @@
         //CELL的主体, 在里面分别设置两个section的样式
         switch (section) {
             case 0:
-                cell.FileImage = nil; //暂时
+                //cell.FileImage = nil; //暂时
                 cell.FileName.font = [UIFont boldSystemFontOfSize:15];
                 if (row == 0) {
                     cell.FileName.text = @"Take a Photo";
                     [cell setSeparatorInset:UIEdgeInsetsZero];
+                    cell.FileImage.image = [UIImage imageNamed:@"Photo@2x.png"];
                 } else {
                     cell.FileName.text = @"Select in Album";
+                    cell.FileImage.image = [UIImage imageNamed:@"Album@2x.png"];
                 }
                 break;
             default:
@@ -114,7 +119,7 @@
                 } else if ([cellData.TableColor  isEqual: @"#A0BD2B"]) {
                     cell.FileImage.image = [UIImage imageNamed:@"Excel@2x.png"];
                 } else if ([cellData.TableColor  isEqual: @"#D6006F"]) {
-                    cell.FileImage.image = [UIImage imageNamed:@"Mutimedia@2x.png"];
+                    cell.FileImage.image = [UIImage imageNamed:@"Multimedia@2x.png"];
                 } else {
                     cell.FileImage.image = [UIImage imageNamed:@"Others@2x.png"];
                 }

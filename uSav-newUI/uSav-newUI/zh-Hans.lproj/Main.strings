@@ -1,0 +1,156 @@
+
+/* Class = "IBUIButton"; normalTitle = "Forget"; ObjectID = "2U3-qm-9xL"; */
+"2U3-qm-9xL.normalTitle" = "忘记密码";
+
+/* Class = "IBUIBarButtonItem"; title = "Setting"; ObjectID = "310-dO-CGl"; */
+"310-dO-CGl.title" = "设置";
+
+/* Class = "IBUINavigationItem"; title = "Title"; ObjectID = "4sF-ds-4A4"; */
+"4sF-ds-4A4.title" = "标题";
+
+/* Class = "IBUILabel"; text = "FILENAME"; ObjectID = "6qb-yv-vmR"; */
+"6qb-yv-vmR.text" = "文件名";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "984-dr-dhW"; */
+"984-dr-dhW.normalTitle" = "按钮";
+
+/* Class = "IBUILabel"; text = "FileName"; ObjectID = "AVJ-En-Ud3"; */
+"AVJ-En-Ud3.text" = "文件名";
+
+/* Class = "IBUIButton"; normalTitle = "Change Password"; ObjectID = "C2k-bI-tYH"; */
+"C2k-bI-tYH.normalTitle" = "更改密码";
+
+/* Class = "IBUIBarButtonItem"; title = "Logs"; ObjectID = "CgD-2I-tc7"; */
+"CgD-2I-tc7.title" = "日志";
+
+/* Class = "IBUILabel"; text = "  Never"; ObjectID = "F2k-r0-x5r"; */
+"F2k-r0-x5r.text" = "  永不";
+
+/* Class = "IBUILabel"; text = "  1  Minute"; ObjectID = "Fax-mY-ROh"; */
+"Fax-mY-ROh.text" = "  1  分钟";
+
+/* Class = "IBUILabel"; text = "  2  Minutes"; ObjectID = "FmP-1f-eTf"; */
+"FmP-1f-eTf.text" = "  2  分钟";
+
+/* Class = "IBUINavigationItem"; title = "Password"; ObjectID = "Gla-UL-IrG"; */
+"Gla-UL-IrG.title" = "密码";
+
+/* Class = "IBUILabel"; text = " 10 Minutes"; ObjectID = "I0O-85-IYO"; */
+"I0O-85-IYO.text" = " 10 分钟";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "LBN-g2-8zN"; */
+"LBN-g2-8zN.text" = "标签";
+
+/* Class = "IBUILabel"; text = "Confirm new password"; ObjectID = "LjI-AG-dcI"; */
+"LjI-AG-dcI.text" = "确认新密码";
+
+/* Class = "IBUIBarButtonItem"; title = "Contacts"; ObjectID = "OpZ-LZ-UEs"; */
+"OpZ-LZ-UEs.title" = "联系人";
+
+/* Class = "IBUILabel"; text = "New Password"; ObjectID = "QPz-Gg-Of0"; */
+"QPz-Gg-Of0.text" = "新密码";
+
+/* Class = "IBUILabel"; text = "Filename"; ObjectID = "R5k-yG-fEs"; */
+"R5k-yG-fEs.text" = "文件名";
+
+/* Class = "IBUISegmentedControl"; Rv6-u5-uS8.segmentTitles[0] = "Encrypted"; ObjectID = "Rv6-u5-uS8"; */
+"Rv6-u5-uS8.segmentTitles[0]" = "已加密";
+
+/* Class = "IBUISegmentedControl"; Rv6-u5-uS8.segmentTitles[1] = "Decrypted"; ObjectID = "Rv6-u5-uS8"; */
+"Rv6-u5-uS8.segmentTitles[1]" = "已解密";
+
+/* Class = "IBUINavigationItem"; title = "Logs"; ObjectID = "TUE-Z4-gpb"; */
+"TUE-Z4-gpb.title" = "日志";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "Txp-hD-qtd"; */
+"Txp-hD-qtd.normalTitle" = "按钮";
+
+/* Class = "IBUINavigationItem"; title = "Setting"; ObjectID = "WdW-fV-DsN"; */
+"WdW-fV-DsN.title" = "设置";
+
+/* Class = "IBUILabel"; text = "NAME"; ObjectID = "amX-kN-XRM"; */
+"amX-kN-XRM.text" = "名字";
+
+/* Class = "IBUINavigationItem"; title = "Auto Lock"; ObjectID = "bec-ax-3SW"; */
+"bec-ax-3SW.title" = "自动锁定";
+
+/* Class = "IBUINavigationItem"; title = "New File"; ObjectID = "ckk-b9-h2G"; */
+"ckk-b9-h2G.title" = "新文件";
+
+/* Class = "IBUIBarButtonItem"; title = "About"; ObjectID = "cl6-Ii-dmJ"; */
+"cl6-Ii-dmJ.title" = "关于";
+
+/* Class = "IBUILabel"; text = "  5  Minutes"; ObjectID = "eEC-Yj-Kme"; */
+"eEC-Yj-Kme.text" = "  5  分钟";
+
+/* Class = "IBUINavigationItem"; title = "About"; ObjectID = "hbJ-17-7eS"; */
+"hbJ-17-7eS.title" = "关于";
+
+/* Class = "IBUINavigationItem"; title = "Title"; ObjectID = "hbw-uY-XdT"; */
+"hbw-uY-XdT.title" = "标题";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "hw5-o3-c8L"; */
+"hw5-o3-c8L.normalTitle" = "按钮";
+
+/* Class = "IBUILabel"; text = "  4  Minutes"; ObjectID = "kMk-6G-twP"; */
+"kMk-6G-twP.text" = "  4  分钟";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "kbS-gz-Hv1"; */
+"kbS-gz-Hv1.normalTitle" = "按钮";
+
+/* Class = "IBUILabel"; text = "  3  Minutes"; ObjectID = "khH-xf-9lp"; */
+"khH-xf-9lp.text" = "  3  分钟";
+
+/* Class = "IBUILabel"; text = "Current Password"; ObjectID = "lPG-9p-jsQ"; */
+"lPG-9p-jsQ.text" = "当前密码";
+
+/* Class = "IBUITabBarItem"; title = "Setting"; ObjectID = "m0O-ba-Vf4"; */
+"m0O-ba-Vf4.title" = "设置";
+
+/* Class = "IBUILabel"; text = "Bytes"; ObjectID = "nBa-LA-RzF"; */
+"nBa-LA-RzF.text" = "文件大小";
+
+/* Class = "IBUILabel"; text = "Received"; ObjectID = "ngW-CF-f0N"; */
+"ngW-CF-f0N.text" = "收到时间";
+
+/* Class = "IBUILabel"; text = "OPTION"; ObjectID = "nzA-Tn-IE0"; */
+"nzA-Tn-IE0.text" = "选项";
+
+/* Class = "IBUITextField"; placeholder = "8 to 49 characters and digits"; ObjectID = "oT5-x7-nXl"; */
+"oT5-x7-nXl.placeholder" = "8到49位数字或者字符";
+
+/* Class = "IBUINavigationItem"; title = "Passcode Lock"; ObjectID = "oUI-HH-FZi"; */
+"oUI-HH-FZi.title" = "密码锁";
+
+/* Class = "IBUIBarButtonItem"; title = "Files"; ObjectID = "pTa-Fm-BMR"; */
+"pTa-Fm-BMR.title" = "文件";
+
+/* Class = "IBUILabel"; text = "FileName"; ObjectID = "t24-nX-nsJ"; */
+"t24-nX-nsJ.text" = "文件名";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "uUD-yj-wgt"; */
+"uUD-yj-wgt.normalTitle" = "按钮";
+
+/* Class = "IBUITabBarItem"; title = "Files"; ObjectID = "vJl-vX-tBS"; */
+"vJl-vX-tBS.title" = "文件";
+
+/* Class = "IBUINavigationItem"; title = "Add Friend"; ObjectID = "wVo-13-xl9"; */
+"wVo-13-xl9.title" = "添加联系人";
+
+/* Class = "IBUILabel"; text = "  Always"; ObjectID = "wdq-Li-UJ3"; */
+"wdq-Li-UJ3.text" = "  永不";
+
+/* Class = "IBUITabBarItem"; title = "Contacts"; ObjectID = "wes-sf-0mU"; */
+"wes-sf-0mU.title" = "联系人";
+
+/* Class = "IBUILabel"; text = "Bytes"; ObjectID = "wgr-0D-bJT"; */
+"wgr-0D-bJT.text" = "文件大小";
+
+/* Class = "IBUIBarButtonItem"; title = "Done"; ObjectID = "wny-6p-s5d"; */
+"wny-6p-s5d.title" = "完成";
+
+/* Class = "IBUISegmentedControl"; znp-VC-MMG.segmentTitles[0] = "Friend"; ObjectID = "znp-VC-MMG"; */
+"znp-VC-MMG.segmentTitles[0]" = "好友";
+
+/* Class = "IBUISegmentedControl"; znp-VC-MMG.segmentTitles[1] = "Group"; ObjectID = "znp-VC-MMG"; */
+"znp-VC-MMG.segmentTitles[1]" = "分组";

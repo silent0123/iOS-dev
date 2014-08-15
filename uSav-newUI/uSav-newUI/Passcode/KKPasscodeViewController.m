@@ -335,7 +335,7 @@
 						[_delegate performSelector:@selector(didSettingsChanged:) withObject:self];
 					}
 					
-					[self dismissModalViewControllerAnimated:YES];
+					[self dismissViewControllerAnimated:YES completion:nil];
 				}
 			}						 
 		} else if (_mode == KKPasscodeModeChange) {
@@ -371,7 +371,7 @@
 						[_delegate performSelector:@selector(didSettingsChanged:) withObject:self];
 					}
 					
-					[self dismissModalViewControllerAnimated:YES];
+					[self dismissViewControllerAnimated:YES completion:nil];
 				}
 			}
 		}
@@ -391,7 +391,7 @@
         [_delegate performSelector:@selector(didSettingsChanged:) withObject:self];
       }
       
-      [self dismissModalViewControllerAnimated:YES];
+      [self dismissViewControllerAnimated:YES completion:nil];
     } else { 
       [self incrementFailedAttemptsLabel];
     }
@@ -409,7 +409,7 @@
         [_delegate performSelector:@selector(didPasscodeEnteredCorrectly:) withObject:self];
       }
       
-      [self dismissModalViewControllerAnimated:YES];
+      [self dismissViewControllerAnimated:YES completion:nil];
     } else { 
       [self incrementFailedAttemptsLabel];
     }
@@ -449,7 +449,7 @@
           [_delegate performSelector:@selector(didSettingsChanged:) withObject:self];
         }
         
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
       }
     }
   } else if ([textField isEqual:_setPasscodeTextField]) {
@@ -469,7 +469,7 @@
         [_delegate performSelector:@selector(didSettingsChanged:) withObject:self];
       }
       
-      [self dismissModalViewControllerAnimated:YES];
+      [self dismissViewControllerAnimated:YES completion:nil];
     }
   }
 }
@@ -489,7 +489,7 @@
 	UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 28.0, self.view.bounds.size.width, 30.0)];
 	headerLabel.textColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.4 alpha:1.0];
 	headerLabel.backgroundColor = [UIColor clearColor];
-	headerLabel.textAlignment = UITextAlignmentCenter;
+	headerLabel.textAlignment = NSTextAlignmentCenter;
 	headerLabel.font = [UIFont boldSystemFontOfSize:17.0];
 	headerLabel.shadowOffset = CGSizeMake(0, 1.0);
 	headerLabel.shadowColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
@@ -498,13 +498,13 @@
 		_passcodeConfirmationWarningLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 146.0 + 40, self.view.bounds.size.width, 30.0)];
 		_passcodeConfirmationWarningLabel.textColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.4 alpha:1.0];
 		_passcodeConfirmationWarningLabel.backgroundColor = [UIColor clearColor];
-		_passcodeConfirmationWarningLabel.textAlignment = UITextAlignmentCenter;
+		_passcodeConfirmationWarningLabel.textAlignment = NSTextAlignmentCenter;
 		_passcodeConfirmationWarningLabel.font = [UIFont systemFontOfSize:14.0];
 		_passcodeConfirmationWarningLabel.shadowOffset = CGSizeMake(0, 1.0);
 		_passcodeConfirmationWarningLabel.shadowColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
 		_passcodeConfirmationWarningLabel.text = @"";
 		_passcodeConfirmationWarningLabel.numberOfLines = 0;
-		_passcodeConfirmationWarningLabel.lineBreakMode = UILineBreakModeWordWrap;
+		_passcodeConfirmationWarningLabel.lineBreakMode = NSLineBreakByCharWrapping;
 		[headerView addSubview:_passcodeConfirmationWarningLabel];
 	}
 	
@@ -515,7 +515,7 @@
 		_failedAttemptsLabel.textColor = [UIColor whiteColor];
 		_failedAttemptsLabel.text = @"";
 		_failedAttemptsLabel.font = [UIFont boldSystemFontOfSize:14.0];
-		_failedAttemptsLabel.textAlignment = UITextAlignmentCenter;
+		_failedAttemptsLabel.textAlignment = NSTextAlignmentCenter;
 		_failedAttemptsLabel.shadowOffset = CGSizeMake(0, -1.0);
 		_failedAttemptsLabel.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
 		_failedAttemptsView.layer.cornerRadius = 14;

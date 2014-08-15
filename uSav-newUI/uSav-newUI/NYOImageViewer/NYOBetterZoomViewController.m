@@ -112,6 +112,7 @@
 //    self.doneBtn.frame =  CGRectMake(20, 20, 40, 40);
 //    //self.doneBtn.hidden = YES;
 //    [self.view addSubview:doneBtn];
+    NSLog(@"%@", self.view.subviews);
 }
 
 

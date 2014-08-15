@@ -11,9 +11,12 @@
 @interface FileTableViewController (){
 
     FileDecryptionTableViewController *decryptionController;
+    UISearchBar *fileSearchBar;
     NSString *dataSourceIdentifier; //用来识别当前显示的数据源，从而控制segue跳转
     NSString *segueTransFileName;
     NSString *segueTransBytes;
+    NSString *segueTransColor;
+    //BOOL firstVisit;
     
 }
 
@@ -22,15 +25,16 @@
 @implementation FileTableViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     
     //初始化数据
     _CellData = [InitiateWithData initiateDataForFiles];
-    dataSourceIdentifier = @"Encrypted";
     //初始化第二个数据源
     decryptionController =[[FileDecryptionTableViewController alloc] init];
+    dataSourceIdentifier = @"Encrypted";
     
     [self AddSearchBar];
-    [super viewDidLoad];
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -39,10 +43,28 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+//- (void)viewWillAppear:(BOOL)animated {
+//    
+//    NSLog(@"will");
+//}
+//
+//- (void)viewDidAppear:(BOOL)animated {
+//    NSLog(@"Appear");
+//    
+//}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//- (void)viewDidAppear:(BOOL)animated {
+//    //之后再次进入该页面
+//    //默认隐藏SearchBar，设置TableView的默认位移（否则每次返回该页面都会出现searchbar跳出来的情况）
+//    if (!firstVisit) {
+//        _FileTable.contentOffset = CGPointMake(0, 32);
+//    }
+//}
 
 #pragma mark FileTable操作相关
 //------------------------------------------------------------------------------------------
@@ -68,11 +90,11 @@
         FileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FileCell"];
         //创建数据对象，用之前定义了的_CellData初始化
         FileDataBase *cellData = _CellData[indexPath.row];
-        
+
         //CELL的主体
         cell.TableImage.image = nil;
-        cell.FileName.text = cellData.FileName;
-        cell.FileName.font = [UIFont systemFontOfSize:14];
+        cell.FileName.text = [NSString stringWithFormat:@"%@.usav", cellData.FileName]; //人工usav结尾
+        cell.FileName.font = [UIFont boldSystemFontOfSize:14];
         //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
         cell.Bytes.text = cellData.Bytes;
         cell.Bytes.font = [UIFont systemFontOfSize:10];
@@ -84,16 +106,19 @@
         
         //Image不用在数据类中加，直接在这里加
         if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#44BBC1"].CGColor)) {
-            cell.TableImage.image = [UIImage imageNamed:@"Word@2x.png"];
+            cell.TableImage.image = [UIImage imageNamed:@"EncryptedWord@2x.png"];
         } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#ED6F00"].CGColor)) {
-            cell.TableImage.image = [UIImage imageNamed:@"Powerpoint@2x.png"];
+            cell.TableImage.image = [UIImage imageNamed:@"EncryptedPowerpoint@2x.png"];
         } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#A0BD2B"].CGColor)) {
-            cell.TableImage.image = [UIImage imageNamed:@"Excel@2x.png"];
+            cell.TableImage.image = [UIImage imageNamed:@"EncryptedExcel@2x.png"];
         } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#D6006F"].CGColor)) {
-            cell.TableImage.image = [UIImage imageNamed:@"Mutimedia@2x.png"];
+            cell.TableImage.image = [UIImage imageNamed:@"EncryptedMultimedia@2x.png"];
+        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#E8251E"].CGColor)){
+            cell.TableImage.image = [UIImage imageNamed:@"EncryptedPdf@2x.png"];
         } else {
-            cell.TableImage.image = [UIImage imageNamed:@"Others@2x.png"];
+            cell.TableImage.image = [UIImage imageNamed:@"EncryptedOthers@2x.png"];
         }
+            
         
         //高亮状态
         //cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
@@ -132,14 +157,15 @@
         FileDataBase *cellData = _CellData[indexPath.row];
         segueTransFileName = cellData.FileName;
         segueTransBytes = cellData.Bytes;
+        segueTransColor = cellData.TableColor;
         [self performSegueWithIdentifier:@"FileDetailSegue" sender:self];
     } else if (indexPath.row >= 0 && [dataSourceIdentifier isEqual: @"Encrypted"]) {
         FileDataBase *cellData = _CellData[indexPath.row];
-        segueTransFileName = cellData.FileName;
+        segueTransFileName = [NSString stringWithFormat:@"%@.usav", cellData.FileName];
         segueTransBytes = cellData.Bytes;
+        segueTransColor = cellData.TableColor;
         [self performSegueWithIdentifier:@"FileDetailEncryptedSegue" sender:self];
     }
-    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -170,11 +196,13 @@
         // 下一个页面获取到值
         fileDetailController.segueTransFileName = segueTransFileName;
         fileDetailController.segueTransBytes = segueTransBytes;
+        fileDetailController.segueTransColor = segueTransColor;
     } else if ([segue.identifier isEqual: @"FileDetailEncryptedSegue"]) {
         FileDetailEncryptedViewController *fileDetailEncryptedController = segue.destinationViewController;
         // 下一个页面获取到值
         fileDetailEncryptedController.segueTransFileName = segueTransFileName;
         fileDetailEncryptedController.segueTransBytes = segueTransBytes;
+        fileDetailEncryptedController.segueTransColor = segueTransColor;
     }
 
 }
@@ -183,15 +211,28 @@
 #pragma mark SearchBar相关
 
 - (void)AddSearchBar {
-    //这里临时生成一个searchBar
-    UISearchBar *_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, 0, 320, 32)];
-    _searchBar.placeholder = @"Search a File";
-    //_searchBar.barTintColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
-    _searchBar.delegate = self;
-    [_searchBar setTranslucent:YES];
-    _FileTable.tableHeaderView = _searchBar;
-    //默认隐藏SearchBar，设置TableView的默认位移
-    _FileTable.contentOffset = CGPointMake(0, CGRectGetHeight(_searchBar.bounds));
+    
+    if (_FileTable.tableHeaderView == nil) {
+        //这里临时生成一个searchBar
+        UISearchBar *_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, 0, 320, 32)];
+        fileSearchBar = _searchBar;
+        fileSearchBar.placeholder = @"Search a File";
+        //fileSearchBar.barTintColor = [UIColor colorWithWhite:1 alpha:1];
+        fileSearchBar.delegate = self;
+        [fileSearchBar setTranslucent:YES];
+        _FileTable.tableHeaderView = fileSearchBar;
+        //默认隐藏SearchBar，设置TableView的默认位移
+        _FileTable.contentOffset = CGPointMake(0, CGRectGetHeight(fileSearchBar.bounds));
+    }
+    
+}
+
+#pragma mark 滑动隐藏键盘
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    
+    UIView *searchBarView = fileSearchBar.subviews[0];
+    
+    [searchBarView.subviews[1] resignFirstResponder];
 }
 
 #pragma mark Segment相关
@@ -216,7 +257,7 @@
 }
 
 #pragma mark AddButton事件
-- (IBAction)AddButtonClicked:(id)sender {
+//- (IBAction)AddButtonClicked:(id)sender {
 //    由于addsubview只能放到tableview上去，有滚动效果，所以这里不做弹出窗口了
 //    if (menuIsOpen) {
 //        [self TransitionAnimationEffect:addMenu];
@@ -227,7 +268,7 @@
 //        [addMenu setHidden:NO];
 //        menuIsOpen = !menuIsOpen;
 //    }
-}
+//}
 
 #pragma mark 传递给View动画效果
 //- (UIView *)TransitionAnimationEffect:(UIView *)view {
@@ -243,6 +284,5 @@
 //    
 //    return view;
 //}
-
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface USAVLock : NSObject
-{}
+
 
 + (id)defaultLock;
 
@@ -20,7 +20,7 @@
 //if Current time - baseTime > timeout thoreshold. It will be called when the app resumes.
 - (BOOL)isSessionTimeOut;
 
-- (void)setLock: (BOOL) onOrOff;
+//- (void)setLock: (BOOL) onOrOff;
 
 - (BOOL)isLocked;
 
@@ -29,8 +29,8 @@
 - (void)setLockOn;
 
 - (BOOL)isLogin;
-- (void)setLoginOff;
-- (void)setLoginOn;
+//- (void)setLoginOff;
+//- (void)setLoginOn;
 
 - (int)getLockTime;
 - (NSString*)getLockTimeStr;

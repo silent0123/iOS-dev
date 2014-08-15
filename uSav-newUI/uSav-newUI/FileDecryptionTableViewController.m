@@ -60,7 +60,7 @@
     //CELL的主体
     cell.TableImage.image = nil;
     cell.FileName.text = cellData.FileName;
-    cell.FileName.font = [UIFont systemFontOfSize:14];
+    cell.FileName.font = [UIFont boldSystemFontOfSize:14];
     //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#929292"];
     cell.Bytes.text = cellData.Bytes;
     cell.Bytes.font = [UIFont systemFontOfSize:10];
@@ -78,7 +78,9 @@
     } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#A0BD2B"].CGColor)) {
         cell.TableImage.image = [UIImage imageNamed:@"Excel@2x.png"];
     } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#D6006F"].CGColor)) {
-        cell.TableImage.image = [UIImage imageNamed:@"Mutimedia@2x.png"];
+        cell.TableImage.image = [UIImage imageNamed:@"Multimedia@2x.png"];
+    } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#E8251E"].CGColor)){
+        cell.TableImage.image = [UIImage imageNamed:@"Pdf@2x.png"];
     } else {
         cell.TableImage.image = [UIImage imageNamed:@"Others@2x.png"];
     }

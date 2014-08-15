@@ -13,7 +13,7 @@
 @property (assign, nonatomic) NSString *Name;
 @property (assign, nonatomic) NSString *Email;
 @property (assign, nonatomic) NSString *Header;
-@property (assign, nonatomic) NSString *SharedNum;
+@property (assign, nonatomic) BOOL Registered;
 @property (assign, nonatomic) NSString *Group;
 
 @end

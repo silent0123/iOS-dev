@@ -12,6 +12,8 @@
 #import "InitiateWithData.h"
 #import "ColorFromHex.h"
 #import "ContactGroupTableViewController.h"
+#import "ContactDetailTableViewController.h"    //用来传递给详细页面
+#import "ContactGroupDetailTableViewController.h" //用来传值给详细页面2
 
 @interface ContactTableViewController : UITableViewController <UISearchBarDelegate>
 

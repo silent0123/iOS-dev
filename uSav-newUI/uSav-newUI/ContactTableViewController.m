@@ -11,6 +11,11 @@
 @interface ContactTableViewController (){
 
     ContactGroupTableViewController *GroupController;
+    UISearchBar *contactSearchBar;
+    NSString *dataSourceIdentifier; //用来识别当前显示的数据源，从而控制segue跳转
+    NSString *segueTransName;
+    NSString *segueTransEmail;
+    NSString *segueTransGroup;
     
 }
 
@@ -24,6 +29,7 @@
     _CellData = [InitiateWithData initiateDataForContact];
     //初始化第二个数据源
     GroupController =[[ContactGroupTableViewController alloc] init];
+    dataSourceIdentifier = @"Friend";
     [self AddSearchBar];
     
     [super viewDidLoad];
@@ -69,21 +75,17 @@
         //CELL的主体
         cell.Header.image = nil;
         cell.Name.text = cellData.Name;
-        cell.Name.font = [UIFont systemFontOfSize:16];
+        cell.Name.font = [UIFont boldSystemFontOfSize:14];
+        cell.accessoryType = UITableViewCellAccessoryNone;
         //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
         
         //Image不用在数据类中加，直接在这里加
-        //        if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#44bbc1"].CGColor)) {
-        //            cell.TableImage.image = [UIImage imageNamed:@"Word"];
-        //        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#ED6F00"].CGColor)) {
-        //            cell.TableImage.image = [UIImage imageNamed:@"Powerpoint"];
-        //        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#A0BD2B"].CGColor)) {
-        //            cell.TableImage.image = [UIImage imageNamed:@"Excel"];
-        //        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#D6006F"].CGColor)) {
-        //            cell.TableImage.image = [UIImage imageNamed:@"Mutimedia"];
-        //        } else {
-        //            cell.TableImage.image = [UIImage imageNamed:@"Others"];
-        //        }
+        if (cellData.Registered) {
+           cell.Header.image = [UIImage imageNamed:@"Friend@2x.png"];
+        } else {
+            cell.Header.image = [UIImage imageNamed:@"NoneRegisterFriend@2x.png"];
+        }
+    
         
         //高亮状态
         //cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
@@ -117,6 +119,24 @@
 //属于delegate，不用写在datasource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    //因为要分别传递Group和Friend的详细数据，所以这里传值的时候也要分开传，值也要分开赋
+    if (indexPath.row >= 0 && [dataSourceIdentifier  isEqual: @"Friend"]) {
+        
+        ContactDataBase *cellData = _CellData[indexPath.row];
+        segueTransName = cellData.Name;
+        segueTransEmail = cellData.Email;
+        
+        [self performSegueWithIdentifier:@"ContactDetailSegue" sender:self];
+        
+    } else if (indexPath.row >= 0 && [dataSourceIdentifier isEqual:@"Group"]) {
+        
+        NSMutableArray *_CellData_Group = [InitiateWithData initiateDataForContact_Group];
+        ContactDataBase *cellData_Group = _CellData_Group[indexPath.row];
+        segueTransGroup = cellData_Group.Group;
+        
+        [self performSegueWithIdentifier:@"GroupDetailSegue" sender:self];
+    }
+    
    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -134,28 +154,45 @@
  }
  */
 
-/*
- #pragma mark - Navigation
+
+ #pragma mark - segue传递数据
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+     
+     if ([segue.identifier isEqual:@"ContactDetailSegue"]) {
+         ContactDetailTableViewController *contactDetail = segue.destinationViewController;
+         contactDetail.segueTransName = segueTransName;
+         contactDetail.segueTransEmail = segueTransEmail;
+     } else if ([segue.identifier isEqual:@"GroupDetailSegue"]) {
+         ContactGroupDetailTableViewController *groupDetail = segue.destinationViewController;
+         groupDetail.segueTransGroup = segueTransGroup;
+     }
+
  }
- */
+ 
 
 #pragma mark SearchBar相关
 
 - (void)AddSearchBar {
     //这里临时生成一个searchBar
     UISearchBar *_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, 0, 320, 32)];
-    _searchBar.placeholder = @"Search";
+    contactSearchBar = _searchBar;
+    contactSearchBar.placeholder = @"Search";
     //_searchBar.barTintColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
-    _searchBar.delegate = self;
-    [_searchBar setTranslucent:YES];
-    _ContactTable.tableHeaderView = _searchBar;
+    contactSearchBar.delegate = self;
+    [contactSearchBar setTranslucent:YES];
+    _ContactTable.tableHeaderView = contactSearchBar;
     //默认隐藏SearchBar，设置TableView的默认位移
-    _ContactTable.contentOffset = CGPointMake(0, CGRectGetHeight(_searchBar.bounds));
+    //_ContactTable.contentOffset = CGPointMake(0, CGRectGetHeight(contactSearchBar.bounds));
+}
+
+#pragma mark 滑动隐藏键盘
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    
+    UIView *searchBarView = contactSearchBar.subviews[0];
+    
+    [searchBarView.subviews[1] resignFirstResponder];
 }
 
 #pragma mark Segment相关
@@ -168,10 +205,12 @@
         //NSLog(@"当前数据源为self");
         [_ContactTable setDelegate:self];
         [_ContactTable setDataSource:self];
+        dataSourceIdentifier = @"Friend";
         [_ContactTable reloadData];
     } else if (selectedSegment == 1) {
         GroupController.CellData = [InitiateWithData initiateDataForContact_Group];
         _ContactTable.dataSource = GroupController;
+        dataSourceIdentifier = @"Group";
         [_ContactTable reloadData];
     }
     

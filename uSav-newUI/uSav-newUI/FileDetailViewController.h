@@ -14,7 +14,9 @@
 //公共变量，用于接收从上个页面传来的值
 @property (strong, nonatomic) NSString *segueTransFileName;
 @property (strong, nonatomic) NSString *segueTransBytes;
+@property (strong, nonatomic) NSString *segueTransColor;
 
+@property (weak, nonatomic) IBOutlet UIImageView *CenterPicture;
 @property (weak, nonatomic) IBOutlet UIButton *PreviewButton;
 @property (weak, nonatomic) IBOutlet UIButton *OpenButton;
 @property (weak, nonatomic) IBOutlet UILabel *FileName;

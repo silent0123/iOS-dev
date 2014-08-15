@@ -54,9 +54,10 @@
         ContactDataBase *cellData = _CellData[indexPath.row];
         
         //CELL的主体
-        cell.Header.image = nil;
+        cell.Header.image = [UIImage imageNamed:@"Group@2x.png"];
         cell.Name.text = cellData.Group;
-        cell.Name.font = [UIFont systemFontOfSize:14];
+        cell.Name.font = [UIFont boldSystemFontOfSize:14];
+        cell.accessoryType = UITableViewCellAccessoryNone;
         //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
         
         //Image不用在数据类中加，直接在这里加

@@ -14,6 +14,7 @@
 #define ORANGE "#ED6F00"
 #define PURPLE "#D6006F"
 #define GRAY "#D4C69F"
+#define RED "#E8251E"
 
 
 @implementation InitiateWithData
@@ -116,6 +117,14 @@
     file6.ReceiveTime = @"15 April, 2014 | 12:01";
     file6.TableColor = @PURPLE;
     [_MutableData addObject:file6];
+    
+    FileDataBase *file7 = [[FileDataBase alloc] init];
+    file7.FileName = @"Contract.pdf";
+    file7.Bytes = @"988KByte";
+    file7.ReceiveTime = @"28 April, 2014 | 17:30";
+    file7.TableColor = @RED;
+    [_MutableData addObject:file7];
+    
     return _MutableData;
     
 }
@@ -128,42 +137,42 @@
     ContactDataBase *Friends1 = [[ContactDataBase alloc]init];
     Friends1.Name = @"Luca";
     Friends1.Email = @"Luca.li@nwstor.com";
-    Friends1.SharedNum = @"2";
+    Friends1.Registered = YES;
     Friends1.Header = @"Luca";
     [_MutableData addObject:Friends1];
     
     ContactDataBase *Friends2 = [[ContactDataBase alloc]init];
     Friends2.Name = @"Jason";
     Friends2.Email = @"Jason@nwstor.com";
-    Friends2.SharedNum = @"1";
+    Friends2.Registered = NO;
     Friends2.Header = @"Jason";
     [_MutableData addObject:Friends2];
     
     ContactDataBase *Friends3 = [[ContactDataBase alloc]init];
     Friends3.Name = @"Luca3";
     Friends3.Email = @"Luca.li@nwstor.com";
-    Friends3.SharedNum = @"2";
+    Friends3.Registered = YES;
     Friends3.Header = @"Luca";
     [_MutableData addObject:Friends3];
     
     ContactDataBase *Friends4 = [[ContactDataBase alloc]init];
     Friends4.Name = @"Luca4";
     Friends4.Email = @"Luca.li@nwstor.com";
-    Friends4.SharedNum = @"2";
+    Friends4.Registered = YES;
     Friends4.Header = @"Luca";
     [_MutableData addObject:Friends4];
     
     ContactDataBase *Friends5 = [[ContactDataBase alloc]init];
     Friends5.Name = @"Luca5";
     Friends5.Email = @"Luca.li@nwstor.com";
-    Friends5.SharedNum = @"2";
+    Friends5.Registered = NO;
     Friends5.Header = @"Luca";
     [_MutableData addObject:Friends5];
     
     ContactDataBase *Friends6 = [[ContactDataBase alloc]init];
     Friends6.Name = @"Luca6";
     Friends6.Email = @"Luca.li@nwstor.com";
-    Friends6.SharedNum = @"2";
+    Friends6.Registered = YES;
     Friends6.Header = @"Luca";
     [_MutableData addObject:Friends6];
     return _MutableData;
@@ -218,6 +227,12 @@
     file4.TableColor = @LIGHT_BLUE;
     [_MutableData addObject:file4];
     
+    FileDataBase *file5 = [[FileDataBase alloc] init];
+    file5.FileName = @"Contract.pdf";
+    file5.Bytes = @"988KByte";
+    file5.ReceiveTime = @"28 April, 2014 | 17:30";
+    file5.TableColor = @RED;
+    [_MutableData addObject:file5];
     
     return _MutableData;
 

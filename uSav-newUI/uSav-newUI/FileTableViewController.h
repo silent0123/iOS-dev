@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *FileSegent;
 
 - (IBAction)SegmentChange:(id)sender;
-- (IBAction)AddButtonClicked:(id)sender;
+//- (IBAction)AddButtonClicked:(id)sender;
 
 
 @end

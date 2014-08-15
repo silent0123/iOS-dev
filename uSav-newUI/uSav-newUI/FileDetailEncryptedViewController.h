@@ -13,7 +13,10 @@
 
 @property (strong, nonatomic) NSString *segueTransFileName;
 @property (strong, nonatomic) NSString *segueTransBytes;
+@property (strong, nonatomic) NSString *segueTransColor;
 
+
+@property (weak, nonatomic) IBOutlet UIImageView *CenterPicture;
 @property (weak, nonatomic) IBOutlet UILabel *FileName;
 @property (weak, nonatomic) IBOutlet UILabel *Bytes;
 @property (weak, nonatomic) IBOutlet UIButton *DecryptionButton;

@@ -21,15 +21,30 @@
     //button要用这个设置字体，不能用titlelable，因为button是分状态的。
     [_PreviewButton setTitle:@"Preview" forState:UIControlStateNormal];
     [_PreviewButton setTitleColor:[UIColor colorWithWhite:1 alpha:1] forState:UIControlStateNormal];
-    _PreviewButton.titleLabel.font = [UIFont systemFontOfSize:12];  //大小可以这样设置
+    _PreviewButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];  //大小可以这样设置
     _PreviewButton.backgroundColor = [ColorFromHex getColorFromHex:@"#1E90FF"];
     
     _OpenButton.layer.masksToBounds = YES;
     _OpenButton.layer.cornerRadius = 4;
     [_OpenButton setTitle:@"Open in" forState:UIControlStateNormal];
     [_OpenButton setTitleColor:[UIColor colorWithWhite:1 alpha:1] forState:UIControlStateNormal];
-    _OpenButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    _OpenButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
     _OpenButton.backgroundColor = [ColorFromHex getColorFromHex:@"#1E90FF"];
+    
+    
+    if ([_segueTransColor  isEqual: @"#44BBC1"]) {
+        _CenterPicture.image = [UIImage imageNamed:@"BigWord@2x.png"];
+    } else if ([_segueTransColor  isEqual: @"#ED6F00"]) {
+        _CenterPicture.image = [UIImage imageNamed:@"BigPowerpoint@2x.png"];
+    } else if ([_segueTransColor  isEqual: @"#A0BD2B"]) {
+        _CenterPicture.image = [UIImage imageNamed:@"BigExcel@2x.png"];
+    } else if ([_segueTransColor  isEqual: @"#D6006F"]) {
+        _CenterPicture.image = [UIImage imageNamed:@"BigMultimedia@2x.png"];
+    } else if ([_segueTransColor  isEqual: @"#E8251E"]){
+        _CenterPicture.image = [UIImage imageNamed:@"BigPdf@2x.png"];
+    } else {
+        _CenterPicture.image = [UIImage imageNamed:@"BigOther@2x.png"];
+    }
     
     //通过上个页面传来的值设置当前页面
     _FileName.text = _segueTransFileName;

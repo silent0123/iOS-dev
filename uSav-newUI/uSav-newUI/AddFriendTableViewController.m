@@ -37,13 +37,18 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Potentially incomplete method implementation.
     // Return the number of sections.
+    tableView.scrollEnabled = NO;
     return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    if (section == 0) {
+        return 2;
+    } else {
+        return 1;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -58,7 +63,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSInteger section = indexPath.section;
-    //NSInteger row = indexPath.row;
+    NSInteger row = indexPath.row;
     
     AddFirendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddFriendCell"];
     if (cell == nil) {
@@ -69,19 +74,30 @@
     
     switch (section) {
         case 0:
-            //创建一个输入框
-            textFiled = [[UITextField alloc] initWithFrame:CGRectMake(cell.frame.origin.x+16, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
-            [textFiled setPlaceholder:@"Email"];
-            textFiled.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
-            textFiled.clearsContextBeforeDrawing = YES;  //把周围的context清理，否则可能会出错
-            textFiled.clearButtonMode = 5;
-            textFiled.autocorrectionType = NO;
-            textFiled.returnKeyType = UIReturnKeyGo;
-            cell.TableOption = nil;
-            [cell addSubview:textFiled];
+            if (row == 0) {
+                //创建一个输入框
+                textFiled = [[UITextField alloc] initWithFrame:CGRectMake(cell.frame.origin.x+16, cell.frame.origin.y + 1, cell.frame.size.width - 16, cell.frame.size.height)];
+                [textFiled setPlaceholder:@"Email"];
+                textFiled.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
+                textFiled.clearsContextBeforeDrawing = YES;  //把周围的context清理，否则可能会出错
+                textFiled.clearButtonMode = 5;
+                textFiled.autocorrectionType = NO;
+                textFiled.returnKeyType = UIReturnKeyGo;
+                [textFiled setValue:[UIFont systemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+                textFiled.font = [UIFont systemFontOfSize:14];
+                cell.TableOption = nil;
+                [cell addSubview:textFiled];
+            } else {
+                cell.TableOption.text = NSLocalizedString(@"Add from address book", nil);
+                cell.TableOption.font = [UIFont boldSystemFontOfSize:14];
+                cell.TableImage.image = [UIImage imageNamed:@"Address@2x.png"];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
             break;
         default:
-            cell.TableOption.text = @"Creat a Group";
+            cell.TableOption.text = NSLocalizedString(@"Creat a group", nil);
+            cell.TableOption.font = [UIFont boldSystemFontOfSize:14];
+            cell.TableImage.image = [UIImage imageNamed:@"CreatGroup@2x.png"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
     }
@@ -93,14 +109,24 @@
 //属于delegate，不用写在datasource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    
+    if (section == 0 && row == 1) {
+        [self performSegueWithIdentifier:@"AddressBookSegue" sender:self];
+    } else if (section == 1 && row == 0) {
+        UIAlertView *comingSoon = [[UIAlertView alloc] initWithTitle:@"uSav" message:@"Coming soon!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [comingSoon show];
+    }
+    
+    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
-#pragma mark 点击空白隐藏键盘
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    NSLog(@"%@", textFiled);
-//    [textFiled resignFirstResponder];
-//}
+#pragma mark 滑动隐藏键盘
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [textFiled resignFirstResponder];
+}
 
 
 /*
@@ -137,14 +163,24 @@
 }
 */
 
-/*
-#pragma mark - Navigation
+
+#pragma mark - Prepare
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    //这里获取到下一个controller，把delegate指定好
+    THContactPickerViewController *pickerController = segue.destinationViewController;
+    pickerController.passDelegate = self;
 }
-*/
+
+
+#pragma mark delegate传值接收
+- (void)passValue:(NSString *)value {
+
+    textFiled.text = value;
+
+}
 
 @end

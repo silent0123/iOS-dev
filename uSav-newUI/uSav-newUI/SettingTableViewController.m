@@ -52,7 +52,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return @"Profile";
+            return @"General";
             break;
         case 1:
             return @"Security";
@@ -89,7 +89,7 @@
                 if (row == 0) {
                     cell.textLabel.text = @"My Profile";
                 } else {
-                    cell.textLabel.text = @"My Email";
+                    cell.textLabel.text = @"Language";
                 }
                 break;
             case 1:
@@ -132,6 +132,13 @@
         [self performSegueWithIdentifier:@"SecurityLockSegue" sender:self];
     } else if (section == 2 && row == 1){
         [self performSegueWithIdentifier:@"AboutSegue" sender:self];
+    } else if (section == 2 && row == 0){
+        UIAlertView *comingSoon = [[UIAlertView alloc] initWithTitle:@"uSav" message:@"Coming soon!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [comingSoon show];
+    } else if (section == 0 && row == 0){
+        [self performSegueWithIdentifier:@"ProfileSegue" sender:self];
+    } else if (section == 0 && row == 1){
+        [self performSegueWithIdentifier:@"LanguageSegue" sender:self];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];

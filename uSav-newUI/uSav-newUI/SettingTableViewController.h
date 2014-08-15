@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ColorFromHex.h"
-#import "PasswordViewController.h"
-//#import "SecurityLockTableViewController.h"
+
 
 @interface SettingTableViewController : UITableViewController
 
