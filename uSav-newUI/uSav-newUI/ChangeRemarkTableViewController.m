@@ -58,7 +58,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSInteger section = indexPath.section;
-    NSInteger row = indexPath.row;
+    //NSInteger row = indexPath.row;
     //创建CELL
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChangeRemarkCell"];
     cell.accessoryType = UITableViewCellAccessoryNone;

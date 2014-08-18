@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LogsDataBase.h"
+#import "LogTableViewCell.h"
+#import "ColorFromHex.h"
+#import "InitiateWithData.h"
 
 @interface LogsTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSMutableArray *CellData;
+@property (strong, nonatomic) IBOutlet UITableView *LogsTable;
 
 @end

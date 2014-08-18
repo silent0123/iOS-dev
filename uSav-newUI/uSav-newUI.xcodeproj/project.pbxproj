@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8100BECD19A1EA160092BBC0 /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8100BECC19A1EA160092BBC0 /* LogTableViewCell.m */; };
+		8100BED019A1ED600092BBC0 /* LogsDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8100BECF19A1ED600092BBC0 /* LogsDataBase.m */; };
 		8114EF431991FFEF00D5E66F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8114EF421991FFEF00D5E66F /* main.m */; };
 		8114EF461991FFEF00D5E66F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8114EF451991FFEF00D5E66F /* AppDelegate.m */; };
 		8114EF4C1991FFEF00D5E66F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8114EF4A1991FFEF00D5E66F /* Main.storyboard */; };
@@ -136,6 +138,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8100BECB19A1EA160092BBC0 /* LogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewCell.h; sourceTree = "<group>"; };
+		8100BECC19A1EA160092BBC0 /* LogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewCell.m; sourceTree = "<group>"; };
+		8100BECE19A1ED600092BBC0 /* LogsDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogsDataBase.h; sourceTree = "<group>"; };
+		8100BECF19A1ED600092BBC0 /* LogsDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogsDataBase.m; sourceTree = "<group>"; };
 		8114EF3D1991FFEF00D5E66F /* uSav-newUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uSav-newUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8114EF421991FFEF00D5E66F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8114EF441991FFEF00D5E66F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -518,6 +524,8 @@
 				81AD878B199233D600040C7B /* FileDataBase.m */,
 				8128787C19946B0A007C6B39 /* ContactDataBase.h */,
 				8128787D19946B0A007C6B39 /* ContactDataBase.m */,
+				8100BECE19A1ED600092BBC0 /* LogsDataBase.h */,
+				8100BECF19A1ED600092BBC0 /* LogsDataBase.m */,
 			);
 			name = "测试数据";
 			sourceTree = "<group>";
@@ -535,6 +543,8 @@
 				81B1BC141994A5BA00E01E76 /* AddFirendTableViewCell.m */,
 				81338706199CAD560087A168 /* MoreTableViewCell.h */,
 				81338707199CAD560087A168 /* MoreTableViewCell.m */,
+				8100BECB19A1EA160092BBC0 /* LogTableViewCell.h */,
+				8100BECC19A1EA160092BBC0 /* LogTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -859,6 +869,7 @@
 				814C141E1999EA9C007F2748 /* KKPasscodeViewController.m in Sources */,
 				81684D40199B1502004A6AAF /* LanguageTableViewController.m in Sources */,
 				81338708199CAD560087A168 /* MoreTableViewCell.m in Sources */,
+				8100BED019A1ED600092BBC0 /* LogsDataBase.m in Sources */,
 				814C14101999EA90007F2748 /* NYOBetterZoomViewController.m in Sources */,
 				81AD87851992305A00040C7B /* ColorFromHex.m in Sources */,
 				81F49A8C199B40B400A938CA /* THContactPickerViewController.m in Sources */,
@@ -888,6 +899,7 @@
 				81F49A86199B40B400A938CA /* THBubbleColor.m in Sources */,
 				81684D4C199B2417004A6AAF /* ContactGroupDetailTableViewController.m in Sources */,
 				8133870F199CC4BF0087A168 /* ChangeRemarkTableViewController.m in Sources */,
+				8100BECD19A1EA160092BBC0 /* LogTableViewCell.m in Sources */,
 				81AD8788199232CD00040C7B /* FileTableViewController.m in Sources */,
 				8114EF431991FFEF00D5E66F /* main.m in Sources */,
 				81AD87931992348900040C7B /* FileTableViewCell.m in Sources */,

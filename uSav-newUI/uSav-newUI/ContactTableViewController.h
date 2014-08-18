@@ -17,6 +17,8 @@
 
 @interface ContactTableViewController : UITableViewController <UISearchBarDelegate>
 
+@property (strong, nonatomic) UITableViewCell *searchCell;
+
 @property (strong, nonatomic) NSMutableArray *CellData;
 @property (strong, nonatomic) IBOutlet UITableView *ContactTable;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ContactSegment;

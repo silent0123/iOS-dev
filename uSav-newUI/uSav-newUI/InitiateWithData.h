@@ -10,6 +10,7 @@
 //#import "OperationLog.h"
 #import "FileDataBase.h"
 #import "ContactDataBase.h"
+#import "LogsDataBase.h"
 
 @interface InitiateWithData : NSObject
 
@@ -21,4 +22,6 @@
 + (NSMutableArray *)initiateDataForContact;
 + (NSMutableArray *)initiateDataForContact_Group;
 + (NSMutableArray *)initiateDataForAddFile;
+//Logs
++ (NSMutableArray *)initiateDataForLogs;
 @end

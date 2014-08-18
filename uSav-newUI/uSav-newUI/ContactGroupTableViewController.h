@@ -10,6 +10,7 @@
 #import "ContactTableViewCell.h"
 #import "ContactDataBase.h"
 #import "ColorFromHex.h"
+#import "InitiateWithData.h"
 
 @interface ContactGroupTableViewController : UITableViewController
 

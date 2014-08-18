@@ -35,7 +35,7 @@
     //#warning Potentially incomplete method implementation.
     // Return the number of sections.
     //NSLog(@"数据已经初始化，获取section的数目为2");
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -51,12 +51,13 @@
     //NSLog(@"进入Cell创建");
     //创建CELL
     FileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FileCell"];
-    //    if(cell == nil){
-    //        FileTableViewCell *cell = [[FileTableViewCell alloc] initWithFrame:CGRectZero];
-    //    }
+//    if(cell == nil){
+//        UITableViewCell *cell = [[UITableViewCell  alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SearchCell"];
+//        _searchCell = cell;
+//    }
     //创建数据对象，用之前定义了的_CellData初始化
     FileDataBase *cellData = _CellData[indexPath.row];
-        
+    
     //CELL的主体
     cell.TableImage.image = nil;
     cell.FileName.text = cellData.FileName;
@@ -89,6 +90,7 @@
     //cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
     //cell.selectedBackgroundView.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
     // Configure the cell...
+
     return cell;
 }
 
@@ -105,7 +107,7 @@
         // Delete the row from the data source
         [_CellData removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        //NSLog(@"现在的第%zi行已经被移除, 还剩下%zi",indexPath.row,[_CellData count]);
+        NSLog(@"现在的第%zi行已经被移除, 还剩下%zi",indexPath.row,[_CellData count]);
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }

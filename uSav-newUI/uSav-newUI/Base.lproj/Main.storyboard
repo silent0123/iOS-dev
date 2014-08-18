@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nLC-kW-gXu">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <scenes>
@@ -148,11 +149,20 @@
                     <connections>
                         <outlet property="FileSegent" destination="Rv6-u5-uS8" id="wtN-Sa-NVq"/>
                         <outlet property="FileTable" destination="Yk7-qg-q83" id="hcB-L9-bHE"/>
+                        <outlet property="searchDisplayController" destination="GsZ-lU-HMn" id="XUY-2s-gX3"/>
                         <segue destination="NqI-Mp-dQb" kind="show" identifier="FileDetailSegue" id="MFQ-ZH-qQK"/>
                         <segue destination="oUm-W7-6D9" kind="show" identifier="FileDetailEncryptedSegue" id="xpT-2m-CIk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rCR-2Y-ryF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="GsZ-lU-HMn">
+                    <connections>
+                        <outlet property="delegate" destination="inb-kY-Ezd" id="J50-Kt-hIM"/>
+                        <outlet property="searchContentsController" destination="inb-kY-Ezd" id="Ap8-dN-mWK"/>
+                        <outlet property="searchResultsDataSource" destination="inb-kY-Ezd" id="gZM-Hi-25d"/>
+                        <outlet property="searchResultsDelegate" destination="inb-kY-Ezd" id="AQ2-mK-CMa"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="409.5" y="-1215"/>
         </scene>
@@ -1003,16 +1013,87 @@
         <scene sceneID="n11-fM-NhS">
             <objects>
                 <tableViewController id="J9k-ph-Va0" customClass="LogsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Yb9-P8-eF4">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="22" sectionFooterHeight="22" id="Yb9-P8-eF4">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" id="y7F-RD-us6">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LogsCell" rowHeight="85" id="y7F-RD-us6" customClass="LogTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y7F-RD-us6" id="YK0-Tz-N5h">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9O-Oo-dmW">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="66" y="62" width="243" height="21"/>
+                                            </variation>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uH1-RR-YUm">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="8" y="20" width="0.0" height="0.0"/>
+                                            </variation>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="7" preferredMaxLayoutWidth="293" translatesAutoresizingMaskIntoConstraints="NO" id="cF7-XD-v31">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <string key="text">Information Line1 Information Line1 Information Line1 Information Line1 Information Line1 Information Line1 Information Line1 Information Line1 Information Line1 Information Line1 Information Line1 Information Line1 </string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                <rect key="frame" x="16" y="31" width="293" height="39"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWe-pw-gJu">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="227" y="11" width="82" height="21"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type(Su/Fa color)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYD-tu-tIP">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="16" y="11" width="135" height="21"/>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="U9O-Oo-dmW"/>
+                                            <exclude reference="uH1-RR-YUm"/>
+                                            <exclude reference="cF7-XD-v31"/>
+                                            <exclude reference="QWe-pw-gJu"/>
+                                            <exclude reference="NYD-tu-tIP"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="U9O-Oo-dmW"/>
+                                            <include reference="uH1-RR-YUm"/>
+                                            <include reference="cF7-XD-v31"/>
+                                            <include reference="QWe-pw-gJu"/>
+                                            <include reference="NYD-tu-tIP"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="LogContent" destination="cF7-XD-v31" id="7M2-3e-Fwv"/>
+                                    <outlet property="LogImage" destination="uH1-RR-YUm" id="AlG-dP-yUt"/>
+                                    <outlet property="LogSuccess" destination="QWe-pw-gJu" id="REA-n2-HI8"/>
+                                    <outlet property="LogTime" destination="U9O-Oo-dmW" id="H41-0A-kpX"/>
+                                    <outlet property="LogType" destination="NYD-tu-tIP" id="aGY-pP-puY"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
@@ -1024,6 +1105,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Logs" id="TUE-Z4-gpb"/>
+                    <connections>
+                        <outlet property="LogsTable" destination="Yb9-P8-eF4" id="x96-Ep-b99"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dWd-DU-Z85" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

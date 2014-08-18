@@ -10,11 +10,13 @@
 #import "FileTableViewCell.h"
 #import "FileDataBase.h"
 #import "ColorFromHex.h"
+#import "InitiateWithData.h"
 
 @class FileTableViewController;
 
 @interface FileDecryptionTableViewController : UITableViewController
 
+//@property (strong, nonatomic) UITableViewCell *searchCell;
 @property (strong, nonatomic) NSMutableArray *CellData;
 
 @end

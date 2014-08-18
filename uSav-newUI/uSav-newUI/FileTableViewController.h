@@ -19,6 +19,10 @@
 @interface FileTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (strong, nonatomic) NSMutableArray *CellData;
+@property (strong, nonatomic) NSMutableArray *SearchData;//search结果
+@property (strong, nonatomic) UITableViewCell *searchCell;
+
+
 @property (strong, nonatomic) IBOutlet UITableView *FileTable;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *FileSegent;
 

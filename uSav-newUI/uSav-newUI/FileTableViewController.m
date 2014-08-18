@@ -11,32 +11,41 @@
 @interface FileTableViewController (){
 
     FileDecryptionTableViewController *decryptionController;
+    
+    //SearchBar相关
     UISearchBar *fileSearchBar;
     UISearchDisplayController *searchDisplayController;
-    NSString *dataSourceIdentifier; //用来识别当前显示的数据源，从而控制segue跳转
+    
+    //用来识别当前显示的数据源，从而控制segue跳转
+    NSString *dataSourceIdentifier;
+    //用来segue传参
     NSString *segueTransFileName;
     NSString *segueTransBytes;
     NSString *segueTransColor;
+    
+    NSMutableArray *allFileName;   //用来搜索的时候查询,这个需要是可变数组，因为要取出所有的cell文件名放进去
+    NSArray *searchFileName;    //只用赋值一次即可
     //BOOL firstVisit;
     
 }
 
 @end
+@implementation FileTableViewController 
 
-@implementation FileTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     //初始化数据
     _CellData = [InitiateWithData initiateDataForFiles];
+    allFileName = [[NSMutableArray alloc] initWithCapacity:[_CellData count]]; //这句非常重要，要不然allFile为空
     //初始化第二个数据源
     decryptionController =[[FileDecryptionTableViewController alloc] init];
     dataSourceIdentifier = @"Encrypted";
     
     //刷新功能增加
     [self SetBeginRefresh];
-    [self AddSearchBar];
+    [self AddSearchBarAndDisplayController];
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -47,12 +56,15 @@
 }
 
 //- (void)viewWillAppear:(BOOL)animated {
-//    
-//    NSLog(@"will");
+//
+//    CGRect newBounds = _FileTable.bounds;
+//    newBounds.origin.y = newBounds.origin.y + 44;
+//    _FileTable.bounds = newBounds;
 //}
 //
 //- (void)viewDidAppear:(BOOL)animated {
-//    NSLog(@"Appear");
+//    
+//    [super viewDidAppear:animated];
 //    
 //}
 
@@ -80,22 +92,39 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [_CellData count];
+    if (tableView == _FileTable) {
+        return [_CellData count];
+    } else {
+        return [searchFileName count];
+    }
+
 }
 
 
 //这里的内容都只是为了demo自定义, 数据从appdelegate传过来的。里面只有颜色和图片还有字体可以保留
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    //创建CELL
+    FileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FileCell"];
     
-//    if (tableView == _FileTable) {
-        //创建CELL
-        FileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FileCell"];
+    //如果不存在，就创建一个默认样式的。其实是用来创建给searchResultDisplay用，因为searchDisplay是没有identifier的。
+    if (cell == nil) {
+        UITableViewCell *searchCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SearchCell"];
+        self.searchCell = searchCell;
+        //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        //NSLog(@"%@",cell);
+    }
+    
+    if (tableView == self.tableView) {
         //创建数据对象，用之前定义了的_CellData初始化
         FileDataBase *cellData = _CellData[indexPath.row];
+        //把所有文件名放到一个数组里，方便搜索(allFileName已经在开始初始化)
+
+        [allFileName addObject:cellData.FileName];
 
         //CELL的主体
-        cell.TableImage.image = nil;
+        //cell.TableImage.image = nil;
         cell.FileName.text = [NSString stringWithFormat:@"%@.usav", cellData.FileName]; //人工usav结尾
         cell.FileName.font = [UIFont boldSystemFontOfSize:14];
         //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
@@ -127,16 +156,53 @@
         //cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
         //cell.selectedBackgroundView.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
         // Configure the cell...
-        return cell;
     }
-//    else {
-//        //NSString *strToSearch = fileSearchBar.text;
-//        //然后根据strToSearch去搜索
-//        //最后返回符合要求的cell
-//        return nil;
-//    }
-//    return nil;
-//}
+    else {
+        
+        if ([dataSourceIdentifier  isEqual: @"Encryption"]) {
+            NSString *searchResult = [NSString stringWithFormat:@"%@.usav", searchFileName[indexPath.row]];
+            _searchCell.textLabel.text = searchResult;
+            _searchCell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+        } else {
+            NSString *searchResult = searchFileName[indexPath.row];
+            _searchCell.textLabel.text = searchResult;
+            _searchCell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+        }
+        
+
+        return self.searchCell;
+        
+        //CELL的主体
+//        cell.TableImage.image = nil;
+//        cell.FileName.text = [NSString stringWithFormat:@"%@.usav", searchFileName.FileName]; //人工usav结尾
+//        cell.FileName.font = [UIFont boldSystemFontOfSize:14];
+//        //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+//        cell.Bytes.text = searchFileName.Bytes;
+//        cell.Bytes.font = [UIFont systemFontOfSize:10];
+//        cell.Bytes.textColor = [ColorFromHex getColorFromHex:@"#929292"];
+//        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:searchFileName.TableColor];
+//        cell.ReceiveTime.text = searchFileName.ReceiveTime;
+//        cell.ReceiveTime.textColor = [ColorFromHex getColorFromHex:@"#929292"];
+        //cell.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+        
+        //Image不用在数据类中加，直接在这里加
+//        if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#44BBC1"].CGColor)) {
+//            cell.TableImage.image = [UIImage imageNamed:@"EncryptedWord@2x.png"];
+//        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#ED6F00"].CGColor)) {
+//            cell.TableImage.image = [UIImage imageNamed:@"EncryptedPowerpoint@2x.png"];
+//        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#A0BD2B"].CGColor)) {
+//            cell.TableImage.image = [UIImage imageNamed:@"EncryptedExcel@2x.png"];
+//        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#D6006F"].CGColor)) {
+//            cell.TableImage.image = [UIImage imageNamed:@"EncryptedMultimedia@2x.png"];
+//        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#E8251E"].CGColor)){
+//            cell.TableImage.image = [UIImage imageNamed:@"EncryptedPdf@2x.png"];
+//        } else {
+//            cell.TableImage.image = [UIImage imageNamed:@"EncryptedOthers@2x.png"];
+//        }
+    }
+    
+    return cell;
+}
 
 //cell编辑/删除
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -218,30 +284,38 @@
 
 
 #pragma mark SearchBar相关
-
-- (void)AddSearchBar {
+- (void)AddSearchBarAndDisplayController {
     
     if (_FileTable.tableHeaderView == nil) {
         //这里临时生成一个searchBar
-        UISearchBar *_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, 0, 320, 32)];
+        UISearchBar *_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
         fileSearchBar = _searchBar;
-        fileSearchBar.placeholder = @"Search a File";
+        fileSearchBar.placeholder = @"Search Filename or Extension";
         //fileSearchBar.barTintColor = [UIColor colorWithWhite:1 alpha:1];
         fileSearchBar.delegate = self;
         [fileSearchBar setTranslucent:YES];
         _FileTable.tableHeaderView = fileSearchBar;
         //默认隐藏SearchBar，设置TableView的默认位移
-        [_FileTable setContentOffset:CGPointMake(0, CGRectGetHeight(fileSearchBar.bounds)) animated:YES];
+        //[_FileTable setContentOffset:CGPointMake(0, _searchBar.frame.size.height) animated:NO];
         //[fileSearchBar sizeToFit];
         
-        /*
         //临时生成一个searchDisplayController
         searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:fileSearchBar contentsController:self];
         searchDisplayController.searchResultsDataSource=self;
         searchDisplayController.searchResultsDelegate=self;
         [self.searchDisplayController setActive:NO];
-         */
+        
     }
+    
+}
+
+//searchBar的delegate方法
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    //生成一个判断器
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains [cd] %@", fileSearchBar.text];
+    //用判断器筛选原始数据(的文件名)，放入新数组
+    searchFileName = (NSArray *)[allFileName filteredArrayUsingPredicate:predicate];
     
 }
 
@@ -267,7 +341,7 @@
         [_FileTable reloadData];
     } else if (selectedSegment == 1) {
         dataSourceIdentifier = @"Decrypted";
-        decryptionController.CellData = _CellData;
+        decryptionController.CellData = [InitiateWithData initiateDataForFiles];
         _FileTable.dataSource = decryptionController;
         [_FileTable reloadData];
     }
@@ -310,7 +384,7 @@
     //时间格式定义和时间获取
     NSString *systemDate = nil;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     systemDate = [dateFormatter stringFromDate:[NSDate date]];
     //下拉显示的内容
     NSString *titleString = NSLocalizedString(@"Recent update at ", nil);
@@ -337,7 +411,7 @@
     //生成一个refresh控制器，并且不用管理它的frame，系统会自己管理
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     refresh.tintColor = [ColorFromHex getColorFromHex:@"#929292"];
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Pull to update", nil)];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Pull to Update", nil)];
     
     //UIRefreshControl会触发一个UIContentEventValueChanged事件，通过监听事件，我们可以进行需要的操作
     [refresh addTarget:self action:@selector(RefreshTableViewAction:) forControlEvents:UIControlEventValueChanged];

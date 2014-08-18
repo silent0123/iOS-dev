@@ -15,6 +15,8 @@
 @implementation LogsTableViewController
 
 - (void)viewDidLoad {
+    
+    _CellData = [InitiateWithData initiateDataForLogs];
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -34,33 +36,68 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [_CellData count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    LogTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LogsCell" forIndexPath:indexPath];
+    LogsDataBase *cellData = _CellData[indexPath.row];
+    
+    if (tableView == _LogsTable) {
+        cell.LogType.text = cellData.LogType;
+        cell.LogType.font = [UIFont boldSystemFontOfSize:16];
+        
+        cell.LogTime.text = cellData.LogTime;
+        cell.LogTime.textColor = [ColorFromHex getColorFromHex:@"#929292"];
+        cell.LogTime.font = [UIFont systemFontOfSize:10];
+        
+        //与成功和失败相关代码，包括字颜色和content, logsuccess内容
+        if (cellData.LogSuccess) {
+            cell.LogType.textColor = [ColorFromHex getColorFromHex:@"#A0BD2B"];
+            
+            NSString *logContentWithState = cellData.LogContent;
+            cell.LogContent.text = logContentWithState;
+            cell.LogContent.font = [UIFont systemFontOfSize:12];
+            
+            cell.LogSuccess.text = NSLocalizedString(@"SUCCEED", nil);
+            cell.LogSuccess.font = [UIFont systemFontOfSize:12];
+        } else {
+            cell.LogType.textColor = [ColorFromHex getColorFromHex:@"#E8251E"];
+            
+            NSString *logContentWithState = cellData.LogContent;
+            cell.LogContent.text = logContentWithState;
+            cell.LogContent.font = [UIFont systemFontOfSize:12];
+            
+            cell.LogSuccess.text = NSLocalizedString(@"FAILED", nil);
+            cell.LogSuccess.font = [UIFont systemFontOfSize:12];
+        }
+    }
+    
     
     return cell;
 }
-*/
 
-/*
+
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO; //不允许编辑
 }
-*/
 
+#pragma mark 选种方法
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 /*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

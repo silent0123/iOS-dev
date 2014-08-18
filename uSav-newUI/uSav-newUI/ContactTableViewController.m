@@ -11,11 +11,18 @@
 @interface ContactTableViewController (){
 
     ContactGroupTableViewController *GroupController;
+    
+    //SearchBar相关
     UISearchBar *contactSearchBar;
+    UISearchDisplayController *searchDisplayController;
+    
     NSString *dataSourceIdentifier; //用来识别当前显示的数据源，从而控制segue跳转
     NSString *segueTransName;
     NSString *segueTransEmail;
     NSString *segueTransGroup;
+    
+    NSMutableArray *allContactName;
+    NSArray *searchContactName;
     
 }
 
@@ -27,12 +34,15 @@
     
     //初始化数据
     _CellData = [InitiateWithData initiateDataForContact];
+    //初始化搜索数组，不初始化会导致始终为空
+    allContactName = [[NSMutableArray alloc] initWithCapacity:[_CellData count]];
+    
     //初始化第二个数据源
     GroupController =[[ContactGroupTableViewController alloc] init];
     dataSourceIdentifier = @"Friend";
     
     [self SetBeginRefresh];
-    [self AddSearchBar];
+    [self AddSearchBarAndDisplayController];
     
     [super viewDidLoad];
     
@@ -60,7 +70,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [_CellData count];
+    if (tableView == _ContactTable) {
+        return [_CellData count];
+    } else {
+        return [searchContactName count];
+    }
+    
 }
 
 
@@ -68,11 +83,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    //创建CELL
+    ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell"];
+    if (cell == nil) {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SearchCell"];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        _searchCell = cell;
+    }
+    
     if (tableView == _ContactTable) {
-        //创建CELL
-        ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell"];
+        
+        
         //创建数据对象，用之前定义了的_CellData初始化
         ContactDataBase *cellData = _CellData[indexPath.row];
+        //把用户名取出来放到搜索数组中
+        [allContactName addObject:cellData.Name];
+        
         
         //CELL的主体
         cell.Header.image = nil;
@@ -88,14 +114,18 @@
             cell.Header.image = [UIImage imageNamed:@"NoneRegisterFriend@2x.png"];
         }
     
-        
+        return cell;
         //高亮状态
         //cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
         //cell.selectedBackgroundView.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
         // Configure the cell...
-        return cell;
+    } else {
+    
+        _searchCell.textLabel.text = searchContactName[indexPath.row];
+        _searchCell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+        return _searchCell;
     }
-    return nil;
+    
 }
 
 //cell编辑/删除
@@ -172,22 +202,44 @@
      }
 
  }
- 
+
 
 #pragma mark SearchBar相关
-
-- (void)AddSearchBar {
-    //这里临时生成一个searchBar
-    UISearchBar *_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, 0, 320, 32)];
-    contactSearchBar = _searchBar;
-    contactSearchBar.placeholder = @"Search";
-    //_searchBar.barTintColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
-    contactSearchBar.delegate = self;
-    [contactSearchBar setTranslucent:YES];
-    _ContactTable.tableHeaderView = contactSearchBar;
-    //默认隐藏SearchBar，设置TableView的默认位移
-    //_ContactTable.contentOffset = CGPointMake(0, CGRectGetHeight(contactSearchBar.bounds));
+- (void)AddSearchBarAndDisplayController {
+    
+    if (_ContactTable.tableHeaderView == nil) {
+        //这里临时生成一个searchBar
+        UISearchBar *_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        contactSearchBar = _searchBar;
+        contactSearchBar.placeholder = @"Search Contact";
+        //fileSearchBar.barTintColor = [UIColor colorWithWhite:1 alpha:1];
+        contactSearchBar.delegate = self;
+        [contactSearchBar setTranslucent:YES];
+        _ContactTable.tableHeaderView = contactSearchBar;
+        //默认隐藏SearchBar，设置TableView的默认位移
+        //[_ContactTable setContentOffset:CGPointMake(0, _searchBar.frame.size.height) animated:NO];
+        //[fileSearchBar sizeToFit];
+        
+        //临时生成一个searchDisplayController
+        searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:contactSearchBar contentsController:self];
+        searchDisplayController.searchResultsDataSource=self;
+        searchDisplayController.searchResultsDelegate=self;
+        [self.searchDisplayController setActive:NO];
+        
+    }
+    
 }
+
+//searchBar的delegate方法
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    //生成一个判断器
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains [cd] %@", contactSearchBar.text];
+    //用判断器筛选原始数据(的文件名)，放入新数组
+    searchContactName = (NSArray *)[allContactName filteredArrayUsingPredicate:predicate];
+    
+}
+
 
 #pragma mark 滑动隐藏键盘
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

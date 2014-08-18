@@ -237,4 +237,60 @@
     return _MutableData;
 
 }
+
++ (NSMutableArray *)initiateDataForLogs {
+    
+    NSMutableArray *_MutableData = [[NSMutableArray alloc] init];
+    _MutableData = [NSMutableArray arrayWithCapacity:4];
+    
+    LogsDataBase *log1 = [[LogsDataBase alloc] init];
+    log1.LogType = @"Log in";
+    log1.LogTime = @"28, April, 2014 | 17:20";
+    log1.LogContent = @"Log in on IP 201.188.7.15";
+    log1.LogImage = @"unknown";
+    log1.LogSuccess = YES;
+    [_MutableData addObject:log1];
+    
+    LogsDataBase *Log2 = [[LogsDataBase alloc] init];
+    Log2.LogType = @"Encryption";
+    Log2.LogTime = @"28, April, 2014 | 17:30";
+    Log2.LogContent = @"contract.doc Encrypted";
+    Log2.LogImage = @"unknown";
+    Log2.LogSuccess = YES;
+    [_MutableData addObject:Log2];
+    
+    LogsDataBase *Log3 = [[LogsDataBase alloc] init];
+    Log3.LogType = @"Decryption";
+    Log3.LogTime = @"28, April, 2014 | 17:35";
+    Log3.LogContent = @"contract.doc Decrypted";
+    Log3.LogImage = @"unknown";
+    Log3.LogSuccess = NO;
+    [_MutableData addObject:Log3];
+    
+    LogsDataBase *Log4 = [[LogsDataBase alloc] init];
+    Log4.LogType = @"Permission";
+    Log4.LogTime = @"28, April, 2014 | 17:40";
+    Log4.LogContent = @"Add receiver luca@nwstor.com";
+    Log4.LogImage = @"unknown";
+    Log4.LogSuccess = NO;
+    [_MutableData addObject:Log4];
+    
+    LogsDataBase *Log5 = [[LogsDataBase alloc] init];
+    Log5.LogType = @"Add friend";
+    Log5.LogTime = @"28, April, 2014 | 17:41";
+    Log5.LogContent = @"Add friend by luca.li@nwstor.com";
+    Log5.LogImage = @"unknown";
+    Log5.LogSuccess = YES;
+    [_MutableData addObject:Log5];
+    
+    LogsDataBase *Log6 = [[LogsDataBase alloc] init];
+    Log6.LogType = @"Log out";
+    Log6.LogTime = @"28, April, 2014 | 17:50";
+    Log6.LogContent = @"Log out on IP 201.188.7.15";
+    Log6.LogImage = @"unknown";
+    Log6.LogSuccess = YES;
+    [_MutableData addObject:Log6];
+    
+    return _MutableData;
+}
 @end
