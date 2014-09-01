@@ -52,13 +52,13 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return @"General";
+            return NSLocalizedString(@"General", nil);
             break;
         case 1:
-            return @"Security";
+            return NSLocalizedString(@"Security", nil);;
             break;
         case 2:
-            return @"Help";
+            return NSLocalizedString(@"Help", nil);;
             break;
         default:
             return @"";
@@ -139,6 +139,8 @@
         [self performSegueWithIdentifier:@"ProfileSegue" sender:self];
     } else if (section == 0 && row == 1){
         [self performSegueWithIdentifier:@"LanguageSegue" sender:self];
+    } else if (section == 3) {
+        [self performSegueWithIdentifier:@"LogoutSuccessSegue" sender:self];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];

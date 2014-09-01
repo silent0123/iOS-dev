@@ -58,7 +58,7 @@
 //设置Section Title
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        return @"Recent 5 Files";
+        return @"5 Recent Files";
     } else {
         return @"";
     }
@@ -102,7 +102,7 @@
                     [cell setSeparatorInset:UIEdgeInsetsZero];
                     cell.FileImage.image = [UIImage imageNamed:@"Photo@2x.png"];
                 } else {
-                    cell.FileName.text = @"Select in Album";
+                    cell.FileName.text = @"Select from Album";
                     cell.FileImage.image = [UIImage imageNamed:@"Album@2x.png"];
                 }
                 break;

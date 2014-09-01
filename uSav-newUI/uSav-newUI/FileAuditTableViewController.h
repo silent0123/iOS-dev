@@ -1,8 +1,8 @@
 //
-//  LogsTableViewController.h
+//  FileAuditTableViewController.h
 //  uSav-newUI
 //
-//  Created by Luca on 11/8/14.
+//  Created by Luca on 19/8/14.
 //  Copyright (c) 2014年 nwstor. All rights reserved.
 //
 
@@ -13,13 +13,9 @@
 #import "InitiateWithData.h"
 #import "LogsOperationTableViewController.h"
 
-@interface LogsTableViewController : UITableViewController
+@interface FileAuditTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSString *segueTransFileName;
 @property (strong, nonatomic) NSMutableArray *CellData;
-@property (strong, nonatomic) IBOutlet UITableView *LogsTable;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *LogsSegment;
-
-- (IBAction)SegmentChange:(id)sender;
-
 
 @end

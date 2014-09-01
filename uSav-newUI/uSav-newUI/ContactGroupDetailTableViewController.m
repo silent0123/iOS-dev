@@ -127,6 +127,10 @@
         segueTransName = cellData.Name;
         seguetransEmail = cellData.Email;
         [self performSegueWithIdentifier:@"MemberDetailSegue" sender:self];
+    } else {
+        [_CellData removeObject:_CellData[row]];
+        [self.navigationController popViewControllerAnimated:YES];
+    
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

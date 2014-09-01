@@ -29,7 +29,7 @@
 //    _MutableData = [NSMutableArray arrayWithCapacity:4];
 //    
 //    OperationLog *data1 = [[OperationLog alloc] init];
-//    data1.FileName = @"IMG_3720.JPEG";
+//    data1.FileName = @"IMG_3320.JPEG";
 //    data1.Date = @"22 July, 2014";
 //    data1.Time = @"13:25";
 //    data1.PicImagename = @"CellEnc";
@@ -246,7 +246,7 @@
     LogsDataBase *log1 = [[LogsDataBase alloc] init];
     log1.LogType = @"Log in";
     log1.LogTime = @"28, April, 2014 | 17:20";
-    log1.LogContent = @"Log in on IP 201.188.7.15";
+    log1.LogContent = @"IP 201.188.7.15";
     log1.LogImage = @"unknown";
     log1.LogSuccess = YES;
     [_MutableData addObject:log1];
@@ -254,7 +254,7 @@
     LogsDataBase *Log2 = [[LogsDataBase alloc] init];
     Log2.LogType = @"Encryption";
     Log2.LogTime = @"28, April, 2014 | 17:30";
-    Log2.LogContent = @"contract.doc Encrypted";
+    Log2.LogContent = @"contract.doc Encrypted by Luca.li@nwstor.com";
     Log2.LogImage = @"unknown";
     Log2.LogSuccess = YES;
     [_MutableData addObject:Log2];
@@ -262,7 +262,7 @@
     LogsDataBase *Log3 = [[LogsDataBase alloc] init];
     Log3.LogType = @"Decryption";
     Log3.LogTime = @"28, April, 2014 | 17:35";
-    Log3.LogContent = @"contract.doc Decrypted";
+    Log3.LogContent = @"contract.doc Decrypted by Jason@nwstor.com";
     Log3.LogImage = @"unknown";
     Log3.LogSuccess = NO;
     [_MutableData addObject:Log3];
@@ -270,7 +270,7 @@
     LogsDataBase *Log4 = [[LogsDataBase alloc] init];
     Log4.LogType = @"Permission";
     Log4.LogTime = @"28, April, 2014 | 17:40";
-    Log4.LogContent = @"Add receiver luca@nwstor.com";
+    Log4.LogContent = @"Email luca@nwstor.com";
     Log4.LogImage = @"unknown";
     Log4.LogSuccess = NO;
     [_MutableData addObject:Log4];
@@ -278,7 +278,7 @@
     LogsDataBase *Log5 = [[LogsDataBase alloc] init];
     Log5.LogType = @"Add friend";
     Log5.LogTime = @"28, April, 2014 | 17:41";
-    Log5.LogContent = @"Add friend by luca.li@nwstor.com";
+    Log5.LogContent = @"Email luca.li@nwstor.com";
     Log5.LogImage = @"unknown";
     Log5.LogSuccess = YES;
     [_MutableData addObject:Log5];
@@ -286,11 +286,83 @@
     LogsDataBase *Log6 = [[LogsDataBase alloc] init];
     Log6.LogType = @"Log out";
     Log6.LogTime = @"28, April, 2014 | 17:50";
-    Log6.LogContent = @"Log out on IP 201.188.7.15";
+    Log6.LogContent = @"IP 201.188.7.15";
     Log6.LogImage = @"unknown";
     Log6.LogSuccess = YES;
     [_MutableData addObject:Log6];
     
+    LogsDataBase *Log7 = [[LogsDataBase alloc] init];
+    Log7.LogType = @"Password";
+    Log7.LogTime = @"28, April, 2014 | 17:33";
+    Log7.LogContent = @"Change password";
+    Log7.LogImage = @"unknown";
+    Log7.LogSuccess = NO;
+    [_MutableData addObject:Log7];
+    
     return _MutableData;
+}
+
++ (NSMutableArray *)initiateDataForLogs_Operation {
+    NSMutableArray *_MutableData = [[NSMutableArray alloc] init];
+    _MutableData = [NSMutableArray arrayWithCapacity:4];
+    
+    LogsDataBase *log1 = [[LogsDataBase alloc] init];
+    log1.LogType = @"Log in";
+    log1.LogTime = @"28, April, 2014 | 17:20";
+    log1.LogContent = @"IP 201.188.7.15";
+    log1.LogImage = @"unknown";
+    log1.LogSuccess = YES;
+    [_MutableData addObject:log1];
+    
+    LogsDataBase *Log2 = [[LogsDataBase alloc] init];
+    Log2.LogType = @"Log out";
+    Log2.LogTime = @"28, April, 2014 | 17:50";
+    Log2.LogContent = @"IP 201.188.7.15";
+    Log2.LogImage = @"unknown";
+    Log2.LogSuccess = YES;
+    [_MutableData addObject:Log2];
+    
+    LogsDataBase *Log3 = [[LogsDataBase alloc] init];
+    Log3.LogType = @"Password";
+    Log3.LogTime = @"28, April, 2014 | 13:33";
+    Log3.LogContent = @"Change password";
+    Log3.LogImage = @"unknown";
+    Log3.LogSuccess = NO;
+    [_MutableData addObject:Log3];
+    
+    return _MutableData;
+
+}
+
++ (NSMutableArray *)initiateDataForLogs_FileAudit {
+    NSMutableArray *_MutableData = [[NSMutableArray alloc] init];
+    _MutableData = [NSMutableArray arrayWithCapacity:4];
+    
+    LogsDataBase *Log1 = [[LogsDataBase alloc] init];
+    Log1.LogType = @"Encryption";
+    Log1.LogTime = @"28, April, 2014 | 17:30";
+    Log1.LogContent = @"contract.doc Encrypted by Luca.li@nwstor.com";
+    Log1.LogImage = @"unknown";
+    Log1.LogSuccess = YES;
+    [_MutableData addObject:Log1];
+    
+    LogsDataBase *Log2 = [[LogsDataBase alloc] init];
+    Log2.LogType = @"Decryption";
+    Log2.LogTime = @"28, April, 2014 | 17:35";
+    Log2.LogContent = @"contract.doc Decrypted by Jason@nwstor.com";
+    Log2.LogImage = @"unknown";
+    Log2.LogSuccess = NO;
+    [_MutableData addObject:Log2];
+    
+    LogsDataBase *Log3 = [[LogsDataBase alloc] init];
+    Log3.LogType = @"Permission";
+    Log3.LogTime = @"28, April, 2014 | 17:40";
+    Log3.LogContent = @"Email luca@nwstor.com";
+    Log3.LogImage = @"unknown";
+    Log3.LogSuccess = NO;
+    [_MutableData addObject:Log3];
+ 
+    return _MutableData;
+    
 }
 @end

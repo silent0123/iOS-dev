@@ -24,4 +24,6 @@
 + (NSMutableArray *)initiateDataForAddFile;
 //Logs
 + (NSMutableArray *)initiateDataForLogs;
++ (NSMutableArray *)initiateDataForLogs_Operation;
++ (NSMutableArray *)initiateDataForLogs_FileAudit;
 @end

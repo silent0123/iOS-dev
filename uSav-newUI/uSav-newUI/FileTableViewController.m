@@ -42,6 +42,7 @@
     //初始化第二个数据源
     decryptionController =[[FileDecryptionTableViewController alloc] init];
     dataSourceIdentifier = @"Encrypted";
+
     
     //刷新功能增加
     [self SetBeginRefresh];
@@ -315,6 +316,7 @@
     //生成一个判断器
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains [cd] %@", fileSearchBar.text];
     //用判断器筛选原始数据(的文件名)，放入新数组
+    searchFileName = nil;
     searchFileName = (NSArray *)[allFileName filteredArrayUsingPredicate:predicate];
     
 }

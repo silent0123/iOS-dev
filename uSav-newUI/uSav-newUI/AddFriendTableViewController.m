@@ -45,7 +45,7 @@
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
     if (section == 0) {
-        return 2;
+        return 3;
     } else {
         return 1;
     }
@@ -59,6 +59,12 @@
     }
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section == 1) {
+        return NSLocalizedString(@"\"Sync from address book\" will synchronize all contacts from your address book, and uSav will never gather any information from your contacts.", nil);
+    }
+    return nil;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -87,10 +93,15 @@
                 textFiled.font = [UIFont systemFontOfSize:14];
                 cell.TableOption = nil;
                 [cell addSubview:textFiled];
-            } else {
+            } else if (row == 1){
                 cell.TableOption.text = NSLocalizedString(@"Add from address book", nil);
                 cell.TableOption.font = [UIFont boldSystemFontOfSize:14];
                 cell.TableImage.image = [UIImage imageNamed:@"Address@2x.png"];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            } else {
+                cell.TableOption.text = NSLocalizedString(@"Sync from address book", nil);
+                cell.TableOption.font = [UIFont boldSystemFontOfSize:14];
+                cell.TableImage.image = [UIImage imageNamed:@"SyncAddress@2x.png"];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
             break;
@@ -115,6 +126,9 @@
     if (section == 0 && row == 1) {
         [self performSegueWithIdentifier:@"AddressBookSegue" sender:self];
     } else if (section == 1 && row == 0) {
+        UIAlertView *comingSoon = [[UIAlertView alloc] initWithTitle:@"uSav" message:@"Coming soon!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [comingSoon show];
+    } else {
         UIAlertView *comingSoon = [[UIAlertView alloc] initWithTitle:@"uSav" message:@"Coming soon!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [comingSoon show];
     }

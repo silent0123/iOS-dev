@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ColorFromHex.h"
+#import "PermissionTableViewController.h"
+#import "FileAuditTableViewController.h"
 
 @interface FileDetailEncryptedViewController : UIViewController
 

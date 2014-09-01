@@ -1,30 +1,19 @@
 //
-//  LogsTableViewController.m
+//  FileAuditTableViewController.m
 //  uSav-newUI
 //
-//  Created by Luca on 11/8/14.
+//  Created by Luca on 19/8/14.
 //  Copyright (c) 2014年 nwstor. All rights reserved.
 //
 
-#import "LogsTableViewController.h"
+#import "FileAuditTableViewController.h"
 
-@interface LogsTableViewController (){
-
-    LogsOperationTableViewController *logsOperationController;
-    NSString *dataSourceSelected;
-}
-
-@end
-
-@implementation LogsTableViewController
-
+@implementation FileAuditTableViewController
 - (void)viewDidLoad {
     
-    _CellData = [InitiateWithData initiateDataForLogs];
+    self.title = NSLocalizedString(@"Audit Log", nil);
     
-    //初始化第二个数据源
-    logsOperationController = [[LogsOperationTableViewController alloc] init];
-    dataSourceSelected = @"All";
+    _CellData = [InitiateWithData initiateDataForLogs_FileAudit];
     
     //刷新
     [self SetBeginRefresh];
@@ -46,54 +35,57 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
+    //#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
+    //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [_CellData count];
+        return [_CellData count];
+    
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 85;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    LogTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LogsCell" forIndexPath:indexPath];
+    LogTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FileAuditCell" forIndexPath:indexPath];
+    
     cell.userInteractionEnabled = NO;
     LogsDataBase *cellData = _CellData[indexPath.row];
     
-    if (tableView == _LogsTable) {
-        cell.LogType.text = cellData.LogType;
-        cell.LogType.font = [UIFont boldSystemFontOfSize:16];
+    cell.LogType.text = cellData.LogType;
+    cell.LogType.font = [UIFont boldSystemFontOfSize:16];
+    
+    cell.LogTime.text = cellData.LogTime;
+    cell.LogTime.textColor = [ColorFromHex getColorFromHex:@"#929292"];
+    cell.LogTime.font = [UIFont systemFontOfSize:10];
+    
+    //与成功和失败相关代码，包括字颜色和content, logsuccess内容
+    if (cellData.LogSuccess) {
+        cell.LogType.textColor = [ColorFromHex getColorFromHex:@"#A0BD2B"];
         
-        cell.LogTime.text = cellData.LogTime;
-        cell.LogTime.textColor = [ColorFromHex getColorFromHex:@"#929292"];
-        cell.LogTime.font = [UIFont systemFontOfSize:10];
+        NSString *logContentWithState = cellData.LogContent;
+        cell.LogContent.text = logContentWithState;
+        cell.LogContent.font = [UIFont systemFontOfSize:12];
         
-        //与成功和失败相关代码，包括字颜色和content, logsuccess内容
-        if (cellData.LogSuccess) {
-            cell.LogType.textColor = [ColorFromHex getColorFromHex:@"#A0BD2B"];
-            
-            NSString *logContentWithState = cellData.LogContent;
-            cell.LogContent.text = logContentWithState;
-            cell.LogContent.font = [UIFont systemFontOfSize:12];
-            
-            cell.LogSuccess.text = NSLocalizedString(@"SUCCESSFUL", nil);
-            cell.LogSuccess.font = [UIFont systemFontOfSize:12];
-        } else {
-            cell.LogType.textColor = [ColorFromHex getColorFromHex:@"#E8251E"];
-            
-            NSString *logContentWithState = cellData.LogContent;
-            cell.LogContent.text = logContentWithState;
-            cell.LogContent.font = [UIFont systemFontOfSize:12];
-            
-            cell.LogSuccess.text = NSLocalizedString(@"FAILED", nil);
-            cell.LogSuccess.font = [UIFont systemFontOfSize:12];
-            cell.LogSuccess.textColor = [ColorFromHex getColorFromHex:@"#E8251E"];
-        }
+        cell.LogSuccess.text = NSLocalizedString(@"SUCCESSFUL", nil);
+        cell.LogSuccess.font = [UIFont systemFontOfSize:12];
+    } else {
+        cell.LogType.textColor = [ColorFromHex getColorFromHex:@"#E8251E"];
+        
+        NSString *logContentWithState = cellData.LogContent;
+        cell.LogContent.text = logContentWithState;
+        cell.LogContent.font = [UIFont systemFontOfSize:12];
+        
+        cell.LogSuccess.text = NSLocalizedString(@"FAILED", nil);
+        cell.LogSuccess.font = [UIFont systemFontOfSize:12];
+        cell.LogSuccess.textColor = [ColorFromHex getColorFromHex:@"#E8251E"];
     }
     
     
@@ -114,26 +106,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark segment方法
-
-- (IBAction)SegmentChange:(id)sender {
-    
-    NSInteger segmentSelected = _LogsSegment.selectedSegmentIndex;
-    
-    if (segmentSelected == 0) {
-        dataSourceSelected = @"All";
-        _LogsTable.dataSource = self;
-        _LogsTable.delegate = self;
-        [_LogsTable reloadData];
-    } else {
-        dataSourceSelected = @"Operation";
-        logsOperationController.CellData = [InitiateWithData initiateDataForLogs_Operation];
-        //NSLog(@"%@",logsOperationController.CellData);
-        _LogsTable.dataSource = logsOperationController;
-        [_LogsTable reloadData];
-    }
-    
-}
 
 #pragma mark 下拉刷新
 //结束事件(数据处理)
