@@ -11,19 +11,41 @@
 #import "FileDataBase.h"
 #import "ContactDataBase.h"
 #import "LogsDataBase.h"
+#import "API.h"
+#import "USAVClient.h"
+#import "GDataXMLNode.h"
+#import "TYDotIndicatorView.h"
+
+#import "ContactTableViewController.h"
+#import "ContactGroupTableViewController.h"
+
+@class ContactTableViewController;
+@class ContactGroupTableViewController;
 
 @interface InitiateWithData : NSObject
+
+//自定义初始化
+- (id)initData;
 
 //Recent
 //+ (NSMutableArray *)initiateDataForRecent;
 //Files
 + (NSMutableArray *)initiateDataForFiles;
-//Circle和Circle的section
-+ (NSMutableArray *)initiateDataForContact;
-+ (NSMutableArray *)initiateDataForContact_Group;
+//Contact和Contact的section
+- (NSMutableArray *)initiateDataForContact;
+- (NSMutableArray *)initiateDataForContact_Group;
 + (NSMutableArray *)initiateDataForAddFile;
 //Logs
 + (NSMutableArray *)initiateDataForLogs;
 + (NSMutableArray *)initiateDataForLogs_Operation;
 + (NSMutableArray *)initiateDataForLogs_FileAudit;
+
+//LoadingAlert
+@property (strong, nonatomic) TYDotIndicatorView *loadingAlert;
+
+//var
+@property (strong, nonatomic) NSMutableArray *mutableDataForGlobal; //用来存放从服务器读取回的FILE或者CONTACT或者HISTORY数据，在不同类之间共享
+@property (strong, nonatomic) ContactTableViewController *contactCaller;   //由其他类设置，存放调用者的实例，用来[caller.tableview reloadData]
+@property (strong, nonatomic) ContactGroupTableViewController *groupCaller;     //由其他类设置，传数据到datasource
+
 @end

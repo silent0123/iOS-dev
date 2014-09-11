@@ -16,6 +16,8 @@
     
     self.title = NSLocalizedString(@"Edit Permission", nil);
     
+    _CellData = nil;
+    
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -44,19 +46,26 @@
     // Return the number of rows in the section.
     if (section == 0 || section == 2) {
         return 1;
-    } else {
+    } else if(section == 1){
         return 2;
+    } else {
+        return [_CellData count];
     }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return NSLocalizedString(@"User ID", nil);
+            return NSLocalizedString(@"new permission", nil);
             break;
         case 1:
             return @"";
             break;
+        case 2:
+            if ([_CellData count]!= 0) {
+                return NSLocalizedString(@"Existing", nil);
+            }
+
         default:
             return @"";
             break;
@@ -104,6 +113,9 @@
                 cell.textLabel.text = NSLocalizedString(@"Add from address book",nil);
             }
             break;
+        case 2:
+            // cell.textLabel.text = _CellData.userName;
+            // cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
         default:
             cell.textLabel.text = NSLocalizedString(@"Done", nil);
             cell.backgroundColor = [ColorFromHex getColorFromHex:@"#1E90FF"];

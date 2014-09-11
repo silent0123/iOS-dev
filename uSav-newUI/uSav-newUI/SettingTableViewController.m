@@ -133,13 +133,13 @@
     } else if (section == 2 && row == 1){
         [self performSegueWithIdentifier:@"AboutSegue" sender:self];
     } else if (section == 2 && row == 0){
-        UIAlertView *comingSoon = [[UIAlertView alloc] initWithTitle:@"uSav" message:@"Coming soon!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [comingSoon show];
+        [self performSegueWithIdentifier:@"ReviewUserGuideSgue" sender:self];
     } else if (section == 0 && row == 0){
         [self performSegueWithIdentifier:@"ProfileSegue" sender:self];
     } else if (section == 0 && row == 1){
         [self performSegueWithIdentifier:@"LanguageSegue" sender:self];
     } else if (section == 3) {
+        [USAVClient current].userHasLogin = NO;
         [self performSegueWithIdentifier:@"LogoutSuccessSegue" sender:self];
     }
     

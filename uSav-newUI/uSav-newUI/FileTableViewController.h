@@ -15,6 +15,7 @@
 #import "FileDetailViewController.h"    //用于传值给详细页面
 #import "FileDetailEncryptedViewController.h"   //用于传值给详细页面2
 //#import "PopUpMenu.h"
+#import "TYDotIndicatorView.h"
 
 @interface FileTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 

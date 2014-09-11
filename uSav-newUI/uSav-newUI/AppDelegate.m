@@ -17,6 +17,33 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //先获取到storyboard，这样才可以加载相应界面
+    UIStoryboard *currentStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    //第一次启动进入Guide界面，否则直接进入登陆界面
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]) {
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+        //NSLog(@"第一次启动");
+        
+        UserGuideViewController *userGuideController = [currentStoryboard instantiateViewControllerWithIdentifier:@"UserGuide_Storyboard"];
+        self.window.rootViewController = userGuideController;
+    } else {
+        //NSLog(@"不是第一次启动，进入Login");
+        
+        LoginViewController *loginController = [currentStoryboard instantiateViewControllerWithIdentifier:@"Login_Storyboard"];
+        self.window.rootViewController = loginController;
+    }
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
+    //创建一个USAVClient
+    if ([USAVClient current] == nil){
+        [[USAVClient alloc] init];
+    }
+    
     return YES;
 }
 

@@ -10,10 +10,10 @@
 
 @interface ContactDataBase : NSObject
 
-@property (assign, nonatomic) NSString *Name;
-@property (assign, nonatomic) NSString *Email;
-@property (assign, nonatomic) NSString *Header;
-@property (assign, nonatomic) BOOL Registered;
+@property (assign, nonatomic) NSString *friendAlias;
+@property (assign, nonatomic) NSString *friendEmail;
+@property (assign, nonatomic) NSString *friendNote;
+@property (assign, nonatomic) NSString *friendStatus;
 @property (assign, nonatomic) NSString *Group;
 
 @end

@@ -86,7 +86,7 @@
         cell.textLabel.text = NSLocalizedString(@"Done", nil);
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
         cell.textLabel.textColor = [UIColor colorWithWhite:1 alpha:1];
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
         cell.backgroundColor = [ColorFromHex getColorFromHex:@"#1E90FF"];
     
     }
@@ -101,6 +101,8 @@
     //NSInteger row = indexPath.row;
 
     if (section == 1) {
+        //这里可以发送一个修改名字的API请求
+        //...
         [self.navigationController popViewControllerAnimated:YES];
     }
     

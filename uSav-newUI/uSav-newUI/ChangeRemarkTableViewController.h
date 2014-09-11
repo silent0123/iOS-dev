@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ColorFromHex.h"
+#import "InitiateWithData.h"
 
 @interface ChangeRemarkTableViewController : UITableViewController
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ColorFromHex.h"
+#import "USAVClient.h"
 
 
 @interface SettingTableViewController : UITableViewController

@@ -16,17 +16,27 @@
 #define GRAY "#D4C69F"
 #define RED "#E8251E"
 
-
 @implementation InitiateWithData
 
+- (id)initData {
 
+    self = [super init];
+    if (self) {
+        _mutableDataForGlobal = [[NSMutableArray alloc] initWithCapacity:0];    //初始化全局数组
+    }
+    return self;
+}
+
+
+
+#pragma mark - 数据初始化函数
 //+ (NSMutableArray *)initiateDataForRecent {
 //    
-//    NSMutableArray *_MutableData;
+//    NSMutableArray *_mutableData;
 //    
 //#pragma mark RecentTable相关
 //    // 测试用---装载测试数据
-//    _MutableData = [NSMutableArray arrayWithCapacity:4];
+//    _mutableData = [NSMutableArray arrayWithCapacity:4];
 //    
 //    OperationLog *data1 = [[OperationLog alloc] init];
 //    data1.FileName = @"IMG_3320.JPEG";
@@ -35,7 +45,7 @@
 //    data1.PicImagename = @"CellEnc";
 //    data1.BtnImagename = @"CellMore";   //不用修改
 //    data1.Visitors = @"Li Hua, Amazon";
-//    [_MutableData addObject:data1];
+//    [_mutableData addObject:data1];
 //    
 //    OperationLog *data2 = [[OperationLog alloc] init];
 //    data2.FileName = @"IMG_20140727.BMP";
@@ -44,7 +54,7 @@
 //    data2.PicImagename = @"CellDec";
 //    data2.BtnImagename = @"CellMore";   //不用修改
 //    data2.Visitors = @"Chan, Jason, Himest, 5 more..";
-//    [_MutableData addObject:data2];
+//    [_mutableData addObject:data2];
 //    
 //    OperationLog *data3 = [[OperationLog alloc] init];
 //    data3.FileName = @"Mycontract.PDF";
@@ -53,7 +63,7 @@
 //    data3.PicImagename = @"CellEnc";
 //    data3.BtnImagename = @"CellMore";   //不用修改
 //    data3.Visitors = @"Chan, Luca";
-//    [_MutableData addObject:data3];
+//    [_mutableData addObject:data3];
 //    
 //    OperationLog *data4 = [[OperationLog alloc] init];
 //    data4.FileName = @"Hello world.xcode";
@@ -62,17 +72,18 @@
 //    data4.PicImagename = @"CellEnc";
 //    data4.BtnImagename = @"CellMore";   //不用修改
 //    data4.Visitors = @"Luca, Li Lei, Han Mei";
-//    [_MutableData addObject:data4];
+//    [_mutableData addObject:data4];
 //    //找到所需要传值的viewcontroller, 传值给它，注意头文件，注释的是因为在appdelegate中初始化值的话，只能导入一次。
 //    //ViewController *viewController = (ViewController *)self.window.rootViewController;
 //    
-//    return _MutableData;
+//    return _mutableData;
 //}
 
+#pragma mark File初始化
 + (NSMutableArray *)initiateDataForFiles {
     
-    NSMutableArray *_MutableData;
-    _MutableData = [NSMutableArray arrayWithCapacity:6];
+    NSMutableArray *_mutableData;
+    _mutableData = [NSMutableArray arrayWithCapacity:6];
     
     //颜色
     //.doc为蓝色44BBC1 .xls为绿色 .ppt为橙色 图片和视频为紫色 其他为灰色
@@ -81,167 +92,128 @@
     file1.Bytes = @"3.60MByte";
     file1.ReceiveTime = @"16 June, 2014 | 17:30";
     file1.TableColor = @GREEN;
-    [_MutableData addObject:file1];
+    [_mutableData addObject:file1];
     
     FileDataBase *file2 = [[FileDataBase alloc] init];
     file2.FileName = @"Family.jpeg";
     file2.Bytes = @"1.20MByte";
     file2.ReceiveTime = @"25 May, 2014 | 08:12";
     file2.TableColor = @PURPLE;
-    [_MutableData addObject:file2];
+    [_mutableData addObject:file2];
     
     FileDataBase *file3 = [[FileDataBase alloc] init];
     file3.FileName = @"Presentation.pptx";
     file3.Bytes = @"14.22MByte";
     file3.ReceiveTime = @"30 April, 2014 | 16:32";
     file3.TableColor = @ORANGE;
-    [_MutableData addObject:file3];
+    [_mutableData addObject:file3];
     
     FileDataBase *file4 = [[FileDataBase alloc] init];
     file4.FileName = @"Season3.doc";
     file4.Bytes = @"327KByte";
     file4.ReceiveTime = @"28 April, 2014 | 17:30";
     file4.TableColor = @LIGHT_BLUE;
-    [_MutableData addObject:file4];
+    [_mutableData addObject:file4];
     
     FileDataBase *file5 = [[FileDataBase alloc] init];
     file5.FileName = @"Season4.exe";
     file5.Bytes = @"445KByte";
     file5.ReceiveTime = @"17 April, 2014 | 15:22";
     file5.TableColor = @GRAY;
-    [_MutableData addObject:file5];
+    [_mutableData addObject:file5];
     
     FileDataBase *file6 = [[FileDataBase alloc] init];
     file6.FileName = @"CAMERA_VIDEO.avi";
     file6.Bytes = @"323.50MByte";
     file6.ReceiveTime = @"15 April, 2014 | 12:01";
     file6.TableColor = @PURPLE;
-    [_MutableData addObject:file6];
+    [_mutableData addObject:file6];
     
     FileDataBase *file7 = [[FileDataBase alloc] init];
     file7.FileName = @"Contract.pdf";
     file7.Bytes = @"988KByte";
     file7.ReceiveTime = @"28 April, 2014 | 17:30";
     file7.TableColor = @RED;
-    [_MutableData addObject:file7];
+    [_mutableData addObject:file7];
     
-    return _MutableData;
+    return _mutableData;
     
 }
 
-+ (NSMutableArray *)initiateDataForContact{
+#pragma mark Contact初始化
+- (NSMutableArray *)initiateDataForContact{
+    
+    //将数据读取回来并且写到全局变量
+    [self listContactsToArray];
+    
+    NSMutableArray *_mutableData;
+    _mutableData = [NSMutableArray arrayWithCapacity:0];
+    _mutableData = _mutableDataForGlobal;
 
-    NSMutableArray *_MutableData;
-    _MutableData = [NSMutableArray arrayWithCapacity:6];
-    
-    ContactDataBase *Friends1 = [[ContactDataBase alloc]init];
-    Friends1.Name = @"Luca";
-    Friends1.Email = @"Luca.li@nwstor.com";
-    Friends1.Registered = YES;
-    Friends1.Header = @"Luca";
-    [_MutableData addObject:Friends1];
-    
-    ContactDataBase *Friends2 = [[ContactDataBase alloc]init];
-    Friends2.Name = @"Jason";
-    Friends2.Email = @"Jason@nwstor.com";
-    Friends2.Registered = NO;
-    Friends2.Header = @"Jason";
-    [_MutableData addObject:Friends2];
-    
-    ContactDataBase *Friends3 = [[ContactDataBase alloc]init];
-    Friends3.Name = @"Luca3";
-    Friends3.Email = @"Luca.li@nwstor.com";
-    Friends3.Registered = YES;
-    Friends3.Header = @"Luca";
-    [_MutableData addObject:Friends3];
-    
-    ContactDataBase *Friends4 = [[ContactDataBase alloc]init];
-    Friends4.Name = @"Luca4";
-    Friends4.Email = @"Luca.li@nwstor.com";
-    Friends4.Registered = YES;
-    Friends4.Header = @"Luca";
-    [_MutableData addObject:Friends4];
-    
-    ContactDataBase *Friends5 = [[ContactDataBase alloc]init];
-    Friends5.Name = @"Luca5";
-    Friends5.Email = @"Luca.li@nwstor.com";
-    Friends5.Registered = NO;
-    Friends5.Header = @"Luca";
-    [_MutableData addObject:Friends5];
-    
-    ContactDataBase *Friends6 = [[ContactDataBase alloc]init];
-    Friends6.Name = @"Luca6";
-    Friends6.Email = @"Luca.li@nwstor.com";
-    Friends6.Registered = YES;
-    Friends6.Header = @"Luca";
-    [_MutableData addObject:Friends6];
-    return _MutableData;
+    return _mutableData;
 }
 
-+ (NSMutableArray *)initiateDataForContact_Group {
+#pragma mark Group初始化
+- (NSMutableArray *)initiateDataForContact_Group {
 
-    NSMutableArray *_MutableData;
-    _MutableData = [NSMutableArray arrayWithCapacity:6];
+    [self listGroupsToArray];
     
-    ContactDataBase *Group1 = [[ContactDataBase alloc]init];
-    Group1.Group = @"Company";
-    [_MutableData addObject:Group1];
+    NSMutableArray *_mutableData;
+    _mutableData = [NSMutableArray arrayWithCapacity:6];
     
-    ContactDataBase *Group2 = [[ContactDataBase alloc]init];
-    Group2.Group = @"Others";
-    [_MutableData addObject:Group2];
-    
-    return _MutableData;
+    return _mutableData;
 }
 
+#pragma mark AddFile初始化
 + (NSMutableArray *)initiateDataForAddFile {
     
-    NSMutableArray *_MutableData = [[NSMutableArray alloc] init];
-    _MutableData = [NSMutableArray arrayWithCapacity:4];
+    NSMutableArray *_mutableData = [[NSMutableArray alloc] init];
+    _mutableData = [NSMutableArray arrayWithCapacity:4];
     
     FileDataBase *file1 = [[FileDataBase alloc] init];
     file1.FileName = @"NewFile_2014.xlsx";
     file1.Bytes = @"3.60MByte";
     file1.ReceiveTime = @"16 June, 2014 | 17:30";
     file1.TableColor = @GREEN;
-    [_MutableData addObject:file1];
+    [_mutableData addObject:file1];
     
     FileDataBase *file2 = [[FileDataBase alloc] init];
     file2.FileName = @"Family.jpeg";
     file2.Bytes = @"1.20MByte";
     file2.ReceiveTime = @"25 May, 2014 | 08:12";
     file2.TableColor = @PURPLE;
-    [_MutableData addObject:file2];
+    [_mutableData addObject:file2];
     
     FileDataBase *file3 = [[FileDataBase alloc] init];
     file3.FileName = @"Presentation.pptx";
     file3.Bytes = @"14.22MByte";
     file3.ReceiveTime = @"30 April, 2014 | 16:32";
     file3.TableColor = @ORANGE;
-    [_MutableData addObject:file3];
+    [_mutableData addObject:file3];
     
     FileDataBase *file4 = [[FileDataBase alloc] init];
     file4.FileName = @"Season3.doc";
     file4.Bytes = @"327KByte";
     file4.ReceiveTime = @"28 April, 2014 | 17:30";
     file4.TableColor = @LIGHT_BLUE;
-    [_MutableData addObject:file4];
+    [_mutableData addObject:file4];
     
     FileDataBase *file5 = [[FileDataBase alloc] init];
     file5.FileName = @"Contract.pdf";
     file5.Bytes = @"988KByte";
     file5.ReceiveTime = @"28 April, 2014 | 17:30";
     file5.TableColor = @RED;
-    [_MutableData addObject:file5];
+    [_mutableData addObject:file5];
     
-    return _MutableData;
+    return _mutableData;
 
 }
 
+#pragma mark History（Logs）初始化
 + (NSMutableArray *)initiateDataForLogs {
     
-    NSMutableArray *_MutableData = [[NSMutableArray alloc] init];
-    _MutableData = [NSMutableArray arrayWithCapacity:4];
+    NSMutableArray *_mutableData = [[NSMutableArray alloc] init];
+    _mutableData = [NSMutableArray arrayWithCapacity:4];
     
     LogsDataBase *log1 = [[LogsDataBase alloc] init];
     log1.LogType = @"Log in";
@@ -249,7 +221,7 @@
     log1.LogContent = @"IP 201.188.7.15";
     log1.LogImage = @"unknown";
     log1.LogSuccess = YES;
-    [_MutableData addObject:log1];
+    [_mutableData addObject:log1];
     
     LogsDataBase *Log2 = [[LogsDataBase alloc] init];
     Log2.LogType = @"Encryption";
@@ -257,7 +229,7 @@
     Log2.LogContent = @"contract.doc Encrypted by Luca.li@nwstor.com";
     Log2.LogImage = @"unknown";
     Log2.LogSuccess = YES;
-    [_MutableData addObject:Log2];
+    [_mutableData addObject:Log2];
     
     LogsDataBase *Log3 = [[LogsDataBase alloc] init];
     Log3.LogType = @"Decryption";
@@ -265,7 +237,7 @@
     Log3.LogContent = @"contract.doc Decrypted by Jason@nwstor.com";
     Log3.LogImage = @"unknown";
     Log3.LogSuccess = NO;
-    [_MutableData addObject:Log3];
+    [_mutableData addObject:Log3];
     
     LogsDataBase *Log4 = [[LogsDataBase alloc] init];
     Log4.LogType = @"Permission";
@@ -273,7 +245,7 @@
     Log4.LogContent = @"Email luca@nwstor.com";
     Log4.LogImage = @"unknown";
     Log4.LogSuccess = NO;
-    [_MutableData addObject:Log4];
+    [_mutableData addObject:Log4];
     
     LogsDataBase *Log5 = [[LogsDataBase alloc] init];
     Log5.LogType = @"Add friend";
@@ -281,7 +253,7 @@
     Log5.LogContent = @"Email luca.li@nwstor.com";
     Log5.LogImage = @"unknown";
     Log5.LogSuccess = YES;
-    [_MutableData addObject:Log5];
+    [_mutableData addObject:Log5];
     
     LogsDataBase *Log6 = [[LogsDataBase alloc] init];
     Log6.LogType = @"Log out";
@@ -289,7 +261,7 @@
     Log6.LogContent = @"IP 201.188.7.15";
     Log6.LogImage = @"unknown";
     Log6.LogSuccess = YES;
-    [_MutableData addObject:Log6];
+    [_mutableData addObject:Log6];
     
     LogsDataBase *Log7 = [[LogsDataBase alloc] init];
     Log7.LogType = @"Password";
@@ -297,14 +269,15 @@
     Log7.LogContent = @"Change password";
     Log7.LogImage = @"unknown";
     Log7.LogSuccess = NO;
-    [_MutableData addObject:Log7];
+    [_mutableData addObject:Log7];
     
-    return _MutableData;
+    return _mutableData;
 }
 
+#pragma mark History的Operation初始化
 + (NSMutableArray *)initiateDataForLogs_Operation {
-    NSMutableArray *_MutableData = [[NSMutableArray alloc] init];
-    _MutableData = [NSMutableArray arrayWithCapacity:4];
+    NSMutableArray *_mutableData = [[NSMutableArray alloc] init];
+    _mutableData = [NSMutableArray arrayWithCapacity:4];
     
     LogsDataBase *log1 = [[LogsDataBase alloc] init];
     log1.LogType = @"Log in";
@@ -312,7 +285,7 @@
     log1.LogContent = @"IP 201.188.7.15";
     log1.LogImage = @"unknown";
     log1.LogSuccess = YES;
-    [_MutableData addObject:log1];
+    [_mutableData addObject:log1];
     
     LogsDataBase *Log2 = [[LogsDataBase alloc] init];
     Log2.LogType = @"Log out";
@@ -320,7 +293,7 @@
     Log2.LogContent = @"IP 201.188.7.15";
     Log2.LogImage = @"unknown";
     Log2.LogSuccess = YES;
-    [_MutableData addObject:Log2];
+    [_mutableData addObject:Log2];
     
     LogsDataBase *Log3 = [[LogsDataBase alloc] init];
     Log3.LogType = @"Password";
@@ -328,15 +301,17 @@
     Log3.LogContent = @"Change password";
     Log3.LogImage = @"unknown";
     Log3.LogSuccess = NO;
-    [_MutableData addObject:Log3];
+    [_mutableData addObject:Log3];
     
-    return _MutableData;
+    return _mutableData;
 
 }
 
+#pragma mark File Audit初始化
 + (NSMutableArray *)initiateDataForLogs_FileAudit {
-    NSMutableArray *_MutableData = [[NSMutableArray alloc] init];
-    _MutableData = [NSMutableArray arrayWithCapacity:4];
+    
+    NSMutableArray *_mutableData = [[NSMutableArray alloc] init];
+    _mutableData = [NSMutableArray arrayWithCapacity:4];
     
     LogsDataBase *Log1 = [[LogsDataBase alloc] init];
     Log1.LogType = @"Encryption";
@@ -344,7 +319,7 @@
     Log1.LogContent = @"contract.doc Encrypted by Luca.li@nwstor.com";
     Log1.LogImage = @"unknown";
     Log1.LogSuccess = YES;
-    [_MutableData addObject:Log1];
+    [_mutableData addObject:Log1];
     
     LogsDataBase *Log2 = [[LogsDataBase alloc] init];
     Log2.LogType = @"Decryption";
@@ -352,7 +327,7 @@
     Log2.LogContent = @"contract.doc Decrypted by Jason@nwstor.com";
     Log2.LogImage = @"unknown";
     Log2.LogSuccess = NO;
-    [_MutableData addObject:Log2];
+    [_mutableData addObject:Log2];
     
     LogsDataBase *Log3 = [[LogsDataBase alloc] init];
     Log3.LogType = @"Permission";
@@ -360,9 +335,136 @@
     Log3.LogContent = @"Email luca@nwstor.com";
     Log3.LogImage = @"unknown";
     Log3.LogSuccess = NO;
-    [_MutableData addObject:Log3];
+    [_mutableData addObject:Log3];
  
-    return _MutableData;
+    return _mutableData;
     
+}
+
+#pragma mark - 服务器通信函数
+#pragma mark 获取联系人列表
+- (void)listContactsToArray {
+    
+    NSLog(@"主线程%@", [NSThread currentThread]);
+    //获取全局信息
+    USAVClient *client = [USAVClient current];
+    
+    NSString *stringToSign = [NSString stringWithFormat:@"%@%@%@%@%@", [client emailAddress], @"\n", [client getDateTimeStr], @"\n", @"\n"];
+    NSString *signature = [client generateSignature:stringToSign withKey:client.password];
+    
+    //封装参数，以树形节点形式存放
+    GDataXMLElement *requestElement = [GDataXMLNode elementWithName:@"request"];
+    GDataXMLElement *paramElement = [GDataXMLNode elementWithName:@"account" stringValue:[client emailAddress]];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"timestamp" stringValue:[client getDateTimeStr]];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"signature" stringValue:signature];
+    [requestElement addChild:paramElement];
+    
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:requestElement];
+    //NSData *data = [[NSData alloc] initWithData:document.XMLData];
+    NSData *xmlData = document.XMLData;
+    
+    NSString *getParam = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
+    NSString *encodedParam = [client encodeToPercentEscapeString:getParam];
+    
+    [client.api listTrustedContactStatus:encodedParam target:self selector:@selector(listContactsCallBack:)];   //本函数调用后，会自动往下走，不管回调函数是否完成（BUG）
+    [self showLoadingAlert:_contactCaller.view.window.subviews[0]];
+}
+
+#pragma mark 联系人回调方法
+- (void)listContactsCallBack: (NSDictionary *)obj {
+    
+    if ([[obj objectForKey:@"statusCode"] integerValue] == 260 || [[obj objectForKey:@"statusCode"] integerValue] == 261) {
+        NSLog(@"timestamp error");
+        [self showAlert:@"Time Error" andContent:@"Please check your system time"];
+    }
+    
+    if (obj == nil) {
+        NSLog(@"retuen nil");
+        return;
+    } else {
+        NSLog(@"%@ contact list: %@", [obj class], obj);
+        if ([obj objectForKey:@"contactList"]) {
+            _contactCaller.CellData = [obj objectForKey:@"contactList"];
+            [_contactCaller.tableView reloadData];
+            //NSLog(@"%@", _mutableDataForGlobal);
+        } else {
+            NSLog(@"Get contact list failed, unknown error");
+            [self showAlert:@"Unknown Error" andContent:[NSString stringWithFormat:@"Error code: %zi", [obj objectForKey:@"httpErrorCode"]]];
+        }
+    }
+    [_loadingAlert stopAnimating];
+}
+
+#pragma mark 获取分组列表
+- (void)listGroupsToArray {
+    USAVClient *client = [USAVClient current];
+    
+    NSString *stringToSign = [NSString stringWithFormat:@"%@%@%@%@%@", [client emailAddress], @"\n", [client getDateTimeStr], @"\n", @"\n"];
+    NSString *signature = [client generateSignature:stringToSign withKey:client.password];
+    
+    //数据封装到GDataXMLElement并以树形节点存放
+    GDataXMLElement *requestElement = [GDataXMLNode elementWithName:@"request"];
+    GDataXMLElement *paramElement = [GDataXMLNode elementWithName:@"account" stringValue:[client emailAddress]];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"timestamp" stringValue:[client getDateTimeStr]];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"signature" stringValue:signature];
+    [requestElement addChild:paramElement];
+    
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:requestElement];
+    NSData *xmlData = document.XMLData;
+    NSString *getParam = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
+    NSString *encodedParam = [client encodeToPercentEscapeString:getParam];
+    
+    [client.api listGroup:encodedParam target:self selector:@selector(listGroupsCallBack:)];
+    [self showLoadingAlert:_contactCaller.view.window.subviews[0]];
+}
+
+- (void)listGroupsCallBack: (NSDictionary *)obj {
+    if ([[obj objectForKey:@"statusCode"] integerValue] == 260 || [[obj objectForKey:@"statusCode"] integerValue] == 261) {
+        NSLog(@"timestamp error");
+        [self showAlert:@"Time Error" andContent:@"Please check your system time"];
+    }
+    
+    if (obj == nil) {
+        NSLog(@"retuen nil");
+        return;
+    } else {
+        NSLog(@"%@ group list: %@", [obj class], obj);
+        if ([obj objectForKey:@"groupList"]) {
+            _groupCaller.CellData = [obj objectForKey:@"groupList"];
+            [_contactCaller.tableView reloadData];  //由于group table的delegate用的还是contact页面的，所以这里刷新还是用contact
+            //NSLog(@"%@", _mutableDataForGlobal);
+        } else {
+            NSLog(@"Get contact list failed, unknown error");
+            [self showAlert:@"Unknown Error" andContent:[NSString stringWithFormat:@"Error code: %zi", [obj objectForKey:@"httpErrorCode"]]];
+        }
+    }
+    [_loadingAlert stopAnimating];
+}
+
+
+#pragma mark - 计时隐藏alert
+- (void)showAlert: (NSString *)alertTitle andContent: (NSString *)alertContent {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(alertTitle, nil) message:NSLocalizedString(alertContent, nil) delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerForHideAlert:) userInfo:alert repeats:NO];
+    //这个userInfo可以将这个函数里的某个参数，装进timer中，传递给别的函数
+    [alert show];
+}
+- (void)timerForHideAlert: (NSTimer *)timer {
+    UIAlertView *alert = [timer userInfo];
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+#pragma mark loading进度条
+- (void)showLoadingAlert:(id)view {
+    
+    _loadingAlert = [[TYDotIndicatorView alloc] initWithFrame:CGRectMake(30, 260, 260, 50) dotStyle:TYDotIndicatorViewStyleRound dotColor:[UIColor colorWithRed:0.85f green:0.86f blue:0.88f alpha:1.00f] dotSize:CGSizeMake(15, 15) withBackground:NO];
+    _loadingAlert.backgroundColor = [UIColor colorWithRed:0.20f green:0.27f blue:0.36f alpha:0.9f];
+    _loadingAlert.layer.cornerRadius = 5.0f;
+    [_loadingAlert startAnimating];
+    [view addSubview:_loadingAlert];
 }
 @end

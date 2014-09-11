@@ -24,16 +24,23 @@
     NSMutableArray *allContactName;
     NSArray *searchContactName;
     
+    InitiateWithData *dataInitiator;
+    
 }
 
+//@property (strong, nonatomic) TYDotIndicatorView *loadingAlert;
 @end
 
 @implementation ContactTableViewController
 
 - (void)viewDidLoad {
     
-    //初始化数据
-    _CellData = [InitiateWithData initiateDataForContact];
+    //初始化数据，在这里先调用一次initdataforcontact来触发向server发送请求，然后等后面回调回来之后再调用一次装载数据
+    dataInitiator = [[InitiateWithData alloc] initData];
+    dataInitiator.contactCaller = self;
+    [dataInitiator initiateDataForContact];
+    _CellData = dataInitiator.mutableDataForGlobal;
+    
     //初始化搜索数组，不初始化会导致始终为空
     allContactName = [[NSMutableArray alloc] initWithCapacity:[_CellData count]];
     
@@ -45,14 +52,12 @@
     [self AddSearchBarAndDisplayController];
     
     [super viewDidLoad];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -70,6 +75,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
+
+    if ([_CellData count] == 0) {
+        return 1;
+    }   //用来显示“您还没有好友”
+    
     if (tableView == _ContactTable) {
         return [_CellData count];
     } else {
@@ -93,22 +103,31 @@
     
     if (tableView == _ContactTable) {
         
+        if ([_CellData count] == 0) {
+            cell.Name.text = NSLocalizedString(@"You have no contact", nil);
+            cell.Name.font = [UIFont systemFontOfSize:14];
+            return cell;
+        }
         
         //创建数据对象，用之前定义了的_CellData初始化
-        ContactDataBase *cellData = _CellData[indexPath.row];
+        NSDictionary *cellData = _CellData[indexPath.row];
         //把用户名取出来放到搜索数组中
-        [allContactName addObject:cellData.Name];
-        
+        [allContactName addObject:[cellData objectForKey:@"friendEmail"]];
         
         //CELL的主体
         cell.Header.image = nil;
-        cell.Name.text = cellData.Name;
+        if ([[cellData objectForKey:@"friendAlias"] isEqualToString:@""]) {
+            [cellData setValue:[cellData objectForKey:@"friendEmail"] forKey:@"friendAlias"];
+            cell.Name.text = [cellData objectForKey:@"friendEmail"];
+        } else {
+            cell.Name.text = [cellData objectForKey:@"friendAlias"];
+        }
         cell.Name.font = [UIFont boldSystemFontOfSize:14];
         cell.accessoryType = UITableViewCellAccessoryNone;
         //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
         
         //Image不用在数据类中加，直接在这里加
-        if (cellData.Registered) {
+        if ([[cellData objectForKey:@"friendStatus"] isEqualToString:@"activated"]) {
            cell.Header.image = [UIImage imageNamed:@"Friend@2x.png"];
         } else {
             cell.Header.image = [UIImage imageNamed:@"NoneRegisterFriend@2x.png"];
@@ -154,17 +173,18 @@
     //因为要分别传递Group和Friend的详细数据，所以这里传值的时候也要分开传，值也要分开赋
     if (indexPath.row >= 0 && [dataSourceIdentifier  isEqual: @"Friend"]) {
         
-        ContactDataBase *cellData = _CellData[indexPath.row];
-        segueTransName = cellData.Name;
-        segueTransEmail = cellData.Email;
+        NSDictionary *cellData = _CellData[indexPath.row];
+        segueTransName = [cellData objectForKey:@"friendAlias"];
+        segueTransEmail = [cellData objectForKey:@"friendEmail"];
         
         [self performSegueWithIdentifier:@"ContactDetailSegue" sender:self];
         
     } else if (indexPath.row >= 0 && [dataSourceIdentifier isEqual:@"Group"]) {
-        
-        NSMutableArray *_CellData_Group = [InitiateWithData initiateDataForContact_Group];
-        ContactDataBase *cellData_Group = _CellData_Group[indexPath.row];
-        segueTransGroup = cellData_Group.Group;
+    
+        //[dataInitiator initiateDataForContact_Group];
+        //dataInitiator.contactCaller = self;
+        NSString *cellData_Group = GroupController.CellData[indexPath.row]; //因为这里从服务器取回的_CellData装的只是单行的字符串，而不像之前是字典。
+        segueTransGroup = cellData_Group;
         
         [self performSegueWithIdentifier:@"GroupDetailSegue" sender:self];
     }
@@ -259,10 +279,12 @@
         //NSLog(@"当前数据源为self");
         [_ContactTable setDelegate:self];
         [_ContactTable setDataSource:self];
+        [dataInitiator initiateDataForContact];
         dataSourceIdentifier = @"Friend";
         [_ContactTable reloadData];
     } else if (selectedSegment == 1) {
-        GroupController.CellData = [InitiateWithData initiateDataForContact_Group];
+        [dataInitiator initiateDataForContact_Group];   //执行之后，全局变量里已经装的是group了，之后在回调函数内，会执行reload
+        dataInitiator.groupCaller = GroupController;
         _ContactTable.dataSource = GroupController;
         dataSourceIdentifier = @"Group";
         [_ContactTable reloadData];
@@ -310,7 +332,6 @@
     [refresh addTarget:self action:@selector(RefreshTableViewAction:) forControlEvents:UIControlEventValueChanged];
     
     self.refreshControl = refresh;
-    
-    
 }
+
 @end

@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserGuideViewController.h"
+#import "LoginViewController.h"
+#import "USAVClient.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

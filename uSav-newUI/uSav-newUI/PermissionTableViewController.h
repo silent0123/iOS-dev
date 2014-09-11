@@ -12,5 +12,6 @@
 @interface PermissionTableViewController : UITableViewController
 
 @property (strong, nonatomic) NSString *segueTransFileName;
+@property (strong, nonatomic) NSMutableArray *CellData;
 
 @end

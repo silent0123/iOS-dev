@@ -8,11 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "ColorFromHex.h"
+#import "USAVClient.h"
+#import "GDataXMLNode.h"
+#import "SGDUtilities.h"
+#import "API.h"
+#import "WarningView.h"
+#import "USAVLock.h"
+#import "TYDotIndicatorView.h"
 
 @interface LoginViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *TopLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ULabel;
 @property (weak, nonatomic) IBOutlet UILabel *SavLabel;
+@property (weak, nonatomic) IBOutlet UILabel *VersionLabel;
 
 @property (weak, nonatomic) IBOutlet UITextField *Username;
 @property (weak, nonatomic) IBOutlet UITextField *Password;
@@ -24,8 +33,10 @@
 - (IBAction)SignupClick:(id)sender;
 - (IBAction)ForgetClick:(id)sender;
 
-//输入框变化，上移界面
-- (IBAction)UsernameEditBegin:(id)sender;
-- (IBAction)PasswordEditBegin:(id)sender;
+- (IBAction)UsernameBeginEditing:(id)sender;
+- (IBAction)UsernameEndEditing:(id)sender;
+- (IBAction)PasswordBeginEditing:(id)sender;
+- (IBAction)PasswordEndEditing:(id)sender;
+
 
 @end

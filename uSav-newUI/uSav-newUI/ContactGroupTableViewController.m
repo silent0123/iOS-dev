@@ -40,6 +40,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
+    if ([_CellData count] == 0) {
+        return 1;
+    }   //用来显示“您还没有分组”
+    
     return [_CellData count];
 }
 
@@ -51,11 +55,16 @@
         //创建CELL
         ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell"];
         //创建数据对象，用之前定义了的_CellData初始化
-        ContactDataBase *cellData = _CellData[indexPath.row];
-        
+        NSString *cellData = _CellData[indexPath.row];  //因为这里从服务器取回的_CellData装的只是单行的字符串，而不像之前是字典。
+    
+        if ([_CellData count] == 0) {
+            cell.Name.text = NSLocalizedString(@"You have no group", nil);
+            cell.Name.font = [UIFont systemFontOfSize:14];
+            return cell;
+        }
         //CELL的主体
         cell.Header.image = [UIImage imageNamed:@"Group@2x.png"];
-        cell.Name.text = cellData.Group;
+        cell.Name.text = cellData;
         cell.Name.font = [UIFont boldSystemFontOfSize:14];
         cell.accessoryType = UITableViewCellAccessoryNone;
         //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];

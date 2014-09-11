@@ -29,26 +29,33 @@
     
 }
 
+//@property (strong, nonatomic) TYDotIndicatorView *loadingAlert;
+
 @end
 @implementation FileTableViewController 
 
+- (void)readDataFromInitateData {
+    _CellData = [InitiateWithData initiateDataForFiles];
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
     //初始化数据
-    _CellData = [InitiateWithData initiateDataForFiles];
+    //在新线程去读取，免得UI卡死 (尚未解决)
+    [NSThread detachNewThreadSelector:@selector(readDataFromInitateData) toTarget:self withObject:nil];
+    
     allFileName = [[NSMutableArray alloc] initWithCapacity:[_CellData count]]; //这句非常重要，要不然allFile为空
     //初始化第二个数据源
     decryptionController =[[FileDecryptionTableViewController alloc] init];
     dataSourceIdentifier = @"Encrypted";
 
-    
+
     //刷新功能增加
     [self SetBeginRefresh];
     [self AddSearchBarAndDisplayController];
     
-    
+    [super viewDidLoad];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

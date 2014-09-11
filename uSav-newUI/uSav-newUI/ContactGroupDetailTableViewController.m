@@ -24,7 +24,7 @@
     self.title = _segueTransGroup;
     
     //临时
-    _CellData = [InitiateWithData initiateDataForContact];
+    //_CellData = [InitiateWithData initiateDataForContact];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,7 +92,7 @@
             //两个View都临时生成的，因为不想再到storyboard里去修改cell，还得单独加cell类了
             //显示的内容还没有区分是哪个组的
             UILabel *FriendName = [[UILabel alloc] initWithFrame:CGRectMake(50, 12, 207, 21)];
-            FriendName.text = cellData.Name;
+            FriendName.text = cellData.friendAlias;
             FriendName.font = [UIFont boldSystemFontOfSize:14];
             [cell addSubview:FriendName];
             //增加一个头像框
@@ -124,8 +124,8 @@
         [comingSoon show];
     } else if (section == 1) {
         ContactDataBase *cellData = _CellData[row];
-        segueTransName = cellData.Name;
-        seguetransEmail = cellData.Email;
+        segueTransName = cellData.friendAlias;
+        seguetransEmail = cellData.friendEmail;
         [self performSegueWithIdentifier:@"MemberDetailSegue" sender:self];
     } else {
         [_CellData removeObject:_CellData[row]];

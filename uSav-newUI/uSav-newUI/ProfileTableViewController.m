@@ -82,7 +82,7 @@
             if (row == 0) {
                 cell.textLabel.text = NSLocalizedString(@"Name", nil);
                 cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
-                cell.detailTextLabel.text = @"DemoUser A";
+                cell.detailTextLabel.text = [[USAVClient current] username];
                 cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 
@@ -91,7 +91,7 @@
             } else {
                 cell.textLabel.text = NSLocalizedString(@"Email", nil);
                 cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
-                cell.detailTextLabel.text = @"Demo.A@nwstor.com";
+                cell.detailTextLabel.text = [[USAVClient current] emailAddress];
                 cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 
