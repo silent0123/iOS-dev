@@ -23,7 +23,11 @@
 @property (strong, nonatomic) NSMutableArray *CellData;
 @property (strong, nonatomic) IBOutlet UITableView *ContactTable;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ContactSegment;
+@property (strong, nonatomic) TYDotIndicatorView *loadingAlert;
 
 - (IBAction)SegmentChange:(id)sender;
+- (void)showAlert: (NSString *)alertTitle andContent: (NSString *)alertContent;
+- (void)editCellData;
+- (void)RefreshData;    //这句设置为Pubilic是为了回调函数调用
 
 @end

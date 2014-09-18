@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = _segueTransName;
+    self.title = @"";
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -90,8 +90,10 @@
                 cell.textLabel.text = NSLocalizedString(@"Groupname", @"临时的");
                 cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
             } else {
-                cell.textLabel.text = NSLocalizedString(@"uSav registered", nil);
+                cell.textLabel.text = NSLocalizedString(@"uSav status", nil);
                 cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+                cell.detailTextLabel.text = NSLocalizedString(_segueTransActivated, nil);
+                cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
             }
             break;
         case 2:

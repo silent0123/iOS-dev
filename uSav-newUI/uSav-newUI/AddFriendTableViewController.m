@@ -10,8 +10,9 @@
 
 @interface AddFriendTableViewController () {
 
-    UITextField *textFiled;
+    InitiateWithData *dataInitiator;
 }
+
 @end
 
 @implementation AddFriendTableViewController
@@ -19,6 +20,11 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    dataInitiator = [[InitiateWithData alloc] init];
+    dataInitiator.addFriendCaller = self;
+    
+    _addFriendList = [[NSMutableArray alloc] initWithCapacity:0];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -37,7 +43,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    tableView.scrollEnabled = NO;
+    tableView.scrollEnabled = YES;
     return 2;
 }
 
@@ -82,17 +88,24 @@
         case 0:
             if (row == 0) {
                 //创建一个输入框
-                textFiled = [[UITextField alloc] initWithFrame:CGRectMake(cell.frame.origin.x+16, cell.frame.origin.y + 1, cell.frame.size.width - 16, cell.frame.size.height)];
-                [textFiled setPlaceholder:@"Email"];
-                textFiled.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
-                textFiled.clearsContextBeforeDrawing = YES;  //把周围的context清理，否则可能会出错
-                textFiled.clearButtonMode = 5;
-                textFiled.autocorrectionType = NO;
-                textFiled.returnKeyType = UIReturnKeyGo;
-                [textFiled setValue:[UIFont systemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
-                textFiled.font = [UIFont systemFontOfSize:14];
+                _textFiled = [[UITextField alloc] initWithFrame:CGRectMake(cell.frame.origin.x+16, cell.frame.origin.y + 1, cell.frame.size.width - 16, cell.frame.size.height)];
+                [_textFiled setPlaceholder:@"Email"];
+                _textFiled.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
+                _textFiled.clearsContextBeforeDrawing = YES;  //把周围的context清理，否则可能会出错
+                _textFiled.clearButtonMode = 5;
+                _textFiled.autocorrectionType = NO;
+                _textFiled.returnKeyType = UIReturnKeyGo;
+                _textFiled.keyboardType = UIKeyboardTypeEmailAddress;
+                [_textFiled setValue:[UIFont systemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+                _textFiled.font = [UIFont systemFontOfSize:14];
+                _textFiled.delegate = self; //不是简单在前面声明textField Delegate就行了，记得将每个TextFeild的Delegate绑定好
+//#pragma mark for test
+//                _textFiled.text = @"Himst.lee@nwstor.com";
+                
                 cell.TableOption = nil;
-                [cell addSubview:textFiled];
+                [cell addSubview:_textFiled];
+                [_textFiled becomeFirstResponder];
+                
             } else if (row == 1){
                 cell.TableOption.text = NSLocalizedString(@"Add from address book", nil);
                 cell.TableOption.font = [UIFont boldSystemFontOfSize:14];
@@ -139,7 +152,7 @@
 
 #pragma mark 滑动隐藏键盘
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [textFiled resignFirstResponder];
+    [_textFiled resignFirstResponder];
 }
 
 
@@ -189,12 +202,46 @@
     pickerController.passDelegate = self;
 }
 
-
+#pragma mark - 协议方法
 #pragma mark delegate传值接收
-- (void)passValue:(NSString *)value {
+- (void)passValue:(NSArray *)value {
 
-    textFiled.text = value;
+    [_addFriendList addObjectsFromArray:value]; //最初的都是THContact类型
+    
+    //现在由于API限制，只能一个一个添加，每一个用户都要call API
+    for (NSInteger i = 0; i < [_addFriendList count]; i ++) {
+        THContact *contactToBeAdd = _addFriendList[i];
+        [dataInitiator initiateDataForAddContact: contactToBeAdd.email];
+    }
+    
+    //[self.navigationController popViewControllerAnimated:YES];
+    
+    
+//    NSString *stringToDisplay = [NSString stringWithFormat:@"Got %zi contacts, First one is %@", [_addFriendList count], firstContact.email];
+    
+//    _textFiled.text = stringToDisplay;
 
+}
+
+#pragma mark -
+#pragma mark 读取输入的Email值，callAPI
+//点击键盘的Go按钮
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [dataInitiator initiateDataForAddContact:textField.text];
+    return YES;
+}
+
+#pragma mark - 计时隐藏alert
+- (void)showAlert: (NSString *)alertTitle andContent: (NSString *)alertContent {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(alertTitle, nil) message:NSLocalizedString(alertContent, nil) delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerForHideAlert:) userInfo:alert repeats:NO];
+    //这个userInfo可以将这个函数里的某个参数，装进timer中，传递给别的函数
+    [alert show];
+}
+- (void)timerForHideAlert: (NSTimer *)timer {
+    UIAlertView *alert = [timer userInfo];
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 @end

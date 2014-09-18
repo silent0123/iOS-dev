@@ -361,7 +361,7 @@
 		81F49A76199B40B400A938CA /* THContactPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactPickerViewController.h; sourceTree = "<group>"; };
 		81F49A77199B40B400A938CA /* THContactPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactPickerViewController.m; sourceTree = "<group>"; };
 		81F49A78199B40B400A938CA /* THContactPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THContactPickerViewController.xib; sourceTree = "<group>"; };
-		81F49A90199B565200A938CA /* LUCASelectContactDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUCASelectContactDelegate.h; sourceTree = "<group>"; };
+		81F49A90199B565200A938CA /* LUCASelectContactDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LUCASelectContactDelegate.h; path = ContactPicker/LUCASelectContactDelegate.h; sourceTree = "<group>"; };
 		81F49A92199C7BB400A938CA /* Album@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Album@2x.png"; sourceTree = "<group>"; };
 		81F49A99199C7BB400A938CA /* CreatGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CreatGroup@2x.png"; sourceTree = "<group>"; };
 		81F49A9B199C7BB400A938CA /* Friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Friend@2x.png"; sourceTree = "<group>"; };
@@ -575,6 +575,7 @@
 				81B1BC0E199496BE00E01E76 /* AddFileTableViewController.m */,
 				81B1BC161994A5CE00E01E76 /* AddFriendTableViewController.h */,
 				81B1BC171994A5CE00E01E76 /* AddFriendTableViewController.m */,
+				81F49A90199B565200A938CA /* LUCASelectContactDelegate.h */,
 				814C13FB19988A6C007F2748 /* FileDetailViewController.h */,
 				814C13FC19988A6C007F2748 /* FileDetailViewController.m */,
 				814C14051999DF85007F2748 /* FileDetailEncryptedViewController.h */,
@@ -849,7 +850,6 @@
 				81F49A76199B40B400A938CA /* THContactPickerViewController.h */,
 				81F49A77199B40B400A938CA /* THContactPickerViewController.m */,
 				81F49A78199B40B400A938CA /* THContactPickerViewController.xib */,
-				81F49A90199B565200A938CA /* LUCASelectContactDelegate.h */,
 			);
 			path = ContactPicker;
 			sourceTree = "<group>";

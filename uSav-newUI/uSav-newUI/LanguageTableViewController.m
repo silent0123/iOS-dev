@@ -72,7 +72,7 @@
             cell.textLabel.text = NSLocalizedString(@"Save", nil);
             cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
             cell.textLabel.textColor = [UIColor colorWithWhite:1 alpha:1];
-            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.textAlignment = NSTextAlignmentLeft;
             cell.backgroundColor = [ColorFromHex getColorFromHex:@"#1E90FF"];
             break;
     }

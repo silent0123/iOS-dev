@@ -209,7 +209,7 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
-                                <inset key="separatorInset" minX="44" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="Header" destination="qUl-pB-MxP" id="KbJ-H6-z0Q"/>
                                     <outlet property="Name" destination="amX-kN-XRM" id="llk-L8-mWY"/>
@@ -255,7 +255,7 @@
             </objects>
             <point key="canvasLocation" x="409.5" y="-247.5"/>
         </scene>
-        <!--Add Friend-->
+        <!--New Friend-->
         <scene sceneID="acs-gm-Q9C">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="Dp6-QT-vnf" customClass="AddFriendTableViewController" sceneMemberID="viewController">
@@ -312,7 +312,7 @@
                             <outlet property="delegate" destination="Dp6-QT-vnf" id="Mma-oT-qLu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Friend" id="wVo-13-xl9">
+                    <navigationItem key="navigationItem" title="New Friend" id="wVo-13-xl9">
                         <barButtonItem key="backBarButtonItem" title="Back" id="BBh-Nc-Vi8"/>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -883,7 +883,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="hbw-uY-XdT">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="action" id="eAR-pK-zxT">
+                        <barButtonItem key="rightBarButtonItem" title="More" style="plain" id="eAR-pK-zxT">
                             <connections>
                                 <segue destination="btX-uY-YeY" kind="show" identifier="MoreButtonSegue" id="dWn-6S-w5p"/>
                             </connections>
@@ -1053,7 +1053,7 @@
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                                <rect key="frame" x="16" y="31" width="293" height="39"/>
+                                                <rect key="frame" x="11" y="31" width="293" height="39"/>
                                             </variation>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWe-pw-gJu">
@@ -1071,7 +1071,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="16" y="11" width="135" height="21"/>
+                                                <rect key="frame" x="11" y="11" width="135" height="21"/>
                                             </variation>
                                         </label>
                                     </subviews>
@@ -1576,7 +1576,7 @@
                         <outlet property="Username" destination="UvL-e3-pfD" id="t3E-bb-TjE"/>
                         <outlet property="VersionLabel" destination="hdg-Ki-mrC" id="epn-Se-xDE"/>
                         <segue destination="nRg-CX-TOm" kind="presentation" identifier="RegisterSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="0XD-ky-k4J"/>
-                        <segue destination="nLC-kW-gXu" kind="presentation" identifier="SigninSuccessSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="fCh-JJ-hho"/>
+                        <segue destination="nLC-kW-gXu" kind="presentation" identifier="SigninSuccessSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="fCh-JJ-hho"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6XC-TO-6LL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1983,8 +1983,8 @@
         <image name="UsernameIcon.png" width="19" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fCh-JJ-hho"/>
+        <segue reference="ZNh-7J-Skr"/>
+        <segue reference="Be8-yT-OxN"/>
         <segue reference="cj5-dI-S7x"/>
-        <segue reference="avR-Gm-5i1"/>
     </inferredMetricsTieBreakers>
 </document>

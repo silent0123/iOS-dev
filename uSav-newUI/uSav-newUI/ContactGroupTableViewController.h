@@ -12,8 +12,14 @@
 #import "ColorFromHex.h"
 #import "InitiateWithData.h"
 
+@class InitiateWithData;
+
 @interface ContactGroupTableViewController : UITableViewController
 
 @property (strong, nonatomic) NSMutableArray *CellData;
+@property (strong, nonatomic) InitiateWithData *dataInitiator;
+@property (strong, nonatomic) UITableView *contactTable;
 
+
+- (void)editCellData;
 @end

@@ -6,9 +6,10 @@
 //  Copyright (c) 2014年 nwstor. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "ColorFromHex.h"
 
-@interface UserGuideViewController : UIViewController
+@interface UserGuideViewController : UIViewController <UIGestureRecognizerDelegate>
 
 @end

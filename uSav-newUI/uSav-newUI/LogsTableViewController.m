@@ -82,6 +82,7 @@
             cell.LogContent.font = [UIFont systemFontOfSize:12];
             
             cell.LogSuccess.text = NSLocalizedString(@"SUCCESSFUL", nil);
+            cell.LogSuccess.textColor = [ColorFromHex getColorFromHex:@"#A0BD2B"];
             cell.LogSuccess.font = [UIFont systemFontOfSize:12];
         } else {
             cell.LogType.textColor = [ColorFromHex getColorFromHex:@"#E8251E"];

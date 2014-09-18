@@ -18,11 +18,13 @@
 
 #import "ContactTableViewController.h"
 #import "ContactGroupTableViewController.h"
+#import "AddFriendTableViewController.h"
 
 @class ContactTableViewController;
 @class ContactGroupTableViewController;
+@class AddFriendTableViewController;
 
-@interface InitiateWithData : NSObject
+@interface InitiateWithData : NSObject 
 
 //自定义初始化
 - (id)initData;
@@ -34,7 +36,14 @@
 //Contact和Contact的section
 - (NSMutableArray *)initiateDataForContact;
 - (NSMutableArray *)initiateDataForContact_Group;
+//Add file
 + (NSMutableArray *)initiateDataForAddFile;
+//Add Contact
+- (NSMutableArray *)initiateDataForAddContact: (NSString *)emailAddress;
+//Delete Contact
+- (void) initiateDataFordeleteContact: (NSString *)emailAddress;
+//Delete Group
+- (void) initiateDataFordeleteGroup: (NSString *)groupName;
 //Logs
 + (NSMutableArray *)initiateDataForLogs;
 + (NSMutableArray *)initiateDataForLogs_Operation;
@@ -47,5 +56,6 @@
 @property (strong, nonatomic) NSMutableArray *mutableDataForGlobal; //用来存放从服务器读取回的FILE或者CONTACT或者HISTORY数据，在不同类之间共享
 @property (strong, nonatomic) ContactTableViewController *contactCaller;   //由其他类设置，存放调用者的实例，用来[caller.tableview reloadData]
 @property (strong, nonatomic) ContactGroupTableViewController *groupCaller;     //由其他类设置，传数据到datasource
+@property (strong, nonatomic) AddFriendTableViewController *addFriendCaller;
 
 @end

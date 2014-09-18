@@ -21,8 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = _segueTransGroup;
-    
+    //self.title = _segueTransGroup;
+    self.title = @"";
     //临时
     //_CellData = [InitiateWithData initiateDataForContact];
 }
@@ -48,7 +48,11 @@
     } else if (section == 2) {
         return 1;
     } else {
-        return [_CellData count];
+        if ([_CellData count] == 0){
+            return 1;
+        } else {
+            return [_CellData count];
+        }
     }
 }
 
@@ -84,7 +88,7 @@
                 cell.detailTextLabel.text = NSLocalizedString(numString, nil);
                 cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
             } else {
-                cell.textLabel.text = NSLocalizedString(@"Add new member", nil);
+                cell.textLabel.text = NSLocalizedString(@"Add a New Member", nil);
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
             break;
@@ -100,6 +104,16 @@
             Header.frame = CGRectMake(8, 8, 30, 30);
             [cell addSubview:Header];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
+            if ([_CellData count] == 0) {
+                //没组员
+                FriendName.text = NSLocalizedString(@"Group is empty", nil);
+                FriendName.frame = CGRectMake(16, 12, 207, 21); //把头像清空，Label左移
+                Header.image = nil;
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                cell.userInteractionEnabled = NO;
+            }
+            
             break;
         }
         default:

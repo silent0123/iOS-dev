@@ -15,6 +15,7 @@ UIBarButtonItem *barButton;
 @interface THContactPickerViewController ()
 
 @property (nonatomic, assign) ABAddressBookRef addressBookRef;
+@property (nonatomic, strong) THContact *firstContact;
 
 @end
 
@@ -38,6 +39,7 @@ UIBarButtonItem *barButton;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
     //    UIBarButtonItem * barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleBordered target:self action:@selector(removeAllContacts:)];
     self.title = NSLocalizedString(@"Address Book", nil);
@@ -103,6 +105,14 @@ UIBarButtonItem *barButton;
             contact.phone = [self getMobilePhoneProperty:phonesRef];
             if(phonesRef) {
                 CFRelease(phonesRef);
+            }
+            
+            // Get email address 比如要用这种方法才能取出email
+            ABMultiValueRef *email = ABRecordCopyValue(contactPerson, kABPersonEmailProperty);
+            NSInteger emailCount = ABMultiValueGetCount(email);
+            for (NSInteger i = 0; i < emailCount; i ++) {
+                NSString* emailContent = (__bridge NSString*)ABMultiValueCopyValueAtIndex(email, i);
+                contact.email = emailContent;
             }
             
             // Get image if it exists
@@ -280,7 +290,7 @@ UIBarButtonItem *barButton;
     
     // Assign values to to US elements
     contactNameLabel.text = [contact fullName];
-    mobilePhoneNumberLabel.text = contact.phone;
+    mobilePhoneNumberLabel.text = contact.email;    //这里如果多email会出问题
     if(contact.image) {
         contactImage.image = contact.image;
     }
@@ -443,8 +453,23 @@ UIBarButtonItem *barButton;
 - (void)done:(id)sender
 {
     //[self performSegueWithIdentifier:@"BacktoAddFriendSegue" sender:self]; 不同用这个方法传，会叠加页面
-    [self.passDelegate passValue:@"选中的值"];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.passDelegate passValue:self.selectedContacts];  //passdelegate是协议的实例
+    [self showLoadingAlertAt:self.view];
+    //[self.navigationController popViewControllerAnimated:YES];
 }
 
+
+#pragma mark loading进度条
+- (void)showLoadingAlertAt:(UIView *)view {
+    if (_loadingAlert.isAnimating) {
+        [_loadingAlert stopAnimating];
+        return;
+    } else {
+        _loadingAlert = [[TYDotIndicatorView alloc] initWithFrame:CGRectMake(30, 260, 260, 50) dotStyle:TYDotIndicatorViewStyleRound dotColor:[UIColor colorWithRed:0.85f green:0.86f blue:0.88f alpha:1.00f] dotSize:CGSizeMake(15, 15) withBackground:NO];
+        _loadingAlert.backgroundColor = [UIColor colorWithRed:0.20f green:0.27f blue:0.36f alpha:0.9f];
+        _loadingAlert.layer.cornerRadius = 5.0f;
+        [_loadingAlert startAnimating];
+        [view addSubview:_loadingAlert];
+    }
+}
 @end

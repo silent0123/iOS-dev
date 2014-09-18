@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.AutoLock setTitle:NSLocalizedString(@"AutoLockLabel", @"")];
+    [self.AutoLock setTitle:NSLocalizedString(@"Auto Lock", @"")];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

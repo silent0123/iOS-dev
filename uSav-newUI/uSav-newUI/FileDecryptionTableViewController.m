@@ -8,7 +8,9 @@
 
 #import "FileDecryptionTableViewController.h"
 
-@interface FileDecryptionTableViewController ()
+@interface FileDecryptionTableViewController (){
+    
+}
 
 @end
 
@@ -16,8 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -41,7 +41,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    //NSLog(@"获取每个Section的行数: %zi", [_CellData count]);
+    
     return [_CellData count];
 }
 
@@ -54,6 +54,15 @@
 //    if(cell == nil){
 //        UITableViewCell *cell = [[UITableViewCell  alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SearchCell"];
 //        _searchCell = cell;
+//    }
+    
+#pragma warning 这里需要之后修改
+    
+//    if ([_CellData[0] isEqualToString:@"noobject"]) {
+//        cell.FileName.text = NSLocalizedString(@"You Have No File", nil);
+//        cell.FileName.font = [UIFont boldSystemFontOfSize:14];
+//        cell.separatorInset = UIEdgeInsetsZero;
+//        return cell;
 //    }
     //创建数据对象，用之前定义了的_CellData初始化
     FileDataBase *cellData = _CellData[indexPath.row];
@@ -97,8 +106,12 @@
 //cell编辑/删除
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;//可以编辑
+    // 有数据才可以编辑，没有就不可以
+    if ([_CellData count] > 0) {
+        return YES;//可以编辑
+    } else {
+        return NO;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

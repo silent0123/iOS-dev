@@ -143,7 +143,7 @@
 #pragma mark Contact初始化
 - (NSMutableArray *)initiateDataForContact{
     
-    //将数据读取回来并且写到全局变量
+    //将数据读取回来并且直接写到需要的类_CellData里
     [self listContactsToArray];
     
     NSMutableArray *_mutableData;
@@ -156,6 +156,7 @@
 #pragma mark Group初始化
 - (NSMutableArray *)initiateDataForContact_Group {
 
+    //将数据读取回来并且直接写到需要的类_CellData里
     [self listGroupsToArray];
     
     NSMutableArray *_mutableData;
@@ -207,6 +208,25 @@
     
     return _mutableData;
 
+}
+
+#pragma mark Add Friend 初始化
+- (NSMutableArray *)initiateDataForAddContact: (NSString *)emailAddress{
+    
+    //给服务器写数据, 然后对ContactTableView的Cell重新加载新数据
+    [self addContactToArray:emailAddress];
+    
+    
+    NSMutableArray *_mutableData;
+    _mutableData = [NSMutableArray arrayWithCapacity:0];
+    _mutableData = _mutableDataForGlobal;
+    
+    return _mutableData;
+}
+
+#pragma mark Delete Friend
+- (void) initiateDataFordeleteContact: (NSString *)emailAddress {
+    [self deleteContactToArray:emailAddress];
 }
 
 #pragma mark History（Logs）初始化
@@ -369,7 +389,7 @@
     NSString *encodedParam = [client encodeToPercentEscapeString:getParam];
     
     [client.api listTrustedContactStatus:encodedParam target:self selector:@selector(listContactsCallBack:)];   //本函数调用后，会自动往下走，不管回调函数是否完成（BUG）
-    [self showLoadingAlert:_contactCaller.view.window.subviews[0]];
+    [self showLoadingAlertAt:_contactCaller.view.window.subviews[0]];
 }
 
 #pragma mark 联系人回调方法
@@ -385,16 +405,19 @@
         return;
     } else {
         NSLog(@"%@ contact list: %@", [obj class], obj);
-        if ([obj objectForKey:@"contactList"]) {
+        if ([[obj objectForKey:@"contactList"] count] > 0) {
             _contactCaller.CellData = [obj objectForKey:@"contactList"];
             [_contactCaller.tableView reloadData];
             //NSLog(@"%@", _mutableDataForGlobal);
         } else {
-            NSLog(@"Get contact list failed, unknown error");
-            [self showAlert:@"Unknown Error" andContent:[NSString stringWithFormat:@"Error code: %zi", [obj objectForKey:@"httpErrorCode"]]];
+            //没有好友
         }
     }
+    
+    //停止动画
     [_loadingAlert stopAnimating];
+    [_contactCaller RefreshData];
+    return;
 }
 
 #pragma mark 获取分组列表
@@ -419,7 +442,7 @@
     NSString *encodedParam = [client encodeToPercentEscapeString:getParam];
     
     [client.api listGroup:encodedParam target:self selector:@selector(listGroupsCallBack:)];
-    [self showLoadingAlert:_contactCaller.view.window.subviews[0]];
+    [self showLoadingAlertAt:_contactCaller.view.window.subviews[0]];
 }
 
 - (void)listGroupsCallBack: (NSDictionary *)obj {
@@ -433,25 +456,312 @@
         return;
     } else {
         NSLog(@"%@ group list: %@", [obj class], obj);
-        if ([obj objectForKey:@"groupList"]) {
+        if ([[obj objectForKey:@"groupList"] count] > 0) {
+            NSLog(@"haha");
             _groupCaller.CellData = [obj objectForKey:@"groupList"];
             [_contactCaller.tableView reloadData];  //由于group table的delegate用的还是contact页面的，所以这里刷新还是用contact
             //NSLog(@"%@", _mutableDataForGlobal);
         } else {
-            NSLog(@"Get contact list failed, unknown error");
-            [self showAlert:@"Unknown Error" andContent:[NSString stringWithFormat:@"Error code: %zi", [obj objectForKey:@"httpErrorCode"]]];
+            //没有好友
         }
     }
+    
+    //停止动画
     [_loadingAlert stopAnimating];
+    [_contactCaller RefreshData];
+    return;
 }
 
 
+#pragma mark Add Friend
+- (void)addContactToArray: (NSString *)contactEmailAddress{
+    USAVClient *client = [USAVClient current];
+    
+    NSString *stringToSign = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@", [client emailAddress], @"\n", [client getDateTimeStr], @"\n", @"\n", contactEmailAddress, @"\n",@"\n"];   //这里friendname就用emailaddress
+    NSString *signature = [client generateSignature:stringToSign withKey:client.password];
+    
+    //这里和之前不同，有三层，第一层为request，第二层为前三个param，第三层为userinfo包含的3个param
+    GDataXMLElement *requestElement = [GDataXMLNode elementWithName:@"request"];
+    GDataXMLElement *paramElement = [GDataXMLNode elementWithName:@"account" stringValue:[client emailAddress]];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"timestamp" stringValue:[client getDateTimeStr]];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"signature" stringValue:signature];
+    [requestElement addChild:paramElement];
+    GDataXMLElement *userInfo = [GDataXMLNode elementWithName:@"params"];   //params为服务器那端识别的用户结构
+    paramElement =[GDataXMLNode elementWithName:@"alias" stringValue:@""];
+    [userInfo addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"note" stringValue:@""];
+    [userInfo addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"friendId" stringValue:contactEmailAddress];
+    [userInfo addChild:paramElement];
+    
+    [requestElement addChild:userInfo];
+    
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:requestElement];
+    NSData *xmlData = document.XMLData;
+    
+    NSString *getParam = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
+    NSString *encodedParam = [client encodeToPercentEscapeString:getParam];
+    
+    [client.api addFriend:encodedParam target:self selector:@selector(addContactCallBack:)];
+    [self showLoadingAlertAt:_addFriendCaller.view.window.subviews[0]];
+}
+
+#pragma mark Add Friend Callback
+- (void)addContactCallBack: (NSDictionary *)obj{
+    NSLog(@"%@", obj);
+    if ([[obj objectForKey:@"rawStringStatus"] integerValue] == 261 || [[obj objectForKey:@"rawStringStatus"] integerValue] == 260) {
+        NSLog(@"timestamp error");
+        [self showAlert:@"Time Error" andContent:@"Please check your system time"];
+        return;
+    }
+    
+    if (obj == nil) {
+        NSLog(@"retuen nil");
+        return;
+    } else if ([obj objectForKey:@"httpErrorCode"] == nil){
+        
+        NSInteger rc;
+        if ([obj objectForKey:@"statusCode"] != nil)
+            rc = [[obj objectForKey:@"statusCode"] integerValue];
+        else
+            rc = [[obj objectForKey:@"rawStringStatus"] integerValue];
+        
+        switch (rc) {
+            case SUCCESS: {
+                NSMutableDictionary *friendDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:_addFriendCaller.textFiled.text, @"friendEmail", @"", @"friendAlias", @"", @"friendNote", @"inactivated", @"friendStatus",nil];
+                [_contactCaller.CellData addObject:friendDict];
+                NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"friendEmail" ascending:YES];
+                [_contactCaller.CellData sortUsingDescriptors:sort];
+                _addFriendCaller.textFiled.text = @"";
+            }
+                break;
+            case ACC_NOT_FOUND: {
+                [self showAlert:@"Account Not Found" andContent:nil];
+            }
+                break;
+            case INVALID_FD_ALIAS: {
+                [self showAlert:@"Invalid Alia" andContent:nil];
+            }
+                break;
+            case INVALID_EMAIL: {
+                [self showAlert:@"Invalid Email" andContent:nil];
+            }
+                break;
+            case FRIEND_EXIST: {
+                [self showAlert:@"Friend Existing" andContent:nil];
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    
+    //添加多个用户的时候会出问题，因为添加完第一个就跳出去了，之后的没法刷新
+    [_addFriendCaller.navigationController popToRootViewControllerAnimated:YES];
+    [_contactCaller.tableView reloadData];
+    
+    //停止动画
+    [_loadingAlert stopAnimating];
+    return;
+    
+}
+
+#pragma mark delete friend
+- (void)deleteContactToArray: (NSString *)emailAddress {
+    
+    USAVClient *client = [USAVClient current];
+    
+    NSString *stringToSign = [NSString stringWithFormat:@"%@%@%@%@%@%@", [client emailAddress], @"\n", [client getDateTimeStr], @"\n", emailAddress, @"\n"];
+    
+    NSLog(@"stringToSign: %@", stringToSign);
+    
+    NSString *signature = [client generateSignature:stringToSign withKey:client.password];
+    
+    NSLog(@"signature: %@", signature);
+    
+    GDataXMLElement * requestElement = [GDataXMLNode elementWithName:@"request"];
+    GDataXMLElement * paramElement = [GDataXMLNode elementWithName:@"account" stringValue:[client emailAddress]];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"timestamp" stringValue:[[USAVClient current] getDateTimeStr]];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"signature" stringValue:signature];
+    [requestElement addChild:paramElement];
+    
+    // add 'params' and the child parameters
+    GDataXMLElement * paramsElement = [GDataXMLNode elementWithName:@"params"];
+    paramElement = [GDataXMLNode elementWithName:@"friendId" stringValue:emailAddress];
+    [paramsElement addChild:paramElement];
+    
+    [requestElement addChild:paramsElement];
+    
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:requestElement];
+    NSData *xmlData = document.XMLData;
+    
+    NSString *getParam = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
+    
+    NSString *encodedGetParam = [[USAVClient current] encodeToPercentEscapeString:getParam];
+    
+    NSLog(@"getParam encoding: raw:%@ encoded:%@", getParam, encodedGetParam);
+    
+    [client.api deleteTrustContact:encodedGetParam target:(id)self selector:@selector(deleteContactCallBack:)];
+    [self showLoadingAlertAt:_contactCaller.view.window.subviews[0]];
+}
+#pragma mark delete friend call back
+- (void)deleteContactCallBack: (NSDictionary *)obj {
+    if ([[obj objectForKey:@"rawStringStatus"] integerValue] == 261 || [[obj objectForKey:@"rawStringStatus"] integerValue] == 260) {
+        NSLog(@"timestamp error");
+        [self showAlert:@"Time Error" andContent:@"Please check your system time"];
+        return;
+    }
+    
+    if (obj == nil) {
+        NSLog(@"retuen nil");
+        return;
+    }
+    
+    if ((obj != nil) && ([obj objectForKey:@"httpErrorCode"] == nil)) {
+        NSLog(@"ContactView deleteContactResult: %@", obj);
+        
+        int rc;
+        if ([obj objectForKey:@"statusCode"] != nil)
+            rc = [[obj objectForKey:@"statusCode"] integerValue];
+        else
+            rc = [[obj objectForKey:@"rawStringStatus"] integerValue];
+        
+        switch (rc) {
+            case SUCCESS:
+            {
+                // DY: use this if we want to use the USAVAddContactView to prompt for more than one text field
+                /*
+                 [delegate addContactViewSaveCmd:self.contactNameTextField.text alias:(NSString *)self.aliasNameTextField.text email:self.emailAddressTextField.text target:self];
+                 */
+                
+                // [self.arrayOfContacts addObject:friendDict];
+                [_contactCaller editCellData];
+                [_contactCaller.tableView reloadData];
+            }
+                break;
+            case FRIEND_NOT_FOUND:
+            {
+                [self showAlert:@"Contact Not Found" andContent:nil];
+                return;
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    
+    [_loadingAlert stopAnimating];
+    return;
+}
+
+#pragma mark delete group
+- (void)initiateDataFordeleteGroup:(NSString *)groupName {
+    USAVClient *client = [USAVClient current];
+    
+    NSString *stringToSign = [NSString stringWithFormat:@"%@%@%@%@%@%@", [client emailAddress], @"\n", [client getDateTimeStr], @"\n", groupName, @"\n"];
+    
+    NSLog(@"stringToSign: %@", stringToSign);
+    
+    NSString *signature = [client generateSignature:stringToSign withKey:client.password];
+    
+    NSLog(@"signature: %@", signature);
+    
+    GDataXMLElement * requestElement = [GDataXMLNode elementWithName:@"request"];
+    GDataXMLElement * paramElement = [GDataXMLNode elementWithName:@"account" stringValue:[client emailAddress]];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"timestamp" stringValue:[[USAVClient current] getDateTimeStr]];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"signature" stringValue:signature];
+    [requestElement addChild:paramElement];
+    
+    // add 'params' and the child parameters
+    GDataXMLElement * paramsElement = [GDataXMLNode elementWithName:@"params"];
+    paramElement = [GDataXMLNode elementWithName:@"group" stringValue:groupName];
+    [paramsElement addChild:paramElement];
+    
+    [requestElement addChild:paramsElement];
+    
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:requestElement];
+    NSData *xmlData = document.XMLData;
+    
+    NSString *getParam = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
+    
+    NSString *encodedGetParam = [[USAVClient current] encodeToPercentEscapeString:getParam];
+    
+    NSLog(@"getParam encoding: raw:%@ encoded:%@", getParam, encodedGetParam);
+    
+    
+    [client.api removeGroup:encodedGetParam target:(id)self selector:@selector(deleteGroupCallback:)];
+    [self showLoadingAlertAt:_contactCaller.view.window.subviews[0]];
+}
+
+#pragma mark delete group call back
+- (void)deleteGroupCallback: (NSDictionary *)obj {
+    if ([[obj objectForKey:@"statusCode"] integerValue] == 261 || [[obj objectForKey:@"statusCode"] integerValue] == 260) {
+        NSLog(@"delete failed");
+        return;
+    }
+    
+    if (obj == nil) {
+        NSLog(@"unknown error");
+        return;
+    }
+    
+    if ((obj != nil) && ([obj objectForKey:@"httpErrorCode"] == nil)) {
+        NSLog(@"ContactView deleteGroupResult: %@", obj);
+        
+        int rc;
+        if ([obj objectForKey:@"statusCode"] != nil)
+            rc = [[obj objectForKey:@"statusCode"] integerValue];
+        else
+            rc = [[obj objectForKey:@"rawStringStatus"] integerValue];
+        
+        switch (rc) {
+            case SUCCESS:
+            {
+                // DY: use this if we want to use the USAVAddContactView to prompt for more than one text field
+                /*
+                 [delegate addContactViewSaveCmd:self.contactNameTextField.text alias:(NSString *)self.aliasNameTextField.text email:self.emailAddressTextField.text target:self];
+                 */
+                
+                // [self.arrayOfContacts addObject:friendDict];
+                [_groupCaller editCellData];
+                [_contactCaller.tableView reloadData];
+                return;
+            }
+                break;
+            case GROUP_NOT_FOUND:
+            {
+                NSLog(@"Group not found");
+                return;
+            }
+                break;
+            default:
+                break;
+        }
+    }
+
+}
+
+
+
+
+
+
+
+//---------------------------------------------------------
 #pragma mark - 计时隐藏alert
 - (void)showAlert: (NSString *)alertTitle andContent: (NSString *)alertContent {
+
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(alertTitle, nil) message:NSLocalizedString(alertContent, nil) delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerForHideAlert:) userInfo:alert repeats:NO];
     //这个userInfo可以将这个函数里的某个参数，装进timer中，传递给别的函数
     [alert show];
+
 }
 - (void)timerForHideAlert: (NSTimer *)timer {
     UIAlertView *alert = [timer userInfo];
@@ -459,12 +769,17 @@
 }
 
 #pragma mark loading进度条
-- (void)showLoadingAlert:(id)view {
-    
+- (void)showLoadingAlertAt:(UIView *)view {
+    if (_loadingAlert.isAnimating) {
+        [_loadingAlert stopAnimating];
+        return;
+    } else {
     _loadingAlert = [[TYDotIndicatorView alloc] initWithFrame:CGRectMake(30, 260, 260, 50) dotStyle:TYDotIndicatorViewStyleRound dotColor:[UIColor colorWithRed:0.85f green:0.86f blue:0.88f alpha:1.00f] dotSize:CGSizeMake(15, 15) withBackground:NO];
     _loadingAlert.backgroundColor = [UIColor colorWithRed:0.20f green:0.27f blue:0.36f alpha:0.9f];
     _loadingAlert.layer.cornerRadius = 5.0f;
     [_loadingAlert startAnimating];
     [view addSubview:_loadingAlert];
+    }
 }
+
 @end

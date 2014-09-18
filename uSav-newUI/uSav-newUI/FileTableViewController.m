@@ -23,8 +23,9 @@
     NSString *segueTransBytes;
     NSString *segueTransColor;
     
+    
     NSMutableArray *allFileName;   //用来搜索的时候查询,这个需要是可变数组，因为要取出所有的cell文件名放进去
-    NSArray *searchFileName;    //只用赋值一次即可
+    NSMutableArray *searchFileName;    //只用赋值一次即可, 声明成mutable是因为需要先清空再装数据
     //BOOL firstVisit;
     
 }
@@ -45,12 +46,13 @@
     //在新线程去读取，免得UI卡死 (尚未解决)
     [NSThread detachNewThreadSelector:@selector(readDataFromInitateData) toTarget:self withObject:nil];
     
-    allFileName = [[NSMutableArray alloc] initWithCapacity:[_CellData count]]; //这句非常重要，要不然allFile为空
+    allFileName = [[NSMutableArray alloc] initWithCapacity:0]; //这句非常重要，要不然allFile为空
+    searchFileName = [[NSMutableArray alloc] initWithCapacity:0];   //这句更重要，记得mutableArray一定要初始化，否则默认为NSArray
     //初始化第二个数据源
     decryptionController =[[FileDecryptionTableViewController alloc] init];
     dataSourceIdentifier = @"Encrypted";
 
-
+    
     //刷新功能增加
     [self SetBeginRefresh];
     [self AddSearchBarAndDisplayController];
@@ -100,12 +102,19 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
+    // 这个方法对search的Table和普通的table都有效，都会被调用
+    
     if (tableView == _FileTable) {
+        [allFileName removeAllObjects]; //每次重置都清空，但是只是在这个Table里
         return [_CellData count];
     } else {
         return [searchFileName count];
     }
 
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
 }
 
 
@@ -124,13 +133,22 @@
         //NSLog(@"%@",cell);
     }
     
-    if (tableView == self.tableView) {
+    if (tableView == _FileTable) {
+        
+        #pragma warning 这里需要之后修改
+        //测试的时候_CellData里的数据是Database类型，不是nsstring，所以没法对比
+//        if ([_CellData[0] isEqualToString:@"noobject"]) {
+//            cell.FileName.text = NSLocalizedString(@"You Have No File", nil);
+//            cell.FileName.font = [UIFont boldSystemFontOfSize:14];
+//            cell.separatorInset = UIEdgeInsetsZero;
+//            return cell;
+//        }
         //创建数据对象，用之前定义了的_CellData初始化
         FileDataBase *cellData = _CellData[indexPath.row];
         //把所有文件名放到一个数组里，方便搜索(allFileName已经在开始初始化)
 
-        [allFileName addObject:cellData.FileName];
-
+        [allFileName addObject:cellData.FileName];  //搜索用
+        
         //CELL的主体
         //cell.TableImage.image = nil;
         cell.FileName.text = [NSString stringWithFormat:@"%@.usav", cellData.FileName]; //人工usav结尾
@@ -215,8 +233,12 @@
 //cell编辑/删除
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;//可以编辑
+    // 有数据才可以编辑，没有就不可以
+    if ([_CellData count] > 0) {
+        return YES;//可以编辑
+    } else {
+        return NO;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -235,20 +257,24 @@
 //属于delegate，不用写在datasource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //如果是在加密文件页面，跳转到有解密按钮的页面；如果是解密文件页面，跳转到有预览按钮的页面
-    if (indexPath.row >= 0 && [dataSourceIdentifier  isEqual: @"Decrypted"]) {
-        FileDataBase *cellData = _CellData[indexPath.row];
-        segueTransFileName = cellData.FileName;
-        segueTransBytes = cellData.Bytes;
-        segueTransColor = cellData.TableColor;
-        [self performSegueWithIdentifier:@"FileDetailSegue" sender:self];
-    } else if (indexPath.row >= 0 && [dataSourceIdentifier isEqual: @"Encrypted"]) {
-        FileDataBase *cellData = _CellData[indexPath.row];
-        segueTransFileName = [NSString stringWithFormat:@"%@.usav", cellData.FileName];
-        segueTransBytes = cellData.Bytes;
-        segueTransColor = cellData.TableColor;
-        [self performSegueWithIdentifier:@"FileDetailEncryptedSegue" sender:self];
+    //这里也要分开，点search和点普通的table不一样
+    if (tableView == _FileTable) {
+        //如果是在加密文件页面，跳转到有解密按钮的页面；如果是解密文件页面，跳转到有预览按钮的页面
+        if (indexPath.row >= 0 && [dataSourceIdentifier  isEqual: @"Decrypted"]) {
+            FileDataBase *cellData = _CellData[indexPath.row];
+            segueTransFileName = cellData.FileName;
+            segueTransBytes = cellData.Bytes;
+            segueTransColor = cellData.TableColor;
+            [self performSegueWithIdentifier:@"FileDetailSegue" sender:self];
+        } else if (indexPath.row >= 0 && [dataSourceIdentifier isEqual: @"Encrypted"]) {
+            FileDataBase *cellData = _CellData[indexPath.row];
+            segueTransFileName = [NSString stringWithFormat:@"%@.usav", cellData.FileName];
+            segueTransBytes = cellData.Bytes;
+            segueTransColor = cellData.TableColor;
+            [self performSegueWithIdentifier:@"FileDetailEncryptedSegue" sender:self];
+        }
     }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -323,8 +349,8 @@
     //生成一个判断器
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains [cd] %@", fileSearchBar.text];
     //用判断器筛选原始数据(的文件名)，放入新数组
-    searchFileName = nil;
-    searchFileName = (NSArray *)[allFileName filteredArrayUsingPredicate:predicate];
+    [searchFileName removeAllObjects];  //每次都清空
+    [searchFileName addObjectsFromArray:[allFileName filteredArrayUsingPredicate:predicate]];
     
 }
 
@@ -351,6 +377,7 @@
     } else if (selectedSegment == 1) {
         dataSourceIdentifier = @"Decrypted";
         decryptionController.CellData = [InitiateWithData initiateDataForFiles];
+        decryptionController.FileTable = _FileTable;
         _FileTable.dataSource = decryptionController;
         [_FileTable reloadData];
     }

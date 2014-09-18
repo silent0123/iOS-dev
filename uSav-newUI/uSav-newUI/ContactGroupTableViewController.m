@@ -8,7 +8,10 @@
 
 #import "ContactGroupTableViewController.h"
 
-@interface ContactGroupTableViewController ()
+@interface ContactGroupTableViewController (){
+    NSIndexPath *globalIndexPath;
+
+}
 
 @end
 
@@ -40,15 +43,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    if ([_CellData count] == 0) {
-        return 1;
-    }   //用来显示“您还没有分组”
+    //创建一个提示Label，在空的时候显示，有值的时候隐藏
     
     return [_CellData count];
 }
 
-
-//这里的内容都只是为了demo自定义, 数据从appdelegate传过来的。里面只有颜色和图片还有字体可以保留
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -57,11 +56,14 @@
         //创建数据对象，用之前定义了的_CellData初始化
         NSString *cellData = _CellData[indexPath.row];  //因为这里从服务器取回的_CellData装的只是单行的字符串，而不像之前是字典。
     
-        if ([_CellData count] == 0) {
-            cell.Name.text = NSLocalizedString(@"You have no group", nil);
-            cell.Name.font = [UIFont systemFontOfSize:14];
+        if ([_CellData[0] count] == 0) {
+            cell.Name.text = NSLocalizedString(@"You Have No Group", nil);
+            cell.Name.font = [UIFont boldSystemFontOfSize:14];
+            cell.Header.image = nil;
+            cell.separatorInset = UIEdgeInsetsZero;
             return cell;
         }
+        cell.separatorInset = UIEdgeInsetsMake(0, 44, 0, 0);
         //CELL的主体
         cell.Header.image = [UIImage imageNamed:@"Group@2x.png"];
         cell.Name.text = cellData;
@@ -92,22 +94,31 @@
 //cell编辑/删除
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;//可以编辑
+    // 有数据才可以编辑，没有就不可以
+    if ([_CellData count] > 0) {
+        return YES;//可以编辑
+    } else {
+        return NO;
+    }
 }
 
+//这个方法是datasource的
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [_CellData removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        NSLog(@"现在的第%zi行已经被移除, 还剩下%zi",indexPath.row,[_CellData count]);
+        [_dataInitiator initiateDataFordeleteGroup:_CellData[globalIndexPath.row]];
+        globalIndexPath = indexPath;
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
 
+#pragma mark 删除分组后修改CellData
+- (void)editCellData {
+    [_CellData removeObjectAtIndex:globalIndexPath.row];
+    [self.tableView deleteRowsAtIndexPaths:@[globalIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {

@@ -176,7 +176,7 @@
 #pragma mark 照片选择后的操作
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    NSLog(@"%@",info);
+    NSLog(@"%@",info);  //这里得到的内容相当丰富
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     //当选择的类型是图片
     if ([type isEqualToString:@"public.image"]) {
@@ -184,7 +184,7 @@
         UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         NSData *imageData;
         if (UIImagePNGRepresentation(image) == nil) {
-            imageData = UIImageJPEGRepresentation(image, 1.0);
+            imageData = UIImageJPEGRepresentation(image, 1.0);  //如果PNG无法压缩，就用JPEG压缩，压缩率为1(最小)
         } else {
             imageData = UIImagePNGRepresentation(image);
         }
@@ -199,7 +199,10 @@
         //把刚才转换成的imageData放入沙盒中
         [fileManager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
         [fileManager createFileAtPath:[documentPath stringByAppendingPathComponent:@"/image.png"] contents:imageData attributes:nil];//注意，这里的文件名是唯一的，可能会产生覆盖效果，以后会用相应的文件名来代替
-        UIImageWriteToSavedPhotosAlbum(image, self, nil, nil); //顺便存入相册, 这里还有一个BUG, 无论什么来源的照片他都会存到相册，不管是照的还是从相册里选的
+        
+        if ([info objectForKey:UIImagePickerControllerMediaMetadata]) { //info里面有这行，如果是照的照片的话，根据上面的NSLog看出来的
+            UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
+        }   //如果是拍的照片，就存入相册；如果是相册里选的，就不保存（因为已经有了）
         
         //得到沙盒中的完整文件路径
         NSString *filePath = [[NSString alloc] initWithFormat:@"%@%@", documentPath, @"/image.png"];

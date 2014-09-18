@@ -10,6 +10,6 @@
 
 @protocol LUCASelectContactDelegate
 
-- (void) passValue: (NSString *)value;
+- (void) passValue: (NSArray *)value;
 
 @end

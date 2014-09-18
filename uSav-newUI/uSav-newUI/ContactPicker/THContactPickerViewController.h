@@ -11,6 +11,7 @@
 #import "THContactPickerView.h"
 #import "THContactPickerTableViewCell.h"
 #import "LUCASelectContactDelegate.h" //传值delegate
+#import "TYDotIndicatorView.h"
 
 @interface THContactPickerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, THContactPickerDelegate, ABPersonViewControllerDelegate>
 
@@ -20,6 +21,8 @@
 @property (nonatomic, strong) NSMutableArray *selectedContacts;
 @property (nonatomic, strong) NSArray *filteredContacts;
 
+@property (strong, nonatomic) TYDotIndicatorView *loadingAlert;
 @property (nonatomic, strong) NSObject <LUCASelectContactDelegate> *passDelegate;
+
 
 @end

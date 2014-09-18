@@ -22,6 +22,11 @@
     
     self.navigationController.navigationBarHidden = YES;    //隐藏Navigation Bar
     
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchToExit)];
+    gestureRecognizer.delegate = self;
+    gestureRecognizer.numberOfTapsRequired = 1; //点击次数需求
+    gestureRecognizer.numberOfTouchesRequired = 1;  //手指数目
+    [self.view addGestureRecognizer:gestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,6 +85,21 @@
 #pragma mark status bar颜色
 - (UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
+}
+
+#pragma mark gesture delegate方法
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    
+    if ([touch.view isKindOfClass:[UIButton class]]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+#pragma mark gesture处理函数
+- (void)touchToExit {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 /*
 #pragma mark - Navigation

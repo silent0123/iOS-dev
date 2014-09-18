@@ -18,5 +18,6 @@
 
 //@property (strong, nonatomic) UITableViewCell *searchCell;
 @property (strong, nonatomic) NSMutableArray *CellData;
+@property (strong, nonatomic) UITableView *FileTable;
 
 @end

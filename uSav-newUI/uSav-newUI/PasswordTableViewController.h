@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ColorFromHex.h"
+#import "USAVClient.h"
+#import "API.h"
+#import "GDataXMLNode.h"
+#import "TYDotIndicatorView.h"
 
 @interface PasswordTableViewController : UITableViewController
+
+@property (strong, nonatomic) TYDotIndicatorView *loadingAlert;
 
 @end

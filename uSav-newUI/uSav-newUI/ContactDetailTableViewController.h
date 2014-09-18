@@ -13,5 +13,6 @@
 
 @property (strong, nonatomic) NSString *segueTransName;
 @property (strong, nonatomic) NSString *segueTransEmail;
+@property (strong, nonatomic) NSString *segueTransActivated;
 
 @end

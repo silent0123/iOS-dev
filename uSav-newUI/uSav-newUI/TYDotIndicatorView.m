@@ -153,5 +153,4 @@ static const CGFloat dotSeparatorDistance = 12.0f;
     
     [super removeFromSuperview];
 }
-
 @end
