@@ -235,7 +235,7 @@
 #pragma mark - 计时隐藏alert
 - (void)showAlert: (NSString *)alertTitle andContent: (NSString *)alertContent {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(alertTitle, nil) message:NSLocalizedString(alertContent, nil) delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerForHideAlert:) userInfo:alert repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerForHideAlert:) userInfo:alert repeats:NO];
     //这个userInfo可以将这个函数里的某个参数，装进timer中，传递给别的函数
     [alert show];
 }

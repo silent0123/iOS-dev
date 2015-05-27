@@ -8,7 +8,10 @@
 
 #import "NYOBetterZoomViewController.h"
 
-@interface NYOBetterZoomViewController ()
+@interface NYOBetterZoomViewController (){
+    BOOL isNavigationHidden;
+
+}
 @property (nonatomic, strong) UIButton *doneBtn;
 @end
 
@@ -68,6 +71,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+    isNavigationHidden = NO;
+    
 	// Set up our custom ScrollView
 	self.imageScrollView = [[NYOBetterZoomUIScrollView alloc] initWithFrame:self.view.bounds];
 	[self.imageScrollView setBackgroundColor:[UIColor blackColor]];
@@ -86,9 +91,11 @@
 	//UIImage *image = [UIImage imageNamed:@"tall.png"];
 	//UIImage *image = [UIImage imageNamed:@"wide.png"];
 	// UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[self.fullFilePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+//    NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[self.fullFilePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    NSData *imageData = [[NSData alloc] initWithContentsOfFile:self.fullFilePath];
     UIImageView *imageView = [[UIImageView alloc]
                               initWithImage:[[UIImage alloc] initWithData:imageData]];
+    
     
 	// Finish the ScrollView setup
 	[self.imageScrollView setContentSize:imageView.frame.size];
@@ -112,7 +119,6 @@
 //    self.doneBtn.frame =  CGRectMake(20, 20, 40, 40);
 //    //self.doneBtn.hidden = YES;
 //    [self.view addSubview:doneBtn];
-    NSLog(@"%@", self.view.subviews);
 }
 
 
@@ -123,8 +129,8 @@
 - (void)scrollViewDidEndZooming:(NYOBetterZoomUIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
 #ifdef DEBUG
 	UIView *theView = [scrollView childView];
-	NSLog(@"view frame: %@", NSStringFromCGRect(theView.frame));
-	NSLog(@"view bounds: %@", NSStringFromCGRect(theView.bounds));
+	//NSLog(@"view frame: %@", NSStringFromCGRect(theView.frame));
+	//NSLog(@"view bounds: %@", NSStringFromCGRect(theView.bounds));
 #endif
 }
 
@@ -149,5 +155,16 @@
 	self.imageScrollView = nil;
 }
 
+#pragma mark 点击事件
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (isNavigationHidden) {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        isNavigationHidden = NO;
+    } else {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        isNavigationHidden = YES;
+    }
+    
+}
 
 @end

@@ -19,6 +19,7 @@
     //用来识别当前显示的数据源，从而控制segue跳转
     NSString *dataSourceIdentifier;
     //用来segue传参
+    NSString *segueTransFilePath;
     NSString *segueTransFileName;
     NSString *segueTransBytes;
     NSString *segueTransColor;
@@ -28,6 +29,7 @@
     NSMutableArray *searchFileName;    //只用赋值一次即可, 声明成mutable是因为需要先清空再装数据
     //BOOL firstVisit;
     
+    InitiateWithData *dataInitiator;
 }
 
 //@property (strong, nonatomic) TYDotIndicatorView *loadingAlert;
@@ -35,22 +37,28 @@
 @end
 @implementation FileTableViewController 
 
-- (void)readDataFromInitateData {
-    _CellData = [InitiateWithData initiateDataForFiles];
+- (void)readDataFromInitateData{
+    //调用方法，往这个CellData里写东西
+    [dataInitiator initiateDataForFiles:self];
     [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
     
-    //初始化数据
-    //在新线程去读取，免得UI卡死 (尚未解决)
-    [NSThread detachNewThreadSelector:@selector(readDataFromInitateData) toTarget:self withObject:nil];
-    
+    //初始化各种MutableArryay，否则下面数据初始化的时候会为null
     allFileName = [[NSMutableArray alloc] initWithCapacity:0]; //这句非常重要，要不然allFile为空
     searchFileName = [[NSMutableArray alloc] initWithCapacity:0];   //这句更重要，记得mutableArray一定要初始化，否则默认为NSArray
+    _CellData = [[NSMutableArray alloc] initWithCapacity:0];
     //初始化第二个数据源
     decryptionController =[[FileDecryptionTableViewController alloc] init];
+    decryptionController.CellData = [[NSMutableArray alloc] initWithCapacity:0];
     dataSourceIdentifier = @"Encrypted";
+    
+    //初始化数据
+    //在新线程去读取，免得UI卡死 (尚未解决)
+    dataInitiator = [[InitiateWithData alloc] init];
+    dataInitiator.encryptedFileTableCaller = self;
+    [NSThread detachNewThreadSelector:@selector(readDataFromInitateData) toTarget:self withObject:nil];
 
     
     //刷新功能增加
@@ -82,6 +90,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 //- (void)viewDidAppear:(BOOL)animated {
 //    //之后再次进入该页面
@@ -136,47 +145,30 @@
     if (tableView == _FileTable) {
         
         #pragma warning 这里需要之后修改
-        //测试的时候_CellData里的数据是Database类型，不是nsstring，所以没法对比
-//        if ([_CellData[0] isEqualToString:@"noobject"]) {
-//            cell.FileName.text = NSLocalizedString(@"You Have No File", nil);
-//            cell.FileName.font = [UIFont boldSystemFontOfSize:14];
-//            cell.separatorInset = UIEdgeInsetsZero;
-//            return cell;
-//        }
         //创建数据对象，用之前定义了的_CellData初始化
-        FileDataBase *cellData = _CellData[indexPath.row];
+        NSDictionary *cellData = _CellData[indexPath.row];
         //把所有文件名放到一个数组里，方便搜索(allFileName已经在开始初始化)
 
-        [allFileName addObject:cellData.FileName];  //搜索用
+        [allFileName addObject:[cellData objectForKey:@"Filename"]];  //搜索用
         
         //CELL的主体
-        //cell.TableImage.image = nil;
-        cell.FileName.text = [NSString stringWithFormat:@"%@.usav", cellData.FileName]; //人工usav结尾
+        cell.FileName.text = [NSString stringWithFormat:@"%@", [cellData objectForKey:@"Filename"]]; //人工usav结尾
         cell.FileName.font = [UIFont boldSystemFontOfSize:14];
-        //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
-        cell.Bytes.text = cellData.Bytes;
+        
+        cell.Bytes.text = [NSString stringWithFormat:@"%d KBytes", ([[cellData objectForKey:@"NSFileSize"] integerValue]/1024)];
         cell.Bytes.font = [UIFont systemFontOfSize:10];
         cell.Bytes.textColor = [ColorFromHex getColorFromHex:@"#929292"];
-        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:cellData.TableColor];
-        cell.ReceiveTime.text = cellData.ReceiveTime;
+
+        //先设置时间格式
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm:ss"];
+        NSString *dateString = [dateFormat stringFromDate:[cellData objectForKey:@"NSFileModificationDate"]];
+        cell.ReceiveTime.text = dateString;
         cell.ReceiveTime.textColor = [ColorFromHex getColorFromHex:@"#929292"];
         //cell.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
         
-        //Image不用在数据类中加，直接在这里加
-        if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#44BBC1"].CGColor)) {
-            cell.TableImage.image = [UIImage imageNamed:@"EncryptedWord@2x.png"];
-        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#ED6F00"].CGColor)) {
-            cell.TableImage.image = [UIImage imageNamed:@"EncryptedPowerpoint@2x.png"];
-        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#A0BD2B"].CGColor)) {
-            cell.TableImage.image = [UIImage imageNamed:@"EncryptedExcel@2x.png"];
-        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#D6006F"].CGColor)) {
-            cell.TableImage.image = [UIImage imageNamed:@"EncryptedMultimedia@2x.png"];
-        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#E8251E"].CGColor)){
-            cell.TableImage.image = [UIImage imageNamed:@"EncryptedPdf@2x.png"];
-        } else {
-            cell.TableImage.image = [UIImage imageNamed:@"EncryptedOthers@2x.png"];
-        }
-            
+
+        [self compareExtension:cell withDictionary:cellData];
         
         //高亮状态
         //cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
@@ -197,34 +189,6 @@
         
 
         return self.searchCell;
-        
-        //CELL的主体
-//        cell.TableImage.image = nil;
-//        cell.FileName.text = [NSString stringWithFormat:@"%@.usav", searchFileName.FileName]; //人工usav结尾
-//        cell.FileName.font = [UIFont boldSystemFontOfSize:14];
-//        //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
-//        cell.Bytes.text = searchFileName.Bytes;
-//        cell.Bytes.font = [UIFont systemFontOfSize:10];
-//        cell.Bytes.textColor = [ColorFromHex getColorFromHex:@"#929292"];
-//        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:searchFileName.TableColor];
-//        cell.ReceiveTime.text = searchFileName.ReceiveTime;
-//        cell.ReceiveTime.textColor = [ColorFromHex getColorFromHex:@"#929292"];
-        //cell.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
-        
-        //Image不用在数据类中加，直接在这里加
-//        if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#44BBC1"].CGColor)) {
-//            cell.TableImage.image = [UIImage imageNamed:@"EncryptedWord@2x.png"];
-//        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#ED6F00"].CGColor)) {
-//            cell.TableImage.image = [UIImage imageNamed:@"EncryptedPowerpoint@2x.png"];
-//        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#A0BD2B"].CGColor)) {
-//            cell.TableImage.image = [UIImage imageNamed:@"EncryptedExcel@2x.png"];
-//        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#D6006F"].CGColor)) {
-//            cell.TableImage.image = [UIImage imageNamed:@"EncryptedMultimedia@2x.png"];
-//        } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#E8251E"].CGColor)){
-//            cell.TableImage.image = [UIImage imageNamed:@"EncryptedPdf@2x.png"];
-//        } else {
-//            cell.TableImage.image = [UIImage imageNamed:@"EncryptedOthers@2x.png"];
-//        }
     }
     
     return cell;
@@ -244,7 +208,14 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+        //从document目录删除文件
+        NSArray *PathsArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentPath = [PathsArray objectAtIndex:0];  //搜索到的是数组，这里得取第0个出来，才是path
+        NSString *deleteFilePath = [NSString stringWithFormat:@"%@/%@/%@", documentPath, @"Encrypted", [_CellData[indexPath.row] objectForKey:@"Filename"]];
+        //NSString *decryptedFilePath = [NSString stringWithFormat:@"%@/%@", documentPath, @"Decrypted"];
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        [fileManager removeItemAtPath:deleteFilePath error:nil];
         [_CellData removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         NSLog(@"现在的第%zi行已经被移除, 还剩下%zi",indexPath.row,[_CellData count]);
@@ -257,28 +228,68 @@
 //属于delegate，不用写在datasource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    FileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FileCell"];
+    
     //这里也要分开，点search和点普通的table不一样
     if (tableView == _FileTable) {
         //如果是在加密文件页面，跳转到有解密按钮的页面；如果是解密文件页面，跳转到有预览按钮的页面
-        if (indexPath.row >= 0 && [dataSourceIdentifier  isEqual: @"Decrypted"]) {
-            FileDataBase *cellData = _CellData[indexPath.row];
-            segueTransFileName = cellData.FileName;
-            segueTransBytes = cellData.Bytes;
-            segueTransColor = cellData.TableColor;
+        if (indexPath.row >= 0 && [dataSourceIdentifier  isEqual: @"Decrypted"]) {  //解密文件界面
+
+            NSDictionary *cellData = decryptionController.CellData[indexPath.row];
+            segueTransFilePath = [NSString stringWithFormat:@"%@", [cellData objectForKey:@"FilePath"]];
+            segueTransFileName = [NSString stringWithFormat:@"%@", [cellData objectForKey:@"Filename"]];
+            segueTransBytes = [NSString stringWithFormat:@"%d KBytes", ([[cellData objectForKey:@"NSFileSize"] integerValue]/1024)];
+            segueTransColor = [self compareExtension:cell withDictionary:cellData]; //传递当前点下的格子的颜色，在那边方便设置图片
             [self performSegueWithIdentifier:@"FileDetailSegue" sender:self];
-        } else if (indexPath.row >= 0 && [dataSourceIdentifier isEqual: @"Encrypted"]) {
-            FileDataBase *cellData = _CellData[indexPath.row];
-            segueTransFileName = [NSString stringWithFormat:@"%@.usav", cellData.FileName];
-            segueTransBytes = cellData.Bytes;
-            segueTransColor = cellData.TableColor;
+            
+        } else if (indexPath.row >= 0 && [dataSourceIdentifier isEqual: @"Encrypted"]) {    //加密文件界面
+            
+            NSDictionary *cellData = _CellData[indexPath.row];
+            segueTransFilePath = [NSString stringWithFormat:@"%@", [cellData objectForKey:@"FilePath"]];
+            segueTransFileName = [NSString stringWithFormat:@"%@", [cellData objectForKey:@"Filename"]];
+            segueTransBytes = [NSString stringWithFormat:@"%d KBytes", ([[cellData objectForKey:@"NSFileSize"] integerValue]/1024)];
+            segueTransColor = [self compareExtension:cell withDictionary:cellData]; //传递当前点下的格子的颜色，在那边方便设置图片
             [self performSegueWithIdentifier:@"FileDetailEncryptedSegue" sender:self];
+            
         }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
-
+#pragma mark 对比扩展名调整颜色，并且返回被设置的颜色
+- (NSString *)compareExtension: (FileTableViewCell *)cell withDictionary: (NSDictionary *)cellData{
+    
+    NSString *fileExtensionWithUsav = [[cellData objectForKey:@"FilePath"] stringByDeletingPathExtension];  //加密文件都以usav结尾，先去除
+    NSString *fileExtension = [fileExtensionWithUsav pathExtension];    //再取出实际的ext
+    
+    //Image不用在数据类中加，直接在这里加，注意，caseInsensitive的对比，0为符合
+    if (![fileExtension caseInsensitiveCompare:@"doc"] || ![fileExtension caseInsensitiveCompare:@"docx"]) {
+        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:@"#44BBC1"];
+        cell.TableImage.image = [UIImage imageNamed:@"EncryptedWord@2x.png"];
+        return @"#44BBC1";
+    } else if (![fileExtension caseInsensitiveCompare:@"ppt"] || ![fileExtension caseInsensitiveCompare:@"pptx"]) {
+        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:@"#ED6F00"];
+        cell.TableImage.image = [UIImage imageNamed:@"EncryptedPowerpoint@2x.png"];
+        return @"#ED6F00";
+    } else if (![fileExtension caseInsensitiveCompare:@"xls"] || ![fileExtension caseInsensitiveCompare:@"xlsx"]) {
+        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:@"#A0BD2B"];
+        cell.TableImage.image = [UIImage imageNamed:@"EncryptedExcel@2x.png"];
+        return @"#A0BD2B";
+    } else if (![fileExtension caseInsensitiveCompare:@"jpeg"] || ![fileExtension caseInsensitiveCompare:@"png"] || ![fileExtension caseInsensitiveCompare:@"jpg"] ||![fileExtension caseInsensitiveCompare:@"gif"] || ![fileExtension caseInsensitiveCompare:@"mov"] || ![fileExtension caseInsensitiveCompare:@"mp4"] || ![fileExtension caseInsensitiveCompare:@"3gp"] || ![fileExtension caseInsensitiveCompare:@"rmvb"] || ![fileExtension caseInsensitiveCompare:@"avc"] || ![fileExtension caseInsensitiveCompare:@"avi"] || ![fileExtension caseInsensitiveCompare:@"mpeg-4"] || ![fileExtension caseInsensitiveCompare:@"mp3"] || ![fileExtension caseInsensitiveCompare:@"aac"] || ![fileExtension caseInsensitiveCompare:@"amr"] || ![fileExtension caseInsensitiveCompare:@"wav"] || ![fileExtension caseInsensitiveCompare:@"mid"]) {
+        //这里是支持的多媒体格式，前面是图片，后面是视频
+        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:@"#D6006F"];
+        cell.TableImage.image = [UIImage imageNamed:@"EncryptedMultimedia@2x.png"];
+        return @"#D6006F";
+    } else if (![fileExtension isEqualToString:@"pdf"]){
+        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:@"#E8251E"];
+        cell.TableImage.image = [UIImage imageNamed:@"EncryptedPdf@2x.png"];
+        return @"#E8251E";
+    } else {
+        cell.TableImage.image = [UIImage imageNamed:@"EncryptedOthers@2x.png"];
+    }
+    return @"Others";
+}
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
@@ -300,18 +311,26 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqual: @"FileDetailSegue"]) {
-        // 将本页面的值通过segue传递给下一个页面
+        // 将本页面的值通过segue传递给下一个页面 - 没加密
         FileDetailViewController *fileDetailController = segue.destinationViewController;
         // 下一个页面获取到值
+        fileDetailController.segueTransFilePath = segueTransFilePath;
         fileDetailController.segueTransFileName = segueTransFileName;
         fileDetailController.segueTransBytes = segueTransBytes;
         fileDetailController.segueTransColor = segueTransColor;
+        fileDetailController.fileTableViewController = self;
     } else if ([segue.identifier isEqual: @"FileDetailEncryptedSegue"]) {
         FileDetailEncryptedViewController *fileDetailEncryptedController = segue.destinationViewController;
         // 下一个页面获取到值
+        fileDetailEncryptedController.segueTransFilePath = segueTransFilePath;
         fileDetailEncryptedController.segueTransFileName = segueTransFileName;
         fileDetailEncryptedController.segueTransBytes = segueTransBytes;
         fileDetailEncryptedController.segueTransColor = segueTransColor;
+        fileDetailEncryptedController.fileDecryptionTableViewController = decryptionController;
+    } else if ([segue.identifier isEqualToString:@"NewFileSegue"]){
+        AddFileTableViewController *addFileController = segue.destinationViewController;
+        addFileController.fileDecryptedTableViewController = decryptionController;
+        addFileController.fileEncryptedTableViewController = self;
     }
 
 }
@@ -376,7 +395,8 @@
         [_FileTable reloadData];
     } else if (selectedSegment == 1) {
         dataSourceIdentifier = @"Decrypted";
-        decryptionController.CellData = [InitiateWithData initiateDataForFiles];
+        dataInitiator.decryptedFileTableCaller = decryptionController;
+        [dataInitiator initiateDataForFiles:decryptionController];
         decryptionController.FileTable = _FileTable;
         _FileTable.dataSource = decryptionController;
         [_FileTable reloadData];
@@ -384,34 +404,6 @@
 
 }
 
-#pragma mark AddButton事件
-//- (IBAction)AddButtonClicked:(id)sender {
-//    由于addsubview只能放到tableview上去，有滚动效果，所以这里不做弹出窗口了
-//    if (menuIsOpen) {
-//        [self TransitionAnimationEffect:addMenu];
-//        [addMenu setHidden:YES];
-//        menuIsOpen = !menuIsOpen;
-//    } else {
-//        [self TransitionAnimationEffect:addMenu];
-//        [addMenu setHidden:NO];
-//        menuIsOpen = !menuIsOpen;
-//    }
-//}
-
-#pragma mark 传递给View动画效果
-//- (UIView *)TransitionAnimationEffect:(UIView *)view {
-//
-//    //动画效果
-//    CATransition *menuTransition = [CATransition animation];
-//    menuTransition.duration = 0.5;
-//    menuTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];  //设定动画的时间函数，也就是进出的快慢
-//    menuTransition.type = @"fade"; //动画效果
-//    menuTransition.delegate = self;
-//    //加到构件上
-//    [view.layer addAnimation:menuTransition forKey:nil];
-//    
-//    return view;
-//}
 
 #pragma mark 下拉刷新
 //结束事件(数据处理)
@@ -428,6 +420,7 @@
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:recentUpdateString];
     
     [self.refreshControl endRefreshing];
+    [dataInitiator initiateDataForFiles:self];
     [self.tableView reloadData];
 }
 

@@ -300,7 +300,7 @@
 - (void)showAlert: (NSString *)alertTitle andContent: (NSString *)alertContent {
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(alertTitle, nil) message:NSLocalizedString(alertContent, nil) delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerForHideAlert:) userInfo:alert repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerForHideAlert:) userInfo:alert repeats:NO];
     //这个userInfo可以将这个函数里的某个参数，装进timer中，传递给别的函数
     [alert show];
     
@@ -319,8 +319,8 @@
         _loadingAlert = [[TYDotIndicatorView alloc] initWithFrame:CGRectMake(30, 260, 260, 50) dotStyle:TYDotIndicatorViewStyleRound dotColor:[UIColor colorWithRed:0.85f green:0.86f blue:0.88f alpha:1.00f] dotSize:CGSizeMake(15, 15) withBackground:NO];
         _loadingAlert.backgroundColor = [UIColor colorWithRed:0.20f green:0.27f blue:0.36f alpha:0.9f];
         _loadingAlert.layer.cornerRadius = 5.0f;
-        [_loadingAlert startAnimating];
         [view addSubview:_loadingAlert];
+        [_loadingAlert startAnimating];
     }
 }
 @end

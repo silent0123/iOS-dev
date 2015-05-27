@@ -11,15 +11,20 @@
 #import "FileDataBase.h"
 #import "ContactDataBase.h"
 #import "LogsDataBase.h"
+//server connect
 #import "API.h"
 #import "USAVClient.h"
 #import "GDataXMLNode.h"
 #import "TYDotIndicatorView.h"
 
+#import "FileTableViewController.h"
+#import "FileDecryptionTableViewController.h"
 #import "ContactTableViewController.h"
 #import "ContactGroupTableViewController.h"
 #import "AddFriendTableViewController.h"
 
+@class FileTableViewController;
+@class FileDecryptionTableViewController;
 @class ContactTableViewController;
 @class ContactGroupTableViewController;
 @class AddFriendTableViewController;
@@ -32,7 +37,7 @@
 //Recent
 //+ (NSMutableArray *)initiateDataForRecent;
 //Files
-+ (NSMutableArray *)initiateDataForFiles;
+- (void)initiateDataForFiles:(id)sender;    //这里不像contact一样分成了两个来处理，所以发送sender进来判断是哪个segment
 //Contact和Contact的section
 - (NSMutableArray *)initiateDataForContact;
 - (NSMutableArray *)initiateDataForContact_Group;
@@ -54,6 +59,8 @@
 
 //var
 @property (strong, nonatomic) NSMutableArray *mutableDataForGlobal; //用来存放从服务器读取回的FILE或者CONTACT或者HISTORY数据，在不同类之间共享
+@property (strong, nonatomic) FileTableViewController *encryptedFileTableCaller;
+@property (strong, nonatomic) FileDecryptionTableViewController *decryptedFileTableCaller;
 @property (strong, nonatomic) ContactTableViewController *contactCaller;   //由其他类设置，存放调用者的实例，用来[caller.tableview reloadData]
 @property (strong, nonatomic) ContactGroupTableViewController *groupCaller;     //由其他类设置，传数据到datasource
 @property (strong, nonatomic) AddFriendTableViewController *addFriendCaller;

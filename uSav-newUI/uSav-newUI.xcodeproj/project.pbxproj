@@ -57,10 +57,14 @@
 		814C142F199A052E007F2748 /* box_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C142D199A052E007F2748 /* box_empty.png */; };
 		814C1430199A052E007F2748 /* box_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 814C142E199A052E007F2748 /* box_empty@2x.png */; };
 		814C1439199A05B3007F2748 /* USAVLockTimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814C1438199A05B3007F2748 /* USAVLockTimeController.m */; };
+		8160DB6419D3B8B9005401BC /* UsavFileHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160DB6219D3B8B9005401BC /* UsavFileHeader.m */; };
+		8160DB6819D3BBE2005401BC /* FileHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160DB6719D3BBE2005401BC /* FileHeader.m */; };
 		81684D40199B1502004A6AAF /* LanguageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81684D3F199B1502004A6AAF /* LanguageTableViewController.m */; };
 		81684D43199B151B004A6AAF /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81684D42199B151B004A6AAF /* ProfileTableViewController.m */; };
 		81684D49199B23FA004A6AAF /* ContactDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81684D48199B23FA004A6AAF /* ContactDetailTableViewController.m */; };
 		81684D4C199B2417004A6AAF /* ContactGroupDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81684D4B199B2417004A6AAF /* ContactGroupDetailTableViewController.m */; };
+		8182FFB119D41143001747E7 /* UsavStreamCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8182FFB019D41143001747E7 /* UsavStreamCipher.m */; };
+		8182FFB419D41150001747E7 /* UsavCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8182FFB319D41150001747E7 /* UsavCipher.m */; };
 		8193CCCD19B7FF8000C63342 /* LoginBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8193CCCC19B7FF8000C63342 /* LoginBackground@2x.png */; };
 		8193CCD119B8213E00C63342 /* USAVClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8193CCD019B8213E00C63342 /* USAVClient.m */; };
 		8193CCD619B822D200C63342 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 8193CCD519B822D200C63342 /* API.m */; };
@@ -256,6 +260,10 @@
 		814C142E199A052E007F2748 /* box_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box_empty@2x.png"; sourceTree = "<group>"; };
 		814C1437199A05B3007F2748 /* USAVLockTimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USAVLockTimeController.h; sourceTree = "<group>"; };
 		814C1438199A05B3007F2748 /* USAVLockTimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USAVLockTimeController.m; sourceTree = "<group>"; };
+		8160DB6219D3B8B9005401BC /* UsavFileHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsavFileHeader.m; sourceTree = "<group>"; };
+		8160DB6319D3B8B9005401BC /* UsavFileHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsavFileHeader.h; sourceTree = "<group>"; };
+		8160DB6619D3BBE2005401BC /* FileHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHeader.h; sourceTree = "<group>"; };
+		8160DB6719D3BBE2005401BC /* FileHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHeader.m; sourceTree = "<group>"; };
 		81684D3E199B1502004A6AAF /* LanguageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageTableViewController.h; sourceTree = "<group>"; };
 		81684D3F199B1502004A6AAF /* LanguageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageTableViewController.m; sourceTree = "<group>"; };
 		81684D41199B151B004A6AAF /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewController.h; sourceTree = "<group>"; };
@@ -264,6 +272,10 @@
 		81684D48199B23FA004A6AAF /* ContactDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailTableViewController.m; sourceTree = "<group>"; };
 		81684D4A199B2417004A6AAF /* ContactGroupDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupDetailTableViewController.h; sourceTree = "<group>"; };
 		81684D4B199B2417004A6AAF /* ContactGroupDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupDetailTableViewController.m; sourceTree = "<group>"; };
+		8182FFAF19D41143001747E7 /* UsavStreamCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsavStreamCipher.h; sourceTree = "<group>"; };
+		8182FFB019D41143001747E7 /* UsavStreamCipher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsavStreamCipher.m; sourceTree = "<group>"; };
+		8182FFB219D41150001747E7 /* UsavCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsavCipher.h; sourceTree = "<group>"; };
+		8182FFB319D41150001747E7 /* UsavCipher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsavCipher.m; sourceTree = "<group>"; };
 		8193CCCC19B7FF8000C63342 /* LoginBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginBackground@2x.png"; sourceTree = "<group>"; };
 		8193CCCF19B8213E00C63342 /* USAVClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USAVClient.h; sourceTree = "<group>"; };
 		8193CCD019B8213E00C63342 /* USAVClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USAVClient.m; sourceTree = "<group>"; };
@@ -656,9 +668,33 @@
 			name = "由于beta3的图片显示bug，暂时放在这里";
 			sourceTree = "<group>";
 		};
+		8160DB6519D3B8C4005401BC /* FileHeader */ = {
+			isa = PBXGroup;
+			children = (
+				8160DB6619D3BBE2005401BC /* FileHeader.h */,
+				8160DB6719D3BBE2005401BC /* FileHeader.m */,
+				8160DB6219D3B8B9005401BC /* UsavFileHeader.m */,
+				8160DB6319D3B8B9005401BC /* UsavFileHeader.h */,
+			);
+			name = FileHeader;
+			sourceTree = "<group>";
+		};
+		8182FFB519D4115A001747E7 /* Cipher */ = {
+			isa = PBXGroup;
+			children = (
+				8182FFB219D41150001747E7 /* UsavCipher.h */,
+				8182FFB319D41150001747E7 /* UsavCipher.m */,
+				8182FFAF19D41143001747E7 /* UsavStreamCipher.h */,
+				8182FFB019D41143001747E7 /* UsavStreamCipher.m */,
+			);
+			name = Cipher;
+			sourceTree = "<group>";
+		};
 		8193CCCE19B800F200C63342 /* USAV Library */ = {
 			isa = PBXGroup;
 			children = (
+				8182FFB519D4115A001747E7 /* Cipher */,
+				8160DB6519D3B8C4005401BC /* FileHeader */,
 				8193CD0E19B82B5C00C63342 /* WarningView */,
 				8193CD0A19B8281D00C63342 /* SGDUtilities */,
 				8193CD0919B825EA00C63342 /* XML */,
@@ -1156,6 +1192,7 @@
 				8128787E19946B0A007C6B39 /* ContactDataBase.m in Sources */,
 				81CA87EA19B581DF00065A43 /* RegisterViewController.m in Sources */,
 				8128788119946BC7007C6B39 /* ContactTableViewCell.m in Sources */,
+				8182FFB419D41150001747E7 /* UsavCipher.m in Sources */,
 				814C141E1999EA9C007F2748 /* KKPasscodeViewController.m in Sources */,
 				8120270119A32D5400E5E2A9 /* FileAuditTableViewController.m in Sources */,
 				8120270519A3391C00E5E2A9 /* LoginViewController.m in Sources */,
@@ -1172,6 +1209,7 @@
 				81AD87981993263300040C7B /* FileDecryptionTableViewController.m in Sources */,
 				814C1439199A05B3007F2748 /* USAVLockTimeController.m in Sources */,
 				8114EF461991FFEF00D5E66F /* AppDelegate.m in Sources */,
+				8160DB6819D3BBE2005401BC /* FileHeader.m in Sources */,
 				8193CCF519B823AF00C63342 /* NSString+SBJSON.m in Sources */,
 				81F49A87199B40B400A938CA /* THContact.m in Sources */,
 				81B1BC181994A5CE00E01E76 /* AddFriendTableViewController.m in Sources */,
@@ -1180,6 +1218,7 @@
 				8128787B19946A9A007C6B39 /* ContactGroupTableViewController.m in Sources */,
 				8193CCD619B822D200C63342 /* API.m in Sources */,
 				81B1BC151994A5BA00E01E76 /* AddFirendTableViewCell.m in Sources */,
+				8160DB6419D3B8B9005401BC /* UsavFileHeader.m in Sources */,
 				81F49A88199B40B400A938CA /* THContactBubble.m in Sources */,
 				8128787819946A82007C6B39 /* ContactTableViewController.m in Sources */,
 				814C13FD19988A6C007F2748 /* FileDetailViewController.m in Sources */,
@@ -1188,6 +1227,7 @@
 				8193CD0D19B8282500C63342 /* SGDUtilities.m in Sources */,
 				81338713199D9EFA0087A168 /* PasswordTableViewController.m in Sources */,
 				814C140F1999EA90007F2748 /* NYOBetterZoomUIScrollView.m in Sources */,
+				8182FFB119D41143001747E7 /* UsavStreamCipher.m in Sources */,
 				81AD878D199233D600040C7B /* InitiateWithData.m in Sources */,
 				81B1BC0F199496BE00E01E76 /* AddFileTableViewController.m in Sources */,
 				8193CCE019B8231400C63342 /* JSONUtil.m in Sources */,

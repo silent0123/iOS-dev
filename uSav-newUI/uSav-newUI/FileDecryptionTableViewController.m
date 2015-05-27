@@ -51,49 +51,27 @@
     //NSLog(@"进入Cell创建");
     //创建CELL
     FileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FileCell"];
-//    if(cell == nil){
-//        UITableViewCell *cell = [[UITableViewCell  alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SearchCell"];
-//        _searchCell = cell;
-//    }
     
 #pragma warning 这里需要之后修改
     
-//    if ([_CellData[0] isEqualToString:@"noobject"]) {
-//        cell.FileName.text = NSLocalizedString(@"You Have No File", nil);
-//        cell.FileName.font = [UIFont boldSystemFontOfSize:14];
-//        cell.separatorInset = UIEdgeInsetsZero;
-//        return cell;
-//    }
     //创建数据对象，用之前定义了的_CellData初始化
-    FileDataBase *cellData = _CellData[indexPath.row];
+    NSDictionary *cellData = _CellData[indexPath.row];
     
-    //CELL的主体
-    cell.TableImage.image = nil;
-    cell.FileName.text = cellData.FileName;
+    //cell.TableImage.image = nil;
+    cell.FileName.text = [NSString stringWithFormat:@"%@", [cellData objectForKey:@"Filename"]]; //人工usav结尾
     cell.FileName.font = [UIFont boldSystemFontOfSize:14];
-    //cell.FileName.textColor = [ColorFromHex getColorFromHex:@"#929292"];
-    cell.Bytes.text = cellData.Bytes;
+    
+    cell.Bytes.text = [NSString stringWithFormat:@"%d KBytes", ([[cellData objectForKey:@"NSFileSize"] integerValue]/1024)];
     cell.Bytes.font = [UIFont systemFontOfSize:10];
     cell.Bytes.textColor = [ColorFromHex getColorFromHex:@"#929292"];
-    cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:cellData.TableColor];
-    cell.ReceiveTime.text = cellData.ReceiveTime;
-    cell.ReceiveTime.textColor = [ColorFromHex getColorFromHex:@"#929292"];
-    //cell.backgroundColor = [ColorFromHex getColorFromHex:@"#E4E4E4"];
+    //先设置时间格式
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm:ss"];
+    NSString *dateString = [dateFormat stringFromDate:[cellData objectForKey:@"NSFileModificationDate"]];
+    cell.ReceiveTime.text = dateString;
     
-    //Image不用在数据类中加，直接在这里加
-    if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#44BBC1"].CGColor)) {
-        cell.TableImage.image = [UIImage imageNamed:@"Word@2x.png"];
-    } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#ED6F00"].CGColor)) {
-        cell.TableImage.image = [UIImage imageNamed:@"Powerpoint@2x.png"];
-    } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#A0BD2B"].CGColor)) {
-        cell.TableImage.image = [UIImage imageNamed:@"Excel@2x.png"];
-    } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#D6006F"].CGColor)) {
-        cell.TableImage.image = [UIImage imageNamed:@"Multimedia@2x.png"];
-    } else if (CGColorEqualToColor(cell.TableColor.backgroundColor.CGColor, [ColorFromHex getColorFromHex:@"#E8251E"].CGColor)){
-        cell.TableImage.image = [UIImage imageNamed:@"Pdf@2x.png"];
-    } else {
-        cell.TableImage.image = [UIImage imageNamed:@"Others@2x.png"];
-    }
+
+    [self compareExtension:cell withDictionary:cellData];
     
     //高亮状态
     //cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
@@ -113,11 +91,20 @@
         return NO;
     }
 }
-
+// 删除行，是datasource方法
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        //从document目录删除文件
+        NSArray *PathsArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentPath = [PathsArray objectAtIndex:0];  //搜索到的是数组，这里得取第0个出来，才是path
+        NSString *deleteFilePath = [NSString stringWithFormat:@"%@/%@/%@", documentPath, @"Decrypted", [_CellData[indexPath.row] objectForKey:@"Filename"]];
+        //NSString *decryptedFilePath = [NSString stringWithFormat:@"%@/%@", documentPath, @"Decrypted"];
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        [fileManager removeItemAtPath:deleteFilePath error:nil];
+
         [_CellData removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         NSLog(@"现在的第%zi行已经被移除, 还剩下%zi",indexPath.row,[_CellData count]);
@@ -126,6 +113,37 @@
     }
 }
 
+- (NSString *)compareExtension: (FileTableViewCell *)cell withDictionary: (NSDictionary *)cellData {
+    
+    NSString *fileExtension = [[cellData objectForKey:@"FilePath"] pathExtension];
+    
+    //Image不用在数据类中加，直接在这里加，注意，caseInsensitive的对比，0为符合
+    if (![fileExtension caseInsensitiveCompare:@"doc"] || ![fileExtension caseInsensitiveCompare:@"docx"]) {
+        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:@"#44BBC1"];
+        cell.TableImage.image = [UIImage imageNamed:@"Word@2x.png"];
+        return @"#44BBC1";
+    } else if (![fileExtension caseInsensitiveCompare:@"ppt"] || ![fileExtension caseInsensitiveCompare:@"pptx"]) {
+        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:@"#ED6F00"];
+        cell.TableImage.image = [UIImage imageNamed:@"Powerpoint@2x.png"];
+        return @"#ED6F00";
+    } else if (![fileExtension caseInsensitiveCompare:@"xls"] || ![fileExtension caseInsensitiveCompare:@"xlsx"]) {
+        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:@"#A0BD2B"];
+        cell.TableImage.image = [UIImage imageNamed:@"Excel@2x.png"];
+        return @"#A0BD2B";
+    } else if (![fileExtension caseInsensitiveCompare:@"jpeg"] || ![fileExtension caseInsensitiveCompare:@"png"] || ![fileExtension caseInsensitiveCompare:@"jpg"] ||![fileExtension caseInsensitiveCompare:@"gif"] || ![fileExtension caseInsensitiveCompare:@"mov"] || ![fileExtension caseInsensitiveCompare:@"mp4"] || ![fileExtension caseInsensitiveCompare:@"3gp"] || ![fileExtension caseInsensitiveCompare:@"rmvb"] || ![fileExtension caseInsensitiveCompare:@"avc"] || ![fileExtension caseInsensitiveCompare:@"avi"] || ![fileExtension caseInsensitiveCompare:@"mpeg-4"] || ![fileExtension caseInsensitiveCompare:@"mp3"] || ![fileExtension caseInsensitiveCompare:@"aac"] || ![fileExtension caseInsensitiveCompare:@"amr"] || ![fileExtension caseInsensitiveCompare:@"wav"] || ![fileExtension caseInsensitiveCompare:@"mid"]) {
+        //这里是支持的多媒体格式，前面是图片，后面是视频
+        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:@"#D6006F"];
+        cell.TableImage.image = [UIImage imageNamed:@"Multimedia@2x.png"];
+        return @"#D6006F";
+    } else if (![fileExtension isEqualToString:@"pdf"]){
+        cell.TableColor.backgroundColor = [ColorFromHex getColorFromHex:@"#E8251E"];
+        cell.TableImage.image = [UIImage imageNamed:@"Pdf@2x.png"];
+        return @"#E8251E";
+    } else {
+        cell.TableImage.image = [UIImage imageNamed:@"Others@2x.png"];
+    }
+    return @"Others";
+}
 
 /*
 // Override to support rearranging the table view.

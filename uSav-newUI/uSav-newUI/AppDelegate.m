@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+    NSMutableArray *allFile;
+}
 
 @end
 
@@ -17,6 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
     
     //先获取到storyboard，这样才可以加载相应界面
     UIStoryboard *currentStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -28,13 +31,33 @@
         //NSLog(@"第一次启动");
         
         UserGuideViewController *userGuideController = [currentStoryboard instantiateViewControllerWithIdentifier:@"UserGuide_Storyboard"];
-        self.window.rootViewController = userGuideController;
+        //self.window.rootViewController = userGuideController;
     } else {
         //NSLog(@"不是第一次启动，进入Login");
         
         LoginViewController *loginController = [currentStoryboard instantiateViewControllerWithIdentifier:@"Login_Storyboard"];
         self.window.rootViewController = loginController;
     }
+    
+    /*
+    //document目录设置
+    NSArray *PathsArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [PathsArray objectAtIndex:0];  //搜索到的是数组，这里得取第0个出来，才是path
+    //NSString *encryptedFilePath = [NSString stringWithFormat:@"%@/%@", documentPath, @"Encrypted"];
+    NSString *decryptedFilePath = [NSString stringWithFormat:@"%@/%@", documentPath, @"Decrypted"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //每次启动清空decrypt文件夹
+    [allFile removeAllObjects];
+    [allFile addObjectsFromArray:[fileManager contentsOfDirectoryAtPath:decryptedFilePath error:nil]];
+    NSError *error;
+    NSLog(@"%zi", [allFile count]);
+    for(NSInteger i = 0; i < [allFile count]; i++){
+        NSString *decryptFilePath = [NSString stringWithFormat:@"%@/%@", decryptedFilePath, [allFile objectAtIndex:i]];   //allFile只是文件名
+        [fileManager removeItemAtPath:decryptFilePath error:&error];
+    }
+     */
+    
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

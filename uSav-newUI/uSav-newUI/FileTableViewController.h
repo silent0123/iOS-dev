@@ -14,6 +14,7 @@
 #import "FileDecryptionTableViewController.h" //segment切换的数据源
 #import "FileDetailViewController.h"    //用于传值给详细页面
 #import "FileDetailEncryptedViewController.h"   //用于传值给详细页面2
+#import "AddFileTableViewController.h"  //用于传参给addFile
 //#import "PopUpMenu.h"
 #import "TYDotIndicatorView.h"
 
@@ -27,6 +28,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *FileTable;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *FileSegent;
 
+- (void)readDataFromInitateData;
 - (IBAction)SegmentChange:(id)sender;
 //- (IBAction)AddButtonClicked:(id)sender;
 

@@ -79,68 +79,142 @@
 //    return _mutableData;
 //}
 
-#pragma mark File初始化
-+ (NSMutableArray *)initiateDataForFiles {
+#pragma mark - File初始化
+- (void)initiateDataForFiles: (id)sender {
     
-    NSMutableArray *_mutableData;
-    _mutableData = [NSMutableArray arrayWithCapacity:6];
+    //从document目录读文件
+    NSArray *PathsArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [PathsArray objectAtIndex:0];  //搜索到的是数组，这里得取第0个出来，才是path
+    
+    NSString *encryptedFilePath = [NSString stringWithFormat:@"%@/%@", documentPath, @"Encrypted"];
+    [self creatFileAtPath:encryptedFilePath];
+    NSString *decryptedFilePath = [NSString stringWithFormat:@"%@/%@", documentPath, @"Decrypted"];
+    [self creatFileAtPath:decryptedFilePath];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    //取出文件，写到两个CellData里
+    //- 注意，cellData里直接放filesAtxxxxPath的话，是NSString的，我们要得到的是它的Attributes
+    NSError *error = nil;
+    
+    NSMutableArray *filesAtEncryptedPath = [[NSMutableArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:encryptedFilePath error:&error]];
+    NSLog(@"Encrypt Folder 内容: %@", filesAtEncryptedPath);
+    if (!error){
+        [self.encryptedFileTableCaller.CellData removeAllObjects];
+        
+        for (NSInteger i = 0; i < [filesAtEncryptedPath count]; i++ ) {
+            NSString *singleFilePath = [NSString stringWithFormat:@"%@/%@", encryptedFilePath, filesAtEncryptedPath[i]];
+            NSMutableDictionary *singleFileAttributeDic = [[NSMutableDictionary alloc] initWithDictionary:[fileManager attributesOfItemAtPath:singleFilePath error:&error]];    //这里声明为MutableDic是因为要添加文件名在里面
+            [singleFileAttributeDic setValue:filesAtEncryptedPath[i] forKey:@"Filename"];
+            [singleFileAttributeDic setValue:singleFilePath forKey:@"FilePath"];
+            if (!error) {
+                [self.encryptedFileTableCaller.CellData addObject:singleFileAttributeDic];  //这个字典包括了attributes和Filename
+            }
+        }
+        
+    } else {
+        NSLog(@"%@, %@", [sender class], error);
+        [self showAlert:@"Reading Encrypted Files Error" andContent:nil];
+    }
+
+    //----------------------------------------------------------
+    
+    NSMutableArray *filesAtDecryptedPath = [[NSMutableArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:decryptedFilePath error:&error]];
+    NSLog(@"Decrypt Folder 内容: %@", filesAtDecryptedPath);
+    if (!error){
+        
+        [self.decryptedFileTableCaller.CellData removeAllObjects];
+        
+        for (NSInteger i = 0; i < [filesAtDecryptedPath count]; i++ ) {
+            NSString *singleFilePath = [NSString stringWithFormat:@"%@/%@", decryptedFilePath, filesAtDecryptedPath[i]];
+            NSMutableDictionary *singleFileAttributeDic = [[NSMutableDictionary alloc] initWithDictionary:[fileManager attributesOfItemAtPath:singleFilePath error:&error]];    //这里声明为MutableDic是因为要添加文件名在里面
+            [singleFileAttributeDic setValue:filesAtDecryptedPath[i] forKey:@"Filename"];
+            [singleFileAttributeDic setValue:singleFilePath forKey:@"FilePath"];
+            if (!error) {
+                [self.decryptedFileTableCaller.CellData addObject:singleFileAttributeDic];  //这个字典包括了attributes和Filename
+            }
+        }
+        
+    } else {
+        NSLog(@"%@, %@", [sender class], error);
+        [self showAlert:@"Reading Decrypted Files Error" andContent:nil];
+    }
+    
+    return;
     
     //颜色
     //.doc为蓝色44BBC1 .xls为绿色 .ppt为橙色 图片和视频为紫色 其他为灰色
-    FileDataBase *file1 = [[FileDataBase alloc] init];
-    file1.FileName = @"NewFile_2014.xlsx";
-    file1.Bytes = @"3.60MByte";
-    file1.ReceiveTime = @"16 June, 2014 | 17:30";
-    file1.TableColor = @GREEN;
-    [_mutableData addObject:file1];
-    
-    FileDataBase *file2 = [[FileDataBase alloc] init];
-    file2.FileName = @"Family.jpeg";
-    file2.Bytes = @"1.20MByte";
-    file2.ReceiveTime = @"25 May, 2014 | 08:12";
-    file2.TableColor = @PURPLE;
-    [_mutableData addObject:file2];
-    
-    FileDataBase *file3 = [[FileDataBase alloc] init];
-    file3.FileName = @"Presentation.pptx";
-    file3.Bytes = @"14.22MByte";
-    file3.ReceiveTime = @"30 April, 2014 | 16:32";
-    file3.TableColor = @ORANGE;
-    [_mutableData addObject:file3];
-    
-    FileDataBase *file4 = [[FileDataBase alloc] init];
-    file4.FileName = @"Season3.doc";
-    file4.Bytes = @"327KByte";
-    file4.ReceiveTime = @"28 April, 2014 | 17:30";
-    file4.TableColor = @LIGHT_BLUE;
-    [_mutableData addObject:file4];
-    
-    FileDataBase *file5 = [[FileDataBase alloc] init];
-    file5.FileName = @"Season4.exe";
-    file5.Bytes = @"445KByte";
-    file5.ReceiveTime = @"17 April, 2014 | 15:22";
-    file5.TableColor = @GRAY;
-    [_mutableData addObject:file5];
-    
-    FileDataBase *file6 = [[FileDataBase alloc] init];
-    file6.FileName = @"CAMERA_VIDEO.avi";
-    file6.Bytes = @"323.50MByte";
-    file6.ReceiveTime = @"15 April, 2014 | 12:01";
-    file6.TableColor = @PURPLE;
-    [_mutableData addObject:file6];
-    
-    FileDataBase *file7 = [[FileDataBase alloc] init];
-    file7.FileName = @"Contract.pdf";
-    file7.Bytes = @"988KByte";
-    file7.ReceiveTime = @"28 April, 2014 | 17:30";
-    file7.TableColor = @RED;
-    [_mutableData addObject:file7];
-    
-    return _mutableData;
+//    FileDataBase *file1 = [[FileDataBase alloc] init];
+//    file1.FileName = @"NewFile_2014.xlsx";
+//    file1.Bytes = @"3.60MByte";
+//    file1.ReceiveTime = @"16 June, 2014 | 17:30";
+//    file1.TableColor = @GREEN;
+//    [_mutableData addObject:file1];
+//    
+//    FileDataBase *file2 = [[FileDataBase alloc] init];
+//    file2.FileName = @"Family.jpeg";
+//    file2.Bytes = @"1.20MByte";
+//    file2.ReceiveTime = @"25 May, 2014 | 08:12";
+//    file2.TableColor = @PURPLE;
+//    [_mutableData addObject:file2];
+//    
+//    FileDataBase *file3 = [[FileDataBase alloc] init];
+//    file3.FileName = @"Presentation.pptx";
+//    file3.Bytes = @"14.22MByte";
+//    file3.ReceiveTime = @"30 April, 2014 | 16:32";
+//    file3.TableColor = @ORANGE;
+//    [_mutableData addObject:file3];
+//    
+//    FileDataBase *file4 = [[FileDataBase alloc] init];
+//    file4.FileName = @"Season3.doc";
+//    file4.Bytes = @"327KByte";
+//    file4.ReceiveTime = @"28 April, 2014 | 17:30";
+//    file4.TableColor = @LIGHT_BLUE;
+//    [_mutableData addObject:file4];
+//    
+//    FileDataBase *file5 = [[FileDataBase alloc] init];
+//    file5.FileName = @"Season4.exe";
+//    file5.Bytes = @"445KByte";
+//    file5.ReceiveTime = @"17 April, 2014 | 15:22";
+//    file5.TableColor = @GRAY;
+//    [_mutableData addObject:file5];
+//    
+//    FileDataBase *file6 = [[FileDataBase alloc] init];
+//    file6.FileName = @"CAMERA_VIDEO.avi";
+//    file6.Bytes = @"323.50MByte";
+//    file6.ReceiveTime = @"15 April, 2014 | 12:01";
+//    file6.TableColor = @PURPLE;
+//    [_mutableData addObject:file6];
+//    
+//    FileDataBase *file7 = [[FileDataBase alloc] init];
+//    file7.FileName = @"Contract.pdf";
+//    file7.Bytes = @"988KByte";
+//    file7.ReceiveTime = @"28 April, 2014 | 17:30";
+//    file7.TableColor = @RED;
+//    [_mutableData addObject:file7];
     
 }
 
-#pragma mark Contact初始化
+#pragma mark
+- (BOOL)creatFileAtPath: (NSString *)path {
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath:path]) {
+        return YES;
+    } else {
+        NSError *error;
+        BOOL isSucceed = [fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
+        if (isSucceed) {
+            return YES;
+        } else {
+            [self showAlert:@"Directory can't access" andContent:[NSString stringWithFormat:@"error: %@", error]];
+            return NO;
+        }
+    }
+}
+
+#pragma mark - Contact初始化
 - (NSMutableArray *)initiateDataForContact{
     
     //将数据读取回来并且直接写到需要的类_CellData里
@@ -153,7 +227,7 @@
     return _mutableData;
 }
 
-#pragma mark Group初始化
+#pragma mark - Group初始化
 - (NSMutableArray *)initiateDataForContact_Group {
 
     //将数据读取回来并且直接写到需要的类_CellData里
@@ -165,7 +239,7 @@
     return _mutableData;
 }
 
-#pragma mark AddFile初始化
+#pragma mark - AddFile初始化
 + (NSMutableArray *)initiateDataForAddFile {
     
     NSMutableArray *_mutableData = [[NSMutableArray alloc] init];
@@ -210,7 +284,7 @@
 
 }
 
-#pragma mark Add Friend 初始化
+#pragma mark - Add Friend 初始化
 - (NSMutableArray *)initiateDataForAddContact: (NSString *)emailAddress{
     
     //给服务器写数据, 然后对ContactTableView的Cell重新加载新数据
@@ -224,12 +298,12 @@
     return _mutableData;
 }
 
-#pragma mark Delete Friend
+#pragma mark - Delete Friend
 - (void) initiateDataFordeleteContact: (NSString *)emailAddress {
     [self deleteContactToArray:emailAddress];
 }
 
-#pragma mark History（Logs）初始化
+#pragma mark - History（Logs）初始化
 + (NSMutableArray *)initiateDataForLogs {
     
     NSMutableArray *_mutableData = [[NSMutableArray alloc] init];
@@ -294,7 +368,7 @@
     return _mutableData;
 }
 
-#pragma mark History的Operation初始化
+#pragma mark - History的Operation初始化
 + (NSMutableArray *)initiateDataForLogs_Operation {
     NSMutableArray *_mutableData = [[NSMutableArray alloc] init];
     _mutableData = [NSMutableArray arrayWithCapacity:4];
@@ -327,7 +401,7 @@
 
 }
 
-#pragma mark File Audit初始化
+#pragma mark - File Audit初始化
 + (NSMutableArray *)initiateDataForLogs_FileAudit {
     
     NSMutableArray *_mutableData = [[NSMutableArray alloc] init];
@@ -365,7 +439,6 @@
 #pragma mark 获取联系人列表
 - (void)listContactsToArray {
     
-    NSLog(@"主线程%@", [NSThread currentThread]);
     //获取全局信息
     USAVClient *client = [USAVClient current];
     
@@ -388,20 +461,24 @@
     NSString *getParam = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
     NSString *encodedParam = [client encodeToPercentEscapeString:getParam];
     
-    [client.api listTrustedContactStatus:encodedParam target:self selector:@selector(listContactsCallBack:)];   //本函数调用后，会自动往下走，不管回调函数是否完成（BUG）
     [self showLoadingAlertAt:_contactCaller.view.window.subviews[0]];
+    
+    [client.api listTrustedContactStatus:encodedParam target:self selector:@selector(listContactsCallBack:)];   //本函数调用后，会自动往下走，不管回调函数是否完成（BUG）
+    
 }
 
 #pragma mark 联系人回调方法
 - (void)listContactsCallBack: (NSDictionary *)obj {
     
     if ([[obj objectForKey:@"statusCode"] integerValue] == 260 || [[obj objectForKey:@"statusCode"] integerValue] == 261) {
+        [_loadingAlert stopAnimating];
         NSLog(@"timestamp error");
         [self showAlert:@"Time Error" andContent:@"Please check your system time"];
     }
     
     if (obj == nil) {
-        NSLog(@"retuen nil");
+        [_loadingAlert stopAnimating];
+        [self showAlert:@"Network Error" andContent:@"Please check your network condition"];
         return;
     } else {
         NSLog(@"%@ contact list: %@", [obj class], obj);
@@ -447,12 +524,14 @@
 
 - (void)listGroupsCallBack: (NSDictionary *)obj {
     if ([[obj objectForKey:@"statusCode"] integerValue] == 260 || [[obj objectForKey:@"statusCode"] integerValue] == 261) {
+        [_loadingAlert stopAnimating];
         NSLog(@"timestamp error");
         [self showAlert:@"Time Error" andContent:@"Please check your system time"];
     }
     
     if (obj == nil) {
-        NSLog(@"retuen nil");
+        [_loadingAlert stopAnimating];
+        [self showAlert:@"Network Error" andContent:@"Please check your network condition"];
         return;
     } else {
         NSLog(@"%@ group list: %@", [obj class], obj);
@@ -511,14 +590,15 @@
 #pragma mark Add Friend Callback
 - (void)addContactCallBack: (NSDictionary *)obj{
     NSLog(@"%@", obj);
-    if ([[obj objectForKey:@"rawStringStatus"] integerValue] == 261 || [[obj objectForKey:@"rawStringStatus"] integerValue] == 260) {
+    if ([[obj objectForKey:@"statusCode"] integerValue] == 260 || [[obj objectForKey:@"statusCode"] integerValue] == 261) {
+        [_loadingAlert stopAnimating];
         NSLog(@"timestamp error");
         [self showAlert:@"Time Error" andContent:@"Please check your system time"];
-        return;
     }
     
     if (obj == nil) {
-        NSLog(@"retuen nil");
+        [_loadingAlert stopAnimating];
+        [self showAlert:@"Network Error" andContent:@"Please check your network condition"];
         return;
     } else if ([obj objectForKey:@"httpErrorCode"] == nil){
         
@@ -558,12 +638,12 @@
         }
     }
     
+    //停止动画
+    [_loadingAlert stopAnimating];
+    
     //添加多个用户的时候会出问题，因为添加完第一个就跳出去了，之后的没法刷新
     [_addFriendCaller.navigationController popToRootViewControllerAnimated:YES];
     [_contactCaller.tableView reloadData];
-    
-    //停止动画
-    [_loadingAlert stopAnimating];
     return;
     
 }
@@ -701,13 +781,15 @@
 
 #pragma mark delete group call back
 - (void)deleteGroupCallback: (NSDictionary *)obj {
-    if ([[obj objectForKey:@"statusCode"] integerValue] == 261 || [[obj objectForKey:@"statusCode"] integerValue] == 260) {
-        NSLog(@"delete failed");
-        return;
+    if ([[obj objectForKey:@"statusCode"] integerValue] == 260 || [[obj objectForKey:@"statusCode"] integerValue] == 261) {
+        [_loadingAlert stopAnimating];
+        NSLog(@"timestamp error");
+        [self showAlert:@"Time Error" andContent:@"Please check your system time"];
     }
     
     if (obj == nil) {
-        NSLog(@"unknown error");
+        [_loadingAlert stopAnimating];
+        [self showAlert:@"Network Error" andContent:@"Please check your network condition"];
         return;
     }
     
@@ -758,7 +840,7 @@
 - (void)showAlert: (NSString *)alertTitle andContent: (NSString *)alertContent {
 
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(alertTitle, nil) message:NSLocalizedString(alertContent, nil) delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerForHideAlert:) userInfo:alert repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerForHideAlert:) userInfo:alert repeats:NO];
     //这个userInfo可以将这个函数里的某个参数，装进timer中，传递给别的函数
     [alert show];
 
@@ -774,11 +856,11 @@
         [_loadingAlert stopAnimating];
         return;
     } else {
-    _loadingAlert = [[TYDotIndicatorView alloc] initWithFrame:CGRectMake(30, 260, 260, 50) dotStyle:TYDotIndicatorViewStyleRound dotColor:[UIColor colorWithRed:0.85f green:0.86f blue:0.88f alpha:1.00f] dotSize:CGSizeMake(15, 15) withBackground:NO];
+    _loadingAlert = [[TYDotIndicatorView alloc] initWithFrame:CGRectMake(30, 260, 260, 50) dotStyle:TYDotIndicatorViewStyleRound dotColor:[UIColor colorWithRed:0.85f green:0.86f blue:0.88f alpha:1.00f] dotSize:CGSizeMake(15, 15) withBackground:YES];
     _loadingAlert.backgroundColor = [UIColor colorWithRed:0.20f green:0.27f blue:0.36f alpha:0.9f];
     _loadingAlert.layer.cornerRadius = 5.0f;
-    [_loadingAlert startAnimating];
     [view addSubview:_loadingAlert];
+    [_loadingAlert startAnimating];
     }
 }
 

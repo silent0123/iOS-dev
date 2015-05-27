@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="auz-DT-VCy">
+                                <rect key="frame" x="32" y="28" width="248" height="275"/>
+                                <color key="backgroundColor" red="0.1176470588" green="0.56470588239999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N6e-JP-4gq">
+                                <rect key="frame" x="320" y="28" width="248" height="275"/>
+                                <color key="backgroundColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="592-on-U8N">
+                                <rect key="frame" x="32" y="317" width="536" height="275"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="auz-DT-VCy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="9Gx-iB-tTB"/>
+                            <constraint firstAttribute="centerX" secondItem="592-on-U8N" secondAttribute="centerX" id="Cmp-Wu-bnB"/>
+                            <constraint firstItem="N6e-JP-4gq" firstAttribute="leading" secondItem="auz-DT-VCy" secondAttribute="trailing" constant="40" id="G2C-iG-xsH"/>
+                            <constraint firstItem="592-on-U8N" firstAttribute="top" secondItem="auz-DT-VCy" secondAttribute="bottom" constant="14" id="GaJ-dj-XWx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N6e-JP-4gq" secondAttribute="trailing" constant="16" id="Me8-kR-NJe"/>
+                            <constraint firstItem="N6e-JP-4gq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="UFX-OB-R5Q"/>
+                            <constraint firstItem="592-on-U8N" firstAttribute="top" secondItem="N6e-JP-4gq" secondAttribute="bottom" constant="14" id="cPS-t9-l5D"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="592-on-U8N" secondAttribute="bottom" constant="8" id="fFD-P6-1XH"/>
+                            <constraint firstItem="auz-DT-VCy" firstAttribute="height" secondItem="N6e-JP-4gq" secondAttribute="height" id="hmt-sZ-2ZX"/>
+                            <constraint firstItem="auz-DT-VCy" firstAttribute="width" secondItem="N6e-JP-4gq" secondAttribute="width" id="kHo-nx-m7Z"/>
+                            <constraint firstItem="auz-DT-VCy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="mzt-JZ-bLR"/>
+                            <constraint firstItem="auz-DT-VCy" firstAttribute="height" secondItem="592-on-U8N" secondAttribute="height" id="oXH-y5-W2e"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="592-on-U8N" secondAttribute="trailing" constant="16" id="pzE-Bq-vFV"/>
+                            <constraint firstItem="592-on-U8N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="ykD-S7-Tmd"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="oXH-y5-W2e"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

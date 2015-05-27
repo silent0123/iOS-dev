@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hoi-ay-hVD">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <scenes>
@@ -45,7 +46,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="45" y="9" width="206" height="21"/>
+                                                <rect key="frame" x="45" y="9" width="263" height="21"/>
                                             </variation>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bytes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBa-LA-RzF">
@@ -63,7 +64,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="195" y="27" width="113" height="22"/>
+                                                <rect key="frame" x="154" y="27" width="154" height="22"/>
                                             </variation>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qzN-1c-Td3">
@@ -141,7 +142,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="MKW-Uz-URe">
                             <connections>
                                 <action selector="AddButtonClicked:" destination="inb-kY-Ezd" id="2Tc-bV-sHF"/>
-                                <segue destination="Utq-oF-6S3" kind="show" id="Q3O-wg-A0S"/>
+                                <segue destination="Utq-oF-6S3" kind="show" identifier="NewFileSegue" id="Q3O-wg-A0S"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -318,7 +319,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="AddFriendTable" destination="ZR9-mC-JNk" id="Fhy-an-hsm"/>
-                        <segue destination="YCF-Yb-q3L" kind="show" identifier="AddressBookSegue" id="AjF-Wt-aB5"/>
+                        <segue destination="YCF-Yb-q3L" kind="showDetail" identifier="AddressBookSegue" id="AjF-Wt-aB5"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2zZ-Dd-boL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -834,17 +835,8 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="20" y="388" width="74" height="40"/>
                                 </variation>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUD-yj-wgt">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="125" y="388" width="74" height="40"/>
-                                </variation>
                                 <connections>
-                                    <segue destination="cuw-kx-XlI" kind="show" identifier="PermissionSegue" id="GaE-Mg-lF0"/>
+                                    <action selector="DecryptButtonPressed:" destination="oUm-W7-6D9" eventType="touchUpInside" id="bcm-1H-V58"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbS-gz-Hv1">
@@ -859,6 +851,18 @@
                                     <segue destination="2gm-LH-4gQ" kind="show" identifier="FileAuditSegue" id="rbM-OM-Dms"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUD-yj-wgt">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="123" y="388" width="74" height="40"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="cuw-kx-XlI" kind="show" identifier="PermissionSegue" id="GaE-Mg-lF0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -867,8 +871,8 @@
                                 <exclude reference="AVJ-En-Ud3"/>
                                 <exclude reference="YY3-wU-bgQ"/>
                                 <exclude reference="984-dr-dhW"/>
-                                <exclude reference="uUD-yj-wgt"/>
                                 <exclude reference="kbS-gz-Hv1"/>
+                                <exclude reference="uUD-yj-wgt"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -877,8 +881,8 @@
                                 <include reference="AVJ-En-Ud3"/>
                                 <include reference="YY3-wU-bgQ"/>
                                 <include reference="984-dr-dhW"/>
-                                <include reference="uUD-yj-wgt"/>
                                 <include reference="kbS-gz-Hv1"/>
+                                <include reference="uUD-yj-wgt"/>
                             </mask>
                         </variation>
                     </view>
@@ -898,6 +902,7 @@
                         <outlet property="OtherButton" destination="eAR-pK-zxT" id="Pqr-cA-vFy"/>
                         <outlet property="PermissionButton" destination="uUD-yj-wgt" id="cf7-XC-3E0"/>
                         <outlet property="ShareButton" destination="kbS-gz-Hv1" id="Tkb-Pe-q20"/>
+                        <segue destination="ugb-eQ-0IX" kind="show" identifier="DecryptAndViewSegue" id="we8-cL-ft2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ktX-o3-UiA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -946,10 +951,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="65" y="387" width="74" height="40"/>
+                                    <rect key="frame" x="24" y="388" width="74" height="40"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="ugb-eQ-0IX" kind="showDetail" id="egf-m3-DCR"/>
+                                    <segue destination="ugb-eQ-0IX" kind="showDetail" identifier="PreviewImageSegue" id="egf-m3-DCR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hw5-o3-c8L">
@@ -958,8 +963,20 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="185" y="387" width="74" height="40"/>
+                                    <rect key="frame" x="226" y="388" width="74" height="40"/>
                                 </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Jy-Zt-qzk">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="123" y="388" width="74" height="40"/>
+                                </variation>
+                                <connections>
+                                    <action selector="EncryptButtonPressed:" destination="NqI-Mp-dQb" eventType="touchUpInside" id="I6y-ho-DOa"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -970,6 +987,7 @@
                                 <exclude reference="xNJ-UW-RpG"/>
                                 <exclude reference="Txp-hD-qtd"/>
                                 <exclude reference="hw5-o3-c8L"/>
+                                <exclude reference="4Jy-Zt-qzk"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -979,6 +997,7 @@
                                 <include reference="xNJ-UW-RpG"/>
                                 <include reference="Txp-hD-qtd"/>
                                 <include reference="hw5-o3-c8L"/>
+                                <include reference="4Jy-Zt-qzk"/>
                             </mask>
                         </variation>
                     </view>
@@ -988,9 +1007,11 @@
                     <connections>
                         <outlet property="Bytes" destination="LBN-g2-8zN" id="WLf-Gr-07A"/>
                         <outlet property="CenterPicture" destination="xNJ-UW-RpG" id="M8b-Wr-BA1"/>
+                        <outlet property="EncryptButton" destination="4Jy-Zt-qzk" id="6bZ-6O-Ti3"/>
                         <outlet property="FileName" destination="t24-nX-nsJ" id="KaN-bT-5BA"/>
                         <outlet property="OpenButton" destination="hw5-o3-c8L" id="I0n-pK-3tm"/>
                         <outlet property="PreviewButton" destination="Txp-hD-qtd" id="FRT-zc-wZN"/>
+                        <segue destination="cuw-kx-XlI" kind="show" identifier="PermissionFromDecryptedSegue" id="z2r-AM-gaE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbV-q5-NmD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1014,7 +1035,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xg7-KA-fXM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2976" y="-845.25"/>
+            <point key="canvasLocation" x="3024" y="-845.25"/>
         </scene>
         <!--Logs Table View Controller-->
         <scene sceneID="n11-fM-NhS">
@@ -1159,6 +1180,10 @@
                             <outlet property="delegate" destination="cuw-kx-XlI" id="8FO-dO-VHu"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="ybZ-Oe-VJL" kind="showDetail" identifier="SelectFromUsavContactSegue" id="NHw-Yj-Cgv"/>
+                        <segue destination="YCF-Yb-q3L" kind="showDetail" identifier="SelectFromAddressBookSegue" id="49S-DB-ABi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sgz-IA-7kf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1358,12 +1383,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A1N-VL-M2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1692" y="-1213.5"/>
+            <point key="canvasLocation" x="3654" y="-1213.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="N1S-M6-CoA">
             <objects>
-                <viewController storyboardIdentifier="Login_Storyboard" id="hoi-ay-hVD" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login_Storyboard" hidesBottomBarWhenPushed="YES" id="hoi-ay-hVD" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MJx-tl-D0Y"/>
                         <viewControllerLayoutGuide type="bottom" id="j0K-oY-bcc"/>
@@ -1565,7 +1590,8 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Wcq-jq-hIf"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="Password" destination="KuB-9m-rHB" id="kPq-48-H6o"/>
                         <outlet property="SavLabel" destination="Ia7-zr-5If" id="A58-FL-fyj"/>
@@ -1576,7 +1602,7 @@
                         <outlet property="Username" destination="UvL-e3-pfD" id="t3E-bb-TjE"/>
                         <outlet property="VersionLabel" destination="hdg-Ki-mrC" id="epn-Se-xDE"/>
                         <segue destination="nRg-CX-TOm" kind="presentation" identifier="RegisterSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="0XD-ky-k4J"/>
-                        <segue destination="nLC-kW-gXu" kind="presentation" identifier="SigninSuccessSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="fCh-JJ-hho"/>
+                        <segue destination="nLC-kW-gXu" kind="presentation" identifier="SigninSuccessSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" animates="NO" id="fCh-JJ-hho"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6XC-TO-6LL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1598,7 +1624,8 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <segue destination="nLC-kW-gXu" kind="presentation" identifier="UserGuideFinishedSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="ZNh-7J-Skr"/>
+                        <segue destination="nLC-kW-gXu" kind="showDetail" identifier="UserGuideFinishedSegue" id="ZNh-7J-Skr"/>
+                        <segue destination="hoi-ay-hVD" kind="presentation" identifier="LoginSegue" animates="NO" id="60l-Bv-2l8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SrD-BY-uCx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1810,6 +1837,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Q2b-O4-LHH">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="inb-kY-Ezd" kind="relationship" relationship="rootViewController" id="ImK-vt-vDc"/>
                     </connections>
@@ -1983,8 +2013,12 @@
         <image name="UsernameIcon.png" width="19" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZNh-7J-Skr"/>
+        <segue reference="fCh-JJ-hho"/>
+        <segue reference="60l-Bv-2l8"/>
+        <segue reference="GaE-Mg-lF0"/>
+        <segue reference="49S-DB-ABi"/>
+        <segue reference="NHw-Yj-Cgv"/>
         <segue reference="Be8-yT-OxN"/>
-        <segue reference="cj5-dI-S7x"/>
+        <segue reference="egf-m3-DCR"/>
     </inferredMetricsTieBreakers>
 </document>

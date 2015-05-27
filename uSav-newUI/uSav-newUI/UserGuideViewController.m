@@ -99,7 +99,15 @@
 
 #pragma mark gesture处理函数
 - (void)touchToExit {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if (![[USAVClient current] emailAddress]) {
+        //如果没登陆，跳转到登陆
+        [self performSegueWithIdentifier:@"LoginSegue" sender:self];
+        [self.view removeFromSuperview];
+    } else {
+        [self performSegueWithIdentifier:@"UserGuideFinishedSegue" sender:self];
+        [self.view removeFromSuperview];
+    }
+    
 }
 /*
 #pragma mark - Navigation

@@ -12,6 +12,7 @@
 #import "THContactPickerTableViewCell.h"
 #import "LUCASelectContactDelegate.h" //传值delegate
 #import "TYDotIndicatorView.h"
+#import "PermissionTableViewController.h"
 
 @interface THContactPickerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, THContactPickerDelegate, ABPersonViewControllerDelegate>
 

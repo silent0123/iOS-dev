@@ -4,7 +4,9 @@
 //
 //  Created by Tu You on 14-1-12.
 //  Copyright (c) 2014年 Tu You. All rights reserved.
-//  Luca修改
+//  Luca修改 : 背景色选择
+//  Luca修改 : 计时器
+//  Luca修改 : 开始动画同时自动锁定当前界面所有view的交互，结束动画放开
 
 #import "TYDotIndicatorView.h"
 
@@ -48,7 +50,6 @@ static const CGFloat dotSeparatorDistance = 12.0f;
             backgroundLabel.alpha = 0.4;
             [self addSubview:backgroundLabel];
         }
-
         
         for (int i = 0; i < dotNumber; i++)
         {
@@ -114,6 +115,13 @@ static const CGFloat dotSeparatorDistance = 12.0f;
         [_dots[i] addAnimation:[self fadeInAnimation:i * 0.4] forKey:@"fadeIn"];
     }
     
+    //自己修改，界面不允许交互
+    for (NSInteger i = 0; i < [self.window.subviews count]; i ++) {
+        UIView *subview = [self.window.subviews objectAtIndex:i];
+        subview.userInteractionEnabled = NO;
+    }
+    
+    
     _animating = YES;
 }
 
@@ -127,6 +135,12 @@ static const CGFloat dotSeparatorDistance = 12.0f;
     for (int i = 0; i < _dots.count; i++)
     {
         [_dots[i] addAnimation:[self fadeInAnimation:i * 0.4] forKey:@"fadeIn"];
+    }
+    
+    //自己修改，界面可以交互
+    for (NSInteger i = 0; i < [self.window.subviews count]; i ++) {
+        UIView *subview = [self.window.subviews objectAtIndex:i];
+        subview.userInteractionEnabled = YES;
     }
     
     _animating = NO;
@@ -153,4 +167,5 @@ static const CGFloat dotSeparatorDistance = 12.0f;
     
     [super removeFromSuperview];
 }
+
 @end

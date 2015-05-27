@@ -10,6 +10,7 @@
 
 @interface FileDataBase : NSObject
 
+@property (assign, nonatomic) NSString *FilePath;
 @property (assign, nonatomic) NSString *FileName;
 @property (assign, nonatomic) NSString *Bytes;
 @property (assign, nonatomic) NSString *TableColor;

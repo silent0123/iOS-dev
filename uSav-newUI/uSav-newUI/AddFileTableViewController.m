@@ -176,7 +176,7 @@
 #pragma mark 照片选择后的操作
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    NSLog(@"%@",info);  //这里得到的内容相当丰富
+    //NSLog(@"%@",info);  //这里得到的内容相当丰富
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     //当选择的类型是图片
     if ([type isEqualToString:@"public.image"]) {
@@ -190,26 +190,38 @@
         }
         
         //图片的保存路径
-        //这里的图片放在沙盒的documents文件夹中
-        NSString *documentPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        //从document目录读文件
+        NSArray *PathsArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentPath = [PathsArray objectAtIndex:0];  //搜索到的是数组，这里得取第0个出来，才是path
         
-        //文件管理器
+        //NSString *encryptedFilePath = [NSString stringWithFormat:@"%@/%@", documentPath, @"Encrypted"];
+        NSString *decryptedFilePath = [NSString stringWithFormat:@"%@/%@", documentPath, @"Decrypted"];
+        
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
-        //把刚才转换成的imageData放入沙盒中
-        [fileManager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
-        [fileManager createFileAtPath:[documentPath stringByAppendingPathComponent:@"/image.png"] contents:imageData attributes:nil];//注意，这里的文件名是唯一的，可能会产生覆盖效果，以后会用相应的文件名来代替
+        //把刚才转换成的imageData放入沙盒的decrypted文件夹中，如果不存在则创建
+        [fileManager createDirectoryAtPath:decryptedFilePath withIntermediateDirectories:YES attributes:nil error:nil];
+        //以时间为文件名
+        //先设置时间格式
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm:ss"];
+        NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
+        NSString *dateAsFilename = [NSString stringWithFormat:@"/%@.png", dateString];
+        [fileManager createFileAtPath:[decryptedFilePath stringByAppendingPathComponent:dateAsFilename] contents:imageData attributes:nil];
         
         if ([info objectForKey:UIImagePickerControllerMediaMetadata]) { //info里面有这行，如果是照的照片的话，根据上面的NSLog看出来的
             UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
         }   //如果是拍的照片，就存入相册；如果是相册里选的，就不保存（因为已经有了）
         
         //得到沙盒中的完整文件路径
-        NSString *filePath = [[NSString alloc] initWithFormat:@"%@%@", documentPath, @"/image.png"];
-        NSLog(@"file selected & store at %@", filePath);
+        NSString *filePath = [decryptedFilePath stringByAppendingPathComponent:dateAsFilename];
+        //NSLog(@"file selected & store at %@", filePath);
         //关闭相册界面
         [picker dismissViewControllerAnimated:YES completion:nil];
+        
     }
+    [_fileEncryptedTableViewController readDataFromInitateData];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 
 }
 
@@ -218,6 +230,7 @@
 
     //NSLog(@"selected canceled");
     [picker dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

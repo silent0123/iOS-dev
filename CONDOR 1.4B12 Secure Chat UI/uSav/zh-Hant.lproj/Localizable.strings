@@ -1,0 +1,424 @@
+"ShareAfterEditPermissionSuccess"= "修改權限成功，請選擇共享方法";
+
+"DateSizeOverflow" = "視頻太大，請選擇播放時間小於2分鐘的視頻";
+
+"ProcessBarGetOPLog" = "獲取操作歷史";
+
+"Change Password" = "更改密碼";
+"Success" = "成功";
+"OK" = "確認";
+
+"Confirm and share" = "確認並分享";
+"Session expired" = "會話過期";
+"InvalidGroupOrEmail" = "請輸入一個正確的組名或Email";
+"CantAddOwn" = "不能將自己添加為朋友";
+"Share List Empty Alert" = "沒有輸入電子郵件或無組成員。請輸入一個或多個電子郵件再進行分享";
+
+"DecryptFolder" = "已解密";
+"EncryptFolder" = "已加密";
+
+"Decrypted" = "已解密";
+"Encrypted" = "已加密";
+
+"PhotoAlbum" = "相簿";
+"PhotoAlbumDes"="";
+
+"FileAuditLog" = "審計日誌";
+"SingleFileHistory" = "審計日誌";
+"Encrypt Folder Empty" = "選擇一個文件來啟動uSav.";
+//"Encrypt Folder Empty Alert" = "Please import a file, e.g. from email attachment";
+"Encrypt Folder Empty Alert" = "1 點擊uSav文件夾中的文件,或\n2 長按其他App中的文件(如Email), 或\n3 在其他App中選擇文件(如Dropbox),然後從“打開”功能中點選uSav.";
+
+"Decrypt Folder Empty" = "選擇一個文件來啟動uSav.";
+"Decrypt Folder Empty Alert" = "1 點擊uSav文件夾中的文件,或\n2 長按其他App中的文件(如Email), 或\n3 在其他App中選擇文件(如Dropbox),然後從“打開”功能中點選uSav.";
+
+"uSav contact list" = "uSav 通訊錄";
+"Permission Denied" = "訪問受限";
+
+"User Menu" = "用戶手冊";
+"Write to customer service" = "聯繫客服";
+"List operation history" = "操作歷史";
+"SECURITY" = "安全";
+"HELP" = "幫助";
+"FEEDBACK" = "用戶反饋";
+"History" = "歷史";
+
+"Update uSav" = "請更新USAV，再次解壓以獲得正確的文件拓展名";
+"Authen_Failed" = "用戶名或密碼不正確";
+"Already added" = "已在列表中";
+"Notification" = "通知";
+"LaterKey" = "稍後";
+"Address book" = "手機通訊錄";
+"versionNumber" = "114";
+"LanguageCode" = "zh-hk";
+"KeyLogSwitch" = "操作";
+"OptLogSwitch" = "檔案";
+"ProcessBarAddFriend" = "添加朋友";
+"Set Permission" = "權限設定";
+"EditNoteFault" = "修改備註失敗";
+"EditAlias​​Fault" = "修改別名失敗";
+"RenameGroupFault" = "重命名組失敗";
+"groupDontExist" = "Email或組名不存在";
+"ContactChangeAlias​​Key" = "修改備註";
+"ContactChangeNotesKey" = "修改備註";
+"ContactDeleteKey" = "刪除";
+"ContactAddToGroupKey" = "添加到組";
+"Change Password" = "修改密碼";
+"Success" = "成功";
+"InvalidOldEmail" = "舊電子郵件地址不規範";
+"InvalidNewEmail" = "新電子郵件地址不規範";
+"InvalidEmail" = "電子郵件地址不規範";
+
+"RetypePassword" = "重新輸入電子郵件地址";
+"InvalidConfirmEmail" = "電子郵件地址不一致";
+"WrongOldEmail" = "舊電子郵件地址不正確";
+
+"Please select 'preview' from the upper right menu" = "請從右上角的菜單中選擇'查看'選項";
+
+"Preview File" = "查看";
+"Decrypted file stored in folder /Home/Decrypted " = "解密文件儲存在/Home/Decrypted";
+
+"InvalidOldPass" = "密碼必須包括字母和數字,範圍8-49";
+"InvalidNewPass" = "密碼必須包括字母和數字,範圍8-49";
+
+"InvalidConfirmPass" = "密碼輸入不一致";
+"InvalidConfirmEmail" = "電子郵件地址輸入不一致";
+
+"InvalidUserName" = "用戶名,範圍5-99";
+"InvalidPass" = "密碼必須包括字母和數字,範圍8-49";
+
+"InvalidQuestion" = "安全問題範圍10-99";
+"InvalidAnswer" = "安全答案範圍5-49";
+
+"InvalidGroup" = "組名長度1-49";
+
+"EnterFriendAlias2" = "請輸入朋友的別名";
+"EnterFriendAliasPlaceHolder" = "1 - 30 字母和數字";
+
+"EnterFriendNote" = "請輸入朋友的備註";
+"EnterFriendNotePlaceHolder" = "1 - 30 字母和數字";
+
+"EnterGroupName" = "請輸入組名";
+"EnterGroupNamePlaceHolder" = "1 - 49 字母和數字";
+"AddGroupWithNameKey" = "添加組";
+"AddTrustContactUnknownErrorKey" = "請輸入正確的電子郵件地址";
+"EmailInUse" = "電子郵件已被註冊";
+
+"AddGroupFault" = "添加組失敗";
+"AddFriendFault" = "添加朋友失敗";
+
+"CancelKey" = "取消";
+"OkKey" = "確認";
+"DoneKey" = "完成";
+"BackKey" = "返回";
+"YesKey" = "是的";
+"NoKey" = "不是的";
+"SelectActionKey" = "選擇操作";
+"ExitGameKey" = "退出遊戲";
+"SelectCorrectAnswerKey" = "選擇正確答案";
+"SubmitKey" = "提交";
+"appTitleKey" = "uSav";
+"LogoutKey" = "登出";
+"LoginKey" = "登入";
+"AreYouSureKey" = "你確定麼?";
+
+// page
+"GuidedEncryptShareKey" = "Guided Encrypt & Share";
+"GuidedDecryptViewKey" = "Guided Decrypt & View";
+"ExpertModeKey" = "Expert Mode";
+
+// Login/Register page
+"LoginColonKey" = "登入:";
+"RegisterKey" = "提交";
+"RegisterColonKey" = "註冊:";
+"AlreadyLoginKey" = "你已經登入";
+"LoginSucceededKey" = "登入成功";
+"LoginFailedKey" = "登入失敗，請重試";
+"LoginCancelledKey" = "登入取消";
+"UserNameTakenKey" = "用戶名已被使用，請重試";
+"UserNameNotFoundKey" = "用戶不存在，請重試";
+"PasswordIncorrectK​​ey" = "密碼錯誤，請重試";
+"Use6orMoreCharsKey" = "用戶名和密碼最少5個字符";
+"UserNamePlaceholderKey" = "用戶名, 5-99 字母和數字";
+
+"PasswordPlaceholderKey" = "密碼, 8-49";
+"PasswordPlaceholderKey2" = "字母和數字, 8-49";
+
+"RetypePwPlaceholderKey" = "重新輸入密碼";
+"EmailPlaceholderKey" = "電子郵箱";
+"RetypeEmailPlaceholderKey" = "重新輸入電子郵箱";
+"SecurityQuestionPlaceholderKey" = "安全問題";
+"SecurityAnswerPlaceholderKey" = "安全答案";
+"DisplayPasswordLabelKey" = "顯示";
+"SaveUsernameLabelKey" = "保存登入信息";
+"AutologinLabelKey" = "下次自動登入";
+"AskToRegiserBtnKey" = "創建新賬號";
+
+"GoBackToLoginBtnKey" = "返回登入頁面";
+"RegisterSuccessKey" = "註冊完成。請查詢你的郵箱並激活賬戶";
+"RegisterTimestampOldKey" = "消息時間過期";
+"RegisterTimestampFutureKey" = "消息時間過期";
+"RegisterInvalidAccIdKey" = "賬號不正確";
+"UserNameTakenKey" = "賬號名已被使用";
+"RegisterUnsecurePasswordKey" = "密碼安全係數太弱";
+"RegisterInvalidEmailKey" = "登記電郵地址不正確";
+"RegisterEmailInUseKey" = "登記電郵地址已被使用";
+"RegisterUnknownStatusCodeKey" = "註冊失敗, 請更換名稱並重試";
+"GetAccountInfoSuccessKey" = "獲取賬戶信息成功";
+"GetAccountInfoFailKey" = "獲取賬戶信息失敗";
+
+
+"EditPermissionFailedMsg" = "請重試";
+
+"EditPermissionSuccessKey" = "修改權限成功";
+"EditPermissionSuccessMsg" = "";
+"EditPermissionFailedKey" = "修改權限失敗,請重試";
+"EditPermissionTitleBar" = "修改權限";
+"EditPermissionFileName" = "文件名";
+"GetOperationLog" = "獲取操作歷史";
+"ProcessBarFreshFileList" = "刷新";
+
+"GetKeyLog" = "獲取訪問歷史";
+"PasscodeLock" = "自動鎖定";
+"FilePreviewKey" = "查看";
+
+"LogViewOperationLogTitle" = "操作歷史";
+"LogViewKeyLogTitle" = "操作歷史";
+"LogViewSwitch" = "切換";
+
+"ProfileOldPassPlaceHolder" = "輸入舊密碼";
+"ProfileNewPassPlaceHolder" = "8 to 49 字符和數字";
+"ProfileVerifyPassPlaceHolder" = "重新輸入新密碼";
+
+"ProfileNewEmailPlaceHolder" = "請輸入郵箱地址";
+"ProfileVerifyEmailPlaceHolder" = "重新輸入新郵箱地址";
+
+"ProfileUserName" = "用戶名";
+"ProfileEmail" = "電子郵件地址";
+"ProfilePassword" = "密碼";
+"EditPasswordSuccess" = "修改密碼成功";
+"EditPasswordFailed" = "修改密碼失敗, 舊密碼不正確";
+"EditEmailSuccess" = "修改電子郵件地址成功";
+"EditEmailFailed" = "修改電子郵件地址失敗";
+"GuidedEditPermissionFriendText" = "Enter friend name seperated by white-space";
+"GuidedEditPermissionGroupText" = "Enter group name seperated by white-space";
+
+"ProcessBarGetAuditLog" = "獲取檔案歷史";
+
+// Guided Encrypt File & Share
+"EncryptFileTitleKey" = "加密";
+
+"QuickEncryptFolder" = "加密文件保存於高級模式->Encrypted";
+"QuickDecryptFolder" = "解密文件保存於高級模式->Decrypted";
+
+"FileAlreadyEncryptedKey" = "文件已經被加密";
+
+// Guided Decrypt File
+"DecryptFileTitleKey" = "解密";
+"FileAlreadyDecryptedKey" = "文件已經被解密";
+
+// File Operations
+"FileHomeTitleKey" = "uSav";
+"FileTitleKey" = "Encrypt File";
+"EncryptedFile" = "Encrypted";
+"DecryptedFile" = "Decrypted";
+"InboxFile" = "Inbox";
+
+"FileEncryptedTitleKey" = "File (Encrypted)";
+"FileDecryptedTitleKey" = "File (Decrypted)";
+"FolderBackButtonKey" = "返回";
+"FileEncryptKey" = "加密";
+"FileDecryptKey" = "解密";
+"FileTransferKey" = "傳送";
+"FileEmailKey" = "電子郵件";
+"FileEditPermissionKey" = "修改權限";
+"ProcessBarLogin" = "登入";
+"ProcessBarGetContact" = "獲取通訊列表";
+"ProcessBarGetLog" = "獲取歷史";
+"ProcessBarEncrypt" = "加密中";
+"ProcessBarDecrypt" = "解密中";
+"ProcessBarPermissionList" = "獲取權限列表";
+"ProcessBarContactList" = "獲取通訊錄";
+"ProcessBarDelete" = "刪除中";
+
+"ProcessBarEditEmail" = "修改電子郵件地址";
+"ProcessBarEditPassword" = "修改密碼";
+
+"FileAlreadyEncryptedKey" = "文件已經被加密,請選擇後綴不為usav的文件";
+"FileEncryptPathCreateFailedKey" = "創建已加密文件目錄失敗, 請重啟";
+"FileDecryptPathCreateFailedKey" = "創建已解密文件目錄失敗, 請重啟";
+"FileEncryptionFailedKey" = "文件加密失敗";
+"FileEncryptionSucceedKey" = "文件加密成功";
+"FileEncryptionInvalidKeySizeKey" = "文件加密失敗, 密鑰大小錯誤";
+"FileEncryptionKeyNotFoundKey" = "文件解密失敗, 權限不足, 或找不到密鑰";
+"FileDecryptionFailedKey" = "文件解密失敗";
+"FileDecryptionSucceedKey" = "文件解密成功";
+"FileDeleteDirectoryNotAllowedKey" = "不能刪除目錄";
+"GetKeyIdFromFileFailedKey" = "獲取密鑰失敗";
+
+// Contact
+"FailedToListGroupKey" = "獲取組別失敗，請刷新";
+"ContactHomeTitleKey" = "通訊錄";
+"SelectActionKey" = "菜單";
+"AddGroupKey" = "添加組";
+"AddContactKey" = "添加朋友";
+"AddMemberKey" = "添加組成員";
+"GoUpOneGroupKey" = "退回主目錄";
+"DeleteContactKey" = "刪除通訊條目";
+"SelectAllContactKey" = "選擇所有通訊條目";
+"SelectAllMemberKey" = "選擇所有成員";
+"EnterNewContactMsgKey" = "輸入朋友電郵地址";
+"EnterNewGroupMsgKey" = "輸入新組名";
+"GroupNameUnknownErrorKey" = "添加組失敗, 請重試";
+"GroupNameInvalidKey" = "組名不正​​確, 請使用其他組名";
+"GroupNameAlreadyExistKey" = "組名已經被使用, 請使用其他組名";
+"ContactAddContactTitleKey" = "添加通訊條目";
+"DeleteItemMsgKey" = "Check item(s) to delete; only empty group can be deleted";
+"GroupNameNotFoundKey" = "組別名稱不存在";
+"ContactNameNotFoundKey" = "朋友不存在";
+"DeleteTrustContactUnknownErrorKey" = "刪除朋友失敗";
+"RemoveGroupUnknownErrorKey" = " 刪除組別失敗";
+"GroupMemberNotExistKey" = "組成員不存在";
+"AddMemberToGroupSuccessKey" = "成功添加成員到組別";
+
+"UserNotExist" = "用戶不存在，系統將發送邀請";
+"Alias​​NameInvalidKey" = "別名不正確";
+"EmailNameInvalidKey" = "電郵件地址不正確";
+"NoteInvalidKey" = "備註不正確";
+"AddGroupMsgKey" = "添加組別";
+"InfoQuickEncrypt" = "點選文件進行加密";
+"InfoQuickSetPermission" = "";
+"InfoQuickDecrypt" = "點選文件進行解密";
+"InfoFullFeature" = "通過uSav打開的文件儲存在'Inbox'";
+
+"UnsupportedPreviewFile" = "不支持此文件類型";
+
+"Permission Denied" = "權限不足";
+"AddContactWithNameKey" = "添加朋友";
+"QuickEncrypt" = "加密與共享";
+"QuickDecrypt" = "解密";
+"FullFeature" = "高級模式";
+"AddContactMsgKey" = "添加成員";
+
+"FileDeleteKeyUnknownErrorKey" = "不支援文件或權限不足";
+"Timeout" = "網絡出錯或太慢";
+"SetPermissionFailed" = "賦可讀權限給朋友失敗，請重試";
+
+"FriendNameAlreadyExistKey" = "朋友已存在";
+"AddContactToGroupTitleKey" = "添加組成員";
+"UserAddedSuccuss" = "成功添加朋友";
+
+"NoGroupInContactList" = "通訊錄裡沒有建立組";
+"RegisterEmail" = "郵箱地址, baidu@usav.com";
+
+"DisabledUser" = "此賬號並未激活.你會收到我們的激活郵件.請查看你的郵箱並安步驟激活賬號.感謝使用uSav.";
+
+"EmailExisted" = "電子郵件地址已經被使用";
+"AddSelf" = "不能添加自己為朋友";
+
+"TimeStampError" = "系統時間不正確";
+
+"TabHome" = "uSav";
+"TabBarFile" = "文件";
+
+"Check Member" = "成員列表";
+"Rename Group" = "重命名組別";
+"Delete Group" = "刪除組別";
+
+"ProfileLabel" = "賬戶信息";
+"SecurityLabel" = "安全";
+"HelpLabel" = "幫助";
+"FeedbackLabel" = "反饋";
+
+"PassCodeLockLabel" = "密碼鎖定";
+"IntroductioinLabel" = "說明";
+"WriteToService" = "轉到客服頁面";
+
+"Where to get photo?" = "菜單";
+"Cancel" = "取消";
+"Camera" = "相機";
+"Photo Album" = "相簿";
+"ViewAndExport" = "查看/導出";
+"Owner" = "擁有者";
+"Created at" = "創建於";
+"Size" = "大小";
+"AutoLockLabel" = "密碼鎖";
+"ShareBar" = "共享";
+"InstructionOne" = "請添加用戶到共享列表;";
+"InstructionTwo" = "系統會發送邀請郵件給新用戶";
+
+"ContactListBtnLabel" = "或從uSav通訊錄中挑選";
+"DecryptFolderDes" ="已解密的文件";
+"EncryptFolderDes"="已加密的文件";
+"InboxFolderDes"="已導入的文件";
+"FileDesLabel" = "數量:%d";
+
+"ContactListLabel" = "通訊列表";
+"DoneLabel" = "完成";
+"Selecting" = "從通訊錄中選擇";
+"SendBtn" = "發送";
+"ExportLabel" = "導出";
+
+"EditPassLabel" = "修改密碼";
+"ConfirmLabel" = "確認";
+
+"OldPassLabel" = "舊密碼";
+"NewPassLabel" = "新密碼";
+"ConfirmPassLabel" = "確認新密碼";
+
+"Turn Passcode Off" = "密碼鎖關閉";
+"Turn Passcode On"= "密碼鎖開啟";
+"Change Passcode"= "更改密碼鎖";
+"Passcode Lock" = "密碼鎖";
+"SentByEmailLabel" = "%@ 發送了一個加密文件給你. 如果你沒有安裝和註冊uSav, 請到以下連接下載http://www.nwstor.com";
+"Never" = "永不";
+"1  Minute" = "1 分鐘";
+"2  Minutes" = "2 分鐘";
+"3  Minutes" ="3 分鐘";
+"4  Minutes" ="4 分鐘";
+"5  Minutes" ="5 分鐘";
+"10 Minutes" ="10 分鐘";
+"15 Minutes" ="15 分鐘";
+"Always" ="立刻";
+"Encrypt photo" = "加密圖片";
+"Please enter a name:" = "請輸入文件名";
+
+"TabBarContact" = "通訊錄";
+"TabBarHistory" = "歷史";
+"TabBarProfile" = "設定";
+
+"Register Account" = "註冊帳戶";
+"RegistrationSuccess" = "註冊成功,請在你郵箱中激活你的賬戶.";
+
+"Enter your passcode" = "請輸入密碼" ;
+"Enter a passcode" = "請輸入密碼";
+"Re-enter your passcode" = "請再次輸入密碼";
+"Enter your old passcode" = "請輸入舊密碼";
+"Enter your new passcode" = "請輸入新密碼";
+"Re-enter your new passcode" = "請再次輸入新密碼";
+
+"Set Passcode" = "設定密碼鎖";
+"Change Passcode" = "改變密碼鎖";
+"Turn off Passcode" = "關閉密碼鎖";
+"Enter Passcode" = "輸入密碼";
+
+"1 Failed Passcode Attempt" = "嘗試失敗1次";
+"%i Failed Passcode Attempts" = "嘗試失敗%i次";
+"PasscodeIncorrect" = "密碼輸入錯誤過多.請重新登入.";
+"HistoryAuditLog" = "操作歷史";
+
+"IncompleteFile" = "操作未完成，此文件後綴以.usav-temp來標示. 刪除它並重新進行加密解密且不要中斷操作.";
+"Passcodes did not match. Try again." = "密碼不匹配。請再次輸入.";
+"Enter a different passcode. You cannot re-use the same passcode." = "不能重用上一個密碼，請輸入一個新密碼.";
+"SendByEmail" = "通過電子郵件分享";
+"Hi , <br/>  Attached is the secured file." = "你好， <br/> 附件是已加密的文件";
+"Details" = "詳細";
+
+"ListGroupMember" = "獲取組成員";
+"FailedToListGroupMemberKey" = "獲取組成員失敗, 請重試";
+"ProcessBarEditAlias​​" = "編輯別名";
+"ProcessBarEditGroupName" = "修改組名";
+
+"ProcessBarRegister" = "註冊";
+
+"ForgetPasswrod" = "忘記密碼？";

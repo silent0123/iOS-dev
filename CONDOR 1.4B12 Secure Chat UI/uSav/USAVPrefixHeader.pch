@@ -1,0 +1,29 @@
+//
+//  USAVPrefixHeader.pch
+//  CONDOR-Mac
+//
+//  Created by Luca on 20/3/15.
+//  Copyright (c) 2015年 nwstor. All rights reserved.
+//
+//  Luca: To enable/disable DEBUGGING so that you can control whether NSLog will be executed.
+//  Luca: To enable/disable JAILBREAK_DETECT so that you can control whether jailbreak will be detected
+
+#define DEBUGGING 1
+#define JAILBREAK_DETECT 0
+
+#ifndef CONDOR_Mac_USAVPrefixHeader_pch
+#define CONDOR_Mac_USAVPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif
+
+// a little bit different with mac version.
+#if DEBUGGING
+#define NSLog NSLog
+#else
+#define NSLog(...)
+#endif
+
+

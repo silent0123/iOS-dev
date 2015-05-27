@@ -454,7 +454,10 @@ UIBarButtonItem *barButton;
 {
     //[self performSegueWithIdentifier:@"BacktoAddFriendSegue" sender:self]; 不同用这个方法传，会叠加页面
     [self.passDelegate passValue:self.selectedContacts];  //passdelegate是协议的实例
-    [self showLoadingAlertAt:self.view];
+    [self showLoadingAlertAt:self.view.window.subviews[0]];
+    if ([self.passDelegate isMemberOfClass:[PermissionTableViewController class]]) {
+        [_loadingAlert stopAnimating];
+    }
     //[self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -465,11 +468,11 @@ UIBarButtonItem *barButton;
         [_loadingAlert stopAnimating];
         return;
     } else {
-        _loadingAlert = [[TYDotIndicatorView alloc] initWithFrame:CGRectMake(30, 260, 260, 50) dotStyle:TYDotIndicatorViewStyleRound dotColor:[UIColor colorWithRed:0.85f green:0.86f blue:0.88f alpha:1.00f] dotSize:CGSizeMake(15, 15) withBackground:NO];
+        _loadingAlert = [[TYDotIndicatorView alloc] initWithFrame:CGRectMake(30, 260, 260, 50) dotStyle:TYDotIndicatorViewStyleRound dotColor:[UIColor colorWithRed:0.85f green:0.86f blue:0.88f alpha:1.00f] dotSize:CGSizeMake(15, 15) withBackground:YES];
         _loadingAlert.backgroundColor = [UIColor colorWithRed:0.20f green:0.27f blue:0.36f alpha:0.9f];
         _loadingAlert.layer.cornerRadius = 5.0f;
-        [_loadingAlert startAnimating];
         [view addSubview:_loadingAlert];
+        [_loadingAlert startAnimating];
     }
 }
 @end

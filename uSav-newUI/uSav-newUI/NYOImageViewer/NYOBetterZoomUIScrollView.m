@@ -121,5 +121,9 @@
 	[super insertSubview:view belowSubview:siblingSubview];
 }
 
+#pragma mark 点击事件
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.nextResponder touchesBegan:touches withEvent:event];  //传递动作给图片层
+}
 
 @end
