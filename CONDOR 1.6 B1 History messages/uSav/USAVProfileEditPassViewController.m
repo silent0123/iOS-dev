@@ -34,6 +34,8 @@
 
 - (IBAction)confirmPressed:(id)sender
 {
+    [self.verifyPass resignFirstResponder];
+    
     if (![self isValidPassword:self.oldPass.text]) {
         WarningView *wv = [[WarningView alloc] initWithFrame:CGRectMake(0, 0, 280, 64) withFontSize:0];
         [wv setCenter:CGPointMake(MSG_POSITION_X, MSG_POSITION_Y)];
@@ -151,18 +153,20 @@ object:nil];
     }
  
     if ([[obj objectForKey:@"rawStringStatus"] integerValue] == 0) {
-        WarningView *wv = [[WarningView alloc] initWithFrame:CGRectMake(0, 0, 280, 64) withFontSize:0];
-        [wv setCenter:CGPointMake(MSG_POSITION_X, MSG_POSITION_Y)];
-        [wv show:NSLocalizedString(@"EditPasswordSuccess", @"") inView:self.view];
+        [SGDUtilities showSuccessMessageWithTitle:NSLocalizedString(@"Success", nil) message:@"" delegate:self];
        
         USAVClient *client = [USAVClient current];
         client.password = [self.nPass.text copy];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self performSelector:@selector(popViewControllerAfterDelay) withObject:nil afterDelay:0.5];
     } else {
         WarningView *wv = [[WarningView alloc] initWithFrame:CGRectMake(0, 0, 280, 64) withFontSize:0];
         [wv setCenter:CGPointMake(MSG_POSITION_X, MSG_POSITION_Y)];
         [wv show:NSLocalizedString(@"EditPasswordFailed", @"") inView:self.view];
     }
+}
+
+-(void)popViewControllerAfterDelay {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)editPassword:(NSString *)oldPass toNewPassword:(NSString *)nPass

@@ -644,7 +644,7 @@
 
 }
 
-#pragma mark - 截屏监听
+#pragma mark - 截屏监听 screen shot
 - (void)userDidTakeScreenShot {
     //if file is in encryptCopyPath, it is an allow save decrypt copy file
     if (![[[self.fullFilePath stringByDeletingLastPathComponent] lastPathComponent] isEqualToString:[self.decryptCopyPath lastPathComponent]]) {
@@ -652,12 +652,58 @@
         [self.webView removeFromSuperview];
         [self.durationTimer invalidate];
         
-        NSString *warningMessage = [NSString stringWithFormat:NSLocalizedString(@"Access to Data belonging to %@ has been blocked.\nPlease contact %@ to unblock.", nil), self.keyOwner, self.keyOwner];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Screen shot detected", nil) message:warningMessage delegate:self cancelButtonTitle:NSLocalizedString(@"ConfirmLabel", nil) otherButtonTitles:nil, nil];
+        NSString *warningMessage = [NSString stringWithFormat:NSLocalizedString(@"Please do not capture displayed data\nNotification has been sent to \"%@\"", nil), self.keyOwner];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Warning", nil) message:warningMessage delegate:self cancelButtonTitle:NSLocalizedString(@"ConfirmLabel", nil) otherButtonTitles:nil, nil];
         alert.tag = SCRRENSHOT_ALERT_TAG;
         alert.delegate = self;
         [alert show];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationUserDidTakeScreenshotNotification object:nil];
+        //send notification through API
+        
+        [self sendMalOperation:@"Screen Capture" forKeyId:self.keyId onFile:[self.fullFilePath lastPathComponent] autoBlock:@"false"];
+        
     }
+}
+
+- (void)sendMalOperation:(NSString *)inputOperation forKeyId:(NSString *)inputKeyId onFile:(NSString *)inputFilename autoBlock: (NSString *)inputAutoBlock {
+    
+    NSString *stringToSign = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@", [[USAVClient current] emailAddress], @"\n", [[USAVClient current] getDateTimeStr], @"\n", inputAutoBlock, @"\n", inputFilename, @"\n", inputKeyId, @"\n", inputOperation, @"\n"];
+    
+    NSString *signature = [[USAVClient current] generateSignature:stringToSign withKey:[[USAVClient current] password]];
+    GDataXMLElement * requestElement = [GDataXMLNode elementWithName:@"request"];
+    GDataXMLElement * paramElement = [GDataXMLNode elementWithName:@"account" stringValue:[[USAVClient current] emailAddress]];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"timestamp" stringValue:[[USAVClient current] getDateTimeStr]];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"signature" stringValue:signature];
+    [requestElement addChild:paramElement];
+    paramElement = [GDataXMLNode elementWithName:@"params" stringValue:@""];
+    
+    GDataXMLElement *keyId = [GDataXMLNode elementWithName:@"keyId" stringValue:[NSString stringWithFormat:@"%@", inputKeyId]];
+    [paramElement addChild:keyId];
+    GDataXMLElement *operation = [GDataXMLNode elementWithName:@"operation" stringValue:[NSString stringWithFormat:@"%@", inputOperation]];
+    [paramElement addChild:operation];
+    GDataXMLElement *fileName = [GDataXMLNode elementWithName:@"fileName" stringValue:inputFilename];
+    [paramElement addChild:fileName];
+    GDataXMLElement *autoBlock = [GDataXMLNode elementWithName:@"autoBlock" stringValue:[NSString stringWithFormat:@"%@",inputAutoBlock]];
+    [paramElement addChild:autoBlock];
+    [requestElement addChild:paramElement];
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:requestElement];
+    NSData *xmlData = document.XMLData;
+    NSString *getParam = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
+    NSString *encodedGetParam = [[USAVClient current] encodeToPercentEscapeString:getParam];
+    NSLog(@"Mal operation api connecting, rawrequest:%@ \n getParam: %@ \n encoded: %@",requestElement, getParam, encodedGetParam);
+    
+    //no need to handle call back
+    [[USAVClient current].api sendMalOperationNotification:encodedGetParam target:self selector:@selector(sendMalOperationCallBack:)];
+}
+
+- (void)sendMalOperationCallBack: (NSDictionary *)obj {
+    
+    NSLog(@"Send mal operation call back %@", obj);
+    
+    return;
 }
 
 

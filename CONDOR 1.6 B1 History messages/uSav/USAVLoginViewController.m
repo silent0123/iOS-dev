@@ -15,8 +15,13 @@
 #import "SGDUtilities.h"
 #import "USAVLock.h"
 
+#define MAX_NUM_OF_RETRY 1
+
 @interface USAVLoginViewController () {
+    
     CGFloat previousHeight; //record the view movement height
+    
+    NSInteger numberOfRetry;
 }
 @property (nonatomic) BOOL saveInfoFlag;
 @property (nonatomic) BOOL autoLoginFlag;
@@ -91,6 +96,7 @@
     //cell is the TableView's cell
     
     //self.locked = false;
+    numberOfRetry = 0;
     
     self.headerLogo.image = [UIImage imageNamed:@"Function_head"];
     
@@ -674,6 +680,7 @@
         WarningView *wv = [[WarningView alloc] initWithFrame:CGRectMake(0, 0, 280, 64) withFontSize:0];
         [wv setCenter:CGPointMake(MSG_POSITION_X, MSG_POSITION_Y)];
         [wv show:NSLocalizedString(@"TimeStampError", @"") inView:self.view];
+        numberOfRetry = 0;
         return;
     }
     
@@ -682,6 +689,7 @@
         WarningView *wv = [[WarningView alloc] initWithFrame:CGRectMake(0, 0, 280, 64) withFontSize:0];
         [wv setCenter:CGPointMake(MSG_POSITION_X, MSG_POSITION_Y)];
         [wv show:NSLocalizedString(@"Timeout", @"") inView:self.view];
+        numberOfRetry = 0;
         return;
     }
     
@@ -752,6 +760,8 @@
                 //成功提示
                 [SGDUtilities showSuccessMessageWithTitle:NSLocalizedString(@"Success", "") message:@"" delegate:self];
                 
+                numberOfRetry = 0;
+                
                 [self dismissViewControllerAnimated:NO completion:nil];
             }
                 break;
@@ -761,14 +771,34 @@
                 [wv setCenter:CGPointMake(MSG_POSITION_X, MSG_POSITION_Y - 100)];
                 [wv show:NSLocalizedString(@"DisabledUser", @"") inView:self.view];
                 [[USAVClient current] setUserHasLogin:NO];
+                numberOfRetry = 0;
             }
                 break;
+            case WRONG_SIGNATURE:{
+                
+                //retry one more time
+                if (numberOfRetry != MAX_NUM_OF_RETRY) {
+                    numberOfRetry ++;
+                    NSLog(@"Wrong signature retry %zi", numberOfRetry);
+                    [self getAccountInfo];
+                    return;
+                    
+                } else {
+                    WarningView *wv = [[WarningView alloc] initWithFrame:CGRectMake(0, 0, 280, 64) withFontSize:0];
+                    [wv setCenter:CGPointMake(MSG_POSITION_X, MSG_POSITION_Y)];
+                    [wv show:NSLocalizedString(@"Authen_Failed", @"") inView:self.view];
+                    [[USAVClient current] setUserHasLogin:NO];
+                    numberOfRetry = 0;
+                }
+                break;
+            }
             default:
             {
                 WarningView *wv = [[WarningView alloc] initWithFrame:CGRectMake(0, 0, 280, 64) withFontSize:0];
                 [wv setCenter:CGPointMake(MSG_POSITION_X, MSG_POSITION_Y)];
                 [wv show:NSLocalizedString(@"Authen_Failed", @"") inView:self.view];
                 [[USAVClient current] setUserHasLogin:NO];
+                numberOfRetry = 0;
                 //[delegate loginResult:FALSE target:self];
             }
                 break;
@@ -776,6 +806,7 @@
         return;
     }
     
+    numberOfRetry = 0;
     if (obj == nil) {
         NSLog(@"%@: resp is nil", [self class]);
     }
@@ -1020,6 +1051,7 @@
     if ([[obj objectForKey:@"statusCode"] integerValue] == 261 || [[obj objectForKey:@"statusCode"] integerValue] == 260) {
         //0表示检测失败
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginStatus" object:[NSNumber numberWithInt:0]];
+        numberOfRetry = 0;
         return NO;
     }
     
@@ -1027,6 +1059,7 @@
     if (obj == nil) {
         //0表示检测失败
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginStatus" object:[NSNumber numberWithInt:0]];
+        numberOfRetry = 0;
         return NO;
     }
     
@@ -1044,22 +1077,44 @@
                 
                 //只有1表示检测成功
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginStatus" object:[NSNumber numberWithInt:1]];
+                
+                numberOfRetry = 0;
+                
                 return YES;
             }
                 break;
-
+            case WRONG_SIGNATURE: {
+                //wrong signature, try one more time
+                if (numberOfRetry != MAX_NUM_OF_RETRY) {
+                    numberOfRetry ++;
+                    NSLog(@"Wrong signature retry %zi", numberOfRetry);
+                    [self loginStatusCheckForAccount:[[USAVClient current] emailAddress] andPassword:[[USAVClient current] password]];
+                    
+                    return YES;
+                } else {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginStatus" object:[NSNumber numberWithInt:0]];
+                    
+                    numberOfRetry = 0;
+                    return NO;
+                }
+                
+            }
+                break;
+                
             default:
             {
-                
+                numberOfRetry = 0;
             }
                 break;
         }
         //0表示检测失败
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginStatus" object:[NSNumber numberWithInt:0]];
+        numberOfRetry = 0;
         return NO;
     }
     //0表示检测失败
     [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginStatus" object:[NSNumber numberWithInt:0]];
+    numberOfRetry = 0;
     return NO;
 }
 

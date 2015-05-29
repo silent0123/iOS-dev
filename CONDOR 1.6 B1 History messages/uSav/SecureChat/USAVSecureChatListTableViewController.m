@@ -19,9 +19,14 @@
 
 @implementation USAVSecureChatListTableViewController
 
+
+- (void)viewWillAppear:(BOOL)animated {
+
+    [self.navigationController.navigationBar.topItem setTitle:NSLocalizedString(@"Secure Chat", nil)];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [self.view.window setUserInteractionEnabled:YES];
-    [self.navigationController.navigationBar.topItem setTitle:NSLocalizedString(@"Secure Chat", nil)];
 }
 
 
@@ -267,8 +272,10 @@
         }
     }
 
-    
-    NSString *dateString = [dateFormatter stringFromDate:[[self.fileManager attributesOfItemAtPath:[[self.directoryList objectAtIndex:indexPath.row] stringByAppendingPathComponent:[chatDic objectForKey:@"lastFile"]] error:nil] objectForKey:NSFileCreationDate]];
+    //use last file time as timelabel text
+    //NSString *dateString = [dateFormatter stringFromDate:[[self.fileManager attributesOfItemAtPath:[[self.directoryList objectAtIndex:indexPath.row] stringByAppendingPathComponent:[chatDic objectForKey:@"lastFile"]] error:nil] objectForKey:NSFileCreationDate]];
+    //use folder mod time as timelabel text
+    NSString *dateString = [dateFormatter stringFromDate:[[self.fileManager attributesOfItemAtPath:[chatDic objectForKey:@"databasePath"] error:nil] objectForKey:NSFileModificationDate]];
     cell.timeLabel.text = dateString;
     
     return cell;

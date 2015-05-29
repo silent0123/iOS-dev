@@ -1382,6 +1382,48 @@
             </objects>
             <point key="canvasLocation" x="2531.7333333333331" y="-2429.1466666666665"/>
         </scene>
+        <!--More-->
+        <scene sceneID="QtB-qs-qTZ">
+            <objects>
+                <tableViewController hidesBottomBarWhenPushed="YES" id="qUz-Us-H8E" customClass="USAVSecureChatSettingTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Jj6-gA-tY2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SecureChatSettingCell" id="h6g-hB-5mE">
+                                <rect key="frame" x="0.0" y="50" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h6g-hB-5mE" id="ulZ-hj-kLu">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qUz-Us-H8E" id="E3A-75-Mrs"/>
+                            <outlet property="delegate" destination="qUz-Us-H8E" id="bO3-dX-YDg"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="More" id="E2C-v7-ENQ">
+                        <barButtonItem key="leftBarButtonItem" image="icon_back_blue" id="Yp9-FO-yyH">
+                            <connections>
+                                <action selector="backBtnPressed:" destination="qUz-Us-H8E" id="OZx-aM-feT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="Wof-bf-SGU">
+                            <connections>
+                                <action selector="doneBtnPressed:" destination="qUz-Us-H8E" id="I8c-VY-Dgo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h3J-qW-R2I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="508" y="-2430"/>
+        </scene>
         <!--Secure Chat-->
         <scene sceneID="5GB-mg-fu2">
             <objects>
@@ -1544,7 +1586,11 @@
                                 <action selector="backBtnpressed:" destination="LYb-AX-gcJ" id="09i-XP-Tfw"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="2VI-1H-JNJ"/>
+                        <barButtonItem key="rightBarButtonItem" title="More" style="plain" id="2VI-1H-JNJ">
+                            <connections>
+                                <segue destination="qUz-Us-H8E" kind="push" identifier="SecureChatSettingSegue" id="YQz-C5-tWq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="inputFileBtn" destination="51k-P4-yfp" id="mq2-Lp-EMb"/>

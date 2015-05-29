@@ -1618,6 +1618,7 @@ uint64_t startTime;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"DealInboxFile" object:nil];
     }
     
+
 #pragma mark 帐号状态检测
     if ([[USAVLock defaultLock] isLogin]) {
         
@@ -1633,17 +1634,10 @@ uint64_t startTime;
     } else {
         //如果没有登陆，先不创建文件系统，登陆后创建
         if ([[USAVClient current] emailAddress] == nil) {
-            
             [self performSegueWithIdentifier:@"LoginSegue" sender:self];
             
             return;
         }
-        //else {
-        //[self performSegueWithIdentifier:@"Tutorial" sender:self];
-        
-        //}
-        //[self performSegueWithIdentifier:@"LoginSegue" sender:self];
-        //[self disableRemainFeature];
     }
     
     self.currentFileList = [NSMutableArray arrayWithCapacity:24];
@@ -3204,6 +3198,7 @@ uint64_t startTime;
                 NSData *keyId = [NSData dataFromBase64String:[obj objectForKey:@"Id"]];
                 NSData *keyContent = [NSData dataFromBase64String:[obj objectForKey:@"Content"]];
                 self.allowedLength = [[obj objectForKey:@"allowedLength"] integerValue];   //每次打开时间
+                self.keyId2 = [keyId base64EncodedString];
                 
                 NSInteger keySize = [[obj objectForKey:@"Size"] integerValue];
                 
@@ -4015,6 +4010,7 @@ uint64_t startTime;
         fp.delegate = self;
         fp.allowedLength = self.allowedLength;
         fp.keyOwner = self.keyOwner;
+        fp.keyId = [self.keyId2 copy];
     }
     else if ([segue.identifier isEqualToString:@"imageViewerSegue"]) {
         NYOBetterZoomViewController *vc = [segue destinationViewController];
@@ -4024,6 +4020,7 @@ uint64_t startTime;
         vc.keyOwner = self.keyOwner;
         vc.allowedLength = self.allowedLength;  //duration计时器
         vc.fileName = [self.filename copy];
+        vc.keyId = [self.keyId2 copy];
     }else if ([[segue identifier] isEqualToString:@"SingleKeyLog"]) {
             USAVSingleFileLog *fp = (USAVSingleFileLog *)segue.destinationViewController;
             fp.fileName = [self.filename copy];

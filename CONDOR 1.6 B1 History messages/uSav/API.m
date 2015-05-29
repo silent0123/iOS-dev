@@ -253,4 +253,9 @@
 	[self call:url target:target selector:sel];
 }
 
+-(void)sendMalOperationNotification:(NSString *)getParam target:(id)target selector:(SEL)sel {
+    NSString *url = [NSString stringWithFormat:@"%@/account/sendMalOperationNotification?req=%@", urlPrefix, getParam];
+    [self call:url target:target selector:sel];
+}
+
 @end

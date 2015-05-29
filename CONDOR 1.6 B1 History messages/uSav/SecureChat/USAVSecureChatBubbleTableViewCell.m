@@ -24,6 +24,7 @@
 
 - (BOOL)canBecomeFirstResponder {
     
+    //re-write this function to enable long press
     return YES;
 }
 @end

@@ -8,6 +8,7 @@
 
 #import "USAVSecureChatViewController.h"
 #import "USAVSecureChatListTableViewController.h"
+#import "USAVSecureChatSettingTableViewController.h"
 
 #define NEXT_FETCH_MESSAGE_COUNT 5
 #define MAX_NUMBER_OF_MESSAGE 1000000
@@ -27,6 +28,7 @@
     NSInteger fetchedMessageCount;
     NSInteger startMessageIndex;
     NSInteger endMessageIndex;
+    NSInteger playingRow;
     
     CGFloat previousHeight;
     CGPoint originalPointOfRecordingCustomView;
@@ -46,7 +48,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationItem setTitle:self.sendTo];
-    
+    [self.navigationItem.rightBarButtonItem setTitle:NSLocalizedString(@"More", nil)];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -67,10 +70,11 @@
     fetchedMessageCount = 0;
     startMessageIndex = 0;
     endMessageIndex = 0;
+    playingRow = -1;
     
     //navigation bar
     self.navigationController.navigationBarHidden = NO;
-    [self.navigationItem setRightBarButtonItem:nil];
+    
     
     
     //messages folder
@@ -975,7 +979,8 @@
     [self.chatListDelegate getChattingDatabaseList];
     [self.chatListDelegate.tableView reloadData];
     
-    
+    //no need to play in background
+    [self.voiceRecoding endPlay];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -1054,6 +1059,7 @@
 - (IBAction)inputVoiceBtnPressedUp:(id)sender {
     
     [self.voiceRecordingCustomView setHidden:YES];
+    [self.messageTextView resignFirstResponder];
     
     //显示旋转动画
     self.alert = (UIAlertView *)[SGDUtilities showLoadingMessageWithTitle:nil delegate:self];
@@ -1115,6 +1121,21 @@
 #pragma mark play voice
 - (void)playVoiceMessage: (id)sender {
     
+    NSLog(@"=== %zi, %zi", playingRow, pressedVoiceRow);
+    //first stop the current playing voice, recorded by playingRow
+    if (playingRow != -1) {
+    USAVSecureChatBubbleTableViewCell *currentPlayingCell = (USAVSecureChatBubbleTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:playingRow inSection:0]];
+        for (NSInteger i = 0; i < [[currentPlayingCell subviews] count]; i ++) {
+            if ([[[currentPlayingCell subviews] objectAtIndex:i] isKindOfClass:[UIButton class]]) {
+                [self stopPlayVoiceMessage:[[currentPlayingCell subviews] objectAtIndex:i]];
+                break;
+            }
+    }
+        
+
+        
+        playingRow = -1;
+    }
     
     UIButton *button = (UIButton *)sender;
     USAVSecureChatBubbleTableViewCell *cell = (USAVSecureChatBubbleTableViewCell *)[button superview];
@@ -1147,6 +1168,7 @@
     
     
     //start animation
+    playingRow = pressedVoiceRow;
     [self voicePlayAnimationForCell:cell voiceLength:[[NSString stringWithFormat:@"%zi.0",audioDurationSeconds] floatValue] animated:YES];
     
 }
@@ -1168,6 +1190,7 @@
     }
     
     //stop animation
+    playingRow = -1;
     [self voicePlayAnimationForCell:cell voiceLength:0 animated:NO];
     
     //if click button earlier than autostop, cancel the perform selector request
@@ -1212,6 +1235,13 @@
          fp.filePath = [self.encryptedFilePath copy];
          //using key id data
          fp.keyId = [NSData dataFromBase64String:self.keyId];
+     }
+     
+     if ([segue.identifier isEqualToString:@"SecureChatSettingSegue"]) {
+         
+         USAVSecureChatSettingTableViewController *chatSettingView = (USAVSecureChatSettingTableViewController *)segue.destinationViewController;
+         chatSettingView.messageFolder = self.messageFolder;
+         chatSettingView.secureChatDelegate = self;
      }
  }
 
@@ -2219,6 +2249,7 @@
     
     currentMessageRow = 0;
     
+    
     if ([self.fileList count] > 0) {
         
         //set progress
@@ -2229,7 +2260,10 @@
         [self getKeyInfo:keyId];
         
     } else {
+        
         [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+        
+        [self.messageTextView becomeFirstResponder];
     }
     
         
@@ -2394,7 +2428,12 @@
         
         //for all messages, content initially set has "click to display".
         //after decryption, will be changed to real content, other wise, keep this hint content
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[[self.keyInfoList objectAtIndex:i] objectForKey:@"owner"], @"sender", encryptedFilePath, @"encryptedFilePath", [dateFormatter stringFromDate:[[self.fileManager attributesOfItemAtPath:encryptedFilePath error:nil] objectForKey:NSFileCreationDate]], @"time", [NSNumber numberWithInteger:messageType], @"type", [[self.keyInfoList objectAtIndex:i] objectForKey:@"permissionList"], @"permissionList",NSLocalizedString(@"Click to display message", nil), @"content",nil];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[[self.keyInfoList objectAtIndex:i] objectForKey:@"owner"], @"sender",
+                                    encryptedFilePath, @"encryptedFilePath",
+                                    [dateFormatter stringFromDate:[[self.fileManager attributesOfItemAtPath:encryptedFilePath error:nil] objectForKey:NSFileCreationDate]], @"time",
+                                    [NSNumber numberWithInteger:messageType], @"type",
+                                    [[self.keyInfoList objectAtIndex:i] objectForKey:@"permissionList"] == NULL ? [[NSArray alloc] init] :[[self.keyInfoList objectAtIndex:i] objectForKey:@"permissionList"], @"permissionList",
+                                    NSLocalizedString(@"Click to display message", nil), @"content",nil];
         [self.resultArray addObject:dic];
     }
     NSLog(@"Database established: \n %@", self.resultArray);

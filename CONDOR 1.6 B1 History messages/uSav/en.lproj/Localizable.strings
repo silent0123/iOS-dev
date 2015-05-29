@@ -23,7 +23,7 @@
 "Decrypted File" = "Decrypted File";
 "PhotoAlbumDes" = "";
 "To: %@" = "To: %@";
-"Group chatting is not supported in this version" = "Group chatting is not supported in this version";
+"Group chat is not supported in this version" = "Group chat is not supported in this version";
 
 "SingleFileHistory" = "File History";
 
@@ -291,7 +291,8 @@
 "Decrypted file stored in folder /Home/Decrypted " = "Decrypted file stored in /Home/Decrypted ";
 "Already added" ="Already added";
 // Contact
-"FailedToListGroupKey" = "Fail to list group";
+"FailedToListGroupKey" = "Failed To List Group";
+"FailedToListTrustContactKey" = "Failed To List Contact";
 "ContactHomeTitleKey" = "Contact";
 "SelectActionKey" = "Action";
 "AddGroupKey" = "Add Group";
@@ -488,3 +489,12 @@
 "Save as Default" = "Save as Default";
 "Save Succeed" = "Save Sucessful";
 "Allow viewing and duration per viewing will be stored as default" = "Allow viewing time and duration per viewing will be stored as default";
+
+//screen shot
+"Please do not capture displayed data\nNotification has been sent to \"%@\"" = "Please do not capture displayed data\nNotification has been sent to \"%@\"";
+
+//chat setting
+"EraseAllMessagesInThisSession" = "Erase messages in this chatting session";
+"This operation will erase history message records in this chatting session" = "本操作会删除当前会话中的所有聊天记录";
+"Default setting of viewing limit for all future messges and files will be changed to %zi time(s)" = "Default setting of viewing limit for all future messges and files will be changed to %zi time(s)";
+"Failed" = "Failed";

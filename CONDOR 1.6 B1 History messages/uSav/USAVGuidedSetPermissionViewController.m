@@ -1552,7 +1552,7 @@
         if ([(UIViewController *)self.delegate isKindOfClass:[USAVSecureChatListTableViewController class]]) {
             WarningView *wv = [[WarningView alloc] initWithFrame:CGRectMake(0, 0, 280, 64) withFontSize:0];
             [wv setCenter:CGPointMake(MSG_POSITION_X, MSG_POSITION_Y)];
-            [wv show:NSLocalizedString(@"Group chatting is not supported in this version", @"") inView:self.view];
+            [wv show:NSLocalizedString(@"Group chat is not supported in this version", @"") inView:self.view];
             return;
         }
         

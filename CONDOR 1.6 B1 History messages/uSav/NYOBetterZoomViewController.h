@@ -28,6 +28,7 @@
 @property (strong, nonatomic) NSString *fileName;
 
 @property (strong, nonatomic) NSString *keyOwner;
+@property (strong, nonatomic) NSString *keyId;
 
 //duration计时
 @property (assign, nonatomic) NSInteger allowedLength;

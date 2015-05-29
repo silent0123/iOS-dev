@@ -1,0 +1,536 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		81522F911B16CB97001D175F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81522F901B16CB97001D175F /* main.m */; };
+		81522F941B16CB97001D175F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81522F931B16CB97001D175F /* AppDelegate.m */; };
+		81522F971B16CB97001D175F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81522F961B16CB97001D175F /* ViewController.m */; };
+		81522F9A1B16CB97001D175F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81522F981B16CB97001D175F /* Main.storyboard */; };
+		81522F9C1B16CB97001D175F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81522F9B1B16CB97001D175F /* Images.xcassets */; };
+		81522F9F1B16CB97001D175F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81522F9D1B16CB97001D175F /* LaunchScreen.xib */; };
+		81522FAB1B16CB97001D175F /* CertificateVerifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81522FAA1B16CB97001D175F /* CertificateVerifyTests.m */; };
+		81FE8D111B16DC41000F4751 /* client-cert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D021B16DC41000F4751 /* client-cert.pem */; };
+		81FE8D121B16DC41000F4751 /* client-key.pem in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D031B16DC41000F4751 /* client-key.pem */; };
+		81FE8D131B16DC41000F4751 /* client-req.csr in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D041B16DC41000F4751 /* client-req.csr */; };
+		81FE8D141B16DC41000F4751 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D051B16DC41000F4751 /* client.p12 */; };
+		81FE8D151B16DC41000F4751 /* root-cert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D071B16DC41000F4751 /* root-cert.pem */; };
+		81FE8D161B16DC41000F4751 /* root-key.pem in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D081B16DC41000F4751 /* root-key.pem */; };
+		81FE8D171B16DC41000F4751 /* root-req.scr in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D091B16DC41000F4751 /* root-req.scr */; };
+		81FE8D181B16DC41000F4751 /* root.jks in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D0A1B16DC41000F4751 /* root.jks */; };
+		81FE8D191B16DC41000F4751 /* root.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D0B1B16DC41000F4751 /* root.p12 */; };
+		81FE8D1A1B16DC41000F4751 /* server-cert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D0D1B16DC41000F4751 /* server-cert.pem */; };
+		81FE8D1B1B16DC41000F4751 /* server-key.pem in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D0E1B16DC41000F4751 /* server-key.pem */; };
+		81FE8D1C1B16DC41000F4751 /* server-req.csr in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D0F1B16DC41000F4751 /* server-req.csr */; };
+		81FE8D1D1B16DC41000F4751 /* server.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 81FE8D101B16DC41000F4751 /* server.p12 */; };
+		81FE8D201B16DCA5000F4751 /* CertificateVerifyLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FE8D1F1B16DCA5000F4751 /* CertificateVerifyLib.m */; };
+		81FE8D231B16F960000F4751 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FE8D221B16F960000F4751 /* SecondViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		81522FA51B16CB97001D175F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81522F831B16CB97001D175F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81522F8A1B16CB97001D175F;
+			remoteInfo = CertificateVerify;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		81522F8B1B16CB97001D175F /* CertificateVerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CertificateVerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		81522F8F1B16CB97001D175F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81522F901B16CB97001D175F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		81522F921B16CB97001D175F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		81522F931B16CB97001D175F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		81522F951B16CB97001D175F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		81522F961B16CB97001D175F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		81522F991B16CB97001D175F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		81522F9B1B16CB97001D175F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		81522F9E1B16CB97001D175F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		81522FA41B16CB97001D175F /* CertificateVerifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CertificateVerifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		81522FA91B16CB97001D175F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81522FAA1B16CB97001D175F /* CertificateVerifyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CertificateVerifyTests.m; sourceTree = "<group>"; };
+		81FE8D021B16DC41000F4751 /* client-cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "client-cert.pem"; sourceTree = "<group>"; };
+		81FE8D031B16DC41000F4751 /* client-key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "client-key.pem"; sourceTree = "<group>"; };
+		81FE8D041B16DC41000F4751 /* client-req.csr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "client-req.csr"; sourceTree = "<group>"; };
+		81FE8D051B16DC41000F4751 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
+		81FE8D071B16DC41000F4751 /* root-cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "root-cert.pem"; sourceTree = "<group>"; };
+		81FE8D081B16DC41000F4751 /* root-key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "root-key.pem"; sourceTree = "<group>"; };
+		81FE8D091B16DC41000F4751 /* root-req.scr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "root-req.scr"; sourceTree = "<group>"; };
+		81FE8D0A1B16DC41000F4751 /* root.jks */ = {isa = PBXFileReference; lastKnownFileType = file; path = root.jks; sourceTree = "<group>"; };
+		81FE8D0B1B16DC41000F4751 /* root.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = root.p12; sourceTree = "<group>"; };
+		81FE8D0D1B16DC41000F4751 /* server-cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "server-cert.pem"; sourceTree = "<group>"; };
+		81FE8D0E1B16DC41000F4751 /* server-key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "server-key.pem"; sourceTree = "<group>"; };
+		81FE8D0F1B16DC41000F4751 /* server-req.csr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "server-req.csr"; sourceTree = "<group>"; };
+		81FE8D101B16DC41000F4751 /* server.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.p12; sourceTree = "<group>"; };
+		81FE8D1E1B16DCA5000F4751 /* CertificateVerifyLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificateVerifyLib.h; sourceTree = "<group>"; };
+		81FE8D1F1B16DCA5000F4751 /* CertificateVerifyLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CertificateVerifyLib.m; sourceTree = "<group>"; };
+		81FE8D211B16F960000F4751 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		81FE8D221B16F960000F4751 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		81522F881B16CB97001D175F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81522FA11B16CB97001D175F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		81522F821B16CB97001D175F = {
+			isa = PBXGroup;
+			children = (
+				81FE8D001B16DC41000F4751 /* Certificate */,
+				81522F8D1B16CB97001D175F /* CertificateVerify */,
+				81522FA71B16CB97001D175F /* CertificateVerifyTests */,
+				81522F8C1B16CB97001D175F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		81522F8C1B16CB97001D175F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				81522F8B1B16CB97001D175F /* CertificateVerify.app */,
+				81522FA41B16CB97001D175F /* CertificateVerifyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		81522F8D1B16CB97001D175F /* CertificateVerify */ = {
+			isa = PBXGroup;
+			children = (
+				81522F921B16CB97001D175F /* AppDelegate.h */,
+				81522F931B16CB97001D175F /* AppDelegate.m */,
+				81522F951B16CB97001D175F /* ViewController.h */,
+				81522F961B16CB97001D175F /* ViewController.m */,
+				81FE8D211B16F960000F4751 /* SecondViewController.h */,
+				81FE8D221B16F960000F4751 /* SecondViewController.m */,
+				81FE8D1E1B16DCA5000F4751 /* CertificateVerifyLib.h */,
+				81FE8D1F1B16DCA5000F4751 /* CertificateVerifyLib.m */,
+				81522F981B16CB97001D175F /* Main.storyboard */,
+				81522F9B1B16CB97001D175F /* Images.xcassets */,
+				81522F9D1B16CB97001D175F /* LaunchScreen.xib */,
+				81522F8E1B16CB97001D175F /* Supporting Files */,
+			);
+			path = CertificateVerify;
+			sourceTree = "<group>";
+		};
+		81522F8E1B16CB97001D175F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				81522F8F1B16CB97001D175F /* Info.plist */,
+				81522F901B16CB97001D175F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		81522FA71B16CB97001D175F /* CertificateVerifyTests */ = {
+			isa = PBXGroup;
+			children = (
+				81522FAA1B16CB97001D175F /* CertificateVerifyTests.m */,
+				81522FA81B16CB97001D175F /* Supporting Files */,
+			);
+			path = CertificateVerifyTests;
+			sourceTree = "<group>";
+		};
+		81522FA81B16CB97001D175F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				81522FA91B16CB97001D175F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		81FE8D001B16DC41000F4751 /* Certificate */ = {
+			isa = PBXGroup;
+			children = (
+				81FE8D011B16DC41000F4751 /* client */,
+				81FE8D061B16DC41000F4751 /* root */,
+				81FE8D0C1B16DC41000F4751 /* server */,
+			);
+			name = Certificate;
+			path = CertificateVerify/Certificate;
+			sourceTree = "<group>";
+		};
+		81FE8D011B16DC41000F4751 /* client */ = {
+			isa = PBXGroup;
+			children = (
+				81FE8D021B16DC41000F4751 /* client-cert.pem */,
+				81FE8D031B16DC41000F4751 /* client-key.pem */,
+				81FE8D041B16DC41000F4751 /* client-req.csr */,
+				81FE8D051B16DC41000F4751 /* client.p12 */,
+			);
+			path = client;
+			sourceTree = "<group>";
+		};
+		81FE8D061B16DC41000F4751 /* root */ = {
+			isa = PBXGroup;
+			children = (
+				81FE8D071B16DC41000F4751 /* root-cert.pem */,
+				81FE8D081B16DC41000F4751 /* root-key.pem */,
+				81FE8D091B16DC41000F4751 /* root-req.scr */,
+				81FE8D0A1B16DC41000F4751 /* root.jks */,
+				81FE8D0B1B16DC41000F4751 /* root.p12 */,
+			);
+			path = root;
+			sourceTree = "<group>";
+		};
+		81FE8D0C1B16DC41000F4751 /* server */ = {
+			isa = PBXGroup;
+			children = (
+				81FE8D0D1B16DC41000F4751 /* server-cert.pem */,
+				81FE8D0E1B16DC41000F4751 /* server-key.pem */,
+				81FE8D0F1B16DC41000F4751 /* server-req.csr */,
+				81FE8D101B16DC41000F4751 /* server.p12 */,
+			);
+			path = server;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		81522F8A1B16CB97001D175F /* CertificateVerify */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81522FAE1B16CB97001D175F /* Build configuration list for PBXNativeTarget "CertificateVerify" */;
+			buildPhases = (
+				81522F871B16CB97001D175F /* Sources */,
+				81522F881B16CB97001D175F /* Frameworks */,
+				81522F891B16CB97001D175F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CertificateVerify;
+			productName = CertificateVerify;
+			productReference = 81522F8B1B16CB97001D175F /* CertificateVerify.app */;
+			productType = "com.apple.product-type.application";
+		};
+		81522FA31B16CB97001D175F /* CertificateVerifyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81522FB11B16CB97001D175F /* Build configuration list for PBXNativeTarget "CertificateVerifyTests" */;
+			buildPhases = (
+				81522FA01B16CB97001D175F /* Sources */,
+				81522FA11B16CB97001D175F /* Frameworks */,
+				81522FA21B16CB97001D175F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81522FA61B16CB97001D175F /* PBXTargetDependency */,
+			);
+			name = CertificateVerifyTests;
+			productName = CertificateVerifyTests;
+			productReference = 81522FA41B16CB97001D175F /* CertificateVerifyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		81522F831B16CB97001D175F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Luca;
+				TargetAttributes = {
+					81522F8A1B16CB97001D175F = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					81522FA31B16CB97001D175F = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 81522F8A1B16CB97001D175F;
+					};
+				};
+			};
+			buildConfigurationList = 81522F861B16CB97001D175F /* Build configuration list for PBXProject "CertificateVerify" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 81522F821B16CB97001D175F;
+			productRefGroup = 81522F8C1B16CB97001D175F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81522F8A1B16CB97001D175F /* CertificateVerify */,
+				81522FA31B16CB97001D175F /* CertificateVerifyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		81522F891B16CB97001D175F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81522F9A1B16CB97001D175F /* Main.storyboard in Resources */,
+				81FE8D141B16DC41000F4751 /* client.p12 in Resources */,
+				81FE8D1D1B16DC41000F4751 /* server.p12 in Resources */,
+				81FE8D181B16DC41000F4751 /* root.jks in Resources */,
+				81FE8D1A1B16DC41000F4751 /* server-cert.pem in Resources */,
+				81FE8D121B16DC41000F4751 /* client-key.pem in Resources */,
+				81FE8D1B1B16DC41000F4751 /* server-key.pem in Resources */,
+				81FE8D161B16DC41000F4751 /* root-key.pem in Resources */,
+				81FE8D131B16DC41000F4751 /* client-req.csr in Resources */,
+				81FE8D151B16DC41000F4751 /* root-cert.pem in Resources */,
+				81FE8D1C1B16DC41000F4751 /* server-req.csr in Resources */,
+				81FE8D111B16DC41000F4751 /* client-cert.pem in Resources */,
+				81522F9F1B16CB97001D175F /* LaunchScreen.xib in Resources */,
+				81FE8D191B16DC41000F4751 /* root.p12 in Resources */,
+				81522F9C1B16CB97001D175F /* Images.xcassets in Resources */,
+				81FE8D171B16DC41000F4751 /* root-req.scr in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81522FA21B16CB97001D175F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		81522F871B16CB97001D175F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81FE8D231B16F960000F4751 /* SecondViewController.m in Sources */,
+				81FE8D201B16DCA5000F4751 /* CertificateVerifyLib.m in Sources */,
+				81522F971B16CB97001D175F /* ViewController.m in Sources */,
+				81522F941B16CB97001D175F /* AppDelegate.m in Sources */,
+				81522F911B16CB97001D175F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81522FA01B16CB97001D175F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81522FAB1B16CB97001D175F /* CertificateVerifyTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		81522FA61B16CB97001D175F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81522F8A1B16CB97001D175F /* CertificateVerify */;
+			targetProxy = 81522FA51B16CB97001D175F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		81522F981B16CB97001D175F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81522F991B16CB97001D175F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		81522F9D1B16CB97001D175F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81522F9E1B16CB97001D175F /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		81522FAC1B16CB97001D175F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		81522FAD1B16CB97001D175F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		81522FAF1B16CB97001D175F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				INFOPLIST_FILE = CertificateVerify/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		81522FB01B16CB97001D175F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				INFOPLIST_FILE = CertificateVerify/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		81522FB21B16CB97001D175F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CertificateVerifyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CertificateVerify.app/CertificateVerify";
+			};
+			name = Debug;
+		};
+		81522FB31B16CB97001D175F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CertificateVerifyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CertificateVerify.app/CertificateVerify";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		81522F861B16CB97001D175F /* Build configuration list for PBXProject "CertificateVerify" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81522FAC1B16CB97001D175F /* Debug */,
+				81522FAD1B16CB97001D175F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81522FAE1B16CB97001D175F /* Build configuration list for PBXNativeTarget "CertificateVerify" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81522FAF1B16CB97001D175F /* Debug */,
+				81522FB01B16CB97001D175F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81522FB11B16CB97001D175F /* Build configuration list for PBXNativeTarget "CertificateVerifyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81522FB21B16CB97001D175F /* Debug */,
+				81522FB31B16CB97001D175F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 81522F831B16CB97001D175F /* Project object */;
+}

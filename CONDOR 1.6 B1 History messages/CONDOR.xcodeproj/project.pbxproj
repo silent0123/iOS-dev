@@ -51,6 +51,7 @@
 		81B7FE751AD78CBE008B72AD /* USAVLanguageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7FE741AD78CBE008B72AD /* USAVLanguageTableViewController.m */; };
 		81B7FE7A1AD79592008B72AD /* BundleLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7FE771AD79592008B72AD /* BundleLocalization.m */; };
 		81B7FE7B1AD79592008B72AD /* NSBundle+Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7FE791AD79592008B72AD /* NSBundle+Localization.m */; };
+		81BCE1E41B1802CA00778E17 /* USAVSecureChatSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BCE1E31B1802CA00778E17 /* USAVSecureChatSettingTableViewController.m */; };
 		81C3BDE31A00DFF600C77E40 /* USAVSingleFileLogDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C3BDE21A00DFF600C77E40 /* USAVSingleFileLogDetailViewController.m */; };
 		81C3BE801A01FA6000C77E40 /* ICETutorialController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C3BE7D1A01FA6000C77E40 /* ICETutorialController.m */; };
 		81C3BE811A01FA6000C77E40 /* ICETutorialPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C3BE7F1A01FA6000C77E40 /* ICETutorialPage.m */; };
@@ -330,6 +331,8 @@
 		81B7FE771AD79592008B72AD /* BundleLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BundleLocalization.m; sourceTree = "<group>"; };
 		81B7FE781AD79592008B72AD /* NSBundle+Localization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Localization.h"; sourceTree = "<group>"; };
 		81B7FE791AD79592008B72AD /* NSBundle+Localization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Localization.m"; sourceTree = "<group>"; };
+		81BCE1E21B1802CA00778E17 /* USAVSecureChatSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USAVSecureChatSettingTableViewController.h; sourceTree = "<group>"; };
+		81BCE1E31B1802CA00778E17 /* USAVSecureChatSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USAVSecureChatSettingTableViewController.m; sourceTree = "<group>"; };
 		81C3BDE11A00DFF600C77E40 /* USAVSingleFileLogDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USAVSingleFileLogDetailViewController.h; sourceTree = "<group>"; };
 		81C3BDE21A00DFF600C77E40 /* USAVSingleFileLogDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USAVSingleFileLogDetailViewController.m; sourceTree = "<group>"; };
 		81C3BE7C1A01FA6000C77E40 /* ICETutorialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICETutorialController.h; sourceTree = "<group>"; };
@@ -671,11 +674,12 @@
 				81401D8D1AF9DB9C002DAB10 /* GHContextMenu-master */,
 				81401D7F1AF9DB1C002DAB10 /* USAVSecureChatViewController.h */,
 				81401D7A1AF9DB1C002DAB10 /* USAVSecureChatViewController.m */,
-				81401D7C1AF9DB1C002DAB10 /* USAVSecureChatFileSendPanel.xib */,
 				81401D7D1AF9DB1C002DAB10 /* USAVSecureChatListTableViewController.h */,
 				81401D7E1AF9DB1C002DAB10 /* USAVSecureChatListTableViewController.m */,
 				81401D811AF9DB1C002DAB10 /* USAVSecureChatFileSendPanelViewController.h */,
 				81401D821AF9DB1C002DAB10 /* USAVSecureChatFileSendPanelViewController.m */,
+				81401D7C1AF9DB1C002DAB10 /* USAVSecureChatFileSendPanel.xib */,
+				81BCE1E51B1802CE00778E17 /* ChatSetting */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -746,6 +750,15 @@
 				81B7FE791AD79592008B72AD /* NSBundle+Localization.m */,
 			);
 			name = BundleLocalization;
+			sourceTree = "<group>";
+		};
+		81BCE1E51B1802CE00778E17 /* ChatSetting */ = {
+			isa = PBXGroup;
+			children = (
+				81BCE1E21B1802CA00778E17 /* USAVSecureChatSettingTableViewController.h */,
+				81BCE1E31B1802CA00778E17 /* USAVSecureChatSettingTableViewController.m */,
+			);
+			name = ChatSetting;
 			sourceTree = "<group>";
 		};
 		81C3BE7B1A01FA6000C77E40 /* Tutorial */ = {
@@ -1464,6 +1477,7 @@
 				81F91C561A885D780017EE46 /* USAVTimeoutTableViewController.m in Sources */,
 				CCE5CF5016B290B4007F8643 /* UsavCipher.m in Sources */,
 				CCEFCA4C180D2EC600CD15FC /* KKPasscodeSettingsViewController.m in Sources */,
+				81BCE1E41B1802CA00778E17 /* USAVSecureChatSettingTableViewController.m in Sources */,
 				CCE5CF5316B290C3007F8643 /* UsavFileHeader.m in Sources */,
 				81A367581A108ECB00D062F3 /* NSString+Helper.m in Sources */,
 				CCE5CF5616B290E4007F8643 /* FileHeader.m in Sources */,
@@ -1655,8 +1669,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CONDOR.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: nwStor Limited (NEDJPTG729)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nwStor Limited (NEDJPTG729)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",

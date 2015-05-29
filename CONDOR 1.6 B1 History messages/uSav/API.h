@@ -63,4 +63,6 @@
 -(void)getcontactlistpermission:(NSString *)getParam target:(id)target selector:(SEL)sel;
 -(void)getDecryptKey:(NSString *)getParam target:(id)target selector:(SEL)sel;
 -(void)isKeyOwner:(NSString *)getParam target:(id)target selector:(SEL)sel;
+-(void)sendMalOperationNotification:(NSString *)getParam target:(id)target selector:(SEL)sel;
+
 @end

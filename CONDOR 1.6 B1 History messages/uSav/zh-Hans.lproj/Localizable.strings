@@ -24,8 +24,8 @@
 "Decrypted File" = "文件";
 "Decrypted\nFolder" = "文件";
 "PhotoAlbumDes" = "";
-"Secure Message" = "安全信息";
-"Secure Chat" = "安全信息";
+"Secure Message" = "保密信息";
+"Secure Chat" = "保密信息";
 "Secure Camera" = "安全相机";
 "Send by" = "发送方式";
 "To: %@" = "发送给: %@";
@@ -37,7 +37,7 @@
 "Click to display message" = "点击显示消息";
 "Error occured during loading messages, please try again" = "载入消息时发生错误，请重试";
 "Message received" = "收到新消息";
-"Group chatting is not supported in this version" = "这个版本暂未支持群组消息";
+"Group chat is not supported in this version" = "这个版本暂未支持群组消息";
 "Text Message" = "文本消息";
 "Voice Message" = "语音消息";
 "Delete warning" = "消息删除";
@@ -45,6 +45,7 @@
 "Email cancelled" = "邮件发送取消";
 "Draft" = "草稿箱";
 "No Chatting Session\nClick here or \"+\" to start a new chatting" = "没有正在进行的会话\n点击这里或者\"+\"来开始一个新会话";
+
 
 "SingleFileHistory" = "访问记录";
 
@@ -340,6 +341,7 @@
 "Already added" ="已经添加";
 // Contact
 "FailedToListGroupKey" = "获取分组时失败";
+"FailedToListTrustContactKey" = "获取联系人失败";
 "ContactHomeTitleKey" = "通讯录";
 "SelectActionKey" = "操作";
 "AddGroupKey" = "添加分组";
@@ -589,4 +591,17 @@
 "Force Logout After " = "强制退出延迟 ";
 "%.0f (min)" = "%.0f (分钟)";
 
-//image picker
+//screen shot
+"Please do not capture displayed data\nNotification has been sent to \"%@\"" = "请不要对显示的内容进行截屏\n这次操作已经通知给 \"%@\"";
+
+//chat setting
+"EraseAllMessagesInThisSession" = "删除当前会话的聊天记录";
+"This operation will erase history messages in this chatting session" = "本操作会删除当前会话中的所有聊天记录";
+"Default setting of viewing limit for all new messges and files will be changed to %zi time(s)" = "所有未来发送的新消息和新文件的默认阅读次数都会被修改为%zi次";
+"Failed" = "失败";
+"%zi time" = "%zi次";
+"%zi times" = "%zi次";
+"More" = "更多";
+"Done" = "完成";
+"Default Viewing Limit" = "默认阅读次数";
+"Default viewing limit will be assigned to receiver automatically during message sending" = "默认阅读次数会在消息发送时自动设置给接收者";
