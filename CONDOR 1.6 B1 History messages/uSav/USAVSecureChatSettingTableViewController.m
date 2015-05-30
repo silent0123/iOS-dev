@@ -23,6 +23,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    [self.navigationController setNavigationBarHidden:NO];
     [self.navigationItem.rightBarButtonItem setTitle:NSLocalizedString(@"Done", nil)];
     [self.navigationItem setTitle:NSLocalizedString(@"More", nil)];
 }
@@ -30,10 +31,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //load default value
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"DefaultLimit"] >= 0) {
         
         selectedLimit = [[NSUserDefaults standardUserDefaults] integerForKey:@"DefaultLimit"];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,6 +66,10 @@
             break;
     }
     return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

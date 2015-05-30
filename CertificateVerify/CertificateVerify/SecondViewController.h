@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController <UITextFieldDelegate, NSURLConnectionDataDelegate, NSURLConnectionDownloadDelegate>
+@interface SecondViewController : UIViewController <UITextFieldDelegate, NSURLConnectionDataDelegate>
 
 @end

@@ -47,10 +47,9 @@
     //copy certificate file from bundle to document
     [self loadCertFile:[certificateFilename stringByDeletingPathExtension] extension:[certificateFilename pathExtension] fromBundle:[NSBundle mainBundle]];
     
+    //get documents path in file system
     NSArray *paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory =[paths objectAtIndex:0];
-    
-    //we can use this to load certificate from a particular URL
     NSString *pathOfCertificateInDocuments = [documentsDirectory stringByAppendingPathComponent:certificateFilename];
     NSData *certData = [certVerifyLibInstance loadPKCS12CertificateDataFromURL: [NSURL fileURLWithPath:pathOfCertificateInDocuments]];
     
@@ -58,12 +57,14 @@
         self.resultLabel.text = @"Failed";
         self.resultLabel.textColor = [UIColor colorWithRed:232.0/255.0 green:37.0/255.0 blue:30.0/255.0 alpha:1];
         NSLog(@"Failed to load certificate data from URL:%@", [NSURL fileURLWithPath:pathOfCertificateInDocuments]);
+        return;
     }
+    
+    
     //get items (identity & trust) from certificate
     SecIdentityRef identity = NULL;
     SecTrustRef trust = NULL;
     BOOL isSuccessful = [CertificateVerifyLib getIndentity:&identity andTrust:&trust fromPKCS12Data:certData withPassword:CFSTR("subserverpassword")];
-    
     
     if (isSuccessful) {
         
@@ -77,6 +78,7 @@
         [self moreInfoBtnPressed:nil];
         
     } else {
+        
         self.resultLabel.text = @"Failed";
         self.resultLabel.textColor = [UIColor colorWithRed:232.0/255.0 green:37.0/255.0 blue:30.0/255.0 alpha:1];
         

@@ -22,6 +22,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 
+    [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController.navigationBar.topItem setTitle:NSLocalizedString(@"Secure Chat", nil)];
 }
 
@@ -239,9 +240,10 @@
     //Load single data
     NSDictionary *chatDic = [self.chatArray objectAtIndex:row];
     
-    cell.headerImage.frame = CGRectMake(12, 8, 40, 40);
+    cell.headerImage.frame = CGRectMake(14, 10, 36, 36);
     cell.headerImage.layer.masksToBounds = YES;
     cell.headerImage.layer.cornerRadius = 4;
+    cell.headerImage.image = [UIImage imageNamed:@"chatPhoto_received"];
     cell.backgroundColor = [UIColor clearColor];
     cell.accountLabel.text = ([[chatDic objectForKey:@"account"]  isEqualToString:@"Draft"] ? NSLocalizedString(@"Draft", nil) : [chatDic objectForKey:@"account"]);
     
@@ -327,6 +329,8 @@
     }
 }
 
+#pragma mark - alertview delegate
+
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (alertView.tag == DELETE_HISTORY_MESSAGE_ALERT_TAG) {
         if (buttonIndex == 0) {
@@ -337,7 +341,9 @@
             [self.fileManager removeItemAtPath:[[self.chatArray objectAtIndex:willDeleteRow] objectForKey:@"databasePath"] error:nil];
             [self.chatArray removeObjectAtIndex:willDeleteRow];
             
-            [self.tableView reloadData];
+            [self setViewAnimationForView:self.tableView Duration:0.2f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+                [self.tableView reloadData];
+            } completion:nil];
         }
     }
 }
@@ -478,6 +484,18 @@
     [tempArrayToReverse addObjectsFromArray:[filesAndProperties keysSortedByValueUsingSelector:@selector(compare:)]];
     
     return tempArrayToReverse;
+    
+}
+
+#pragma mark view animation function
+- (void)setViewAnimationForView: (UIView *)view Duration: (CGFloat)duration Options: (UIViewAnimationOptions)options animations:(id)animations completion:(id)completion {
+    
+    [UIView transitionWithView: view
+                      duration: duration
+                       options: options
+                    animations: animations
+                    completion: completion
+     ];
     
 }
 

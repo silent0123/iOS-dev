@@ -452,6 +452,7 @@
      */
 }
 - (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO];
     self.navigationItem.title = NSLocalizedString(@"ContactListLabel", nil);
 }
 

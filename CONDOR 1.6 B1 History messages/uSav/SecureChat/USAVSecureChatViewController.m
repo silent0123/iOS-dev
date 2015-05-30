@@ -41,6 +41,7 @@
 @implementation USAVSecureChatViewController
 
 - (void)viewDidAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO];
     [self.view.window setUserInteractionEnabled:YES];
     
 
@@ -101,7 +102,7 @@
     // {"sender": xxx}
     // {"content": xxx/Path}
     // {"time": xxx}
-    // {"type": x} -- 0: plain text; 1: secured message; 2: secured voice; 3: secured image; 4. secured document; 5. secured video; 6. others
+    // {"type": x} -- 0: plain text; 1: secured message; 2: secured voice; 3: secured image; 4. secured document; 5. secured video; 6. permission denied
     // {"permissionList": xxx} -- first permission, if more than one person, display xxxx@xx.com..., get from decrypt API.
     // {"decryptedFilePath": xxx} -- if decrypted, this is decrypted path. or is encryptedpath
     // {"encryptedFilePath": xxx} -- if encrypted, this is encrypted path. or is @""
@@ -216,13 +217,16 @@
 
 - (void)tableViewScrollToButtom:(UITableView *)tableView {
     
+    
     if([self.resultArray count] > 5) {
         
         [tableView setFrame:CGRectMake(0, 0, tableView.frame.size.width, self.inputMessageView.frame.origin.y)];
         
         //超出一页，页面移动到最下面
         [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:MIN([self.resultArray count] - 1, MAX_NUMBER_OF_MESSAGE - 1) inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-        [tableView reloadData];
+        [self setViewAnimationForView:self.tableView Duration:0.2f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+            [self.tableView reloadData];
+        } completion:nil];
         
     } else if ([self.resultArray count] > 0){
         
@@ -305,6 +309,7 @@
     [UIView commitAnimations];  //结束
     
     //sroll tableview - just for this view
+    [self.tableView reloadData];    // no need to use animation
     [self tableViewScrollToButtom:self.tableView];
     
 }
@@ -422,7 +427,9 @@
         self.messageTextView.text = @"";
         [self textViewDidChange:self.messageTextView];    //adjust size
         
-        [self.tableView reloadData];
+        [self setViewAnimationForView:self.tableView Duration:0.2f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+            [self.tableView reloadData];
+        } completion:nil];
         //scroll to bottom
         [self performSelectorOnMainThread:@selector(tableViewScrollToButtom:) withObject:self.tableView waitUntilDone:YES];
         
@@ -436,7 +443,7 @@
 //-------------------------------------------------------------------
 
 #pragma mark - Customized Text Bubble
-- (UIView *)bubbleView: (USAVSecureChatBubbleTableViewCell *)singleCell and: (NSString *)text from:(BOOL)fromSelf withPosition:(NSInteger)position andFont:(UIFont *)font andTextColor: (UIColor *)textColor{
+- (UIView *)bubbleView: (USAVSecureChatBubbleTableViewCell *)singleCell and: (NSString *)text from:(BOOL)fromSelf withPosition:(NSInteger)position andFont:(UIFont *)font andTextColor: (UIColor *)textColor type: (NSInteger)typeOfMessage{
 
     
     //hide voice
@@ -461,7 +468,14 @@
     
     
     //-- back image
-    UIImage *backImage = fromSelf? [UIImage imageNamed:@"SenderAppNodeBkg_HL"]: [UIImage imageNamed:@"ReceiverTextNodeBkg"];
+    UIImage *backImage;
+    if (typeOfMessage == 6 && [text isEqualToString:NSLocalizedString(@"Permission Denied", nil)]) {
+        //permission denied node
+        backImage = fromSelf? [UIImage imageNamed:@"SenderPermissionDeniedBubble"]: [UIImage imageNamed:@"ReceiverPermissionDeniedBubble"];
+    } else {
+        backImage = fromSelf? [UIImage imageNamed:@"SenderAppNodeBkg_HL"]: [UIImage imageNamed:@"ReceiverTextNodeBkg"];
+    }
+
     singleCell.bubbleImage.image = [backImage stretchableImageWithLeftCapWidth:floorf(backImage.size.width/2) topCapHeight:floorf(backImage.size.height/2)];
 
     
@@ -529,17 +543,17 @@
     [singleCell.voiceBubbleBtn setTitle:@"" forState:UIControlStateNormal];
     
     if(fromSelf){
-        singleCell.voiceBubbleBtn.frame =CGRectMake(320 - position - voiceLength, 40, voiceLength, 40);
+        singleCell.voiceBubbleBtn.frame =CGRectMake(320 - position - voiceLength, 42, voiceLength, 40);
     }
     else{
-        singleCell.voiceBubbleBtn.frame =CGRectMake(position, 40, voiceLength, 40);
+        singleCell.voiceBubbleBtn.frame =CGRectMake(position, 42, voiceLength, 40);
     }
     
     //image偏移量
-    UIEdgeInsets imageInsert;
-    imageInsert.top = - 2;
-    imageInsert.left = fromSelf ? singleCell.voiceBubbleBtn.frame.size.width/2.5 : - MIN(singleCell.voiceBubbleBtn.frame.size.width/3.8, 18);
-    singleCell.voiceBubbleBtn.imageEdgeInsets = imageInsert;
+//    UIEdgeInsets imageInsert;
+//    imageInsert.top = 0;
+//    imageInsert.left = fromSelf ? singleCell.voiceBubbleBtn.frame.size.width/2.5 : - MIN(singleCell.voiceBubbleBtn.frame.size.width/3.8, 18);
+    //singleCell.voiceBubbleBtn.imageEdgeInsets = imageInsert;
     
     [singleCell.voiceBubbleBtn setImage:[UIImage imageNamed:fromSelf ?@"SenderVoiceNodePlaying":@"ReceiverVoiceNodePlaying"] forState:UIControlStateNormal];
     UIImage *backgroundImage = [UIImage imageNamed:fromSelf?@"SenderVoiceNodeDownloading":@"ReceiverVoiceNodeDownloading"];
@@ -651,22 +665,31 @@
             contentString = [contentString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             //-- text color & size according to content
             UIColor *textColor = [UIColor blackColor];
-            if ([contentString isEqualToString:NSLocalizedString(@"Click to display message", nil)] ||
-                [contentString isEqualToString:NSLocalizedString(@"Permission Denied", nil)]) {
-                defaultFont = [UIFont boldSystemFontOfSize:12.8];
+            if ([contentString isEqualToString:NSLocalizedString(@"Click to display message", nil)] ) {
+                
+                defaultFont = [UIFont boldSystemFontOfSize:12];
                 textColor = [UIColor colorWithWhite:0.9 alpha:1];
+                
+            } else if(([contentString isEqualToString:NSLocalizedString(@"Permission Denied", nil)] && [[dict objectForKey:@"type"] integerValue] == 6)){
+                //permission denied
+                defaultFont = [UIFont boldSystemFontOfSize:12];
+                textColor = [UIColor colorWithWhite:0.9 alpha:1];
+                
             } else {
+                
                 defaultFont = [UIFont systemFontOfSize:13];
                 textColor = [UIColor blackColor];
+                
             }
-            [cell addSubview:[self bubbleView:cell and:contentString from:YES withPosition:55 andFont:defaultFont andTextColor:textColor]];
+            
+            [cell addSubview:[self bubbleView:cell and:contentString from:YES withPosition:55 andFont:defaultFont andTextColor:textColor type:[[dict objectForKey:@"type"] integerValue]]];
         }
         
         //Set Header
         cell.headerPhoto.frame = CGRectMake(320 - 50, 26, 36, 36);
         cell.headerPhoto.layer.masksToBounds = YES;
         [cell.headerPhoto.layer setCornerRadius:3];
-        cell.headerPhoto.image = [UIImage imageNamed:@"AppIcon_1024x1024"];
+        cell.headerPhoto.image = [UIImage imageNamed:@"chatPhoto_sended"];
         
         //Set Time
         cell.timeLabel.text = [dict objectForKey:@"time"];
@@ -691,9 +714,7 @@
             [cell.sendToLabel setText: NSLocalizedString(@"No Receiver", nil)];
 
         }
-        
-        
-        
+
         
     }else{
     //friend
@@ -706,6 +727,7 @@
         if ([[dict objectForKey:@"type"] integerValue] == 2) {
             //voice message content save length of voice
             [cell addSubview:[self voiceView:cell and:[[dict objectForKey:@"content"] integerValue] from:NO withIndexRow:indexPath.row withPosition:55]];
+            
         }else{
             
             //font change
@@ -715,22 +737,29 @@
             contentString = [contentString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             //-- text color & size according to content
             UIColor *textColor = [UIColor blackColor];
-            if ([contentString isEqualToString:NSLocalizedString(@"Click to display message", nil)] ||
-                [contentString isEqualToString:NSLocalizedString(@"Permission Denied", nil)]) {
-                defaultFont = [UIFont boldSystemFontOfSize:12.8];
+            if ([contentString isEqualToString:NSLocalizedString(@"Click to display message", nil)]) {
+                
+                defaultFont = [UIFont boldSystemFontOfSize:12];
                 textColor = [UIColor colorWithRed:(30.0/255.0) green:(144.0/255.0) blue:(255.0/255.0) alpha:1];
+                
+            } else if(([contentString isEqualToString:NSLocalizedString(@"Permission Denied", nil)] && [[dict objectForKey:@"type"] integerValue] == 6)){
+                //permission denied
+                defaultFont = [UIFont boldSystemFontOfSize:12];
+                textColor = [UIColor colorWithWhite:0.9 alpha:1];
             } else {
+            
                 defaultFont = [UIFont systemFontOfSize:13];
                 textColor = [UIColor blackColor];
+            
             }
-            [cell addSubview:[self bubbleView:cell and:contentString from:NO withPosition:55 andFont:defaultFont andTextColor:textColor]];
+            [cell addSubview:[self bubbleView:cell and:contentString from:NO withPosition:55 andFont:defaultFont andTextColor:textColor type:[[dict objectForKey:@"type"] integerValue]]];
         }
         
         //Set Header
         cell.headerPhoto.frame = CGRectMake(10, 26, 36, 36);
         cell.headerPhoto.layer.masksToBounds = YES;
         [cell.headerPhoto.layer setCornerRadius:3];
-        cell.headerPhoto.image = [UIImage imageNamed:@"photo"];
+        cell.headerPhoto.image = [UIImage imageNamed:@"chatPhoto_received"];
         
         //Set Time
         cell.timeLabel.text = [dict objectForKey:@"time"];
@@ -757,6 +786,8 @@
     
     return cell;
 }
+
+
 
 #pragma mark Longpress menu - owner
 - (void)cellLongPressDetectedFromAccountOwner: (UILongPressGestureRecognizer *)recognizer {
@@ -915,7 +946,9 @@
     if (!error) {
         [SGDUtilities showSuccessMessageWithTitle:NSLocalizedString(@"Success", nil) message:nil delegate:self];
         [self.resultArray removeObjectAtIndex:longPressedRow];
-        [self.tableView reloadData];
+        [self setViewAnimationForView:self.tableView Duration:0.2f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+            [self.tableView reloadData];
+        } completion:nil];
     }
 }
 
@@ -937,7 +970,7 @@
     currentMessageRow = indexPath.row;
     autoDecrypt = NO;
     
-    if ([[self.resultArray objectAtIndex:currentMessageRow] objectForKey:@"decryptedFilePath"] == nil && ![[[self.resultArray objectAtIndex:currentMessageRow] objectForKey:@"content"] isEqualToString:NSLocalizedString(@"Permission Denied", nil)]) {
+    if ([[self.resultArray objectAtIndex:currentMessageRow] objectForKey:@"decryptedFilePath"] == nil && !([[[self.resultArray objectAtIndex:currentMessageRow] objectForKey:@"content"] isEqualToString:NSLocalizedString(@"Permission Denied", nil)] && [[[self.resultArray objectAtIndex:currentMessageRow] objectForKey:@"type"] integerValue] == 6)) {
         [self decryptMessageFrom:currentMessageRow to:currentMessageRow isRefreshForSingleFile:YES];
     }
     
@@ -1048,7 +1081,9 @@
     //add to end of the array rather than put on index 0
     [self.resultArray addObject:dic];
     
-    [self.tableView reloadData];
+    [self setViewAnimationForView:self.tableView Duration:0.2f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+        [self.tableView reloadData];
+    } completion:nil];
     
     //scroll to bottom
     [self performSelectorOnMainThread:@selector(tableViewScrollToButtom:) withObject:self.tableView waitUntilDone:YES];
@@ -1078,7 +1113,9 @@
         
         [self.fileManager removeItemAtPath:self.filePath error:nil];
         [self.resultArray removeLastObject];
-        [self.tableView reloadData];
+        [self setViewAnimationForView:self.tableView Duration:0.2f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+            [self.tableView reloadData];
+        } completion:nil];
         return;
     }
     
@@ -1108,7 +1145,9 @@
     [self.voiceRecordingTimer invalidate];
     self.voiceRecordingTimeLabel.text = @"00:00";
     
-    [self.tableView reloadData];
+    [self setViewAnimationForView:self.tableView Duration:0.2f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+        [self.tableView reloadData];
+    } completion:nil];
 
 }
 
@@ -1360,6 +1399,10 @@
     
     if ([[obj objectForKey:@"statusCode"] integerValue] == 261 || [[obj objectForKey:@"statusCode"] integerValue] == 260) {
         
+        [self.resultArray removeLastObject];
+        [self setViewAnimationForView:self.tableView Duration:0.1f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+            [self.tableView reloadData];
+        } completion:nil];
         //按钮启用
         [self.view.window setUserInteractionEnabled:YES];
         //移除旋转动画
@@ -1373,6 +1416,10 @@
     
     if (obj == nil) {
         
+        [self.resultArray removeLastObject];
+        [self setViewAnimationForView:self.tableView Duration:0.1f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+            [self.tableView reloadData];
+        } completion:nil];
         //按钮启用
         [self.view.window setUserInteractionEnabled:YES];
         //移除旋转动画
@@ -1467,6 +1514,12 @@
                     
                 }
                 else {
+                    
+                    [self.resultArray removeLastObject];
+                    [self setViewAnimationForView:self.tableView Duration:0.1f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+                        [self.tableView reloadData];
+                    } completion:nil];
+                    
                     //按钮启用
                     [self.view.window setUserInteractionEnabled:YES];
                     //移除旋转动画
@@ -1481,6 +1534,10 @@
                 break;
             case INVALID_KEY_SIZE:
             {
+                [self.resultArray removeLastObject];
+                [self setViewAnimationForView:self.tableView Duration:0.1f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+                    [self.tableView reloadData];
+                } completion:nil];
                 //按钮启用
                 [self.view.window setUserInteractionEnabled:YES];
                 //移除旋转动画
@@ -1494,6 +1551,10 @@
                 break;
             default: {
                 
+                [self.resultArray removeLastObject];
+                [self setViewAnimationForView:self.tableView Duration:0.1f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+                    [self.tableView reloadData];
+                } completion:nil];
                 //按钮启用
                 [self.view.window setUserInteractionEnabled:YES];
                 //移除旋转动画
@@ -1508,7 +1569,10 @@
         
         //按钮启用
         [self.view.window setUserInteractionEnabled:YES];
-
+        [self.resultArray removeLastObject];
+        [self setViewAnimationForView:self.tableView Duration:0.1f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+            [self.tableView reloadData];
+        } completion:nil];
         
         NSLog(@"ContactView addGroupResult httpErrorCode: %@", [obj objectForKey:@"httpErrorCode"]);
         
@@ -1710,7 +1774,9 @@
         
         [self.alert dismissWithClickedButtonIndex:0 animated:YES];
         
-        [self.tableView reloadData];
+        [self setViewAnimationForView:self.tableView Duration:0.2f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+            [self.tableView reloadData];
+        } completion:nil];
         //加0.5秒延迟，防止弹出冲突
         [self performSelector:@selector(openDocumentIn) withObject:nil afterDelay:0.2];
         
@@ -1939,6 +2005,7 @@
     
     //if
     if (!autoDecrypt || [[[self.resultArray objectAtIndex:startIndex] objectForKey:@"sender"] isEqualToString:[[USAVClient current] emailAddress]]) {
+        NSLog(@"Dealing message at index: %zi", currentMessageRow);
         [self getDecryptKey];
     } else {
         [self continueNextMessageDecryption];
@@ -2051,7 +2118,7 @@
         [[self.resultArray objectAtIndex:currentMessageRow] setObject:@"" forKey:@"decryptedFilePath"];
         [[self.resultArray objectAtIndex:currentMessageRow] setObject:[obj objectForKey:@"permissionList"] ? [obj objectForKey:@"permissionList"] : [[NSArray alloc] init] forKey:@"permissionList"];
         [[self.resultArray objectAtIndex:currentMessageRow] setObject:NSLocalizedString(@"Permission Denied", nil) forKey:@"content"];
-        [[self.resultArray objectAtIndex:currentMessageRow] setObject:[NSNumber numberWithInteger:0] forKey:@"type"];
+        [[self.resultArray objectAtIndex:currentMessageRow] setObject:[NSNumber numberWithInteger:6] forKey:@"type"];
         
         
         [self continueNextMessageDecryption];
@@ -2199,13 +2266,13 @@
     fetchedMessageCount ++;
     currentMessageRow --;
     
-    NSLog(@"Dealing: %zi", fetchedMessageCount);
+    NSLog(@"Dealing message at index: %zi", currentMessageRow);
     
-    if (currentMessageRow >= 0 ) {
+    if (currentMessageRow >= 0) {
         
         if (fetchedMessageCount <= NEXT_FETCH_MESSAGE_COUNT && currentMessageRow >= endMessageIndex && !isRefreshForSingleFile) {
             
-            if (autoDecrypt && ![[[self.resultArray objectAtIndex:currentMessageRow] objectForKey:@"sender"] isEqualToString:[[USAVClient current] emailAddress]] && currentMessageRow != 0) {
+            if (autoDecrypt && ![[[self.resultArray objectAtIndex:currentMessageRow] objectForKey:@"sender"] isEqualToString:[[USAVClient current] emailAddress]]) {
                 
                 //not autodecrypt file.
                 //ignore and deal with next
@@ -2233,7 +2300,9 @@
     
     //all decrypted
     fetchedMessageCount = 0;
-    [self.tableView reloadData];
+    [self setViewAnimationForView:self.tableView Duration:0.2f Options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void){
+        [self.tableView reloadData];
+    } completion:nil];
     
     //scroll to bottom, if load all data
     if (!isRefreshForSingleFile) {
@@ -2324,7 +2393,7 @@
         
         //set progress
         [self setProgressBarOnNaviBarWithProgress:1.0];
-        self.resultArray = nil;
+        [self.resultArray removeAllObjects];
         
         [self.alert dismissWithClickedButtonIndex:0 animated:YES];
         WarningView *wv = [[WarningView alloc] initWithFrame:CGRectMake(0, 0, 280, 64) withFontSize:0];
@@ -2338,7 +2407,7 @@
         
         //set progress
         [self setProgressBarOnNaviBarWithProgress:1.0];
-        self.resultArray = nil;
+        [self.resultArray removeAllObjects];
         
         [self.alert dismissWithClickedButtonIndex:0 animated:YES];
         WarningView *wv = [[WarningView alloc] initWithFrame:CGRectMake(0, 0, 280, 64) withFontSize:0];
@@ -2370,7 +2439,7 @@
         NSLog(@"httpErrorCode: %@", [obj objectForKey:@"httpErrorCode"]);
     //set progress
     [self setProgressBarOnNaviBarWithProgress:1.0];
-    self.resultArray = nil;
+    [self.resultArray removeAllObjects];
     
     WarningView *wv = [[WarningView alloc] initWithFrame:CGRectMake(0, 0, 280, 64) withFontSize:0];
     [wv setCenter:CGPointMake(MSG_POSITION_X, MSG_POSITION_Y)];
@@ -2488,17 +2557,29 @@
 #pragma mark voice playing animation
 - (void)voicePlayAnimationForCell:(USAVSecureChatBubbleTableViewCell *)cell voiceLength:(float)voiceLength animated:(BOOL)animated {
     
+    UIView *backgroundImage = (UIView *)[cell.voiceBubbleBtn.subviews objectAtIndex:0];
+    UILabel *durationLabel;
+    for (NSInteger i = 0; i < [cell.voiceBubbleBtn.subviews count]; i ++) {
+        if ([[cell.voiceBubbleBtn.subviews objectAtIndex:i] isKindOfClass:[UILabel class]]) {
+            durationLabel = (UILabel *)[cell.voiceBubbleBtn.subviews objectAtIndex:i];
+            break;
+        }
+    }
+    
     if (animated) {
-        [self setViewAnimationForView:[cell.voiceBubbleBtn.subviews objectAtIndex:0] Duration:1.0 Options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations:^(void){
-            ((UIView *)[cell.voiceBubbleBtn.subviews objectAtIndex:0]).alpha = 0.4;
+        [self setViewAnimationForView:backgroundImage Duration:1.0 Options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations:^(void){
+            backgroundImage.alpha = 0.4;
+            durationLabel.alpha = 0.2;
         } completion: ^(void){
             
         }];
         
     } else {
         
-        ((UIView *)[cell.voiceBubbleBtn.subviews objectAtIndex:0]).alpha = 1.0;
-        [((UIView *)[cell.voiceBubbleBtn.subviews objectAtIndex:0]).layer removeAllAnimations];
+        backgroundImage.alpha = 1.0;
+        durationLabel.alpha = 1.0;
+        [backgroundImage.layer removeAllAnimations];
+        [durationLabel.layer removeAllAnimations];
     }
 }
 
@@ -2795,5 +2876,7 @@
     return tempArrayToReverse;
     
 }
+
+
 
 @end
