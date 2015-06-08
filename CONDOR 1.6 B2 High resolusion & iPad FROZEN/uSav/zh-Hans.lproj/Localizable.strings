@@ -1,0 +1,615 @@
+/*
+ Localizable.strings
+ uSav
+ Created by young dennis on 4/11/12.
+ Copyright (c) 2012 young dennis. All rights reserved.
+ */
+
+"Your device has been jailbroken. To protect your data, CONDOR Phone Armour has stopped running.  Please correct the problem ASAP." = "您的设备被检测到已经越狱. 为了保护您的数据, CONDOR将停止工作，请在清除越狱后使用.";
+
+"ShareAfterEditPermissionSuccess" = "访问权限设置成功，请选择一个文件发送方式";
+"DateSizeOverflow" = "视频的大小请不要超过200M";
+
+"Session expired" = "会话超时";
+"InvalidGroupOrEmail" = "请输入有效的分组名或Email地址";
+"CantAddOwn" = "无法添加这个Email到联系人";
+"DecryptFolder" = "文件";
+"EncryptFolder" = "已加密文件";
+"sendToiCloudDrive" = "发送到iCloud Drive";
+"SelectPhotoAlbum" = "从系统相册选择";
+"PhotoAlbum" = "安全相册";
+"Album" = "相册";
+"Encrypted Folder" = "安全文档";
+"Encrypted Album" = "安全相册";
+"Decrypted File" = "文件";
+"Decrypted\nFolder" = "文件";
+"PhotoAlbumDes" = "";
+"Secure Message" = "保密信息";
+"Secure Chat" = "保密信息";
+"Secure Camera" = "安全相机";
+"Send by" = "发送方式";
+"To: %@" = "发送给: %@";
+"From: %@" = "来自: %@";
+"No Receiver" = "无接收者";
+"Unknown Sender" = "匿名发送者";
+"No earlier message" = "没有更早的消息了";
+"Drag to load more messages" = "下拉载入更多消息";
+"Click to display message" = "点击显示消息";
+"Error occured during loading messages, please try again" = "载入消息时发生错误，请重试";
+"Message received" = "收到新消息";
+"Group chat is not supported in this version" = "这个版本暂未支持群组消息";
+"Text Message" = "文本消息";
+"Voice Message" = "语音消息";
+"Delete warning" = "消息删除";
+"Delete this session and its chatting history?" = "删除这个会话以及其历史消息?";
+"Email cancelled" = "邮件发送取消";
+"Draft" = "草稿箱";
+"No Chatting Session\nClick here or \"+\" to start a new chatting" = "没有正在进行的会话\n点击这里或者\"+\"来开始一个新会话";
+
+
+"SingleFileHistory" = "访问记录";
+
+"uSav contact list" = "CONDOR通讯录";
+"Address book" = "通讯录";
+"Search Contact List or Enter Friend's Email Address" = "添加一个Email地址或者从通讯录选择";
+"Please Select a Valid Email Address" = "请选择一个有效的Email地址";
+"Permission Denied" = "访问被拒绝";
+"Update uSav" = "请升级CONDOR来获得更加完善的文件支持";
+
+"groupDontExist" = "无效的Email或分组名";
+"Authen_Failed" = "用户名或密码无效";
+"ForgetPasswrod" = "忘记密码?";
+"Notification" = "通知";
+"LaterKey" = "稍后";
+"CONDOR Group" = "CONDOR分组";
+
+"versionNumber" = "114";
+"LanguageCode" = "zh-cn";
+"KeyLogSwitch" = "Operation";
+"OptLogSwitch" = "File";
+"ProcessBarAddFriend" = "添加联系人";
+
+"EditNoteFault" = "修改名称失败";
+"EditAliasFault" = "修改名称失败";
+"RenameGroupFault" = "修改分组名失败";
+
+"ContactChangeAliasKey" = "修改名称";
+"ContactChangeNotesKey" = "修改名称";
+"ContactDeleteKey" = "删除联系人";
+"ContactAddToGroupKey" = "添加到分组";
+
+"InvalidOldEmail" = "无效的旧Email地址";
+"InvalidNewEmail" = "无效的Email地址";
+"InvalidEmail" = "无效的Email地址";
+"AutoLockLabel" = "自动锁定";
+"RetypePassword" = "重复输入Email";
+"Firstname" = "名字";
+"Lastname" = "姓氏";
+"InvalidConfirmEmail" = "两次Email地址输入不一致";
+"WrongOldEmail" = "错误的Email地址，可能与最初的设置不同";
+
+"InvalidOldPass" = "密码为8到49位，同时包括数字和字母";
+"InvalidNewPass" = "密码为8到49位，同时包括数字和字母";
+
+"InvalidConfirmPass" = "两次密码输入不一致";
+"InvalidConfirmEmail" = "两次Email地址输入不一致";
+
+"InvalidUserNam00000e" = "用户名为5到99位";
+"InvalidPass" = "密码为8到49位，同时包括数字和字母";
+
+"InvalidQuestion" = "密码提示问题长度为10-99位";
+"InvalidAnswer" = "密码提示答案长度为5-49位";
+
+"InvalidGroup" = "分组名长度为1-49位";
+
+"EnterFriendAlias2" = "为这个联系人修改备注";
+"EnterFriendAliasPlaceHolder" = "长度不要超过30位";
+
+"EnterFriendNote" = "为这个联系人修改备注";
+"EnterFriendNotePlaceHolder" = "长度不要超过30位";
+
+"EnterGroupName" = "为这个分组修改分组名";
+"EnterGroupNamePlaceHolder" = "长度不要超过49位";
+"AddGroupWithNameKey" = "新分组";
+"AddTrustContactUnknownErrorKey" = "请输入一个有效的Email地址";
+"EmailInUse" = "这个Email已经注册过了";
+"Unknown Error" = "未知错误";
+
+"AddGroupFault" = "添加分组失败";
+"AddFriendFault" = "添加联系人失败";
+
+"CancelKey" = "取消";
+"OkKey" = "确定";
+"DoneKey" = "完成";
+"BackKey" = "返回";
+"YesKey" = "是";
+"NoKey" = "否";
+"SelectActionKey" = "选择一个操作";
+"ExitGameKey" = "退出";
+"SelectCorrectAnswerKey" = "选择一个正确答案";
+"SubmitKey" = "提交";
+
+"appTitleKey"  = "CONDOR";
+
+
+"LogoutKey" = "退出登录";
+"LoginKey" = "登陆";
+"AreYouSureKey" = "您确定吗?";
+"PleaseLoginFirstKey" = "请登陆";
+"AnythingToDoKey" = "如果您在此之前进行了文件操作，请再试一次";
+"Please login CONDOR agian" = "请重新登陆";
+"Login Timeout" = "登陆超时";
+
+
+// Login/Register page
+"LoginColonKey" = "登陆CONDOR";
+"RegisterKey" = "提交";
+"RegisterColonKey" = "注册CONDOR";
+"AlreadyLoginKey" = "您已经登陆了";
+"LoginSucceededKey" = "登陆成功";
+"LoginFailedKey" = "登陆失败";
+"LoginCancelledKey" = "登陆取消";
+"UserNameTakenKey" = "用户名已被占用";
+"UserNameNotFoundKey" = "没有这个用户";
+"PasswordIncorrectKey" = "密码错误";
+"Use6orMoreCharsKey" = "用户名和密码至少为5位，并且同时包含数字和字母";
+"UserNamePlaceholderKey" = "用户名长度为5-99位";
+
+"PasswordPlaceholderKey" = "密码为8-49位";
+"PasswordPlaceholderKey2" = "8到49位数字和字母";
+
+"RetypePwPlaceholderKey" = "重复输入密码";
+"EmailPlaceholderKey" = "Email";
+"RetypeEmailPlaceholderKey" = "重复输入Email";
+"SecurityQuestionPlaceholderKey" = "密码提示问题";
+"SecurityAnswerPlaceholderKey" = "密码提示答案";
+"DisplayPasswordLabelKey" = "显示密码";
+"SaveUsernameLabelKey" = "保存登陆信息";
+"AutologinLabelKey" = "下次自动登录";
+"AskToRegiserBtnKey" = "创建新账户";
+
+"GoBackToLoginBtnKey" = "返回登陆";
+"RegisterSuccessKey" = "注册成功，请查阅您的邮箱来获取注册信息";
+"RegisterTimestampOldKey" = "注册失败，时间戳过迟";
+"RegisterTimestampFutureKey" = "注册失败，时间戳过早";
+"RegisterInvalidAccIdKey" = "无效的用户名";
+"UserNameTakenKey" = "用户名已经被占用";
+"RegisterUnsecurePasswordKey" = "密码太弱，请重新输入";
+"RegisterInvalidEmailKey" = "无效的Email地址";
+"RegisterEmailInUseKey" = "Email地址已经被占用";
+"RegisterUnknownStatusCodeKey" = "注册失败，请重新输入一个名字";
+"GetAccountInfoSuccessKey" = "登陆成功";
+"GetAccountInfoFailKey" = "登陆失败";
+
+"EditPermissionSuccessKey" = "修改访问权限成功";
+"EditPermissionSuccessMsg" = "";
+"EditPermissionFailedKey" = "修改访问权限失败";
+"SetPermissionFailed" = "修改访问权限失败";
+"EditPermissionFailedMsg" = "";
+"EditPermissionTitleBar" = "修改访问权限";
+"EditPermissionFileName" = "文件名";
+"GetOperationLog" = "获取操作记录";
+"Decrypt File" = "解密文件";
+"ProcessBarFreshFileList" = "刷新";
+"Save" = "保存";
+"Do you want to save the current permission setting?" = "您想要保存现有访问权限设置吗？";
+"Changing" = "修改中";
+
+"GetKeyLog" = "获取访问记录";
+"Operation: %@" = "操作: %@";
+"Operator: %@" = "操作者: %@";
+"PasscodeLock" = "自动锁定延迟";
+"FilePreviewKey" = "预览文件";
+"Set Passcode" = "设置密码锁";
+"Turn off Passcode" = "关闭密码锁";
+"Passcodes did not match. Try again." = "密码输入不一致，请重新输入";
+"1 Failed Passcode Attempt" = "1 次尝试失败";
+"%i Failed Passcode Attempts" = "%i 次尝试失败";
+"Use Touch ID" = "使用Touch ID";
+
+"LogViewOperationLogTitle" = "访问记录";
+"LogViewKeyLogTitle" = "操作记录";
+"Change Permission" = "更改授权";
+"Edit Permission" = "更改授权";
+"LogViewSwitch" = "切换";
+
+"ProfileOldPassPlaceHolder" = "输入当前密码";
+"ProfileNewPassPlaceHolder" = "新密码长度为8-49位";
+"ProfileVerifyPassPlaceHolder" = "重复输入新密码";
+
+"ProfileNewEmailPlaceHolder" = "输入新名称";
+"ProfileVerifyEmailPlaceHolder" = "重复输入新Email地址";
+
+"Profile" = "个人资料";
+"ProfileUserName" = "用户名";
+"ProfileEmail" = "Email";
+"ProfilePassword" = "密码";
+"EditPasswordSuccess" = "密码修改成功";
+"EditPasswordFailed" = "密码修改失败，当前密码不正确";
+"Change Password" = "修改密码";
+"EditEmailSuccess" = "修改Email成功";
+"EditEmailFailed" = "修改Email失败";
+"GuidedEditPermissionFriendText" = "输入联系人名称，用空格分割";
+"GuidedEditPermissionGroupText" = "输入分组名称，用空格分割";
+"EraseAllFiles" = "抹除所有数据";
+"This will delete ALL FILES in your CONDOR account on this device, and can NOT recovery" = "当前操作会删除CONDOR中所有文件，并且无法恢复";
+"Warning" = "注意";
+
+
+"User Guide" = "使用指引";
+"Write to Customer Service" = "反馈意见给客户服务";
+"List Operation History" = "帐号操作记录";
+"History" = "历史";
+"SECURITY" = "程序安全";
+"HELP" = "帮助";
+"FEEDBACK" = "反馈";
+
+//成功提示
+"Success" = "成功";
+"Failed" = "失败";
+
+"ProcessBarGetAuditLog" = "正在获取访问记录";
+"ProcessBarGetOPLog" = "正在获取操作记录";
+// Guided Encrypt File & Share
+"EncryptFileTitleKey" = "加密";
+
+"QuickEncryptFolder" = "From:Inbox To:Encrypted";
+"QuickDecryptFolder" = "From:Inbox To:Decrypted";
+
+"FileAlreadyEncryptedKey" = "文件已经加密";
+
+//HintLabel
+"No file in this folder" = "当前文件夹是空的";
+"No Contact" = "没有联系人";
+"No CONDOR Contact\nClick here to add from phone contact" = "没有CONDOR联系人\n点击这里从手机联系人添加";
+"No Group Member" = "没有分组成员";
+"No CONDOR Contact" = "没有CONDOR联系人";
+
+// Guided Decrypt File
+"DecryptFileTitleKey" = "解密";
+"FileAlreadyDecryptedKey" = "文件已经解密";
+
+// File Operations
+"FileHomeTitleKey" = "CONDOR";
+"FileTitleKey" = "加密文件";
+"EncryptedFile" = "已加密";
+"DecryptedFile" = "未加密";
+"InboxFile" = "收件箱";
+
+"Set Permission" = "设置访问权限";
+"To..." = "发送给...";
+"FileAuditLog" = "访问记录";
+"FileEncryptedTitleKey" = "文件 (已加密)";
+"FileDecryptedTitleKey" = "文件 (未加密)";
+"FolderBackButtonKey" = "返回";
+"FileEncryptKey" = "加密";
+"FileDecryptKey" = "解密";
+"FileDeleteKey" = "删除文件";
+"DeleteKey" = "删除";
+"FileTransferKey" = "发送/第三方打开";
+"FileEmailKey" = "邮件发送";
+"FileEditPermissionKey" = "正在设置访问权限";
+"ProcessBarLogin" = "正在登陆";
+"ProcessBarGetContact" = "正在获取联系人列表";
+"ProcessBarGetLog" = "正在获取历史记录";
+"ProcessBarEncrypt" = "加密中";
+"ProcessBarDecrypt" = "加密中";
+"ProcessBarPermissionList" = "获取访问权限列表";
+"ProcessBarContactList" = "获取联系人列表";
+"ProcessBarDelete" = "删除中";
+"BurnAfterRead" = "阅后即焚";
+"NoAppToOpen" = "没有可以用来打开这个文件的应用";
+"Dismiss" = "隐藏";
+"Large File" = "文件过大";
+"Attachment should not be larger than 40Mb" = "受iOS限制，附件大小无法超过40Mb";
+"Email Attachment should not be larger than 25Mb" = "受iOS限制，Email附件大小无法超过25Mb";
+"Video is too large and should < 220M" = "视频文件过大，请不要超过220M";
+"Loading Error" = "载入失败";
+"Memory Error" = "内存错误";
+"Failed to load video data, please try again" = "载入视频过程中意外退出，请重试";
+"User Guide is Coming Soon" = "本功能将在正式版推出";
+"Function is Coming Soon" = "本功能将在正式版推出";
+
+"ProcessBarEditEmail" = "正在修改Email";
+"ProcessBarEditPassword" = "修改密码";
+
+"FileAlreadyEncryptedKey" = "File already encrypted, choose another file without an CONDOR extension";
+"FileEncryptPathCreateFailedKey" = "Failed to create the Encrypt directory, please restart app and try again";
+"FileDecryptPathCreateFailedKey" = "Failed to create the Decrypt directory, please restart app and try again";
+"MessagesPathCreateFailedKey" = "Failed to create the message directory, please restart app and try again";
+"FileEncryptionFailedKey" = "文件加密失败";
+"FileEncryptionSucceedKey" = "文件加密成功";
+"FileEncryptionInvalidKeySizeKey" = "文件加密失败，密钥错误";
+"FileEncryptionKeyNotFoundKey" = "文件解密失败，没有权限或密钥错误";
+"FileDecryptionFailedKey" = "文件解密失败";
+"FileDecryptionSucceedKey" = "文件解密成功";
+"FileDeleteDirectoryNotAllowedKey" = "目录无法被删除";
+
+"GetKeyIdFromFileFailedKey" = "获取文件密钥时失败";
+"SortKey" = "排序";
+"Time increment" = "时间 ↑";
+"Time decrement" = "时间 ↓";
+"Type" = "类型";
+"Size" = "大小";
+"Filename" = "文件名";
+"Filename: %@" = "文件名: %@";
+
+"Please select 'preview' from the upper right menu" = "Select 'preview' from the upper right menu to open";
+
+"Preview File" = "预览文件";
+"Decrypted file stored in folder /Home/Decrypted " = "Decrypted file stored in /Home/Decrypted ";
+"Already added" ="已经添加";
+// Contact
+"FailedToListGroupKey" = "获取分组时失败";
+"FailedToListTrustContactKey" = "获取联系人失败";
+"ContactHomeTitleKey" = "通讯录";
+"SelectActionKey" = "操作";
+"AddGroupKey" = "添加分组";
+"AddContactKey" = "添加联系人";
+"AddContactFromAddressKey" = "从手机通讯录添加";
+"AddContactFromUsavKey" = "从CONDOR通讯录添加";
+"AddMemberKey" = "增加分组成员";
+"GoUpOneGroupKey" = "回到首页";
+"DeleteContactKey" = "删除联系人";
+"SelectAllContactKey" = "选择所有联系人";
+"SelectAllMemberKey" = "选择所有成员";
+"EnterNewContactMsgKey" = "输入一个新的联系人Email地址";
+"EnterNewGroupMsgKey" = "输入一个新的分组名";
+"GroupNameUnknownErrorKey" = "添加分组失败";
+"GroupNameInvalidKey" = "分组名无效，请重新输入";
+"GroupNameAlreadyExistKey" = "分组名已经存在，请重新输入";
+"ContactAddContactTitleKey" = "添加联系人";
+"DeleteItemMsgKey" = "只有空的分组可以被删除";
+"GroupNameNotFoundKey" = "分组不存在";
+"ContactNameNotFoundKey" = "联系人不存在";
+"DeleteTrustContactUnknownErrorKey" = "删除联系人失败";
+"RemoveGroupUnknownErrorKey" = "删除分组失败";
+"GroupMemberNotExistKey" = "分组成员不存在";
+"AddMemberToGroupSuccessKey" = "成功添加成员到分组";
+"ContactBlockKey" = "屏蔽联系人";
+"ContactUnblockKey" = "解除屏蔽";
+
+"UserNotExist" = "用户不存在，CONDOR会自动发送邀请邮件";
+"AliasNameInvalidKey" = "无效的名称";
+"EmailNameInvalidKey" = "无效的Email地址";
+"NoteInvalidKey" = "无效的名称";
+"AddGroupMsgKey" = "添加分组";
+"InfoQuickEncrypt" = "点击文件开始加密";
+"InfoQuickSetPermission" = "";
+"InfoQuickDecrypt" = "点击文件开始解密";
+"InfoFullFeature" = "选择Open In CONDOR的文件会被放到收件箱中";
+
+"UnsupportedPreviewFile" = "不支持这种文件格式";
+
+"Permission Denied" = "没有访问权限";
+"AddContactWithNameKey" = "增加联系人";
+"QuickEncrypt" = "加密并分享";
+"QuickDecrypt" = "解密并查看";
+"FullFeature" = "设置";
+"AddContactMsgKey" = "添加联系人";
+
+"FileDeleteKeyUnknownErrorKey" = "不支持的文件格式或没有访问权限";
+"Timeout" = "请检查您的网络连接";
+"FriendNameAlreadyExistKey" = "联系人已经存在";
+"AddContactToGroupTitleKey" = "添加分组成员";
+"UserAddedSuccuss" = "添加联系人成功";
+
+"NoGroupInContactList" = "通讯录中没有分组";
+"RegisterEmail" = "Email地址, 如example@CONDOR.com";
+"DisabledUser" = "请在Email中激活这个账户";
+"EmailExisted" = "Email地址已被占用";
+"AddSelf" = "无法添加自己为联系人";
+
+"TimeStampError" = "系统时间设置异常";
+
+"TabHome" = "CONDOR";
+"TabBarFile" = "安全文件";
+"Folder" = "文件";
+"TabBarContact" = "通讯录";
+"TabBarHistory" = "访问历史";
+"TabBarProfile" = "设置";
+
+"Check Member" = "成员列表";
+"Rename Group" = "重命名分组";
+"Delete Group" = "删除分组";
+
+"ProfileLabel" = "个人资料";
+"LanguageSetting" = "多语言";
+"Set Language" = "设置语言";
+"SecurityLabel" = "安全";
+"HelpLabel" = "帮助";
+"FeedbackLabel" = "意见反馈";
+
+"PassCodeLockLabel" = "程序密码锁";
+"IntroductioinLabel" = "介绍";
+"WriteToService" = "反馈意见给客户服务";
+
+"Where to get photo?" = "照片在哪里？";
+"Cancel" = "取消";
+"Camera" = "安全相机";
+"Photo Album" = "相册";
+"ViewAndExport" = "View/Export";
+"Owner" = "Owner";
+"Created at" = "Created at";
+"Size" = "大小";
+
+"ShareBar" = "发送";
+"InstructionOne" = "请添加用户到共享列表";
+"InstructionTwo" = "CONDOR会给这些用户发送邀请邮件";
+"ContactListBtnLabel" = "或从CONDOR通讯录中选择";
+"Sending" = "发送中";
+"permission will be assigned automatically" = "访问权限会自动设置";
+
+
+"DecryptFolderDes" = "未被加密的文件";
+"EncryptFolderDes" = "已被加密的文件";
+"InboxFolderDes" = "从其他应用导入的文件";
+"FileDesLabel" = "文件:%zi";
+
+"ContactListLabel" = "通讯录";
+"DoneLabel" = "完成";
+"Selecting" = "从CONDOR通讯录中选择";
+"SendBtn" = "发送";
+"ExportLabel" = "导出";
+
+"OldPassLabel" = "当前密码";
+"NewPassLabel" = "新密码";
+"ConfirmPassLabel" = "确认";
+"EditPassLabel" = "修改密码";
+"ConfirmLabel" = "确认";
+"Confirm and Share" = "确认权限设置并发送";
+"ConfirmPermissionLabel" = "确认权限设置";
+
+"New Secure Q&A" = "新的密码提示问题和答案";
+"Secure Q&A" = "密码问题和答案";
+"Change Secure Q&A" = "修改密码提示问题和答案";
+"New Question" = "新问题";
+"New Answer" = "新答案";
+"Change Q&A Failed" = "修改密码提示问题和答案失败";
+"Invalid Question or Answer Length" = "密码提示问题或答案的长度无效";
+"10 - 99 characters" = "长度在10-99位";
+
+"Turn Passcode Off" = "关闭程序密码锁";
+"Turn Passcode On" = "打开程序密码锁";
+"Change Passcode" = "修改密码";
+"Passcode Lock" = "程序密码锁";
+"SentByEmailLabel" = "%@ has sent an encrypted file to you, it is in the attachment. If you haven't installed or register with CONDOR, please go to this link: http://www.nwstor.com";
+"Never" = "永不";
+"1  Minute" ="1  分钟";
+"2  Minutes" ="2  分钟";
+"3  Minutes" ="3  分钟";
+"4  Minutes" ="4  分钟";
+"5  Minutes" ="5  分钟";
+"10 Minutes" ="10 分钟";
+"15 Minutes" ="15 分钟";
+"Always" ="总是";
+
+"Enter your passcode" = "输入程序密码";
+"Enter a passcode" = "输入一个密码";
+"Re-enter your passcode" = "重复输入密码";
+"Enter your old passcode" = "输入现在的解锁密码";
+"Enter your new passcode" = "输入新的解锁密码";
+"Re-enter your new passcode" = "重复输入新的解锁密码";
+
+"Encrypt photo" = "加密照片";
+"Encrypt video" = "加密视频";
+"Please enter a name:" = "请输入文件名:";
+//"Encrypt Folder Empty" = "Folder is empty";
+"Encrypt Folder Empty" = "选择一个文件来开始.";
+
+//"Encrypt Folder Empty Alert" = "Please import a file, e.g. from email attachment";
+"Encrypt Folder Empty Alert" = "File selection can be done by:\n1.Tap on a file in CONDOR folders, or\n2.Take a photo or select photo from album, or\n3.Select a file in any App and choose CONDOR App in the Open-in feature.";
+
+//"Encrypt Folder Empty Alert" = "File selection can be done by.abcdefghijklmnopq";3
+
+"OutOfQuotas" = "You get no access quotas";
+
+"Share List Empty" = "没有Email地址";
+"Share List Empty Alert" = "没有输入Email地址或者输入的分组为空";
+//"Decrypt Folder Empty" = "Folder is empty";
+"Decrypt Folder Empty" = "选择一个文件来开始.";
+"Decrypt Folder Empty Alert" = "File selection can be done by:\n1.Tap on a file in CONDOR folders, or\n2.Take a photo or select photo from album, or\n3.Select a file in any App and choose CONDOR App in the Open-in feature.";
+"TabBarContact" = "联系人";
+"TabBarHistory" = "访问历史";
+"TabBarProfile" = "设置";
+"Register Account" = "注册账户";
+"RegistrationSuccess" = "注册成功，我们已经给您的邮箱发送了一封确认邮件。如果在在一段时间后仍未收到邮件，请确认这封邮件是否被您的邮箱归类到了垃圾邮件中。如果有需要，您可以联系我们的注册服务中心registration@nwstor.com";
+
+"PasscodeIncorrect" = "您输入错误的密码超过限制，请重新登陆";
+"HistoryAuditLog" = "访问历史";
+
+"IncompleteFile" = "There is an incomplete .CONDOR-temp file.Please delete it then encrypt/decrypt original file again by no interruption for the process.";
+"SendByEmail" = "被CONDOR加密保护的文件";
+"DecryptCopySendByEmail" = "来自CONDOR的文件";
+"File Sent by CONDOR" = "来自CONDOR的文件";
+"Attached is a secure file." = "附件里的是被CONDOR保护的安全文件.";
+
+
+"ListGroupMember" = "获取分组成员";
+"FailedToListGroupMemberKey" = "获取分组成员失败";
+"ProcessBarEditAlias" = "修改联系人名称";
+"ProcessBarEditGroupName" = "修改分组名称";
+"ProcessBarRegister" = "注册中";
+"ProcessAddFriend" = "正在添加";
+"Loading" = "加载中";
+"Detail" = "更多";
+"Hide" = "隐藏";
+
+//time arr
+"Save Decrypted Copy" = "允许保存解密副本";
+"Viewing Restrictions" = "文件阅读限制";
+"Viewing Restrictions: No Limit" = "文件阅读限制: 无限制";
+"Viewing Restrictions: %zi times | %zi seconds" = "文件阅读限制: %zi 次 | %zi 秒";
+"Viewing Restrictions: unlimit times | %zi seconds" = "文件阅读限制: 无限次 | %zi 秒";
+"Viewing Restrictions: %zi times | unlimit seconds" = "文件阅读限制: %zi 次 | 无限秒";
+"NumOfReadKey" = "允许阅读";
+"DurationKey" = "每次阅读时长";
+"StartAtKey" = "开始时间";
+"EndAtKey" = "结束时间";
+"TimeErrorKey" = "时间设置错误";
+"MustEarlierThanEndKey" = "结束时间必须早于开始时间";
+"No Limit" = "无限制";
+"Hour" = "小时";
+"Minute" = "分";
+"Second" = "秒";
+"Times" = "次";
+"Default" = "默认";
+"To:" = "收件人:";
+"Limit:" = "次数";
+"Duration:" = "时长";
+"Default Setting" = "默认设置";
+"Save as Default" = "保存为默认";
+"Save Succeed" = "保存默认成功";
+"Allow viewing time and duration per viewing will be stored as default" = "阅读次数和每次阅读时长的现有默认值会被当前页面设置的值覆盖.";
+"%zi time (s)" = "%zi 次";
+"%zi second (s)" = "%zi 秒";
+"same start time and end time means no limit" = "相同的开始时间和结束时间会自动设置为无限制";
+
+"Switch to Voice Message" = "切换到语音消息";
+"Switch to Text Message" = "切换到文字消息";
+"Message" = "消息";
+"Type text message..." = "点击这里输入文字消息";
+"Slide up to cancel" = "向上滑动取消录音";
+"Checking Content" = "内容检测";
+"Generating File" = "文件生成";
+"Encrypting Message" = "加密中";
+"Ready to Edit Permission" = "准备权限设置";
+"Voice message is too short" = "语音消息太短";
+
+"Voice" = "语音";
+"Hold to record voice message" = "按住开始录入语音消息";
+"Hold to record" = "按住录音";
+"Text" = "文字";
+"Release to send" = "放开发送录音";
+"Recording" = "录音中";
+"Prepare for sending" = "准备发送";
+"Recording %.2zi:%.2zi" = "录音中 %.2zi:%.2zi";
+"Reply" = "回复";
+"Release to cancel" = "放开取消录音";
+
+"Unlock to access all features" = "使用指纹解锁获取访问权限";
+
+"Enable Timeout" = "启用登陆超时";
+"Force Logout After " = "强制退出延迟 ";
+"%.0f (min)" = "%.0f (分钟)";
+
+//screen shot
+"Please do not capture displayed data\nNotification has been sent to \"%@\"" = "请不要对显示的内容进行截屏\n这次操作已经通知给 \"%@\"";
+
+//chat setting
+"EraseAllMessagesInThisSession" = "删除当前会话的聊天记录";
+"This operation will erase history messages in this chatting session" = "本操作会删除当前会话中的所有聊天记录";
+"Default setting of viewing limit and duration per viewing will be changed to unlimited times and unlimited seconds" = "所有未来发送的新消息和新文件的默认阅读次数和每次阅读时长会被设置为无限制";
+"Default setting of viewing limit and duration per viewing will be changed to %zi time(s) and %zi second(s)" = "所有未来发送的新消息和新文件的默认阅读次数会被修改为%zi次，每次阅读时长会被设置为%zi秒";
+"Default setting of viewing limit and duration per viewing will be changed to unlimited times and %zi second(s)" = "所有未来发送的新消息和新文件的默认阅读次数会被修改为无限制，每次阅读时长会被设置为%zi秒";
+"Default setting of viewing limit and duration per viewing will be changed to %zi time(s) and unlimited seconds" = "所有未来发送的新消息和新文件的默认阅读次数会被修改为%zi次，每次阅读时长会被设置为无限制";
+"Failed" = "失败";
+"%zi time" = "%zi次";
+"%zi times" = "%zi次";
+"%zi Seconds" = "%zi秒";
+"%zi Second" = "%zi秒";
+"More" = "更多";
+"Done" = "完成";
+"Default Viewing Limit" = "默认阅读次数";
+"Default Viewing Duration" = "默认阅读时长";
+"Default viewing limit and duration will be assigned to receiver automatically during message sending" = "默认阅读次数和每次阅读时长会在消息发送时自动设置给接收者";

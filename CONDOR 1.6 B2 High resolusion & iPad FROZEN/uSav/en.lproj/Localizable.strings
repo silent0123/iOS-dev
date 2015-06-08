@@ -1,0 +1,500 @@
+/*
+ Localizable.strings
+ uSav
+ Created by young dennis on 4/11/12.
+ Copyright (c) 2012 young dennis. All rights reserved.
+ */
+
+"Your device has been jailbroken. To protect your data, CONDOR Phone Armour has stopped running.  Please correct the problem ASAP." = "Your device has been jailbroken. To protect your data, CONDOR Phone Armour has stopped running.  Please correct the problem ASAP.";
+
+"ShareAfterEditPermissionSuccess" = "Edit Permission Successful, Choose a sharing method";
+"DateSizeOverflow" = "Video size should not lager than 200M";
+
+"Session expired" = "Session expired";
+"InvalidGroupOrEmail" = "Please input a valid Group name or Email name";
+"CantAddOwn" = "Can't add your own email as friend";
+"DecryptFolder" = "Decrypted Files";
+"EncryptFolder" = "Encrypted Files";
+"sendToiCloudDrive" = "Send to iCloud Drive";
+"SelectPhotoAlbum" = "Select From Photo Album";
+"PhotoAlbum" = "Secure Album";
+"Encrypted Files" = "Encrypted Files";
+"Encrypted Album" = "Encrypted Album";
+"Decrypted File" = "Decrypted File";
+"PhotoAlbumDes" = "";
+"To: %@" = "To: %@";
+"Group chat is not supported in this version" = "Group chat is not supported in this version";
+
+"SingleFileHistory" = "File History";
+
+"uSav contact list" = "CONDOR contact list";
+"Address book" = "Address book";
+"Search Contact List or Enter Friend's Email Address" = "Search Contact List or Enter Friend's Email Address";
+"Permission Denied" = "Permission Denied";
+"Update uSav" = "Please update CONDOR to obtain correct file extension";
+
+"groupDontExist" = "Invalid Email/Group Name";
+"Authen_Failed" = "Incorrect Username or Password";
+"ForgetPasswrod" = "Forget password?";
+"Notification" = "Notification";
+"LaterKey" = "Later";
+"CONDOR Group" = "CONDOR Group";
+
+"versionNumber" = "114";
+"LanguageCode" = "en-us";
+"KeyLogSwitch" = "Operation";
+"OptLogSwitch" = "File";
+"ProcessBarAddFriend" = "Add friend";
+
+"EditNoteFault" = "Edit name failed";
+"EditAliasFault" = "Edit name failed";
+"RenameGroupFault" = "Rename group failed";
+
+"ContactChangeAliasKey" = "Edit Name";
+"ContactChangeNotesKey" = "Edit Name";
+"ContactDeleteKey" = "Delete Contact";
+"ContactAddToGroupKey" = "Add to group";
+"ContactBlockKey" = "Block Contact";
+"ContactUnblockKey" = "Unblock Contact";
+"Screen shot detected" = "Screen shot detected";
+"Access to Data belonging to %@ has been blocked.\nPlease contact %@ to unblock." = "Access to Data belonging to %@ has been blocked.\nPlease contact %@ to unblock.";
+
+
+"InvalidOldEmail" = "Invalid Previous Email Address";
+"InvalidNewEmail" = "Invalid Email Address";
+"InvalidEmail" = "Invalid Email Address";
+"AutoLockLabel" = "Auto Lock";
+"RetypePassword" = "Retype Email";
+"InvalidConfirmEmail" = "Inconsistent Email Addresses";
+"WrongOldEmail" = "Old email address not equal to the original setting";
+
+"InvalidOldPass" = "Password must contain letters and digits, range from 8-49";
+"InvalidNewPass" = "Password must contain letters and digits, range from 8-49";
+
+"InvalidConfirmPass" = "Inconsistent Passwords";
+"InvalidConfirmEmail" = "Inconsistent Email Addresses";
+
+"InvalidUserNam00000e" = "User name length range from 5-99";
+"InvalidPass" = "Password should contain both letters and digits, range from 8-49";
+
+"InvalidQuestion" = "Question length range from 10-99";
+"InvalidAnswer" = "Anwser length range from 5-49";
+
+"InvalidGroup" = "Group name length range from 1-49";
+
+"EnterFriendAlias2" = "Enter name for friend";
+"EnterFriendAliasPlaceHolder" = "1 - 30 letters and digits";
+
+"EnterFriendNote" = "Enter name for friend";
+"EnterFriendNotePlaceHolder" = "1 - 30 letters and digits";
+
+"EnterGroupName" = "Enter group name";
+"EnterGroupNamePlaceHolder" = "1 - 49 letters and digits";
+"AddGroupWithNameKey" = "Add group";
+"AddTrustContactUnknownErrorKey" = "Please input a valid email address";
+"EmailInUse" = "Email already registered";
+"Unknown Error" = "Unknown Error";
+
+"AddGroupFault" = "Add group failed";
+"AddFriendFault" = "Add friend failed";
+
+"CancelKey" = "Cancel";
+"OkKey" = "Ok";
+"DoneKey" = "Done";
+"BackKey" = "Back";
+"YesKey" = "Yes";
+"NoKey" = "No";
+"SelectActionKey" = "Select action";
+"ExitGameKey" = "Exit Game";
+"SelectCorrectAnswerKey" = "Select correct answer";
+"SubmitKey" = "Submit";
+
+"appTitleKey"  = "CONDOR";
+
+
+"LogoutKey" = "Logout";
+"LoginKey" = "Login";
+"AreYouSureKey" = "Are you sure?";
+"PleaseLoginFirstKey" = "Please Login";
+"AnythingToDoKey" = "If you have any file operation, please try agian";
+
+// Home page
+"GuidedEncryptShareKey" = "Guided Encrypt & Share";
+"GuidedDecryptViewKey" = "Guided Decrypt & View";
+"ExpertModeKey" = "Expert Mode";
+
+// Login/Register page
+"LoginColonKey" = "CONDOR Login";
+"RegisterKey" = "Submit";
+"RegisterColonKey" = "CONDOR Register";
+"AlreadyLoginKey" = "You are already login";
+"LoginSucceededKey" = "Login succeeded";
+"LoginFailedKey" = "Login failed";
+"LoginCancelledKey" = "Login cancelled";
+"UserNameTakenKey" = "Username has been taken";
+"UserNameNotFoundKey" = "Username not found";
+"PasswordIncorrectKey" = "Password incorrect";
+"Use6orMoreCharsKey" = "Please use 5 or more chars in username & password";
+"UserNamePlaceholderKey" = "Username, 5-99 letters or digits";
+
+"PasswordPlaceholderKey" = "Password, 8-49";
+"PasswordPlaceholderKey2" = "Letters and digits, 8-49";
+
+"RetypePwPlaceholderKey" = "Retype password";
+"EmailPlaceholderKey" = "Email";
+"RetypeEmailPlaceholderKey" = "Retype Email";
+"SecurityQuestionPlaceholderKey" = "Security Question";
+"SecurityAnswerPlaceholderKey" = "Security Answer";
+"DisplayPasswordLabelKey" = "Display";
+"SaveUsernameLabelKey" = "Save login info";
+"AutologinLabelKey" = "Auto login next time";
+"AskToRegiserBtnKey" = "Create New Account";
+
+"GoBackToLoginBtnKey" = "Go back to login";
+"RegisterSuccessKey" = "Registration completed. Please check your email box and activate your account";
+"RegisterTimestampOldKey" = "Registration time stamp too far behind";
+"RegisterTimestampFutureKey" = "Registration time stamp too far ahead";
+"RegisterInvalidAccIdKey" = "Registration account ID invalid";
+"UserNameTakenKey" = "Registration user name already taken";
+"RegisterUnsecurePasswordKey" = "Registration password too weak";
+"RegisterInvalidEmailKey" = "Registration email address invalid";
+"RegisterEmailInUseKey" = "Registration email address already in use";
+"RegisterUnknownStatusCodeKey" = "Registration failed, please change a name and try again";
+"GetAccountInfoSuccessKey" = "GetAccountInfo successful";
+"GetAccountInfoFailKey" = "GetAccountInfo failed";
+
+"EditPermissionSuccessKey" = "Edit Permission Successful";
+"EditPermissionSuccessMsg" = "";
+"EditPermissionFailedKey" = "Edit Permission Failed";
+"SetPermissionFailed" = "Edit Permission Failed";
+"EditPermissionFailedMsg" = "";
+"EditPermissionTitleBar" = "Edit Permission";
+"EditPermissionFileName" = "File name";
+"GetOperationLog" = "Get Operation Log";
+"ProcessBarFreshFileList" = "Refresh";
+"Save" = "Save";
+"Do you want to save the current permission setting" = "Do you want to save the current permission setting";
+"Changing" = "Changing";
+
+"GetKeyLog" = "Get Access Log";
+"PasscodeLock" = "Lock after";
+"FilePreviewKey" = "Preview";
+
+"LogViewOperationLogTitle" = "History";
+"LogViewKeyLogTitle" = "Operation";
+"LogViewSwitch" = "Switch";
+
+"ProfileOldPassPlaceHolder" = "Enter Current Password";
+"ProfileNewPassPlaceHolder" = "8 to 49 characters and digits";
+"ProfileVerifyPassPlaceHolder" = "Re-enter new password";
+
+"ProfileNewEmailPlaceHolder" = "Enter new name";
+"ProfileVerifyEmailPlaceHolder" = "Re-enter new email";
+
+"Profile" = "Profile";
+"ProfileUserName" = "User Name";
+"ProfileEmail" = "Email";
+"ProfilePassword" = "Password";
+"LanguageSetting" = "Language";
+"Set Language" = "Set Language";
+"EditPasswordSuccess" = "Edit password successful";
+"EditPasswordFailed" = "Edit password failed. Invalid Current Password";
+"EditEmailSuccess" = "Edit email successful";
+"EditEmailFailed" = "Edit email failed";
+"GuidedEditPermissionFriendText" = "Enter friend name seperated by white-space";
+"GuidedEditPermissionGroupText" = "Enter group name seperated by white-space";
+"EraseAllFiles" = "Erase All Files";
+
+//成功提示
+"Success" = "Success";
+
+"ProcessBarGetAuditLog" = "Getting File History";
+"ProcessBarGetOPLog" = "Getting Operation Log";
+// Guided Encrypt File & Share
+"EncryptFileTitleKey" = "Encrypt";
+
+"QuickEncryptFolder" = "From:Inbox To:Encrypted";
+"QuickDecryptFolder" = "From:Inbox To:Decrypted";
+
+"FileAlreadyEncryptedKey" = "File already encrypted";
+
+//HintLabel
+"No file in this folder" = "No file in this folder";
+"No Contact" = "No Contact";
+"No CONDOR Contact" = "No CONDOR Contact";
+"No Group Member" = "No Group Member";
+"No CONDOR Contact\nClick here to add from phone contact" = "No CONDOR Contact\nClick here to add from phone contact";
+
+// Guided Decrypt File
+"DecryptFileTitleKey" = "Decrypt";
+"FileAlreadyDecryptedKey" = "File already decrypted";
+
+// File Operations
+"FileHomeTitleKey" = "CONDOR";
+"FileTitleKey" = "Encrypt File";
+"EncryptedFile" = "Encrypted";
+"DecryptedFile" = "Decrypted";
+"InboxFile" = "Inbox";
+
+"Set Permission" = "Edit Permission";
+"FileAuditLog" = "File History";
+"FileEncryptedTitleKey" = "File (Encrypted)";
+"FileDecryptedTitleKey" = "File (Decrypted)";
+"FolderBackButtonKey" = "Back";
+"FileEncryptKey" = "Encrypt";
+"FileDecryptKey" = "Decrypt";
+"FileDeleteKey" = "Delete File";
+"DeleteKey" = "Delete";
+"FileTransferKey" = "Send/Open In";
+"FileEmailKey" = "Email";
+"FileEditPermissionKey" = "Editting Permission";
+"ProcessBarLogin" = "Login in progress";
+"ProcessBarGetContact" = "Getting contact list";
+"ProcessBarGetLog" = "Getting Logs";
+"ProcessBarEncrypt" = "Encrypting";
+"ProcessBarDecrypt" = "Decrypting";
+"ProcessBarPermissionList" = "Getting Permission List";
+"ProcessBarContactList" = "Getting Contact List";
+"ProcessBarDelete" = "Deleting";
+"BurnAfterRead" = "Burn After Read";
+"NoAppToOpen" = "No Available App";
+"Dismiss" = "Dismiss";
+"Large File" = "Large File";
+"Attachment should not be larger than 40Mb" = "Attachment should not be larger than 40Mb";
+"Email Attachment should not be larger than 25Mb" = "Email Attachment in iOS should not be larger than 25Mb";
+
+"ProcessBarEditEmail" = "Editting Email";
+"ProcessBarEditPassword" = "Changing Password";
+
+"FileAlreadyEncryptedKey" = "File already encrypted, choose another file without an CONDOR extension";
+"FileEncryptPathCreateFailedKey" = "Failed to create the Encrypt directory, please restart app and try again";
+"FileDecryptPathCreateFailedKey" = "Failed to create the Decrypt directory, please restart app and try again";
+"MessagesPathCreateFailedKey" = "Failed to create the message directory, please restart app and try again";
+"FileEncryptionFailedKey" = "File encryption failed";
+"FileEncryptionSucceedKey" = "File encryption succeeded";
+"FileEncryptionInvalidKeySizeKey" = "File encryption failed, invalid key size";
+"FileEncryptionKeyNotFoundKey" = "File decryption failed, permission denied or key not found";
+"FileDecryptionFailedKey" = "File decryption failed";
+"FileDecryptionSucceedKey" = "File decryption succeeded";
+"FileDeleteDirectoryNotAllowedKey" = "Directory can't be deleted";
+"GetKeyIdFromFileFailedKey" = "Get KeyId from file failed";
+"SortKey" = "Sort";
+"Time increment" = "Time ↑";
+"Time decrement" = "Time ↓";
+"Type" = "Type";
+"Size" = "Size";
+"Filename" = "Filename";
+
+"Please select 'preview' from the upper right menu" = "Select 'preview' from the upper right menu to open";
+
+"Preview File" = "Preview File";
+"Decrypted file stored in folder /Home/Decrypted " = "Decrypted file stored in /Home/Decrypted ";
+"Already added" ="Already added";
+// Contact
+"FailedToListGroupKey" = "Failed To List Group";
+"FailedToListTrustContactKey" = "Failed To List Contact";
+"ContactHomeTitleKey" = "Contact";
+"SelectActionKey" = "Action";
+"AddGroupKey" = "Add Group";
+"AddContactKey" = "Add Friend";
+"AddContactFromAddressKey" = "Add From Phone Contacts";
+"AddContactFromUsavKey" = "Add From CONDOR Contacts";
+"AddMemberKey" = "Add Member";
+"GoUpOneGroupKey" = "Back to Home";
+"DeleteContactKey" = "Delete Contact";
+"SelectAllContactKey" = "Select All Contacts";
+"SelectAllMemberKey" = "Select All Members";
+"EnterNewContactMsgKey" = "Add Friend's Email Address";
+"EnterNewGroupMsgKey" = "Add new group name";
+"GroupNameUnknownErrorKey" = "Add group failed";
+"GroupNameInvalidKey" = "Invalid group name, please use another name";
+"GroupNameAlreadyExistKey" = "Group name already used, please use another name";
+"ContactAddContactTitleKey" = "Add Contact";
+"DeleteItemMsgKey" = "Check item(s) to delete; only empty group can be deleted";
+"GroupNameNotFoundKey" = "Group name not found";
+"ContactNameNotFoundKey" = "Contact name not found";
+"DeleteTrustContactUnknownErrorKey" = "Delete Contact failed";
+"RemoveGroupUnknownErrorKey" = "Remove Group failed";
+"GroupMemberNotExistKey" = "Group member does not exist";
+"AddMemberToGroupSuccessKey" = "Successfully added member to group";
+
+"UserNotExist" = "User does not exist, system will send invite";
+"AliasNameInvalidKey" = "Name is invalid";
+"EmailNameInvalidKey" = "Email name is invalid";
+"NoteInvalidKey" = "Invalid name";
+"AddGroupMsgKey" = "Add Group";
+"InfoQuickEncrypt" = "Click file to encrypt";
+"InfoQuickSetPermission" = "";
+"InfoQuickDecrypt" = "Click file to decrypt";
+"InfoFullFeature" = "File opened by CONDOR is stored in 'Inbox'";
+
+"UnsupportedPreviewFile" = "Unsupported File Type";
+
+"Permission Denied" = "Permission Denied";
+"AddContactWithNameKey" = "Add contact";
+"QuickEncrypt" = "Encrypt & Share";
+"QuickDecrypt" = "Decrypt & View";
+"FullFeature" = "Settings";
+"AddContactMsgKey" = "Add contact";
+
+"FileDeleteKeyUnknownErrorKey" = "Unsupported file or Permission denied";
+"Timeout" = "Please check your network condition";
+"FriendNameAlreadyExistKey" = "Friend already exist";
+"AddContactToGroupTitleKey" = "Add Group Member";
+"UserAddedSuccuss" = "Add friend succeeded";
+
+"NoGroupInContactList" = "No group in contact list";
+"RegisterEmail" = "Email address, example@CONDOR.com";
+"DisabledUser" = "Please activate this account in your email";
+"EmailExisted" = "Email address already used";
+"AddSelf" = "Can not add self as a friend";
+
+"TimeStampError" = "System time sets incorrect";
+
+"TabHome" = "CONDOR";
+"TabBarFile" = "File";
+"TabBarContact" = "Contact";
+"TabBarHistory" = "History";
+"TabBarProfile" = "Setting";
+
+"Check Member" = "Member List";
+"Rename Group" = "Rename Group";
+"Delete Group" = "Delete Group";
+
+"ProfileLabel" = "Profile";
+"SecurityLabel" = "Security";
+"HelpLabel" = "Help";
+"FeedbackLabel" = "Feedback";
+
+"PassCodeLockLabel" = "Passcode Lock";
+"IntroductioinLabel" = "Introduction";
+"WriteToService" = "Write to customer service";
+
+"Where to get photo?" = "Where to get photo?";
+"Cancel" = "Cancel";
+"Camera" = "Secure Camera";
+"Photo Album" = "Photo Album";
+"ViewAndExport" = "View/Export";
+"Owner" = "Owner";
+"Created at" = "Created at";
+"Size" = "Size";
+
+"ShareBar" = "Send";
+"InstructionOne" = "Please add users to the share list;";
+"InstructionTwo" = "system will send an invite email to new users";
+"ContactListBtnLabel" = "Or from CONDOR contact list";
+"Sending" = "Sending";
+"permission will be assigned automatically" = "permission will be assigned automatically";
+
+"InstructionOne" = "Please add users to the share list;";
+"InstructionTwo" = "system will send an invite email to new users";
+
+"ContactListBtnLabel" = "Or from CONDOR contact list";
+"DecryptFolderDes" = "Files that have been decrypted";
+"EncryptFolderDes" = "Files that have been encrypted";
+"InboxFolderDes" = "Files imported from other apps";
+"FileDesLabel" = "Files:%zi";
+
+"ContactListLabel" = "Contact List";
+"DoneLabel" = "Done";
+"Selecting" = "By select from contact list";
+"SendBtn" = "Send";
+"ExportLabel" = "Export";
+
+"OldPassLabel" = "Current";
+"NewPassLabel" = "New";
+"ConfirmPassLabel" = "Confirm";
+"EditPassLabel" = "Change Password";
+"ConfirmLabel" = "Confirm";
+"Confirm and Share" = "Confirm and Send";
+"ConfirmPermissionLabel" = "Confirm Permission";
+
+"New Secure Q&A" = "New Secure Q&A";
+"New Question" = "New Question";
+"New Answer" = "New Answer";
+"Change Q&A Failed" = "Change Q&A Failed";
+"Invalid Question or Answer Length" = "Invalid Question or Answer Length";
+"10 - 99 characters" = "10 - 99 characters";
+
+"Turn Passcode Off" = "Turn Passcode Off";
+"Turn Passcode On" = "Turn Passcode On";
+"Change Passcode" = "Change Passcode";
+"Passcode Lock" = "Passcode Lock";
+"SentByEmailLabel" = "%@ has sent an encrypted file to you, it is in the attachment. If you haven't installed or register with CONDOR, please go to this link: http://www.nwstor.com";
+"Never" = "Never";
+"1  Minute" ="1  Minute";
+"2  Minutes" ="2  Minutes";
+"3  Minutes" ="3  Minutes";
+"4  Minutes" ="4  Minutes";
+"5  Minutes" ="5  Minutes";
+"10 Minutes" ="10 Minutes";
+"15 Minutes" ="15 Minutes";
+"Always" ="Always";
+"Encrypt photo" = "Encrypt photo";
+"Please enter a name:" = "Please enter a name:";
+//"Encrypt Folder Empty" = "Folder is empty";
+"Encrypt Folder Empty" = "Select a file to start CONDOR.";
+
+//"Encrypt Folder Empty Alert" = "Please import a file, e.g. from email attachment";
+"Encrypt Folder Empty Alert" = "File selection can be done by:\n1.Tap on a file in CONDOR folders, or\n2.Take a photo or select photo from album, or\n3.Select a file in any App and choose CONDOR App in the Open-in feature.";
+
+//"Encrypt Folder Empty Alert" = "File selection can be done by.abcdefghijklmnopq";3
+
+"OutOfQuotas" = "You get no access quotas";
+
+"Share List Empty" = "No email address";
+"Share List Empty Alert" = "No email address is entered or Group contains no member.Please enter one or more email address to share";
+//"Decrypt Folder Empty" = "Folder is empty";
+"Decrypt Folder Empty" = "Select a file to start CONDOR.";
+"Decrypt Folder Empty Alert" = "File selection can be done by:\n1.Tap on a file in CONDOR folders, or\n2.Take a photo or select photo from album, or\n3.Select a file in any App and choose CONDOR App in the Open-in feature.";
+"TabBarContact" = "Contact";
+"TabBarHistory" = "History";
+"TabBarProfile" = "Settings";
+"Register Account" = "Register Account";
+"RegistrationSuccess" = "Registration is successful.  An Activation email has been sent to your email address. If there is no email within a few minutes, please check your Spam Folder.  If necessary, you can contact us at registration@nwstor.com";
+
+"PasscodeIncorrect" = "You have entered an incorrect passcode too many times. Please login again.";
+"HistoryAuditLog" = "File History";
+
+"IncompleteFile" = "There is an incomplete .CONDOR-temp file.Please delete it then encrypt/decrypt original file again by no interruption for the process.";
+"SendByEmail" = "File Protected by CONDOR";
+"DecryptCopySendByEmail" = "File from CONDOR";
+"File Sent by CONDOR" = "File Sent by CONDOR";
+
+
+"ListGroupMember" = "Listing Group Member";
+"FailedToListGroupMemberKey" = "Failed To List Group Member";
+"ProcessBarEditAlias" = "Editting Name";
+"ProcessBarEditGroupName" = "Editting Group Name";
+"ProcessBarRegister" = "Registering";
+"ProcessAddFriend" = "Adding contacts";
+"Loading" = "Loading";
+"Detail" = "Detail";
+"Hide" = "Hide";
+
+//time arr
+"Restrictions" = "Viewing Restrictions";
+"NumOfReadKey" = "Allow Viewing";
+"DurationKey" = "Duration per Viewing";
+"StartAtKey" = "Start Viewing Time";
+"EndAtKey" = "End Viewing Time";
+"TimeErrorKey" = "Time Setting Error";
+"MustEarlierThanEndKey" = "End time must latter than start time";
+"No Limit" = "No Limit";
+"Hour" = "Hour";
+"Minute" = "Minute";
+"Second" = "Second";
+"Times" = "Times";
+"Default Setting" = "Default Setting";
+"Save as Default" = "Save as Default";
+"Save Succeed" = "Save Sucessful";
+"Allow viewing and duration per viewing will be stored as default" = "Allow viewing time and duration per viewing will be stored as default";
+
+//screen shot
+"Please do not capture displayed data\nNotification has been sent to \"%@\"" = "Please do not capture displayed data\nNotification has been sent to \"%@\"";
+
+//chat setting
+"EraseAllMessagesInThisSession" = "Erase messages in this chatting session";
+"This operation will erase history message records in this chatting session" = "本操作会删除当前会话中的所有聊天记录";
+"Default setting of viewing limit for all future messges and files will be changed to %zi time(s)" = "Default setting of viewing limit for all future messges and files will be changed to %zi time(s)";
+"Failed" = "Failed";
